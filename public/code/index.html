@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://localhost:1313/images/favicon.png" />
+<title>Code | Topophilic</title>
+<meta name="title" content="Code" />
+<meta name="description" content="
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+
+
+-- If A, then A or B
+proof1 :: A -&gt; (A &#43; B)
+proof1 a = a
+
+-- If A, B, then A and B
+proof2 :: A -&gt; B -&gt; (A, B)
+proof2 a b = (a, b)
+
+-- If A and (A then B), B
+proof3 :: A -&gt; (A -&gt; B) -&gt; B
+proof3 a f = f a
+
+
+
+
+1
+2
+3
+4
+5
+6
+
+
+class NeuralNetwork(nn.Module):
+    def __init__(self, *args):
+        ...
+    
+    def forward(self, *args):
+        ...
+
+
+
+
+1
+2
+3
+4
+
+
+struct Mesh{
+    Vector3[] points;
+    Vector3[] triangles;
+}
+
+" />
+<meta name="keywords" content="" />
+
+
+<meta property="og:url" content="http://localhost:1313/code/">
+  <meta property="og:site_name" content="Topophilic">
+  <meta property="og:title" content="Code">
+  <meta property="og:description" content="1 2 3 4 5 6 7 8 9 10 11 -- If A, then A or B proof1 :: A -&gt; (A &#43; B) proof1 a = a -- If A, B, then A and B proof2 :: A -&gt; B -&gt; (A, B) proof2 a b = (a, b) -- If A and (A then B), B proof3 :: A -&gt; (A -&gt; B) -&gt; B proof3 a f = f a 1 2 3 4 5 6 class NeuralNetwork(nn.Module): def __init__(self, *args): ... def forward(self, *args): ... 1 2 3 4 struct Mesh{ Vector3[] points; Vector3[] triangles; }">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-01-14T12:33:23-03:00">
+    <meta property="article:modified_time" content="2025-01-14T12:33:23-03:00">
+    <meta property="og:image" content="http://localhost:1313/images/share.png">
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/images/share.png">
+  <meta name="twitter:title" content="Code">
+  <meta name="twitter:description" content="1 2 3 4 5 6 7 8 9 10 11 -- If A, then A or B proof1 :: A -&gt; (A &#43; B) proof1 a = a -- If A, B, then A and B proof2 :: A -&gt; B -&gt; (A, B) proof2 a b = (a, b) -- If A and (A then B), B proof3 :: A -&gt; (A -&gt; B) -&gt; B proof3 a f = f a 1 2 3 4 5 6 class NeuralNetwork(nn.Module): def __init__(self, *args): ... def forward(self, *args): ... 1 2 3 4 struct Mesh{ Vector3[] points; Vector3[] triangles; }">
+
+
+
+
+  <meta itemprop="name" content="Code">
+  <meta itemprop="description" content="1 2 3 4 5 6 7 8 9 10 11 -- If A, then A or B proof1 :: A -&gt; (A &#43; B) proof1 a = a -- If A, B, then A and B proof2 :: A -&gt; B -&gt; (A, B) proof2 a b = (a, b) -- If A and (A then B), B proof3 :: A -&gt; (A -&gt; B) -&gt; B proof3 a f = f a 1 2 3 4 5 6 class NeuralNetwork(nn.Module): def __init__(self, *args): ... def forward(self, *args): ... 1 2 3 4 struct Mesh{ Vector3[] points; Vector3[] triangles; }">
+  <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
+  <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
+  <meta itemprop="wordCount" content="101">
+  <meta itemprop="image" content="http://localhost:1313/images/share.png">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <style>
+  :root {
+      --width: 800px;
+      --font-main: Verdana, sans-serif;
+      --font-secondary: Verdana, sans-serif;
+      --font-scale: 1em;
+      --background-color: #fff;
+      --heading-color: #222;
+      --text-color: #444;
+      --link-color: #3273dc;
+      --visited-color:  #8b6fcb;
+      --code-background-color: #f2f2f2;
+      --code-color: #222;
+      --blockquote-color: #222;
+  }
+
+  @media (prefers-color-scheme: dark) {
+      :root {
+          --background-color: #333;
+          --heading-color: #eee;
+          --text-color: #ddd;
+          --link-color: #8cc2dd;
+          --visited-color:  #8b6fcb;
+          --code-background-color: #777;
+          --code-color: #ddd;
+          --blockquote-color: #ccc;
+      }
+  }
+
+  body {
+      font-family: var(--font-secondary);
+      font-size: var(--font-scale);
+      margin: auto;
+      padding: 20px;
+      max-width: var(--width);
+      text-align: left;
+      background-color: var(--background-color);
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      line-height: 1.5;
+      color: var(--text-color);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-main);
+      color: var(--heading-color);
+  }
+
+  a {
+      color: var(--link-color);
+      cursor: pointer;
+      text-decoration: none;
+  }
+
+  a:hover {
+      text-decoration: underline; 
+  }
+
+  nav a {
+      margin-right: 8px;
+  }
+
+  strong, b {
+      color: var(--heading-color);
+  }
+
+  button {
+      margin: 0;
+      cursor: pointer;
+  }
+
+  main {
+      line-height: 1.6;
+  }
+
+  table {
+      width: 100%;
+  }
+
+  hr {
+      border: 0;
+      border-top: 1px dashed;
+  }
+
+  img {
+      max-width: 100%;
+  }
+
+  code {
+      font-family: monospace;
+      padding: 2px;
+      background-color: var(--code-background-color);
+      color: var(--code-color);
+      border-radius: 3px;
+  }
+
+  blockquote {
+      border-left: 1px solid #999;
+      color: var(--code-color);
+      padding-left: 20px;
+      font-style: italic;
+  }
+
+  footer {
+      padding: 25px 0;
+      text-align: center;
+  }
+
+  .title:hover {
+      text-decoration: none;
+  }
+
+  .title h1 {
+      font-size: 1.5em;
+  }
+
+  .inline {
+      width: auto !important;
+  }
+
+  .highlight, .code {
+      padding: 1px 15px;
+      background-color: var(--code-background-color);
+      color: var(--code-color);
+      border-radius: 3px;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      overflow-x: auto;
+  }
+
+   
+  ul.blog-posts {
+      list-style-type: none;
+      padding: unset;
+  }
+
+  ul.blog-posts li {
+      display: flex;
+  }
+
+  ul.blog-posts li span {
+      flex: 0 0 130px;
+  }
+
+  ul.blog-posts li a:visited {
+      color: var(--visited-color);
+  }
+</style>
+
+
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)'], ['$', '$']],                  
+      macros :{
+        im : "{\\text{im}\\,}"
+      }
+    }
+  };
+</script>
+  
+</head>
+
+<body>
+  <header><a href="/" class="title">
+  <h2>Topophilic</h2>
+</a>
+<nav><a href="/">Home</a>
+
+
+<a href="/blog">Blog</a>
+
+</nav>
+</header>
+  <main>
+
+<h1>Code</h1>
+<p>
+  <i>
+    <time datetime='2025-01-14'>
+      14 Jan, 2025
+    </time>
+  </i>
+</p>
+
+<content>
+  <div class=""><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#080;font-style:italic">-- If A, then A or B</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a000">proof1</span> <span style="color:#a2f;font-weight:bold">::</span> <span style="color:#0b0;font-weight:bold">A</span> <span style="color:#a2f;font-weight:bold">-&gt;</span> (<span style="color:#0b0;font-weight:bold">A</span> <span style="color:#666">+</span> <span style="color:#0b0;font-weight:bold">B</span>)
+</span></span><span style="display:flex;"><span><span style="color:#00a000">proof1</span> a <span style="color:#a2f;font-weight:bold">=</span> a
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">-- If A, B, then A and B</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a000">proof2</span> <span style="color:#a2f;font-weight:bold">::</span> <span style="color:#0b0;font-weight:bold">A</span> <span style="color:#a2f;font-weight:bold">-&gt;</span> <span style="color:#0b0;font-weight:bold">B</span> <span style="color:#a2f;font-weight:bold">-&gt;</span> (<span style="color:#0b0;font-weight:bold">A</span>, <span style="color:#0b0;font-weight:bold">B</span>)
+</span></span><span style="display:flex;"><span><span style="color:#00a000">proof2</span> a b <span style="color:#a2f;font-weight:bold">=</span> (a, b)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">-- If A and (A then B), B</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a000">proof3</span> <span style="color:#a2f;font-weight:bold">::</span> <span style="color:#0b0;font-weight:bold">A</span> <span style="color:#a2f;font-weight:bold">-&gt;</span> (<span style="color:#0b0;font-weight:bold">A</span> <span style="color:#a2f;font-weight:bold">-&gt;</span> <span style="color:#0b0;font-weight:bold">B</span>) <span style="color:#a2f;font-weight:bold">-&gt;</span> <span style="color:#0b0;font-weight:bold">B</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a000">proof3</span> a f <span style="color:#a2f;font-weight:bold">=</span> f a</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<div class=""><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">NeuralNetwork</span>(nn<span style="color:#666">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">def</span> __init__(self, <span style="color:#666">*</span>args):
+</span></span><span style="display:flex;"><span>        <span style="color:#666">...</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">def</span> <span style="color:#00a000">forward</span>(self, <span style="color:#666">*</span>args):
+</span></span><span style="display:flex;"><span>        <span style="color:#666">...</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<div class=""><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">struct</span> <span style="color:#00f">Mesh</span>{
+</span></span><span style="display:flex;"><span>    Vector3[] points;
+</span></span><span style="display:flex;"><span>    Vector3[] triangles;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+</content>
+<p>
+  
+</p>
+
+  </main>
+  <footer>
+</footer>
+
+    
+</body>
+
+</html>

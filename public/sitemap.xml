@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-01-14T12:33:23-03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/</loc>
+    <lastmod>2025-01-14T12:33:23-03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/code/</loc>
+    <lastmod>2025-01-14T12:33:23-03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/meshes-holes-and-rubriks-cube-tfa-series/</loc>
+    <lastmod>2025-01-14T12:33:23-03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-01-14T12:33:23-03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/the-dialectics-of-lok-and-other-puzzle-games/</loc>
+    <lastmod>2025-01-14T12:33:23-03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/topology-for-artists/</loc>
+    <lastmod>2025-01-14T12:33:23-03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/</loc>
+  </url>
+</urlset>

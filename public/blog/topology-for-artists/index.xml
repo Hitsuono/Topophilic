@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Topology for Artists on Topophilic</title>
+    <link>http://localhost:1313/blog/topology-for-artists/</link>
+    <description>Recent content in Topology for Artists on Topophilic</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <copyright>Copyright © 2025, Hitsuno.</copyright>
+    <lastBuildDate>Tue, 14 Jan 2025 12:33:23 -0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/blog/topology-for-artists/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Meshes, holes and Rubrik&#39;s cube (TfA Series)</title>
+      <link>http://localhost:1313/meshes-holes-and-rubriks-cube-tfa-series/</link>
+      <pubDate>Tue, 14 Jan 2025 12:33:23 -0300</pubDate>
+      <guid>http://localhost:1313/meshes-holes-and-rubriks-cube-tfa-series/</guid>
+      <description>&lt;p&gt;TODO:&lt;/p&gt;&#xA;&lt;p&gt;Corrigir estrutura de simplexo do círculo. Dar exemplo do disco.&lt;/p&gt;&#xA;&lt;p&gt;Delta sets tem q FILL o espaço (td ponto no interior de algm)&lt;/p&gt;&#xA;&lt;p&gt;Estudr + meshes&lt;/p&gt;&#xA;&lt;p&gt;Explicar orientação&lt;/p&gt;&#xA;&lt;p&gt;TL;DR&lt;/p&gt;&#xA;&lt;p&gt;In our search for topological invariants, we&amp;rsquo;ll learn how holes can be defined and be used to study spaces. This will require a detour on group theory, the study of permutations and their algebras (the possible moves on a Rubik&amp;rsquo;s cube being an example). With this machinery, we&amp;rsquo;ll define the homology groups of a topological space, in which holes live. A dual perspective on the topic will be given and then we&amp;rsquo;ll define cohomology groups, which also define holes, but with a different perspective. Finally, we&amp;rsquo;ll see how these groups are able to define and explain the impossibility of certain impossible figures, like the Penrose triangle and Necker&amp;rsquo;s cubes.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
