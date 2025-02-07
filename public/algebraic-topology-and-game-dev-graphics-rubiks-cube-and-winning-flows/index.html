@@ -40,7 +40,7 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
   <meta itemprop="description" content="TL;DR In our search for topological invariants, we’ll learn how holes can be defined and be used to study spaces. This will require studying “model” spaces, known as simplicial complexes, which are widely used in 3D rendering. We will be able to define general topological concepts like “boundary” and “cycle”. This will be formalized through a quick detour on group theory, the study of permutations and their algebras, which can be exemplified by the moves and configurations of a Rubik’s cube. With this machinery, we’ll define the homology groups of a topological space, in which holes live, and are one of the most important and studied topological invariants of spaces.">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="11041">
+  <meta itemprop="wordCount" content="11482">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -270,6 +270,7 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
             <li><a href="#perspective-and-homogenous-coordinates-">Perspective and homogenous coordinates *</a></li>
           </ol>
         </li>
+        <li><a href="#delta-spaces">Delta spaces</a></li>
         <li><a href="#simplices-probabilities-and-decision-games-">Simplices, probabilities and decision games **</a></li>
         <li><a href="#3d-graphics-and-simplices">3D graphics and simplices</a></li>
         <li><a href="#orientations-and-boundaries">Orientations and boundaries</a></li>
@@ -512,12 +513,10 @@ requestAnimationFrame(render);
 
 <p>TODO:
 melhorar parte de complexos
-meshes, com novas structs
-meshes, iluminac e orientac</p>
+3d: setup geral de 3d render, melhorar explicac dos algoritmos, iluminac e orientac. Usar imgs e shaders
+delta spaces: corrigir e revisar</p>
 <p>TODO:Corrigir estrutura de simplexo do círculo. Dar exemplo do disco.</p>
 <p>Delta sets tem q FILL o espaço (td ponto no interior de algm)</p>
-<p>Estudr + meshes</p>
-<p>Extensional vs intensional, termos certos pf</p>
 <p>ALG LIN:
 matrizes
 tipos de coisas q são trans lins, TRANSLAC NÃO É
@@ -577,6 +576,7 @@ $$<p>with $k$ variables and $m$ equations, we can consider a transformation $f:\
 <p>With that in mind, we&rsquo;ll now define the simpler spaces that will be our building blocks. These are called simplices. Formally, an n-dimensional simplex is defined as the convex hull of $n+1$ linearly independent points.</p>
 <p>For example, for a 1-simplex in $\mathbb{R}^1$, we take two different points $v_0, v_1$, and then fill the interval $[v_0, v_1]$, getting a line betwen $v_0, v_1$. For a 2-simplex in $\mathbb{R}^2$, take three l.i. points $ v_0, v_1, v_2$: the 2-simplex will be the triangle with them as vertices. Similarly, a 3-simplex is a pyramid with vertices $v_0,v_1,_v2_,v_3$ in $\mathbb{R}^3$. That is, <strong>simplices are polygons</strong>.</p>
 <p>Since a n-simplex is completely determined by its $n+1$ points $v_0,...,v_n$, we&rsquo;ll denote it as $\angled{v_0,...,v_n}$. For now, the order you put these points in the presentation doesn&rsquo;t matter- but soon it will. Also, note that 0-simplices are just points.</p>
+<p>By the expression we found for convex hulls, each element $p$ of an n-simplex $\angled{v_0,...,v_n}$ is of the form $\lambda_0 v_0+...+\lambda v_n$, with $\sum \lambda_i=0$ and $\lambda_i\geq 0$ for all $i$. These $\lambda_i$ can be interpreted as &ldquo;simplicial coordinates&rdquo; of $p$. In the 2-simplex case, each element of the interior of the triangle is given an unique such coordinate in respect to the vertices, known as its <strong>barycentric coordinate</strong>.</p>
 <p>For practicality, we also define the standard n-simplex $ \Delta^n$ to be the simplex in $\mathbb{R}^n$ with base points $(0,...,0),(1,0,...,0),(0,1,...,0),...,(0,...,0,1)$. By the formula for the convex hull we gave, $ \Delta^n=\{(\lambda_1,...,\lambda_n)\mid  \sum_i^n \lambda_i=1, \,\lambda_i\geq 0\}$. Every n-simplex is homeomorphic to $ \Delta^n$ by simple linear transformations of translation and stretching. Topologically, n-simplices are all homeomorphic to $D^n$, since that&rsquo;s the case for $ \Delta^n$.</p>
 <p>For a simplex $\angled{v_0,...,v_n}$, its <strong>faces</strong> are all the sub-simplices $\angled{v_0,...,\widehat{v_i}, ...,v_n}$, where this notation indicates that the index $i$ vertex is ommited. For example, a 1-simplex $\gos$ has faces are $\angled{v_0}$ and $\angled{v_1}$, its start and end points. For a 2-simplex, the faces of $\gts$ are $\gos$, $\angled{v_1, v_2}$ and $\angled{v_2, v_0}$, which in this case we can also call the edges of the 2-simplex. Finally, for the 3-simplex $\gths$, its faces are the 2-simplices $\gts, \angled{v_1, v_2, v_3}, \angled{v_0, v_2, v_3}$ and $\angled{v_0, v_1, v_3}$, in which case the use of the term &ldquo;face&rdquo; is closer to the usual. For higher dimensions, the same formula for faces applies as well, even though we can&rsquo;t properly see these simplices.</p>
 <p>We&rsquo;ll then call the boundary of a simplex to be the set</p>
@@ -632,6 +632,11 @@ $$\partial \angled{v_0,...,v_k} = \bigcup_{i=0}^n \angled{v_0,...,\widehat{v_i},
 <p>To see how $\rpt$ can be obtained from a square, note that if $S^2_N$ is the northern hemisphere of the sphere (counting the equator as well), then we have a continuous function $g:S^2_N \rightarrow \rpt$ sending each point in the hemisphere to the unique line passing through it. This is injective outside the equator (and topologically equivalent to the function $f$ described above relating to perspective), but inside it every point $p$ in the equator is mapped to the same line as its antipode $-p$&ndash; the point diametrically opposite to it. This means we can see $\rpt$ as a copy of $S^2_N$, but with antipodal points in the equator glued together. Homeomorphically turning $S^2_N$ into a square, this is exactly what the representation below does! Note that the original four vertices of the square became just two with the identifications we made.</p>
 <p>IMG!!!</p>
 <p>One very interesting way of getting $\rpt$ is through the Möbius strip. See, the latter has a boundary, which is a single loop. In the square representation, this loop is the non-glued horizontal edges. What if we glue them in opposite directions (i.e., again with a twist)? Well, the representation above just showed that we would get the projective plane! In particular, we also have that $\rpt$ isn&rsquo;t orientable.</p>
+<h2 id="delta-spaces">Delta spaces</h2>
+<p>As we can see by the examples above, finding a triangulation of a space can be very tedious. This is because we strictly require that our spaces be composed of simplices. But what if we just asked for it to be composed of chains&ndash;i.e., images of simplices? For the circle, e.g., instead of making it with two 1-simplices, we could just take one 1-simplex and glue its ends. This wouldn&rsquo;t be a simplicial complex, but would still be an image of one, with just one 1-chain.</p>
+<p>For the torus, instead of the exhausting triangulation we could do as follows. Take two 2-chains (filled triangles), and name each edge $a,b,c$. Glue the respective $c$ edges, forming a square. Then also glue the $a$ edges, forming a cylinder. Finally, glue the $b$ edges, forming a torus.</p>
+<p>This gives us the notion of a $\Delta$-space. Technically, it is a space $X$ with a set of chains $\sigma_i:\Delta^n\rightarrow X$ such that the image of the restriction $\sigma_i\mid  F$ for a face of $\Delta^n$ is itself the image of another chain $\sigma_j:\Delta^{n-1}\rightarrow X$ of one dimension below. As we did in the case of simplicial complexes, we also require that the interiors of the images of $\sigma_i,\sigma_j$ be disjoint.</p>
+<p>$\Delta$-spaces present us with some incoveniences when representing chains. With simplicial complexes, every simplex could be uniquely described by a list of (non-repeating) vertices. We can&rsquo;t really do the same with $\Delta$-spaces: take the example of the circle we described, where there&rsquo;s only one vertex with a 1-chain $\sigma$ connecting it to itself. We could try to represent it as $\os$, but it is clearer if we instead just write it as $ \sigma |{\os}$, with $ \sigma |  [v_0]=\sigma | [v_1]$.</p>
 <h2 id="simplices-probabilities-and-decision-games-">Simplices, probabilities and decision games **</h2>
 <p>PROB</p>
 <p>GAMES- DEFS</p>
@@ -655,8 +660,28 @@ EX MISTOS
 ELEIC?</p>
 <p>ESTRATEGS DOMINADAS</p>
 <h2 id="3d-graphics-and-simplices">3D graphics and simplices</h2>
-<p>Simplices and simplicial complexes shouldn&rsquo;t be foreign to those artists working with 3D rendering. In this area, they go by the name of <strong>meshes</strong>, which are just simplicial complexes constructed only gluing 2-simplices, plus some extra information we will discuss below.</p>
-<p>In order for a computer to render a 3D scene, it must know what objects does the camera can see. In most methods, this requires emiting rays from the camera&rsquo;s position to the scene, and verifying which objects these rays hit. This is what, say, raymarching a raytracing do. This process thoroughly requires computing distances between points and surfaces, like in the pseudo-code below:</p>
+<p>Simplices and simplicial complexes shouldn&rsquo;t be foreign to those artists working with 3D rendering. In this area, they go by the name of <strong>meshes</strong>, which are just simplicial complexes constructed only gluing 2-simplices, plus some extra data we will discuss below.</p>
+<p>Meshes have different implementations on different frameworks, but here is a quite minimalistic one we&rsquo;ll use here:</p>
+<div class=""><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">struct</span> <span style="color:#00f">Mesh</span>{
+</span></span><span style="display:flex;"><span>    vec3[] vertices;
+</span></span><span style="display:flex;"><span>    vec2[] uv; <span style="color:#080;font-style:italic">// UV maps, allow for textures. See below.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>}</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<p>In the structure above, each consecutive elements of the array <code>vertices</code> represent a triangle in the simplicial structure. The standard 2-simplex $\Delta^2$ embedded in $\rth$, for example, has <code>vertices = [(0, 0, 0), (1, 0, 0), (0, 1, 0)]</code>; the complex formed by two 2-simplices forming a square may have <code>vertices = [(0, 0, 0), (1, 0, 0), (0, 1, 0), (1, 0, 0), (1, 1, 0), (0, 1, 0)]</code>, with the last three vertices representing the triangle we joined with $\Delta^2$. Finally, defining <code>v0 = (0, 0, 0), v1 = (1, 0, 0), v2 = (0, 1, 0), v3 = (0, 0, 1)</code> the standard 3-simplex $\Delta^3$ may be given <code>vertices = [v1, v2, v3, v0, v2, v2, v0, v1, v3, v0, v1, v2]</code>. This last array may seem a bit daunting, but note that it&rsquo;s just made of the faces of $\Delta^3$, for which we&rsquo;ve already found a formula above.</p>
+<p>For each vertex, we also associate a so-called UV value, which is a vector of dimension 2. Values inside the triangle are interpolated using barycentric coordinates. These help us texturing our surface: the $(u,v)$ value of a point in the triangle indicates that it should have the colour of the pixel in position $(u,v)$ inside the texture sprite.</p>
+<p>3D SCENES
+But why are meshes used in 3D rendering?</p>
+<p>There are two main methods used to render a 3D scene: <strong>rasterization</strong> and <strong>raytracing</strong>. The latter is the most intuitive: in it, for each pixel in the screen you define an infinite ray from the camera passing through the point in the vision plane associated to the pixel. Starting from the camera position, you keep &ldquo;marching&rdquo; through the ray, with a point further away from the camera at each step, until you reach an object. You then return data from this object (like its material, its color etc.), and use that further in your rendering pipeline.</p>
+<p>In a GLSL-like pseudo-code, this may be written as follows:</p>
 <div class=""><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -679,31 +704,39 @@ ELEIC?</p>
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#080;font-style:italic">// General rasterization algorithm
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#080;font-style:italic">// General raytracing algorithm
 </span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
 </span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">for</span>(pixel in image){
-</span></span><span style="display:flex;"><span>    x <span style="color:#666">=</span> pixel[<span style="color:#666">0</span>];
-</span></span><span style="display:flex;"><span>    y <span style="color:#666">=</span> pixel[<span style="color:#666">1</span>];
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">for</span>(triangle in scene){
-</span></span><span style="display:flex;"><span>        vec2 v0 <span style="color:#666">=</span> perspective(triangle[<span style="color:#666">0</span>]);
-</span></span><span style="display:flex;"><span>        vec2 v1 <span style="color:#666">=</span> perspective(triangle[<span style="color:#666">1</span>]);
-</span></span><span style="display:flex;"><span>        vec2 v2 <span style="color:#666">=</span> perspective(triangle[<span style="color:#666">2</span>]);
-</span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        <span style="color:#0b0;font-weight:bold">float</span> depth;
-</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">if</span>(triangleInPixel(v0, v1, v2, <span style="color:#666">&amp;</span>depth)){
-</span></span><span style="display:flex;"><span>            <span style="color:#a2f;font-weight:bold">if</span>(depth <span style="color:#666">&lt;</span> depthBuffer[x, y]){
-</span></span><span style="display:flex;"><span>                image[x, y] <span style="color:#666">=</span> triangle.color;
-</span></span><span style="display:flex;"><span>                depthBuffer[x, y] <span style="color:#666">=</span> depth;
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    vec3 direction <span style="color:#666">=</span> rayDirection(pixel);
+</span></span><span style="display:flex;"><span>    vec3 origin <span style="color:#666">=</span> cameraPosition;
+</span></span><span style="display:flex;"><span>    vec3 p <span style="color:#666">=</span> origin; <span style="color:#080;font-style:italic">// marching point
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">float</span> dO <span style="color:#666">=</span> <span style="color:#666">0.0</span>; <span style="color:#080;font-style:italic">// distance from the origin (camera position)
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">float</span> dS <span style="color:#666">=</span> <span style="color:#666">1e10</span>; <span style="color:#080;font-style:italic">// distance from a surface. Initialized as a very high number
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    SurfaceData surfaceData; <span style="color:#080;font-style:italic">// other data from hit surface
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">// MIN_DISTANCE is a small number indicating the marching point is close enough to a surface
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#080;font-style:italic">// MAX_DISTANCE is a large number indicating the marching point is off the scene
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#a2f;font-weight:bold">while</span>(dS <span style="color:#666">&gt;</span> MIN_DISTANCE <span style="color:#666">&amp;&amp;</span> dS <span style="color:#666">&lt;</span> MAX_DISTANCE){
+</span></span><span style="display:flex;"><span>        p <span style="color:#666">=</span> origin <span style="color:#666">+</span> dO <span style="color:#666">*</span> direction;
+</span></span><span style="display:flex;"><span>        dS <span style="color:#666">=</span> distanceFromSurface(p);
+</span></span><span style="display:flex;"><span>        surfaceData <span style="color:#666">=</span> getData(p);
+</span></span><span style="display:flex;"><span>        dO <span style="color:#666">+=</span> dS;
 </span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    pixel.color <span style="color:#666">=</span> getColor(dS, surfaceData);
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
 </div>
 </div>
-<p>Now, how do we compute these distances? The most straightaway way is to use the surfaces&rsquo; SDFs&ndash; their &ldquo;signed distance functions&rdquo;. This is a function that directly&ndash; or, using the more common mathematical term, analitically&ndash; tells you the distance between a point and an embedded (orientable) space, giving positive sign if it is &ldquo;outside&rdquo; the object, and negative if it is &ldquo;inside&rdquo; it. Below is an example of a SDF for a sphere of radius $r$ and center $c$ in $\rth$, written in an OpenGL-like manner:</p>
+<p>The crucial mathematical step in the algorithm is how to get the distance from $p$ to surfaces inside our scene. How might we find that value? The most straightaway way is to use the surfaces&rsquo; SDFs&ndash; their &ldquo;signed distance functions&rdquo;. This is a function that directly&ndash; or, using the more common mathematical term, analitically&ndash; tells you the distance between a point and an embedded (orientable) space, giving positive sign if it is &ldquo;outside&rdquo; the object, and negative if it is &ldquo;inside&rdquo; it. Below is an example of a SDF for a sphere of radius $r$ and center $c$ in $\rth$:</p>
 <div class=""><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -718,40 +751,59 @@ ELEIC?</p>
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
 </div>
 </div>
-<p>When used to render a 3D scene, this will give us a smooth sphere. Sadly, most shapes you will see on, say, video games, do not have such an easy SDF. This may change with the progress of <a href="https://research.nvidia.com/labs/toronto-ai/nglod">neural SDFs</a>, which use neural networks to learn these functions, but, for the most part of the history of computer graphics, using SDFs to render was not practical for most situations. The solution was to try to approximate surfaces with smaller, easier shapes&ndash; namely, triangles, or 2-simplices&ndash;, and so were meshes born. That is, meshes are just triangularizations of surfaces we want to approximate. The more 2-simplices a mesh has, the more detail our model will be able to have.</p>
-<p>Meshes have different implementations on different frameworks, but here is a quite minimalistic one:</p>
+<p>When used to render a 3D scene, this will give us a smooth sphere. Sadly, most shapes you will see on, say, video games, do not have such an easy SDF. This may change with the progress of <a href="https://research.nvidia.com/labs/toronto-ai/nglod">neural SDFs</a>, which use neural networks to learn these functions, but, for the most part of the history of computer graphics, using SDFs to render was not practical for most situations.</p>
+<p>The solution was to try to approximate surfaces with simplers shapes&ndash; namely, triangles, or 2-simplices, for which we can use a single known SDF (<a href="https://www.shadertoy.com/view/4sXXRN">see here</a> for an implementation). And so were meshes born! That is, meshes are just triangulations of surfaces we want to approximate. The more 2-simplices a mesh has, the more detail our model will be able to have.</p>
+<p>Raytracing has the problem that it can take too much time inside the <code>while</code> loop trying to hit a surface. Rasterization is then a more efficient alternative. In it, we project our mesh vertices into the vision plane&ndash; something that can be quickly done by the GPU using linear algebra and projectivization. For each pixel we check if it is contained inside one of the projected triangles defined by the projected vertices, and use that to define its color. We also have to check in the case a pixel is inside many of these triangles: to solve that, we compute the depth of each projected triangle, and render only the color of the one with least depth. These depth values for each pixel are stored in an array called the <strong>depth buffer</strong>.</p>
 <div class=""><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">struct</span> <span style="color:#00f">Mesh</span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">// Array of 3D points representing vertex vectors.</span>
-</span></span><span style="display:flex;"><span>    Vector3[] vertices; 
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#080;font-style:italic">// General rasterization algorithm
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">for</span>(pixel in image){
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">int</span> x <span style="color:#666">=</span> pixel[<span style="color:#666">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">int</span> y <span style="color:#666">=</span> pixel[<span style="color:#666">1</span>];
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">// UV maps, allow for textures. See below.</span>
-</span></span><span style="display:flex;"><span>    Vector2[] uv;
-</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">for</span>(triangle in scene){
+</span></span><span style="display:flex;"><span>        vec2 v0 <span style="color:#666">=</span> project(triangle[<span style="color:#666">0</span>]);
+</span></span><span style="display:flex;"><span>        vec2 v1 <span style="color:#666">=</span> project(triangle[<span style="color:#666">1</span>]);
+</span></span><span style="display:flex;"><span>        vec2 v2 <span style="color:#666">=</span> project(triangle[<span style="color:#666">2</span>]);
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#0b0;font-weight:bold">float</span> depth;
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">if</span>(pixelInTriangle(v0, v1, v2, <span style="color:#666">&amp;</span>depth)){ 
+</span></span><span style="display:flex;"><span>            <span style="color:#080;font-style:italic">// pixelInTriangle changes the depth value to be the depth of the projected triangle
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>            <span style="color:#a2f;font-weight:bold">if</span>(depth <span style="color:#666">&lt;</span> depthBuffer[x, y]){
+</span></span><span style="display:flex;"><span>                image[x, y] <span style="color:#666">=</span> triangle.color;
+</span></span><span style="display:flex;"><span>                depthBuffer[x, y] <span style="color:#666">=</span> depth;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
 </div>
 </div>
-<p>In the structure above, we first have an array representing or vertices. To get the 2-simplices, we define an integer array, each 3 consecutive elements representing the index of the points forming a triangle. The standard 2-simplex $\Delta ^2$ (seeing it embedded in $\rth$), for example, has <code>points = [(0, 0, 0), (1, 0, 0), (0, 1, 0)]</code> and <code>triangles = [0, 1, 2]</code>. If we glued to triangle to form a square, we would have <code>points = [(0, 0, 0), (1, 0, 0), (0, 1, 0), (1, 1, 0)]</code> and <code>triangles = [0, 1, 2, 1, 3, 2]</code>. Of course, we could have arbitrary position vectors, and the triangle array would be the same.</p>
-<p>!!!The exterior, hollow pyramid of the standard 3-simplex $\Delta^3$ has <code>points = [(0, 0, 0), (1, 0, 0), (0,1, 0), (0, 0, 1)]</code> and <code>triangles = [3, ]</code></p>
-<p>The order points come in the <code>vertices</code> array is very important. There are many reasons why this is so, but the most fundamental has to do with <strong>lighting and shading</strong>. Imagine you have a lamp somewhere on your 3D scene, and want to use it to illuminate objects. EXPLAIN FIRST NORMAL, THEN FORMULA</p>
-$$L = I\, \frac {(O-P) \cdot N_P} {d(O, P)},$$<p>When rendering, it is important to remember that meshes also have a notion of &ldquo;front&rdquo; and &ldquo;back&rdquo;. When the camera is in front of it, it can see the mesh; when it is behind it, it can&rsquo;t, as if the triangles were invisible.</p>
-<p>DELTA SPACES</p>
-<p>As we can see by the examples above, finding a triangulation of a space can be very tedious. This is because we strictly require that our spaces be composed of simplices. But what if we just asked for it to be composed of chains&ndash;i.e., images of simplices? For the circle, e.g., instead of making it with two 1-simplices, we could just take one 1-simplex and glue its ends. This wouldn&rsquo;t be a simplicial complex, but would still be an image of one, with just one 1-chain.</p>
-<p>For the torus, instead of the exhausting triangulation we could do as follows. Take two 2-chains (filled triangles), and name each edge $a,b,c$. Glue the respective $c$ edges, forming a square. Then also glue the $a$ edges, forming a cylinder. Finally, glue the $b$ edges, forming a torus.</p>
-<p>This gives us the notion of a $\Delta$-space. Technically, it is a space $X$ with a set of chains $\sigma_i:\Delta^n\rightarrow X$ such that the image of the restriction $\sigma_i\mid  F$ for a face of $\Delta^n$ is itself the image of another chain $\sigma_j:\Delta^{n-1}\rightarrow X$ of one dimension below. As we did in the case of simplicial complexes, we also require that the interiors of the images of $\sigma_i,\sigma_j$ be disjoint.</p>
-<p>$\Delta$-spaces present us with some incoveniences when representing chains. With simplicial complexes, every simplex could be uniquely described by a list of (non-repeating) vertices. We can&rsquo;t really do the same with $\Delta$-spaces: take the example of the circle we described, where there&rsquo;s only one vertex with a 1-chain $\sigma$ connecting it to itself. We could try to represent it as $\os$, but it is clearer if we instead just write it as $ \sigma |{\os}$, with $ \sigma |  [v_0]=\sigma | [v_1]$.</p>
-<h2 id="orientations-and-boundaries">Orientations and boundaries</h2>
+<p>Meshes become more interesting when you introduce <strong>lighting and shading</strong> to your rendering pipeline. Imagine you have a lamp somewhere on your 3D scene, and want to use it to illuminate objects. EXPLAIN FIRST NORMAL, THEN FORMULA</p>
+$$L = I\, \frac {(O-P) \cdot N_P} {d(O, P)},$$<h2 id="orientations-and-boundaries">Orientations and boundaries</h2>
 <p>With the discussion above, we see that meshes aggregate a bit more information than the simplices we have discussed so far. Not only on the more visual and computational aspects, but also on the geometrical side: they are oriented. This turned out to give us a lot of important information, so perhaps we would like to extend this to further dimensions. This is simple for 1-simplices, as they can then be seen as directed paths: we will say $\os$ goes from $v_0$ to $v_1$, and $[v_1,v_0]$ does the opposite. In the same way meshes&rsquo; orientations were associated to the orientation of their edges, may say that $\os$ gives $[v_1]$ a &ldquo;positive&rdquo; orientation and $[v_0]$ a &ldquo;negative&rdquo; one.</p>
 <p>This all means that, with oriented simplices, the order we write our base vectors in $[v_0,...,v_k]$ will from now on matter.</p>
 <p>Formalizing for the 2-dimensional case, we determine that $\ts$ has oriented edges $[v_0, v_1]$, $[v_1,v_2]$ and $[v_2,v_0]$&ndash; i.e., boundary edges follow the order of the vertices in the presentation. The other possible oriented 2-simplex would be the one with inverted edges $[v_1,v_0]$, $[v_0,v_2]$ and $[v_2,v_1]$, which can then be written as $[v_1,v_0,v_2]$. Note that $[v_1,v_2,v_0]$ has the same orientation as $\ts$. Indeed, whenever you swap two neighboring vectors in the presentation, you get the 2-simplex going in the opposite direction. This means that if you do an odd amount of swaps (in what we will call an <strong>odd permutation</strong>), you get the opposite simplex; if you do an even amount (in an <strong>even permutation</strong>), you get the same one. You can see this rule also applies for 1-simplices, and indeed will be the case for any n-simplex.</p>

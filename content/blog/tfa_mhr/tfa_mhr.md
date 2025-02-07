@@ -38,16 +38,12 @@ In our search for topological invariants, we'll learn how **holes** can be defin
 
 TODO:
     melhorar parte de complexos
-    meshes, com novas structs
-    meshes, iluminac e orientac
+    3d: setup geral de 3d render, melhorar explicac dos algoritmos, iluminac e orientac. Usar imgs e shaders
+    delta spaces: corrigir e revisar
 
 TODO:Corrigir estrutura de simplexo do círculo. Dar exemplo do disco.
 
 Delta sets tem q FILL o espaço (td ponto no interior de algm)
-
-Estudr + meshes
-
-Extensional vs intensional, termos certos pf
 
 ALG LIN:
     matrizes
@@ -153,6 +149,8 @@ With that in mind, we'll now define the simpler spaces that will be our building
 For example, for a 1-simplex in $\mathbb{R}^1$, we take two different points $v_0, v_1$, and then fill the interval $[v_0, v_1]$, getting a line betwen $v_0, v_1$. For a 2-simplex in $\mathbb{R}^2$, take three l.i. points $ v_0, v_1, v_2$: the 2-simplex will be the triangle with them as vertices. Similarly, a 3-simplex is a pyramid with vertices $v_0,v_1,_v2_,v_3$ in $\mathbb{R}^3$. That is, **simplices are polygons**.
 
 Since a n-simplex is completely determined by its $n+1$ points $v_0,...,v_n$, we'll denote it as $\angled{v_0,...,v_n}$. For now, the order you put these points in the presentation doesn't matter- but soon it will. Also, note that 0-simplices are just points.
+
+By the expression we found for convex hulls, each element $p$ of an n-simplex $\angled{v_0,...,v_n}$ is of the form $\lambda_0 v_0+...+\lambda v_n$, with $\sum \lambda_i=0$ and $\lambda_i\geq 0$ for all $i$. These $\lambda_i$ can be interpreted as "simplicial coordinates" of $p$. In the 2-simplex case, each element of the interior of the triangle is given an unique such coordinate in respect to the vertices, known as its **barycentric coordinate**.
 
 For practicality, we also define the standard n-simplex $ \Delta^n$ to be the simplex in $\mathbb{R}^n$ with base points $(0,...,0),(1,0,...,0),(0,1,...,0),...,(0,...,0,1)$. By the formula for the convex hull we gave, $ \Delta^n=\{(\lambda_1,...,\lambda_n)\mid  \sum_i^n \lambda_i=1, \,\lambda_i\geq 0\}$. Every n-simplex is homeomorphic to $ \Delta^n$ by simple linear transformations of translation and stretching. Topologically, n-simplices are all homeomorphic to $D^n$, since that's the case for $ \Delta^n$. 
 
@@ -260,6 +258,16 @@ IMG!!!
 
 One very interesting way of getting $\rpt$ is through the Möbius strip. See, the latter has a boundary, which is a single loop. In the square representation, this loop is the non-glued horizontal edges. What if we glue them in opposite directions (i.e., again with a twist)? Well, the representation above just showed that we would get the projective plane! In particular, we also have that $\rpt$ isn't orientable.
 
+## Delta spaces
+
+As we can see by the examples above, finding a triangulation of a space can be very tedious. This is because we strictly require that our spaces be composed of simplices. But what if we just asked for it to be composed of chains--i.e., images of simplices? For the circle, e.g., instead of making it with two 1-simplices, we could just take one 1-simplex and glue its ends. This wouldn't be a simplicial complex, but would still be an image of one, with just one 1-chain.
+
+For the torus, instead of the exhausting triangulation we could do as follows. Take two 2-chains (filled triangles), and name each edge $a,b,c$. Glue the respective $c$ edges, forming a square. Then also glue the $a$ edges, forming a cylinder. Finally, glue the $b$ edges, forming a torus.
+
+This gives us the notion of a $\Delta$-space. Technically, it is a space $X$ with a set of chains $\sigma_i:\Delta^n\rightarrow X$ such that the image of the restriction $\sigma_i\mid  F$ for a face of $\Delta^n$ is itself the image of another chain $\sigma_j:\Delta^{n-1}\rightarrow X$ of one dimension below. As we did in the case of simplicial complexes, we also require that the interiors of the images of $\sigma_i,\sigma_j$ be disjoint. 
+
+$\Delta$-spaces present us with some incoveniences when representing chains. With simplicial complexes, every simplex could be uniquely described by a list of (non-repeating) vertices. We can't really do the same with $\Delta$-spaces: take the example of the circle we described, where there's only one vertex with a 1-chain $\sigma$ connecting it to itself. We could try to represent it as $\os$, but it is clearer if we instead just write it as $ \sigma |{\os}$, with $ \sigma |  [v_0]=\sigma | [v_1]$.
+
 ## Simplices, probabilities and decision games **
 PROB
 
@@ -287,24 +295,85 @@ ESTRATEGS DOMINADAS
 
 ## 3D graphics and simplices
 
-Simplices and simplicial complexes shouldn't be foreign to those artists working with 3D rendering. In this area, they go by the name of **meshes**, which are just simplicial complexes constructed only gluing 2-simplices, plus some extra information we will discuss below.
+Simplices and simplicial complexes shouldn't be foreign to those artists working with 3D rendering. In this area, they go by the name of **meshes**, which are just simplicial complexes constructed only gluing 2-simplices, plus some extra data we will discuss below. 
 
-In order for a computer to render a 3D scene, it must know what objects does the camera can see. In most methods, this requires emiting rays from the camera's position to the scene, and verifying which objects these rays hit. This is what, say, raymarching a raytracing do. This process thoroughly requires computing distances between points and surfaces, like in the pseudo-code below:
+Meshes have different implementations on different frameworks, but here is a quite minimalistic one we'll use here:
+
+{{< highlight cpp "linenos=table,hl_lines=0,linenostart=1" >}}
+struct Mesh{
+    vec3[] vertices;
+    vec2[] uv; // UV maps, allow for textures. See below.
+}
+{{< / highlight >}}
+
+In the structure above, each consecutive elements of the array `vertices` represent a triangle in the simplicial structure. The standard 2-simplex $\Delta^2$ embedded in $\rth$, for example, has `vertices = [(0, 0, 0), (1, 0, 0), (0, 1, 0)]`; the complex formed by two 2-simplices forming a square may have `vertices = [(0, 0, 0), (1, 0, 0), (0, 1, 0), (1, 0, 0), (1, 1, 0), (0, 1, 0)]`, with the last three vertices representing the triangle we joined with $\Delta^2$. Finally, defining `v0 = (0, 0, 0), v1 = (1, 0, 0), v2 = (0, 1, 0), v3 = (0, 0, 1)` the standard 3-simplex $\Delta^3$ may be given `vertices = [v1, v2, v3, v0, v2, v2, v0, v1, v3, v0, v1, v2]`. This last array may seem a bit daunting, but note that it's just made of the faces of $\Delta^3$, for which we've already found a formula above.
+
+For each vertex, we also associate a so-called UV value, which is a vector of dimension 2. Values inside the triangle are interpolated using barycentric coordinates. These help us texturing our surface: the $(u,v)$ value of a point in the triangle indicates that it should have the colour of the pixel in position $(u,v)$ inside the texture sprite.
+
+3D SCENES
+But why are meshes used in 3D rendering? 
+
+There are two main methods used to render a 3D scene: **rasterization** and **raytracing**. The latter is the most intuitive: in it, for each pixel in the screen you define an infinite ray from the camera passing through the point in the vision plane associated to the pixel. Starting from the camera position, you keep "marching" through the ray, with a point further away from the camera at each step, until you reach an object. You then return data from this object (like its material, its color etc.), and use that further in your rendering pipeline.
+
+In a GLSL-like pseudo-code, this may be written as follows:
+
+{{< highlight cpp "linenos=table,hl_lines=0,linenostart=1" >}}
+// General raytracing algorithm
+
+for(pixel in image){
+
+    vec3 direction = rayDirection(pixel);
+    vec3 origin = cameraPosition;
+    vec3 p = origin; // marching point
+
+    float dO = 0.0; // distance from the origin (camera position)
+    float dS = 1e10; // distance from a surface. Initialized as a very high number
+
+    SurfaceData surfaceData; // other data from hit surface
+
+    // MIN_DISTANCE is a small number indicating the marching point is close enough to a surface
+    // MAX_DISTANCE is a large number indicating the marching point is off the scene
+    while(dS > MIN_DISTANCE && dS < MAX_DISTANCE){
+        p = origin + dO * direction;
+        dS = distanceFromSurface(p);
+        surfaceData = getData(p);
+        dO += dS;
+    }
+
+    pixel.color = getColor(dS, surfaceData);
+}
+{{< / highlight >}}
+
+The crucial mathematical step in the algorithm is how to get the distance from $p$ to surfaces inside our scene. How might we find that value? The most straightaway way is to use the surfaces' SDFs-- their "signed distance functions". This is a function that directly-- or, using the more common mathematical term, analitically-- tells you the distance between a point and an embedded (orientable) space, giving positive sign if it is "outside" the object, and negative if it is "inside" it. Below is an example of a SDF for a sphere of radius $r$ and center $c$ in $\rth$:
+
+{{< highlight c "linenos=table,hl_lines=0,linenostart=1" >}}
+float sphereSdf(vec3 p, vec3 c, float r){
+    // length gives the Euclidian distance between p and c: length(v) = sqrt(v[0]^2 + v[1]^2 + v[2]^2)
+    return distance = length(p - c) - r;
+}
+{{< / highlight >}}
+
+When used to render a 3D scene, this will give us a smooth sphere. Sadly, most shapes you will see on, say, video games, do not have such an easy SDF. This may change with the progress of [neural SDFs](https://research.nvidia.com/labs/toronto-ai/nglod), which use neural networks to learn these functions, but, for the most part of the history of computer graphics, using SDFs to render was not practical for most situations. 
+
+The solution was to try to approximate surfaces with simplers shapes-- namely, triangles, or 2-simplices, for which we can use a single known SDF ([see here](https://www.shadertoy.com/view/4sXXRN) for an implementation). And so were meshes born! That is, meshes are just triangulations of surfaces we want to approximate. The more 2-simplices a mesh has, the more detail our model will be able to have. 
+
+Raytracing has the problem that it can take too much time inside the `while` loop trying to hit a surface. Rasterization is then a more efficient alternative. In it, we project our mesh vertices into the vision plane-- something that can be quickly done by the GPU using linear algebra and projectivization. For each pixel we check if it is contained inside one of the projected triangles defined by the projected vertices, and use that to define its color. We also have to check in the case a pixel is inside many of these triangles: to solve that, we compute the depth of each projected triangle, and render only the color of the one with least depth. These depth values for each pixel are stored in an array called the **depth buffer**.
 
 {{< highlight cpp "linenos=table,hl_lines=0,linenostart=1" >}}
 // General rasterization algorithm
 
 for(pixel in image){
-    x = pixel[0];
-    y = pixel[1];
+    int x = pixel[0];
+    int y = pixel[1];
 
     for(triangle in scene){
-        vec2 v0 = perspective(triangle[0]);
-        vec2 v1 = perspective(triangle[1]);
-        vec2 v2 = perspective(triangle[2]);
+        vec2 v0 = project(triangle[0]);
+        vec2 v1 = project(triangle[1]);
+        vec2 v2 = project(triangle[2]);
         
         float depth;
-        if(triangleInPixel(v0, v1, v2, &depth)){
+        if(pixelInTriangle(v0, v1, v2, &depth)){ 
+            // pixelInTriangle changes the depth value to be the depth of the projected triangle
             if(depth < depthBuffer[x, y]){
                 image[x, y] = triangle.color;
                 depthBuffer[x, y] = depth;
@@ -315,49 +384,9 @@ for(pixel in image){
 
 {{< / highlight >}}
 
-Now, how do we compute these distances? The most straightaway way is to use the surfaces' SDFs-- their "signed distance functions". This is a function that directly-- or, using the more common mathematical term, analitically-- tells you the distance between a point and an embedded (orientable) space, giving positive sign if it is "outside" the object, and negative if it is "inside" it. Below is an example of a SDF for a sphere of radius $r$ and center $c$ in $\rth$, written in an OpenGL-like manner:
-
-{{< highlight c "linenos=table,hl_lines=0,linenostart=1" >}}
-float sphereSdf(vec3 p, vec3 c, float r){
-    // length gives the Euclidian distance between p and c: length(v) = sqrt(v[0]^2 + v[1]^2 + v[2]^2)
-    return distance = length(p - c) - r;
-}
-{{< / highlight >}}
-
-When used to render a 3D scene, this will give us a smooth sphere. Sadly, most shapes you will see on, say, video games, do not have such an easy SDF. This may change with the progress of [neural SDFs](https://research.nvidia.com/labs/toronto-ai/nglod), which use neural networks to learn these functions, but, for the most part of the history of computer graphics, using SDFs to render was not practical for most situations. The solution was to try to approximate surfaces with smaller, easier shapes-- namely, triangles, or 2-simplices--, and so were meshes born. That is, meshes are just triangularizations of surfaces we want to approximate. The more 2-simplices a mesh has, the more detail our model will be able to have.
-
-Meshes have different implementations on different frameworks, but here is a quite minimalistic one:
-
-{{< highlight csharp "linenos=table,hl_lines=0,linenostart=1" >}}
-struct Mesh{
-    // Array of 3D points representing vertex vectors.
-    Vector3[] vertices; 
-
-    // UV maps, allow for textures. See below.
-    Vector2[] uv;
-    ...
-}
-{{< / highlight >}}
-
-In the structure above, we first have an array representing or vertices. To get the 2-simplices, we define an integer array, each 3 consecutive elements representing the index of the points forming a triangle. The standard 2-simplex $\Delta ^2$ (seeing it embedded in $\rth$), for example, has `points = [(0, 0, 0), (1, 0, 0), (0, 1, 0)]` and `triangles = [0, 1, 2]`. If we glued to triangle to form a square, we would have `points = [(0, 0, 0), (1, 0, 0), (0, 1, 0), (1, 1, 0)]` and `triangles = [0, 1, 2, 1, 3, 2]`. Of course, we could have arbitrary position vectors, and the triangle array would be the same.
-
-!!!The exterior, hollow pyramid of the standard 3-simplex $\Delta^3$ has `points = [(0, 0, 0), (1, 0, 0), (0,1, 0), (0, 0, 1)]` and `triangles = [3, ]`
-
-The order points come in the `vertices` array is very important. There are many reasons why this is so, but the most fundamental has to do with **lighting and shading**. Imagine you have a lamp somewhere on your 3D scene, and want to use it to illuminate objects. EXPLAIN FIRST NORMAL, THEN FORMULA
+Meshes become more interesting when you introduce **lighting and shading** to your rendering pipeline. Imagine you have a lamp somewhere on your 3D scene, and want to use it to illuminate objects. EXPLAIN FIRST NORMAL, THEN FORMULA
 
 $$L = I\, \frac {(O-P) \cdot N_P} {d(O, P)},$$
-
-When rendering, it is important to remember that meshes also have a notion of "front" and "back". When the camera is in front of it, it can see the mesh; when it is behind it, it can't, as if the triangles were invisible. 
-
-DELTA SPACES
-
-As we can see by the examples above, finding a triangulation of a space can be very tedious. This is because we strictly require that our spaces be composed of simplices. But what if we just asked for it to be composed of chains--i.e., images of simplices? For the circle, e.g., instead of making it with two 1-simplices, we could just take one 1-simplex and glue its ends. This wouldn't be a simplicial complex, but would still be an image of one, with just one 1-chain.
-
-For the torus, instead of the exhausting triangulation we could do as follows. Take two 2-chains (filled triangles), and name each edge $a,b,c$. Glue the respective $c$ edges, forming a square. Then also glue the $a$ edges, forming a cylinder. Finally, glue the $b$ edges, forming a torus.
-
-This gives us the notion of a $\Delta$-space. Technically, it is a space $X$ with a set of chains $\sigma_i:\Delta^n\rightarrow X$ such that the image of the restriction $\sigma_i\mid  F$ for a face of $\Delta^n$ is itself the image of another chain $\sigma_j:\Delta^{n-1}\rightarrow X$ of one dimension below. As we did in the case of simplicial complexes, we also require that the interiors of the images of $\sigma_i,\sigma_j$ be disjoint. 
-
-$\Delta$-spaces present us with some incoveniences when representing chains. With simplicial complexes, every simplex could be uniquely described by a list of (non-repeating) vertices. We can't really do the same with $\Delta$-spaces: take the example of the circle we described, where there's only one vertex with a 1-chain $\sigma$ connecting it to itself. We could try to represent it as $\os$, but it is clearer if we instead just write it as $ \sigma |{\os}$, with $ \sigma |  [v_0]=\sigma | [v_1]$.
 
 ## Orientations and boundaries
 
