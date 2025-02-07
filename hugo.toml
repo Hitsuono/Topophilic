@@ -11,6 +11,10 @@ author = "Hitsuno"
 copyright = "Copyright © 2025, Hitsuno."
 languageCode = "en-US"
 
+[services]
+  [services.disqus]
+    shortname = 'your-disqus-shortname'
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.extensions]
@@ -34,6 +38,10 @@ languageCode = "en-US"
         style = 'emacs'
         tabWidth = 4
         wrapperClass = ''
+    [markup.tableOfContents]
+      endLevel = 10
+      ordered = true
+      startLevel = 1
 
 # Generate a nice robots.txt for SEO
 enableRobotsTXT = true
@@ -75,3 +83,4 @@ ignoreErrors = ["error-disable-taxonomy"]
   # for details. An example TOML config that uses [ISO
   # 8601](https://en.wikipedia.org/wiki/ISO_8601) format:
   # dateFormat = "2006-01-02"
+  # tableOfContents = true

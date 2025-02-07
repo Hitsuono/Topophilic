@@ -9,7 +9,7 @@
 <title>Tags | Topophilic</title>
 <meta name="title" content="Tags" />
 <meta name="description" content="Hugo &#43; Bear = :heart:" />
-<meta name="keywords" content="topology for artists," />
+<meta name="keywords" content="game analysis,topology for artists," />
 
 
 <meta property="og:url" content="http://localhost:1313/tags/">
@@ -196,13 +196,29 @@
       displayMath: [['\\[', '\\]'], ['$$', '$$']],  
       inlineMath: [['\\(', '\\)'], ['$', '$']],                  
       macros :{
-        im : "{\\text{im}\\,}"
+        im : "{\\text{im}\\,}",
+        os : "[v_0,v_1]", 
+        ts : "[v_0,v_1,v_2]", 
+        ths : "[v_0,v_1,v_2,v_3]", 
+        gos : "\\langle v_0, v_1 \\rangle", 
+        gts : "\\langle v_0, v_1, v_2 \\rangle", 
+        gths : "\\langle v_0, v_1, v_2, v_3 \\rangle", 
+        rth : "\\mathbb{R}^3", 
+        rt : "\\mathbb{R}^2", 
+        ro : "\\mathbb{R}", 
+        rpt : "\\ro \\text{P}^2", 
+        rpth : "\\ro \\text{P}^3", 
+        rn : "\\mathbb{R}^n",
+        rpn : "\\mathbb{R}\\text{P}^n",
+        angled : ["{\\langle #1 \\rangle}", 1]
       }
     }
   };
 </script>
   
 </head>
+
+<script type="text/javascript" src="/js/GlslCanvas.js"></script>
 
 <body>
   <header><a href="/" class="title">
@@ -215,6 +231,7 @@
 
 </nav>
 </header>
+  
   <main>
 <content>
   
@@ -233,6 +250,17 @@
           </time>
         </i>
       </span>
+      <a href="http://localhost:1313/blog/game-analysis/">Game Analysis</a>
+    </li>
+    
+    <li>
+      <span>
+        <i>
+          <time datetime='2025-01-14'>
+            14 Jan, 2025
+          </time>
+        </i>
+      </span>
       <a href="http://localhost:1313/blog/topology-for-artists/">Topology for Artists</a>
     </li>
     
@@ -242,10 +270,12 @@
 </content>
 
   </main>
+
   <footer>
 </footer>
 
     
+
 </body>
 
 </html>

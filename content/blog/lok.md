@@ -6,4 +6,10 @@ title = "The dialectics of LOK and other puzzle games"
 tags = ["Game analysis"]
 +++
 
-Hellowwww
+TLDR/INTRO
+
+INTENÇÕES DA TEORIA
+
+INTRO LOK, OQ ME INTERESSOU TNT
+
+

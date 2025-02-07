@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://localhost:1313/images/favicon.png" />
+<title>Algebraic topology and game dev: graphics, Rubik&#39;s cube and winning flows | Topophilic</title>
+<meta name="title" content="Algebraic topology and game dev: graphics, Rubik&#39;s cube and winning flows" />
+<meta name="description" content="TL;DR
+In our search for topological invariants, we&rsquo;ll learn how holes can be defined and be used to study spaces. This will require studying &ldquo;model&rdquo; spaces, known as simplicial complexes, which are widely used in 3D rendering. We will be able to define general topological concepts like &ldquo;boundary&rdquo; and &ldquo;cycle&rdquo;. This will be formalized through a quick detour on group theory, the study of permutations and their algebras, which can be exemplified by the moves and configurations of a Rubik&rsquo;s cube. With this machinery, we&rsquo;ll define the homology groups of a topological space, in which holes live, and are one of the most important and studied topological invariants of spaces." />
+<meta name="keywords" content="Topology for Artists," />
+
+
+<meta property="og:url" content="http://localhost:1313/algebraic-topology-and-game-dev-graphics-rubiks-cube-and-winning-flows/">
+  <meta property="og:site_name" content="Topophilic">
+  <meta property="og:title" content="Algebraic topology and game dev: graphics, Rubik&#39;s cube and winning flows">
+  <meta property="og:description" content="TL;DR In our search for topological invariants, we’ll learn how holes can be defined and be used to study spaces. This will require studying “model” spaces, known as simplicial complexes, which are widely used in 3D rendering. We will be able to define general topological concepts like “boundary” and “cycle”. This will be formalized through a quick detour on group theory, the study of permutations and their algebras, which can be exemplified by the moves and configurations of a Rubik’s cube. With this machinery, we’ll define the homology groups of a topological space, in which holes live, and are one of the most important and studied topological invariants of spaces.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-01-14T12:33:23-03:00">
+    <meta property="article:modified_time" content="2025-01-14T12:33:23-03:00">
+    <meta property="article:tag" content="Topology for Artists">
+    <meta property="og:image" content="http://localhost:1313/images/share.png">
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/images/share.png">
+  <meta name="twitter:title" content="Algebraic topology and game dev: graphics, Rubik&#39;s cube and winning flows">
+  <meta name="twitter:description" content="TL;DR In our search for topological invariants, we’ll learn how holes can be defined and be used to study spaces. This will require studying “model” spaces, known as simplicial complexes, which are widely used in 3D rendering. We will be able to define general topological concepts like “boundary” and “cycle”. This will be formalized through a quick detour on group theory, the study of permutations and their algebras, which can be exemplified by the moves and configurations of a Rubik’s cube. With this machinery, we’ll define the homology groups of a topological space, in which holes live, and are one of the most important and studied topological invariants of spaces.">
+
+
+
+
+  <meta itemprop="name" content="Algebraic topology and game dev: graphics, Rubik&#39;s cube and winning flows">
+  <meta itemprop="description" content="TL;DR In our search for topological invariants, we’ll learn how holes can be defined and be used to study spaces. This will require studying “model” spaces, known as simplicial complexes, which are widely used in 3D rendering. We will be able to define general topological concepts like “boundary” and “cycle”. This will be formalized through a quick detour on group theory, the study of permutations and their algebras, which can be exemplified by the moves and configurations of a Rubik’s cube. With this machinery, we’ll define the homology groups of a topological space, in which holes live, and are one of the most important and studied topological invariants of spaces.">
+  <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
+  <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
+  <meta itemprop="wordCount" content="11041">
+  <meta itemprop="image" content="http://localhost:1313/images/share.png">
+  <meta itemprop="keywords" content="Topology for Artists">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <style>
+  :root {
+      --width: 800px;
+      --font-main: Verdana, sans-serif;
+      --font-secondary: Verdana, sans-serif;
+      --font-scale: 1em;
+      --background-color: #fff;
+      --heading-color: #222;
+      --text-color: #444;
+      --link-color: #3273dc;
+      --visited-color:  #8b6fcb;
+      --code-background-color: #f2f2f2;
+      --code-color: #222;
+      --blockquote-color: #222;
+  }
+
+  @media (prefers-color-scheme: dark) {
+      :root {
+          --background-color: #333;
+          --heading-color: #eee;
+          --text-color: #ddd;
+          --link-color: #8cc2dd;
+          --visited-color:  #8b6fcb;
+          --code-background-color: #777;
+          --code-color: #ddd;
+          --blockquote-color: #ccc;
+      }
+  }
+
+  body {
+      font-family: var(--font-secondary);
+      font-size: var(--font-scale);
+      margin: auto;
+      padding: 20px;
+      max-width: var(--width);
+      text-align: left;
+      background-color: var(--background-color);
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      line-height: 1.5;
+      color: var(--text-color);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-main);
+      color: var(--heading-color);
+  }
+
+  a {
+      color: var(--link-color);
+      cursor: pointer;
+      text-decoration: none;
+  }
+
+  a:hover {
+      text-decoration: underline; 
+  }
+
+  nav a {
+      margin-right: 8px;
+  }
+
+  strong, b {
+      color: var(--heading-color);
+  }
+
+  button {
+      margin: 0;
+      cursor: pointer;
+  }
+
+  main {
+      line-height: 1.6;
+  }
+
+  table {
+      width: 100%;
+  }
+
+  hr {
+      border: 0;
+      border-top: 1px dashed;
+  }
+
+  img {
+      max-width: 100%;
+  }
+
+  code {
+      font-family: monospace;
+      padding: 2px;
+      background-color: var(--code-background-color);
+      color: var(--code-color);
+      border-radius: 3px;
+  }
+
+  blockquote {
+      border-left: 1px solid #999;
+      color: var(--code-color);
+      padding-left: 20px;
+      font-style: italic;
+  }
+
+  footer {
+      padding: 25px 0;
+      text-align: center;
+  }
+
+  .title:hover {
+      text-decoration: none;
+  }
+
+  .title h1 {
+      font-size: 1.5em;
+  }
+
+  .inline {
+      width: auto !important;
+  }
+
+  .highlight, .code {
+      padding: 1px 15px;
+      background-color: var(--code-background-color);
+      color: var(--code-color);
+      border-radius: 3px;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      overflow-x: auto;
+  }
+
+   
+  ul.blog-posts {
+      list-style-type: none;
+      padding: unset;
+  }
+
+  ul.blog-posts li {
+      display: flex;
+  }
+
+  ul.blog-posts li span {
+      flex: 0 0 130px;
+  }
+
+  ul.blog-posts li a:visited {
+      color: var(--visited-color);
+  }
+</style>
+
+
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)'], ['$', '$']],                  
+      macros :{
+        im : "{\\text{im}\\,}",
+        os : "[v_0,v_1]", 
+        ts : "[v_0,v_1,v_2]", 
+        ths : "[v_0,v_1,v_2,v_3]", 
+        gos : "\\langle v_0, v_1 \\rangle", 
+        gts : "\\langle v_0, v_1, v_2 \\rangle", 
+        gths : "\\langle v_0, v_1, v_2, v_3 \\rangle", 
+        rth : "\\mathbb{R}^3", 
+        rt : "\\mathbb{R}^2", 
+        ro : "\\mathbb{R}", 
+        rpt : "\\ro \\text{P}^2", 
+        rpth : "\\ro \\text{P}^3", 
+        rn : "\\mathbb{R}^n",
+        rpn : "\\mathbb{R}\\text{P}^n",
+        angled : ["{\\langle #1 \\rangle}", 1]
+      }
+    }
+  };
+</script>
+  
+</head>
+
+<script type="text/javascript" src="/js/GlslCanvas.js"></script>
+
+<body>
+  <header><a href="/" class="title">
+  <h2>Topophilic</h2>
+</a>
+<nav><a href="/">Home</a>
+
+
+<a href="/blog">Blog</a>
+
+</nav>
+</header>
+  
+  <main>
+
+<h1>Algebraic topology and game dev: graphics, Rubik&#39;s cube and winning flows</h1>
+<p>
+  <i>
+    <time datetime='2025-01-14'>
+      14 Jan, 2025
+    </time>
+  </i>
+</p>
+
+
+<h1 id="tldr">TL;DR</h1>
+<p>In our search for topological invariants, we&rsquo;ll learn how <strong>holes</strong> can be defined and be used to study spaces. This will require studying &ldquo;model&rdquo; spaces, known as simplicial complexes, which are widely used in <strong>3D rendering</strong>. We will be able to define general topological concepts like &ldquo;<em>boundary</em>&rdquo; and &ldquo;<em>cycle</em>&rdquo;. This will be formalized through a quick detour on <strong>group theory</strong>, the study of permutations and their algebras, which can be exemplified by the <em>moves and configurations</em> of a <strong>Rubik&rsquo;s cube</strong>. With this machinery, we&rsquo;ll define the <strong>homology groups</strong> of a topological space, in which holes live, and are one of the most important and studied <em>topological invariants</em> of spaces.</p>
+
+    <aside id="TableOfContents">
+        <nav id="TableOfContents">
+  <ol>
+    <li><a href="#tldr">TL;DR</a></li>
+    <li><a href="#introduction-and-intuition">Introduction and intuition</a></li>
+    <li><a href="#basic-linear-algebra">Basic linear algebra</a></li>
+    <li><a href="#simplices-and-topology">Simplices and topology</a>
+      <ol>
+        <li><a href="#n-simplices-and-complexes">N-simplices and complexes</a></li>
+        <li><a href="#surfaces-from-squares">Surfaces from squares</a>
+          <ol>
+            <li><a href="#the-torus">The torus</a></li>
+            <li><a href="#the-möbius-strip">The Möbius strip</a></li>
+            <li><a href="#the-klein-bottle">The Klein bottle</a></li>
+            <li><a href="#perspective-and-homogenous-coordinates-">Perspective and homogenous coordinates *</a></li>
+          </ol>
+        </li>
+        <li><a href="#simplices-probabilities-and-decision-games-">Simplices, probabilities and decision games **</a></li>
+        <li><a href="#3d-graphics-and-simplices">3D graphics and simplices</a></li>
+        <li><a href="#orientations-and-boundaries">Orientations and boundaries</a></li>
+        <li><a href="#cycles-and-holes">Cycles and holes</a></li>
+      </ol>
+    </li>
+    <li><a href="#groups-permutations-and-their-games">Groups, permutations and their games</a>
+      <ol>
+        <li><a href="#definitions">Definitions</a></li>
+        <li><a href="#example-abelian-groups-and-modules">Example: abelian groups and modules</a></li>
+        <li><a href="#example-fields-finite-projective-spaces-and-spot-it-">Example: fields, finite projective spaces and &ldquo;Spot It!&rdquo; *</a></li>
+        <li><a href="#example-non-abelian-groups-and-permutation-games">Example: non-abelian groups and permutation games</a></li>
+        <li><a href="#example-topological-groups-and-quaternions-">Example: topological groups and quaternions *</a></li>
+        <li><a href="#group-quotients">Group quotients</a></li>
+      </ol>
+    </li>
+    <li><a href="#homology-theory">Homology theory</a></li>
+    <li><a href="#applications">Applications</a>
+      <ol>
+        <li><a href="#retractions-and-fixed-points">Retractions and fixed points</a></li>
+        <li><a href="#the-hex-game">The Hex game</a></li>
+        <li><a href="#nash-equilibria-">Nash equilibria **</a></li>
+      </ol>
+    </li>
+    <li><a href="#going-further">Going further</a></li>
+  </ol>
+</nav>
+    </aside>
+
+<div class="webgl-player">
+	<div id="jonas-unity-browser-width-warning" class="unity-browser-width-warning">
+		
+	</div>
+	<div id="jonas-unity-mobile-warning" class="unity-mobile-warning">
+		
+	</div>
+	<div id="jonas-unity-container" class="unity-container unity-desktop" style="width: 800px;">
+		<canvas id="jonas-unity-canvas" class="unity-canvas" width=800 height=600></canvas>
+		<button id="jonas-unity-load-button" class="unity-load-button">start loading</button>
+		<div id="jonas-unity-loading-bar" class="unity-loading-bar">
+			<div id="jonas-unity-progress-bar-empty" class="unity-progress-bar-empty">
+				<div id="jonas-unity-progress-bar-full" class="unity-progress-bar-full"></div>
+			</div>
+		</div>
+		<div id="jonas-unity-footer" class="unity-footer">
+			<div id="jonas-unity-fullscreen-button" class="unity-fullscreen-button"></div>
+			<div id="jonas-unity-game-title" class="unity-game-title">Build 001</div>
+		</div>
+		<script>
+			var buildUrljonas = "/unity_builds/b1/Build";
+			var loaderUrljonas = buildUrljonas + "/WebGL_Build.loader.js";
+			var configjonas = {
+				dataUrl: buildUrljonas + "/WebGL_Build.data",
+				frameworkUrl: buildUrljonas + "/WebGL_Build.framework.js",
+				codeUrl: buildUrljonas + "/WebGL_Build.wasm",
+				streamingAssetsUrl: "StreamingAssets",
+			};
+
+            var containerjonas = document.querySelector("#jonas-unity-container");
+			var canvasjonas = document.querySelector("#jonas-unity-canvas");
+			var loadButtonjonas = document.querySelector("#jonas-unity-load-button");
+			var loadingBarjonas = document.querySelector("#jonas-unity-loading-bar");
+			var progressBarFulljonas = document.querySelector("#jonas-unity-progress-bar-full");
+			var fullscreenButtonjonas = document.querySelector("#jonas-unity-fullscreen-button");
+			var mobileWarningjonas = document.querySelector("#jonas-unity-mobile-warning");
+
+			
+			
+			
+			
+			
+			
+
+			if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+				mobileWarningjonas.style.display = "block";
+			} else {
+				mobileWarningjonas.style.display = "none";
+			}
+			canvasjonas.style.width = "800px";
+			canvasjonas.style.height = "600px";
+			loadingBarjonas.style.display = "none";
+
+			var scriptjonas = document.createElement("script");
+			scriptjonas.src = loaderUrljonas;
+			loadButtonjonas.addEventListener("click", function () {
+				createUnityInstance(canvasjonas, configjonas, (progress) => {
+					progressBarFulljonas.style.width = 100 * progress + "%";
+				}).then((unityInstance) => {
+					loadingBarjonas.style.display = "none";
+					loadButtonjonas.style.display = "none";
+					loadButtonjonas.disabled = true;
+					fullscreenButtonjonas.onclick = () => {
+						unityInstance.SetFullscreen(1);
+					};
+				}).catch((message) => {
+					alert(message);
+				});
+			});
+			loadButtonjonas.addEventListener("click", function () {
+				loadButtonjonas.disabled = true;
+				loadingBarjonas.style.display = "block";
+			});
+			document.body.appendChild(scriptjonas);
+		</script>
+	</div>
+</div>
+<p><canvas id="shader-canvas-0"></canvas>
+<script>
+  (function() {
+    async function loadShaderFile(url) {
+    const response = await fetch(url);
+    return response.text();
+}
+    async function doWebGL(){
+    const canvas = document.getElementById("shader-canvas-0");
+    const gl = canvas.getContext("webgl2");
+    
+
+  canvas.width = 800;
+  canvas.height = 600;
+  gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
+
+  const vsSource = `#version 300 es
+  in vec4 a_position;
+  void main() {
+    gl_Position = a_position;
+  }`;
+
+  const fsSource = await loadShaderFile("/shaders/raster.glsl");
+
+  function createShader(gl, type, source) {
+    const shader = gl.createShader(type);
+    gl.shaderSource(shader, source);
+    gl.compileShader(shader);
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+      console.error(gl.getShaderInfoLog(shader));
+      gl.deleteShader(shader);
+      return null;
+    }
+    return shader;
+  }
+
+  function createProgram(gl, vsSource, fsSource) {
+    const vertexShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
+    const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
+    const program = gl.createProgram();
+    gl.attachShader(program, vertexShader);
+    gl.attachShader(program, fragmentShader);
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+      console.error(gl.getProgramInfoLog(program));
+      return null;
+    }
+    return program;
+  }
+
+  const program = createProgram(gl, vsSource, fsSource);
+  const uFragCoordLocation = gl.getUniformLocation(program, "u_resolution");
+const uTimeLocation = gl.getUniformLocation(program, "u_time");
+const uMouseLocation = gl.getUniformLocation(program, "u_mouse");
+
+gl.useProgram(program);
+gl.uniform2f(uFragCoordLocation, canvas.width, canvas.height);
+
+let mouseX = 0.0, mouseY = 0.0;
+let isMouseDown = false;
+let mouseSensitivity = 1000.0;
+
+canvas.addEventListener("mousedown", (event) => {
+    isMouseDown = true;
+});
+
+
+canvas.addEventListener("mouseup", (event) => {
+    isMouseDown = false;
+});
+
+
+canvas.addEventListener("mousemove", (event) => {
+    if (isMouseDown) {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = (event.clientX - rect.left) / canvas.width;
+        mouseY = 1.0 - (event.clientY - rect.top) / canvas.height; 
+        
+    }
+});
+
+function render(time) {
+    gl.useProgram(program);
+    gl.uniform1f(uTimeLocation, time * 0.001);
+    gl.uniform2f(uMouseLocation, mouseSensitivity * mouseX, mouseSensitivity * mouseY);
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+    requestAnimationFrame(render);
+}
+requestAnimationFrame(render);
+
+
+
+
+  const positionBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+    -1, -1,  1, -1, -1,  1,  
+    -1,  1,  1, -1,  1,  1
+  ]), gl.STATIC_DRAW);
+
+  const positionLocation = gl.getAttribLocation(program, "a_position");
+  gl.enableVertexAttribArray(positionLocation);
+  gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+  gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+  }
+  doWebGL();}
+  )();
+</script>
+
+!!! - to do
+??? - to explain</p>
+<figure>
+    <img src="flagellation.jpg" alt="" style="max-width: 100%; height: auto;">
+    <figcaption style="text-align: center"><em>Flagellation</em> of Christ, by <strong>Piero</strong> della Francesca.</figcaption>
+</figure>
+<figure>
+    <img src="anamorphic.jpg" alt="" style="max-width: 100%; height: auto;">
+    <figcaption style="text-align: center"><em>Flagellation</em> of Christ, by <strong>Piero</strong> della Francesca.</figcaption>
+</figure>
+
+<iframe
+    src="//www.shadertoy.com/embed/DlffR8"
+    title="ShaderToy Shader"
+    height="500"
+    frameborder="0"
+    marginwidth="0"
+    marginheight="0"
+    scrolling="no"
+    style="box-shadow: 0px 5px 10px rgb(0, 175, 255); margin-bottom: 10px; margin-top: 10px; width: 100%;"
+    allowfullscreen="true">
+</iframe>
+<figcaption style="text-align: center">oiiii</figcaption>
+
+<p>TODO:
+melhorar parte de complexos
+meshes, com novas structs
+meshes, iluminac e orientac</p>
+<p>TODO:Corrigir estrutura de simplexo do círculo. Dar exemplo do disco.</p>
+<p>Delta sets tem q FILL o espaço (td ponto no interior de algm)</p>
+<p>Estudr + meshes</p>
+<p>Extensional vs intensional, termos certos pf</p>
+<p>ALG LIN:
+matrizes
+tipos de coisas q são trans lins, TRANSLAC NÃO É
+Distância euclidiana $d(a,b)$
+dot e exterior products (matrizes tbm?)</p>
+<p>ÁLGEBRA N É PRA SER EXPERIMENTO OU SURPRESINHA, MAS ALGO Q SURGE PRA SOLUCIONAR E JUNTAR TUDO NUM MESMO ESPAÇO!!!</p>
+<p><strong>NA INTRO, DAR + EXEMPLOS DE CASOS PERFEITOS: EG, S1 1 CICLO 1D, TORO 1 2D, 2 1D, ETC. VERY IMPORTANT!!!</strong></p>
+<h1 id="introduction-and-intuition">Introduction and intuition</h1>
+<p>This post will connect many different topics, but let us begin straight away with a question of topological character: what is a hole? How many holes does a space have?</p>
+<p>See, if topology is rubbersheet geometry&ndash; where things can be seen as equivalent whenever you can transform one into another continuously, without gluing or cutting&ndash;, then it should be intuitive that &ldquo;holes&rdquo; could lead us to topological invariants. You can&rsquo;t, for example, turn a circle into a disk or a line without cutting it or gluing stuff to it. Equally, a hollow sphere can&rsquo;t be turned homeomorphically to a plane or something similar. Holes are getting in the way of such transformations. This visually makes sense, but how to actually &ldquo;compute&rdquo; the holes of a space? This is the main theoretical purpose of this post: developing a theory of holes mathematicians call <strong>homology theory</strong>, which uses notions from topology, geometry and algebra.</p>
+<p>First note that there is a dimensionality factor when we talk about what we intuitively call a hole. For 1D spaces (lines, circles, segments, graphics, etc.), we&rsquo;re thinking about a loop&ndash; a path that ends where it begins. Not only that, but a loop which has &ldquo;no interior&rdquo; inside our shape. For 2D spaces (planes, spheres, surfaces like the torus, etc.), having a hole means they&rsquo;re &ldquo;hollow&rdquo;, in the sense they&rsquo;re surfaces without a border and &ldquo;not filled&rdquo;. This means that, for each dimension, we have a unique notion of n-dimensional hole.</p>
+<p>Both for 1D and 2D holes, there are two intuitive ideas in play. First, holes should represent shapes that are &ldquo;closed into itself&rdquo;, that are &ldquo;cycles&rdquo; in the sense they have no border&ndash; that an ant can transverse them forever, and never fall off. They are also &ldquo;unfilled&rdquo;, there&rsquo;s nothing &ldquo;inside them&rdquo;&ndash; or, rather, they aren&rsquo;t the boundary some filling matter. Both of these conditions are neccessary. For example, if we take the boundary circle of a disk by itself, it is indeed a loop, a cycle. But it is also filled by the content of the disk, being its boundary. On the other hand, a circle has a hole, but can be filled to become a disk, which is hole-less.</p>
+<p>I.e., holes are represented by cycles (boundaryless shapes) that aren&rsquo;t filled (not the boundary of anything, non-boundary shapes).</p>
+<p>Imagine we have a surface&ndash; say, a cylinder&ndash; and want to find 1D holes in it. We can try to see the different loops we can draw on this cylinder. Some of these loops are filled and can be continuously contracted inside the surface to a single point. These don&rsquo;t really tell us anything about holes. However, there is another class of loops that are not filled within the cylinder&ndash; those that &ldquo;go around it&rdquo;, so to speak. These all should represent holes!</p>
+<p>Similarly, take a 2D shape like a ring&ndash; i.e., a disk with a smaller disk cut out from it, like a DVD. We have a single hole in this space. Consider the two circles that compose the boundary of this shape. Both are cycles. None of them are the complete boundary of some subspace, indicating they&rsquo;re also unfilled. They should be seen as representing the hole we made&ndash; and the same can be said about all the loops in between them! Note that this is all because of the puncture we introduced in the original disk, otherwise all these loops would be boundaries.</p>
+<p>This could be perfected, though. See, in both examples above, we have a single hole, but infinitely many non-boundary cycles representing it. This seems a little awkward. Thankfully, all these cycles have something in common: whevener you pick two of them, they form the complete border of a surface (in the first case, of a &ldquo;mini-cylinder&rdquo;, in the second of a &ldquo;mini-ring&rdquo; contained in the original space).</p>
+<p>This leads us to think of holes as actually <strong>classes of non-boundary cycles</strong>, two cycles being on the same class if they are the boundary of some surface of one dimension above&ndash; so to speak, if they are &ldquo;connected&rdquo;, or &ldquo;joined&rdquo; by that surface.</p>
+<h1 id="basic-linear-algebra">Basic linear algebra</h1>
+<p>To actually be able to apply our considerations to topological spaces and compute holes, let&rsquo;s start by defining simpler, &ldquo;model&rdquo; spaces. First, a quick reminder on basic linear algebra.</p>
+<p>We can see elements $(a_0,...a_n)$ of $ \mathbb{R}^n$ in two ways: as points in a space (the $a_i$ being its coordinates), or as arrows going from the origin $ (0,...,0)$ (we will also usually write just $0$ for the origin from now on) to $(a_0,...a_n)$. In the second intepretation, we call them vectors. Points and vectors are really the same thing in $\mathbb{R}^n$, so we&rsquo;ll call them interchangeably.</p>
+<p>Bearing in mind the geometry-topology distinction, the fact that points in $ \mathbb{R}^n$ are also vectors&ndash; i.e., directions&ndash; is actually a geometric property, related directly to curvature. Indeed, if we curved the plane in order to get the upper hemisphere of a sphere, points wouldn&rsquo;t coincide if directions, as seen in the image below. Directions at a certain point $x$ in our base space $X$ in the so-called tangent space $T_xX$, which is a copy of $ \mathbb{R}^{dim(X)}$. With the reals, these spaces can be identified, but not for any curved space.</p>
+<p>Interestingly, this means that we could informally define $\mathbb{R}^n$ as the space of all directions. Thus, if arithmetic and calculus never lead us to the notion of real numbers (and their sequences), we could still find them through this definition, as a sort of configuration/state space of directed arrows. This method&ndash; defining a space as the &ldquo;state space&rdquo; of objects we&rsquo;re studying&ndash; is extremely fruitful, and we&rsquo;ll apply it in later posts.</p>
+<p>Vectors unite algebra and geometry very deeply. We can define an addition with vectors by adding all their components: $ a+b= (a_0,...,a_n)+(b_0,...,b_n)=(a_0+b_0,...,a_n+b_n)$. Geometrically, this corresponds as taking $b$ and setting its origin to the end of $a$, and taking the sum as the arrow from the origin to the end of this displaced $b$ vector. This forms a triangle, as seen in the image below.</p>
+<p>ADD VETORIAL</p>
+<p>We also define what&rsquo;s called <strong>scalar multiplication</strong> between a real number $ \alpha$ (called a &ldquo;scalar&rdquo;) and a vector $v=(a_0,...,a_1)$: $\alpha v = (\alpha \cdot a_0,...,\alpha \cdot a_1)$. Geometrically, we&rsquo;re stretching $v$ by a factor of $\alpha$ (negative numbers inverting the direction of the vector).</p>
+<p>We could do these operations with other sets instead of $\mathbb{R}^n$&ndash; like with $\mathbb{C}^n$, $\mathbb{Q}^k$ or subspaces of $\mathbb{R}^n$, as we will se below. Thus, we generally define a <strong>real vector space</strong> as a set $V$&ndash; whose members are called vectors&ndash; with an operation $+$ satisfying familiar properties: for all $a,b\in V$, we have</p>
+<ul>
+<li>$a+b = b+a$ (commutative property);</li>
+<li>$(a+b) +c=a+(b+c)$ (associative property);</li>
+<li>there is an element $0$ such that $a+0=0$;</li>
+<li>for all $a$ there is an element $-a$ such that $a+(-a)=a-a=0$.</li>
+</ul>
+<p>Similarly, we define scalar multiplication $\alpha \cdot a$ for all $\alpha\in \ro, a\in V$, satisfying the distributive propert $\lambda \cdot(a+b)=\lambda a + \lambda b$. We could also define scalars coming from other sets instead of the reals, like the complex numbers. For linear algebra to make sense, these sets also need some algebraic structure, forming what&rsquo;s called a <strong>field</strong>. Fields are sets together with operations $+, \times$ similar to addition and multiplication as we know them from the real or complex numbers. We&rsquo;ll study these latter.</p>
+<p>A vector $v$ is called a linear combination of other vectors $v_1,...,v_k$ when we have that $v=\alpha_1v_1 + ... + \alpha_kv_k$ for some $\alpha_1,...,\alpha_k$. This notion can be used to, say, describe colinearity: if for example $v=\alpha v'$ for some other $v'$, this means $v$ and $v'$ are in the same line. Similarly, if $v=\alpha_1v_1+\alpha_2v_2$, then $v$ is in the plane containing $v_1, v_2$ (try seeing this in $\mathbb{R}$^3).</p>
+<p>For a finite set $S$ of vectors, its span $\text{span}(S)$ is the set of all possible linear combinations using elemnts from $S$.</p>
+<p>Particularly important is the set $e_1,...,e_n$ of vectors $e_i$ with an $1$ in the $i$-th position and zeros elsewhere. Every element of $\mathbb{R}^n$ can be written as a linear combination of these vectors: if $v=(v_1,...,v_n)$, then $v=v_1e_1+...+v_ne_n$.</p>
+<p>A set of vectors $\{v_1,...,v_k\}$ is linearly independent (l.i.) if no $v_i$ is a linear combination of some vectors contained in the set. Geometrically, this means we don&rsquo;t have co-linear/planar/etc. points in the set. Note that $e_1,...,e_n$ as defined above are l.i.</p>
+<p>For a l.i. set $S=\{v_1,...,v_k\}$, every element of its span can be represented uniquely by elements of $S$. Otherwise, say we had $v=\alpha_1v_1+...+\alpha_kv_k=\beta_1v_1+...+\beta_kv_k$ for at least one $i$ such that $\alpha_i\neq \beta_i$. We can choose $i=1$ (just order $S$ differently), and then then $v_1=(\beta_2v_2+\dots+\beta_kv_k-\alpha_2v_2.-\dots-\beta_kv_k)/(\alpha_1-\beta_1)$, meaning $S$ isn&rsquo;t l.i.&ndash; a contradiction.</p>
+<p>In particular, this means $\{v_1,...,v_k\}$ serve as coordinates for $\text{span}(S)$&ndash; we say they are a basis for the span of $S$. For example, $e_1,...,e_n$ is a basis of $\text{span}(e_1,...,e_n)=\mathbb{R^n}$, called the <strong>canonical basis</strong> of $\mathbb{R}^n$&ndash; it is the most natural, but certainly not the only one. In general, the count of vectors neccessary for getting a basis of a vector space $V$ is called its <strong>dimension</strong>, $\text{dim}(V)$.</p>
+<p>In $\mathbb{R}^3$, whenever we have two vectors $a, b$, we can form a base by bringin in a vector $c$ perpendicular to the plane containing $a, b$ (their span). We could do this with the so-called <strong>cross product</strong> $a\times b$, defined as</p>
+$$(a_0,a_1,a_2)\times (b_0,b_1,b_2) = (a_1\cdot b_2 - b_1\cdot a_2, a_2\cdot b_0 - b_2\cdot a_0,a_0\cdot b_1-b_0\cdot a_1)$$<p>You can check that this indeed generates a base whenever $a,b$ come from the canonical one. The formula might seem a bit daunting, but it has a fairly straightforward geometrical interpretation, which we&rsquo;ll skip here for length&rsquo;s sake.</p>
+<p>Linear algebra considers not only these algebraic-geometric constructions, but also functions preserving them. More specifically, it also studies linear transformations, which are functions $f:\mathbb{R}^m\rightarrow \mathbb{R}^n$ such that $ f(a+b)=f(a)+f(b)$ (they &ldquo;respect vector addition&rdquo;) and $f(\alpha a)=\alpha f(a), a\in\mathbb{R}$ (they &ldquo;respect scalar multiplication&rdquo;).</p>
+<p>A linear transformation is a function of the kind $f:\mathbb{R}^m\rightarrow \mathbb{R}^n$, where its output is composed of linear combinations of the components of the input vector: i.e., if $v=(v_1,...,v_m)\in\mathbb{R}^m$, $ f(v)=f(v_1,...,v_m)=(\sum_i\alpha_{1i}v_1,...,\sum_i\alpha_{ni}v_i)\in\mathbb{R}^n$.</p>
+<p>Equivalently, a linear transformation is a function $f:\mathbb{R}^m\rightarrow \mathbb{R}^n$ such that $f(a+b)=f(a)+f(b)$ and $f(\alpha a)=\alpha f(a)$&ndash; we say that it respects sums and scalar products. Computations quickly show that the previous definition satisfies these properties. Conversely, if $f$ satisfies these formulas, then $f(v)=f(v_1,...,v_m)=v_1f(e_1)+...+v_mf(e_m)$, so that $f(v_1,...,v_m)=(\sum_i\alpha_{1i}v_1,...,\sum_i\alpha_{ni}v_i)$ for $\alpha_{ij}$ the $j$-th component of $f(e_i)$.</p>
+<p>The two equivalent definitions above tell us two different ways of defining and considering mathematical objetcs. In the first one, we&rsquo;re explicit, or, rather, <strong>extensional</strong>, clearly constructing our objects of interesting. In the second one, we are <strong>intensional</strong>, defining and describing through properties and relations that should be satisfied. Extensive statements are very intuitive and in many cases the definitions we&rsquo;re actually thinking of. Intensive statements, in the other hand, are more generalizable and allow for cleaner reasoning.</p>
+<p>Linear transformations are very useful for dealing in a systematic way with the solutions of systems linear equations. If we have such a system</p>
+$$\begin{cases}
+\alpha_{11}x_1+...+\alpha_{1k}x_k=0 \\  \dots  \\ \alpha_{m1}x_1+...+\alpha_{mk}x_k=0
+\end{cases}
+$$<p>with $k$ variables and $m$ equations, we can consider a transformation $f:\ro ^k\rightarrow \ro ^m$ defined as above by considering the vectors $x=(x_1,...,x_k)$ and defining $f(x)=f(x_1,...,x_k)=(\alpha_{11}x_1+...+\alpha_{1k}x_k,...,\alpha_{m1}x_1+...+\alpha_{mk}x_k)$, and the solutions of the system are exactly the members of $\ker f = \{x\in\ro^k\mid f(x)=0\}$&ndash; a set known as the <strong>kernel</strong> of $f$.</p>
+<p>Members of $\ker f$ (i.e., solutions to linear systems of equations) satisfy a very important property, namely that for all $a,b\in ker f$, $a+b\in \ker f$, since $f(a+b)=f(a)+f(b)=0$. Similarly $\lambda a\in \ker f$ for all $a\in\ker f$, $\lambda \in \ro$, since $f(\lambda a)=\lambda f(a) = \lambda 0 = 0$. I.e., summing and multiplying vectors of solutions also gives a solution! We can formalize this with the notion of a subspace: given a vector space $V$, a <strong>subspace</strong> $W\subset V$ is a subset where for all $a,b\in W$ and scalars $\lambda$, $a+b\in W$ and $\lambda a\in W$. Lines and planes going through the origin are examples of subspaces, since whenever you add two vectors inside a line/plane, you remain inside it. Indeed, lines are exactly the 1D subspaces of $\mathbb{R}^n$, and planes its 2D subspaces.</p>
+<p>Coming back, vectors also allow us to easily define geometrically interesting sets. For example, the line between two vectors $v_0, v_1$ can be written as the set $ \{tv_0+(1-t)v_1\mid  0 \leq t\leq 1\}$.</p>
+<p>Another class of geometrical sets that can be defined by vectors are convex hulls. Given a subset $S\subseteq \mathbb{R}^n$, its convex hull is the minimal convex space containing $S$. Remember that $A\subseteq \mathbb{R}^n$ is convex if it contains every line between points inside itself. If $S=\{v_1,...,v_k\}$ is a collection of vectors, then the convex hull $\overline{S}$ of $S$ can be given by all the linear combinations $\lambda_1v_1+...+\lambda_kv_k$ with $\lambda_1+...+\lambda_k=1$, with $\lambda_i\geq 0$ for all $i$.</p>
+<p>The proof that $ \overline{S}$ as defined is indeed the convex hull can be made quite constructive. First, to get the hull of $ \{v_1,...,v_k\}$, we add all the lines of the form $ \{tv_i+(1-t)v_j\mid  0 \leq t\leq 1\}$, then again add segments between original vertices to points in these lines, getting $ \{sv_l + (1-s)(tv_i +(1-t)v_j) = sv_l+(t-st)v_i + (1+st-s-t)v_j\mid  0 \leq s,t\leq 1\}$, and so on. This will give us $ \overline{S}$ as defined and, by our construction, it must be inside every convex set containing $ \{v_1,...,v_k\}$. Since $ \overline{S}$ as defined above itself is convex, it must be the convex hull we desired.</p>
+<h1 id="simplices-and-topology">Simplices and topology</h1>
+<h2 id="n-simplices-and-complexes">N-simplices and complexes</h2>
+<p>With that in mind, we&rsquo;ll now define the simpler spaces that will be our building blocks. These are called simplices. Formally, an n-dimensional simplex is defined as the convex hull of $n+1$ linearly independent points.</p>
+<p>For example, for a 1-simplex in $\mathbb{R}^1$, we take two different points $v_0, v_1$, and then fill the interval $[v_0, v_1]$, getting a line betwen $v_0, v_1$. For a 2-simplex in $\mathbb{R}^2$, take three l.i. points $ v_0, v_1, v_2$: the 2-simplex will be the triangle with them as vertices. Similarly, a 3-simplex is a pyramid with vertices $v_0,v_1,_v2_,v_3$ in $\mathbb{R}^3$. That is, <strong>simplices are polygons</strong>.</p>
+<p>Since a n-simplex is completely determined by its $n+1$ points $v_0,...,v_n$, we&rsquo;ll denote it as $\angled{v_0,...,v_n}$. For now, the order you put these points in the presentation doesn&rsquo;t matter- but soon it will. Also, note that 0-simplices are just points.</p>
+<p>For practicality, we also define the standard n-simplex $ \Delta^n$ to be the simplex in $\mathbb{R}^n$ with base points $(0,...,0),(1,0,...,0),(0,1,...,0),...,(0,...,0,1)$. By the formula for the convex hull we gave, $ \Delta^n=\{(\lambda_1,...,\lambda_n)\mid  \sum_i^n \lambda_i=1, \,\lambda_i\geq 0\}$. Every n-simplex is homeomorphic to $ \Delta^n$ by simple linear transformations of translation and stretching. Topologically, n-simplices are all homeomorphic to $D^n$, since that&rsquo;s the case for $ \Delta^n$.</p>
+<p>For a simplex $\angled{v_0,...,v_n}$, its <strong>faces</strong> are all the sub-simplices $\angled{v_0,...,\widehat{v_i}, ...,v_n}$, where this notation indicates that the index $i$ vertex is ommited. For example, a 1-simplex $\gos$ has faces are $\angled{v_0}$ and $\angled{v_1}$, its start and end points. For a 2-simplex, the faces of $\gts$ are $\gos$, $\angled{v_1, v_2}$ and $\angled{v_2, v_0}$, which in this case we can also call the edges of the 2-simplex. Finally, for the 3-simplex $\gths$, its faces are the 2-simplices $\gts, \angled{v_1, v_2, v_3}, \angled{v_0, v_2, v_3}$ and $\angled{v_0, v_1, v_3}$, in which case the use of the term &ldquo;face&rdquo; is closer to the usual. For higher dimensions, the same formula for faces applies as well, even though we can&rsquo;t properly see these simplices.</p>
+<p>We&rsquo;ll then call the boundary of a simplex to be the set</p>
+$$\partial \angled{v_0,...,v_k} = \bigcup_{i=0}^n \angled{v_0,...,\widehat{v_i},...,v_k},$$<p>i.e., the union of its faces.</p>
+<p>The use of intuitive and familiar concepts (like of a face) and this recursive property of simplices&ndash; i.e., they are made of smaller simplices themselves&ndash; are the main reasons why we will use simplices in our computations.</p>
+<p>Now, how can we use simplices to understand our spaces better? The idea is to fill spaces by simplices, seeing them as collages of homeomorphic copies of $ \Delta^n$. Thus, we will be considering continuous maps $\sigma:\Delta^n\rightarrow X$, called chains, and we will want to describe $X$ as the union of images of chains. It is also common to call $\im \sigma$ itself a chain on $X$. The simplest conceptual way of describing this is with simplicial complexes.</p>
+<p>SIMPL COMPLEXES</p>
+<p>A simplicial complex on $\mathbb{R^n}$ is a set of simplices $S=\{s_1,...,s_k\}$ of possibly different dimensions such that every face of $s_i$ is also in $S$ and so that if $s_1, s_2$ intersect, then their intersection is a common face between them. This means simplicial complexes are constructed by simplices through disjoint unions or gluing their faces together.</p>
+<p>For example, a square can be seen as a simplicial complex with two 2-simplices, as below.</p>
+<p>IMG!!!</p>
+<p>Indeed, many spaces of interest can be described as homeomorphic to a simplicial complex on $\mathbb{R}^n$, at least for a high enough $n$. When this is the case, we say our space is triangulable, since in the two-dimensional, surface case this is equivalent to dividing our embedded space into triangles. Generally, a <strong>triangulation</strong> of a space is a homeomorphic space which is a simplicial complex&ndash; i.e., it is a <strong>polygonal topological approximation</strong>.</p>
+<p>Let&rsquo;s see some examples of complexes homeomorphic to spaces of interest. First, the $\Delta^n$ themselves give us a simplicial model of $D^n$. For the n-dimensional sphere $S^n$, $\partial \Delta^n$ is a complex homeomorphic to it. In the case of the circle, this is just the three edges of a triangle.</p>
+<p>What about, say, a cylinder? This can be done by gluing four squares in sequence, and then gluing the first and last ones together as well, forming a &ldquo;square straw&rdquo;.</p>
+<p>IMG!!!</p>
+<p>For the torus, this is a bit more intricate. We can first form a skewed cylinder with two triangles as its boundary. Make three copies of this shape, and then glue them together in their boundaries, as shown below.</p>
+<p>SHADER!!!</p>
+<p>Schematically, we can see this triangulation as follows. First, take one of the cylinders and cut the edge joining its two boundary triangles, making a flat piece as shown below. The edges marked as &ldquo;a&rdquo; indicate that they should be glued together, and the fact they follow the same direction indicate their start and ending points should be matched (we could reverse these, and get a &ldquo;twist&rdquo;, as we&rsquo;re going to see further below). Then we join three of these representations in sequence, gluing along the adequate edges. We also mark with &ldquo;b&rdquo; the edges that should be finally glued together to form the complete torus.</p>
+<p>IMG!!!</p>
+<p>For schematic purposes, we can further simplify this figure flattening it to a square, getting the following (note, this is only a schematic description of how to get the triangulationwe described):</p>
+<p>IMG!!!</p>
+<p>Of course, all these shapes could be made with many more simplices, getting a better approximation of their idealized, curved versions. But this isn&rsquo;t topologically relevant (at least until we use calculus in algebraic topology, which isn&rsquo;t something we&rsquo;re goint to do in this post).</p>
+<h2 id="surfaces-from-squares">Surfaces from squares</h2>
+<h3 id="the-torus">The torus</h3>
+<p>The last figure above is reminiscent of a common way of getting surfaces. You begin with a square, then label its edges and glue them respecting their start and end points as marked. The torus, as we saw, can be obtained by first joining its north and south edges, forming a cylinder, and then their west and east ones (which, in the cylinder, became its boundary circles).</p>
+<p>IMG!!!</p>
+<h3 id="the-möbius-strip">The Möbius strip</h3>
+<p>Another very interesting shape we can get this way is the <strong>Möbius strip</strong>. You leave the north and south edges alone, and joing the west and east ones&ndash; but with a twist, since they are labeled going in the opposite directions, and thus you have to joing one&rsquo;s start to the other&rsquo;s end. The Möbius strip is the simplest example of a <strong>non-orientable space</strong>, specifically a non-orientable surface here. This means you can&rsquo;t define what is &ldquo;inside&rdquo; or &ldquo;outside&rdquo; it: try pointing your finger towards a direction you this is outwards from the surface, and then follow the strip until you come back. Your finger will now point to the opposite direction! I.e., you can&rsquo;t define a cohesive notion of outside-ness within the strip.</p>
+<p>More formally, we can&rsquo;t define coherently a normal vector for each point in the strip. A normal vector is a vector perpendicular to a point in a specified surface.</p>
+<p>Similarly, if an ant transverses the strip in one direction, when it comes back to its initial position it will be facing the opposite direction from the beginning! You can&rsquo;t define inside and outside, nor can you define a cohesive transversing direction! ???</p>
+<p>IMG!!! (mobius via square)</p>
+<p>The Möbius strip is a very alusive shape, and has inspired many artists and thinkers as a powerful metaphor. The whole world is outside and inside it, so to speak. It is a truly hegelian shape in this sense, a pure form that unifies object and subject, in and out, consciousness and self-consciousness. But let&rsquo;s leave its philosophy for another post of its own.</p>
+<p>IMG!!! (obra do MAC)</p>
+<h3 id="the-klein-bottle">The Klein bottle</h3>
+<p>Another interesting property of $\ro \text{P}^2$ is that it can&rsquo;t be properly seen in 3D space. Technically, we say it isn&rsquo;t embedded in $\rth$&ndash; i.e., it isn&rsquo;t a subspace of it. So don&rsquo;t try to phisically get it from a Möbius strip&ndash; it&rsquo;s impossible to do so in 3D space!</p>
+<p>What if we glue the Möbius strip boundary, but without a twist? Well, we would get a space called the <strong>Klein bottle</strong>, which also has been an object of enthusiasm by many mathematicians and math-entusiasts alike. This is also a non-orientable space, and non-embeddable in $\rth$ as well. However, you might have seen the image below, in which the bottle has some of its points glued in order to force it to be able to be seen in 3D space. It is not the Klein bottle, just a way of trying to force it into $\rth$: try fitting a sphere into $\ro$! You will also need to identify some points.</p>
+<p>IMG!!! rep square, img</p>
+<h3 id="perspective-and-homogenous-coordinates-">Perspective and homogenous coordinates *</h3>
+<p>There are two other interesting surfaces we can form in this manner which we will use as examples. The first one is the known as the <strong>real projective plane</strong> $\rpt$. It is a space that formalizes the notion of visual perspective, as understood for example in painting and design. Human vision interprets parallel lines as going closer at greater distances, tending to a &ldquo;vanish point&rdquo; where they meet. They never arrive this point: only &ldquo;at infinity&rdquo; do they do so.</p>
+<p>We may formalize this as following. Take the human eye as a point $E$ in 3D space&ndash; we&rsquo;ll assume it is in the origin of our coordinate system. Light rays are arriving in this point from all directions. The 2D image the eye sees can be modeled as a plane $V$ lying exactly in front of the eye, the &ldquo;vision plane&rdquo;. Generally, we set $V$ to be the plane $z=1$. The color associated with each point within the plane is the color of the real-world object the ray going from the eye to the point eventually hits.</p>
+<p>This model is widely used in computer graphics for projecting 3D scenes into a 2D rendered image. It&rsquo;s also basically identical to the more mature methods developed during the Renaissance for drawing and painting with perspective. The image below by Dürer, for example, represents one of these methods: a line was connected between a fixed point $E$ in the wall (representing our eye/camera) and a point $P$ lying on object. This line passed through a square frame, and the position the line passed through the frame was then marked on paper. This marked point represented the correct perspective position of $P$ on $E$&rsquo;s vision.</p>
+<p>IMG!!! moderno</p>
+<figure>
+    <img src="durerPerspec.jpg" alt="" style="max-width: 100%; height: auto;">
+    <figcaption style="text-align: center"><em>The Draughtsman of the Lute</em>, woodcut by Albrecht Dürer.</figcaption>
+</figure>
+<p>In this model, real-world lines are thus associated to a sequence of rays, each one going from $E$ to a point in the line. These rays intersect the vision plane at a unique point. When we have two real-world parallel lines, these give rise to two sequences of rays, which both tend to a single ray parallel to the vision plane. This represents exactly the phenomenom of vanishing points, with this parallel ray representing a &ldquo;point at infinity&rdquo; at which lines meet.</p>
+<p>!!!IMG?</p>
+<p>This prompts us to define the real projective plane $\rpt$ as the space of lines passing through the origin in 3D space- i.e., of 1D subspaces of $\rth$&ndash;, with an adequate topology we&rsquo;ll omit here. Lines parallel to the vision plane represent vanishing points, while those that intersect it represent visible ones. That is, this is the space where we can do <strong>projective geometry</strong>, the geometry of perspective and human vision. Similarly, we can define the projective space $\ro\text{P}^n$ of dimension $n$ to be the space of 1D subspaces of $\mathbb{R}^n$. Substituting $\mathbb{R}^n$ by any other vector space $V$, we also can define the projective space $\mathbb{P}(V)$ in the exact same way. We&rsquo;ll come back to these abstract projective spaces later.</p>
+<p>Insted of dealing with lines, we could instead take $\rpt$ as $\rth-\{0\}$ and with points $p$ and $q$ being identified, seen as the same, whenever they lie on the same 1D subspace, i.e., if $p = \lambda q$ for a non-zero real $\lambda$. Each $p$ is taken to represent a line going from the origin to it. 3D points treated like this are said to be in 2D <strong>homogenous coordinates</strong>. As described above, every point in 2D cartesian coordinates $(x,y)$ has an associated point in homogenous coordinates, namely $(x,y,1)$, representing the line intersecting the plane $V$ in this position. Points in infinity are exactly those homogenous points that have $z$ coordinate equal to $0$, representing perpendicular lines to $V$. Every other homogenous points $(x, y, z)$ can be brought back to a cartesian $(x,y)$ by the equivalnce $(x, y, z) \sim (x/z, y/z, 1)$, giving a point in our vision plane $V$.</p>
+<p>Generally, homogenous coordinates represent points of $\rpn$ by seeing lines as classes of points, two points $p,q$ being in the same class if they are colinear, giving $p=\lambda q$, $\lambda\neq 0$. We then can pass from cartesian to homogenous coordinates by the continuous function $f:\rn \rightarrow \rpn$ defined by $f(x_1,...,x_n)=(x_1,...,x_n,1)$. Conversely, if $(x_1,...,x_n,x_{n+1})$ has $x_{n+1}\neq 0$, we can go back to usual cartesian coordinates by dividing by $x_{n+1}$, getting the point $(x_1/x_{n+1},...,x_n/x_{n+1})$. In some sense, going from cartesian to homogenous coordinates gives a local parametrization of $\rpn$ by $\rn$&ndash; more technically, we have a homeomorphism $f:\rn \rightarrow \{(x_1,...,x_n,x_{n+1})\in\rpn \mid x_{n+1}\neq 0\}$ given by the $f$ above. Our decision to use the last coordinate was because we used the convention of the vision plane $V$ in $\rth$ as the plane $z=1$, but this isn&rsquo;t strictly neccesary. That is, we could define a whole set of local homeomorphisms $f_i:\rn \rightarrow \{(x_1,...,x_i, x_{n+1})\in\rpn \mid x_{i}\neq 0\}$ by $f_i(x_1,...,x_n)=(x_1,...,x_i,1,...,x_n)$, introducing an $1$ at the $(i+1)$-th coordinate. This way, we can actually cover $\rpn$ by the image of these functions, which are all homeomorphic to $\rn$.</p>
+<p>We won&rsquo;t go much further on the considerations above, but these $f_i$ actually give a <strong>manifold</strong> structure on $\rpn$, a manifold being a space which is covered by homeomorphic copies of some $\rn$ for a fixed $n$. Most spaces we study here are manifolds: the sphere and the torus for example. Manifolds do not have boundaries. The Möbius band and all simplicial comlexes, on the other hand, are &ldquo;manifolds with boundaries&rdquo;: their &ldquo;interior&rdquo; is a manifold, but they also have a boundary of one dimension below.</p>
+<p>Graphics programmers are probably familiar with homogenous coordinates, although for somewhat different reasons. They are widely used to transform objects in 3D scenes, specially because translations become linear transformations in these coordinates: more specifically, a translation by a vector $(t_1, t_2, t_3)$ can be given by the transformation $T(x, y, z, w)=(x + w * t_1, y + w * t_2, z + w * t_3, w)$, so that homogenous points $(x, y, z, 1)$ can be translated using $T$&ndash; while those at infinity of the form $(x, y, z, 0)$ are seen as merely giving direction, without further spacial content.</p>
+<p>To see how $\rpt$ can be obtained from a square, note that if $S^2_N$ is the northern hemisphere of the sphere (counting the equator as well), then we have a continuous function $g:S^2_N \rightarrow \rpt$ sending each point in the hemisphere to the unique line passing through it. This is injective outside the equator (and topologically equivalent to the function $f$ described above relating to perspective), but inside it every point $p$ in the equator is mapped to the same line as its antipode $-p$&ndash; the point diametrically opposite to it. This means we can see $\rpt$ as a copy of $S^2_N$, but with antipodal points in the equator glued together. Homeomorphically turning $S^2_N$ into a square, this is exactly what the representation below does! Note that the original four vertices of the square became just two with the identifications we made.</p>
+<p>IMG!!!</p>
+<p>One very interesting way of getting $\rpt$ is through the Möbius strip. See, the latter has a boundary, which is a single loop. In the square representation, this loop is the non-glued horizontal edges. What if we glue them in opposite directions (i.e., again with a twist)? Well, the representation above just showed that we would get the projective plane! In particular, we also have that $\rpt$ isn&rsquo;t orientable.</p>
+<h2 id="simplices-probabilities-and-decision-games-">Simplices, probabilities and decision games **</h2>
+<p>PROB</p>
+<p>GAMES- DEFS</p>
+<p>EXS
+PRISIONERS
+ROUSSEAU (EX DO LIVRO + EX DO MAL AMIGO DAS CONFISSOES)
+ex mistos?
+BACH X SCHOENBERG (COM MÚSICAS EMBEDDADAS)</p>
+$$\begin{array}{c|c c }
+  & \text{Bach} & \text{Schoenberg}  \\
+\hline
+\text{Bach} & 2,1 & 0,0  \\
+\text{Schoenberg} & 0,0 & 1,2 \\
+\end{array}
+$$<p>
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/RDADGE44i_o?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
+
+EX MISTOS
+ELEIC?</p>
+<p>ESTRATEGS DOMINADAS</p>
+<h2 id="3d-graphics-and-simplices">3D graphics and simplices</h2>
+<p>Simplices and simplicial complexes shouldn&rsquo;t be foreign to those artists working with 3D rendering. In this area, they go by the name of <strong>meshes</strong>, which are just simplicial complexes constructed only gluing 2-simplices, plus some extra information we will discuss below.</p>
+<p>In order for a computer to render a 3D scene, it must know what objects does the camera can see. In most methods, this requires emiting rays from the camera&rsquo;s position to the scene, and verifying which objects these rays hit. This is what, say, raymarching a raytracing do. This process thoroughly requires computing distances between points and surfaces, like in the pseudo-code below:</p>
+<div class=""><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#080;font-style:italic">// General rasterization algorithm
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">for</span>(pixel in image){
+</span></span><span style="display:flex;"><span>    x <span style="color:#666">=</span> pixel[<span style="color:#666">0</span>];
+</span></span><span style="display:flex;"><span>    y <span style="color:#666">=</span> pixel[<span style="color:#666">1</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">for</span>(triangle in scene){
+</span></span><span style="display:flex;"><span>        vec2 v0 <span style="color:#666">=</span> perspective(triangle[<span style="color:#666">0</span>]);
+</span></span><span style="display:flex;"><span>        vec2 v1 <span style="color:#666">=</span> perspective(triangle[<span style="color:#666">1</span>]);
+</span></span><span style="display:flex;"><span>        vec2 v2 <span style="color:#666">=</span> perspective(triangle[<span style="color:#666">2</span>]);
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#0b0;font-weight:bold">float</span> depth;
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">if</span>(triangleInPixel(v0, v1, v2, <span style="color:#666">&amp;</span>depth)){
+</span></span><span style="display:flex;"><span>            <span style="color:#a2f;font-weight:bold">if</span>(depth <span style="color:#666">&lt;</span> depthBuffer[x, y]){
+</span></span><span style="display:flex;"><span>                image[x, y] <span style="color:#666">=</span> triangle.color;
+</span></span><span style="display:flex;"><span>                depthBuffer[x, y] <span style="color:#666">=</span> depth;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<p>Now, how do we compute these distances? The most straightaway way is to use the surfaces&rsquo; SDFs&ndash; their &ldquo;signed distance functions&rdquo;. This is a function that directly&ndash; or, using the more common mathematical term, analitically&ndash; tells you the distance between a point and an embedded (orientable) space, giving positive sign if it is &ldquo;outside&rdquo; the object, and negative if it is &ldquo;inside&rdquo; it. Below is an example of a SDF for a sphere of radius $r$ and center $c$ in $\rth$, written in an OpenGL-like manner:</p>
+<div class=""><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">float</span> <span style="color:#00a000">sphereSdf</span>(vec3 p, vec3 c, <span style="color:#0b0;font-weight:bold">float</span> r){
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">// length gives the Euclidian distance between p and c: length(v) = sqrt(v[0]^2 + v[1]^2 + v[2]^2)
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#a2f;font-weight:bold">return</span> distance <span style="color:#666">=</span> <span style="color:#00a000">length</span>(p <span style="color:#666">-</span> c) <span style="color:#666">-</span> r;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<p>When used to render a 3D scene, this will give us a smooth sphere. Sadly, most shapes you will see on, say, video games, do not have such an easy SDF. This may change with the progress of <a href="https://research.nvidia.com/labs/toronto-ai/nglod">neural SDFs</a>, which use neural networks to learn these functions, but, for the most part of the history of computer graphics, using SDFs to render was not practical for most situations. The solution was to try to approximate surfaces with smaller, easier shapes&ndash; namely, triangles, or 2-simplices&ndash;, and so were meshes born. That is, meshes are just triangularizations of surfaces we want to approximate. The more 2-simplices a mesh has, the more detail our model will be able to have.</p>
+<p>Meshes have different implementations on different frameworks, but here is a quite minimalistic one:</p>
+<div class=""><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">struct</span> <span style="color:#00f">Mesh</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">// Array of 3D points representing vertex vectors.</span>
+</span></span><span style="display:flex;"><span>    Vector3[] vertices; 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">// UV maps, allow for textures. See below.</span>
+</span></span><span style="display:flex;"><span>    Vector2[] uv;
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<p>In the structure above, we first have an array representing or vertices. To get the 2-simplices, we define an integer array, each 3 consecutive elements representing the index of the points forming a triangle. The standard 2-simplex $\Delta ^2$ (seeing it embedded in $\rth$), for example, has <code>points = [(0, 0, 0), (1, 0, 0), (0, 1, 0)]</code> and <code>triangles = [0, 1, 2]</code>. If we glued to triangle to form a square, we would have <code>points = [(0, 0, 0), (1, 0, 0), (0, 1, 0), (1, 1, 0)]</code> and <code>triangles = [0, 1, 2, 1, 3, 2]</code>. Of course, we could have arbitrary position vectors, and the triangle array would be the same.</p>
+<p>!!!The exterior, hollow pyramid of the standard 3-simplex $\Delta^3$ has <code>points = [(0, 0, 0), (1, 0, 0), (0,1, 0), (0, 0, 1)]</code> and <code>triangles = [3, ]</code></p>
+<p>The order points come in the <code>vertices</code> array is very important. There are many reasons why this is so, but the most fundamental has to do with <strong>lighting and shading</strong>. Imagine you have a lamp somewhere on your 3D scene, and want to use it to illuminate objects. EXPLAIN FIRST NORMAL, THEN FORMULA</p>
+$$L = I\, \frac {(O-P) \cdot N_P} {d(O, P)},$$<p>When rendering, it is important to remember that meshes also have a notion of &ldquo;front&rdquo; and &ldquo;back&rdquo;. When the camera is in front of it, it can see the mesh; when it is behind it, it can&rsquo;t, as if the triangles were invisible.</p>
+<p>DELTA SPACES</p>
+<p>As we can see by the examples above, finding a triangulation of a space can be very tedious. This is because we strictly require that our spaces be composed of simplices. But what if we just asked for it to be composed of chains&ndash;i.e., images of simplices? For the circle, e.g., instead of making it with two 1-simplices, we could just take one 1-simplex and glue its ends. This wouldn&rsquo;t be a simplicial complex, but would still be an image of one, with just one 1-chain.</p>
+<p>For the torus, instead of the exhausting triangulation we could do as follows. Take two 2-chains (filled triangles), and name each edge $a,b,c$. Glue the respective $c$ edges, forming a square. Then also glue the $a$ edges, forming a cylinder. Finally, glue the $b$ edges, forming a torus.</p>
+<p>This gives us the notion of a $\Delta$-space. Technically, it is a space $X$ with a set of chains $\sigma_i:\Delta^n\rightarrow X$ such that the image of the restriction $\sigma_i\mid  F$ for a face of $\Delta^n$ is itself the image of another chain $\sigma_j:\Delta^{n-1}\rightarrow X$ of one dimension below. As we did in the case of simplicial complexes, we also require that the interiors of the images of $\sigma_i,\sigma_j$ be disjoint.</p>
+<p>$\Delta$-spaces present us with some incoveniences when representing chains. With simplicial complexes, every simplex could be uniquely described by a list of (non-repeating) vertices. We can&rsquo;t really do the same with $\Delta$-spaces: take the example of the circle we described, where there&rsquo;s only one vertex with a 1-chain $\sigma$ connecting it to itself. We could try to represent it as $\os$, but it is clearer if we instead just write it as $ \sigma |{\os}$, with $ \sigma |  [v_0]=\sigma | [v_1]$.</p>
+<h2 id="orientations-and-boundaries">Orientations and boundaries</h2>
+<p>With the discussion above, we see that meshes aggregate a bit more information than the simplices we have discussed so far. Not only on the more visual and computational aspects, but also on the geometrical side: they are oriented. This turned out to give us a lot of important information, so perhaps we would like to extend this to further dimensions. This is simple for 1-simplices, as they can then be seen as directed paths: we will say $\os$ goes from $v_0$ to $v_1$, and $[v_1,v_0]$ does the opposite. In the same way meshes&rsquo; orientations were associated to the orientation of their edges, may say that $\os$ gives $[v_1]$ a &ldquo;positive&rdquo; orientation and $[v_0]$ a &ldquo;negative&rdquo; one.</p>
+<p>This all means that, with oriented simplices, the order we write our base vectors in $[v_0,...,v_k]$ will from now on matter.</p>
+<p>Formalizing for the 2-dimensional case, we determine that $\ts$ has oriented edges $[v_0, v_1]$, $[v_1,v_2]$ and $[v_2,v_0]$&ndash; i.e., boundary edges follow the order of the vertices in the presentation. The other possible oriented 2-simplex would be the one with inverted edges $[v_1,v_0]$, $[v_0,v_2]$ and $[v_2,v_1]$, which can then be written as $[v_1,v_0,v_2]$. Note that $[v_1,v_2,v_0]$ has the same orientation as $\ts$. Indeed, whenever you swap two neighboring vectors in the presentation, you get the 2-simplex going in the opposite direction. This means that if you do an odd amount of swaps (in what we will call an <strong>odd permutation</strong>), you get the opposite simplex; if you do an even amount (in an <strong>even permutation</strong>), you get the same one. You can see this rule also applies for 1-simplices, and indeed will be the case for any n-simplex.</p>
+<p>Suggestively, we may write $-[v_0,...,v_k]$ for the simplex with the opposite orientation of $[v_0,...,v_k]$. In particular, we just saw that $[v_0,v_1]=-[v_1,v_0]$ and</p>
+$$\ts=[v_1,v_2,v_0]=-[v_1,v_0,v_2]=-[v_0,v_2,v_1],$$<p>for example.</p>
+<p>We can see that defining an orientation for 1 and 2-simplices is actually the same as giving an orientation for all its faces. In both cases, for a simplex $[v_0,...,v_k]$, we used the convention that $[v_1,...,v_k]$ (excluding the first vector from the presentation) was one of its oriented edges&ndash; $[v_1]$ in the case of $\os$, $[v_1,v_2]$ in the case of $\ts$.</p>
+<p>It is important to note something with how orientations work when you combine simplices. Consider the simplicial complex below, made by gluing the two 2-simplices $\ts$ and $[v_1,v_3,v_2]$ on the common non-oriented face $[v_1,v_2]$. The first simplex does indeed have $[v_1,v_2]$ as a face, but the other transverses it in the opposite direction, giving instead $[v_2,v_1]=-[v_1,v_2]$. Similarly, inside the 2-simplex $\ts$ itself, every vertex has the same amount of edges going in and out from it. In general, every time you glue two n-simplices together, their common $n-1$ face will come from faces of the opposite direction in each original simplex.</p>
+<p>This rules is valid for all n-simplices themselves. So, seeing the 2-simplex as a collage of 1-simplices forming a triangle, if two edges are glued, then one&rsquo;s end must be the other&rsquo;s starting point (remember, a point has positive orientation in a 1-simplex if it is its end point). This collage perspective allows us to know the orientation of a 2-simplex just by knowing the orientation of one of its edges, and similarly can be done for a 1-simplex (if we know the positive point, we know the other must be negative).</p>
+<p>We can generalize all of this. Indeed, $[v_0,...,v_k]$ is now to be seen as an <strong>oriented simplex</strong>. We will use the convention that it has $[\widehat{v_0},...,v_k]$ as one of its faces, which, by the above considerations, is enough to determine the orientation of all its other faces. What we noted for 1 and 2-simplices with regard to permutations is still valid: odd permutations of vertices in the presentation give the opposite simplex, even ones give you the same simplex.</p>
+<p>Let&rsquo;s see how this works in the example of a 3-simplex $\ths$. By our convention, it has an oriented face $[v_1,v_2,v_3]$. This 2-simplex shares the oriented edge $[v_2,v_3]$ with $\angled{v_0,v_2,v_3}$, so the oriented version of the latter must contain the edge $[v_3,v_2]$ going in the opposite direction, and so it must be $-[v_0,v_2,v_3]$. Doing similarly for all other faces of the pyramid, we get that its oriented faces are $[v_1,v_2,v_3]$, $-[v_0,v_2,v_3]$, $[v_0,v_1,v_3]$ and $-[v_0,v_1,v_2]$.</p>
+<p>All of this alows us to get a formula for the oriented faces of a simplex $[v_0,...,v_k]$. We know that its geometrical faces are all the possible $\langle v_0,...,\widehat{v_i},...,v_k\rangle$, so we just need to find their <em>oriented</em> versions. We have one already: $[\widehat{v_0},...,v_k]$, by our convention. As for the orientation of $\angled{v_0,\widehat{v_1},...,v_k}$, we see that it shares the face $[v_2,...,v_k]$ with $[\widehat{v_0},...,v_k]$<em><strong>, so it must have the opposite orientation as it has&ndash; i.e., it is negativ</strong></em>e. Going by a similar procedure, we see that $\langle v_0,...,\widehat{v_{i+1}},...,v_k\rangle$ always has the opposite orientation of $\langle v_0,...,\widehat{v_i},...,v_k\rangle$. Thus, using our suggestive sign notation, we get that the <strong>oriented</strong> faces of $[v_0,...,v_k]$ are</p>
+$$(-1)^i[v_0,...,\widehat{v_i},...,v_k],$$<p>for $0\leq i\leq k$.</p>
+<p>CHAINS!!!</p>
+<p>As for chains,</p>
+<p>DOING ALGEBRA
+Now that we know how to describe faces, we can define the boundary of a simplex $\a$, denoted $\partial (a)$ or simply $\partial a$. For an isolate geometrical simplex $\angled{v_0,...,v_k}$,</p>
+$$\partial \angled{v_0,...,v_k} = \bigcup_{i=0}^n \angled{v_0,...,\widehat{v_i},...,v_k},$$<p>and, for an oriented simplex,</p>
+$$\partial [v_0,...,v_k] = \bigcup_{i=0}^n (-1)^i[v_0,...,\widehat{v_i},...,v_k]$$<p>But what about the union of simplices $a,b$ inside a simplicial complex? For geometrical simplices, we should have this as the union of their boundaries, disconsidering common faces:</p>
+$$\partial (a\cup b)=\bigcup_{e\in (\partial a \cup \partial b) - (\partial a \cap \partial b)}e,$$<p>which is also a valid formula for oriented simplices. However, in this last case we could get a cleaner, smarter formula. Remember that simplices with common faces on a complex have induced opposite orientation in this face. These common faces are disconsidered for computing the boundary of the union, as if this face was &ldquo;canceled&rdquo;&ndash; exactly because it had different signs in each simplex. This means there might be some algebra going behind the curtains!</p>
+<p>Indeed, let us think of union of oriented simplices as a kind of a sum, and opposite orientations giving us negative sign. We write $a-a=0$, indicating that faces of opposite orientation should be cancelled in a sum. We can understand $0$ as the null set, or some sort of formal &ldquo;null n-simplex&rdquo;. In that case, we could write something like</p>
+$$\partial_n([v_0,...,v_n]) = \sum_{i=0}^n (-1)^i [v_0, ..., \widehat{v_i}, ..., v_n]$$<p>And then we would have $\partial(a + b)=\partial a + \partial b$! This is a much cleaner formula, but actually even more: it leads us to think in algebraic terms, revealing potential extra structure involved with oriented simplices. Also note how it follows some sort of &ldquo;linearity&rdquo;, as do linear transformations. Structures and connections: these are a mathematician&rsquo;s dream!</p>
+<p>Take as an example two 2-simplices $a=\ts$ and $b=[v_1,v_3,v_2]$ glued along the edge $[v_1,v_2]$. In that case, $\partial a = [v_1,v_2]-[v_0,v_2]+[v_0,v_1]$ and $\partial b = [v_3,v_2]-[v_1,v_2]+[v_1,v_3]$, so that</p>
+$$\begin{align}
+    \partial (a+b)=\partial a + \partial b &= -[v_0,v_2]+[v_0,v_1]+[v_1,v_3]+[v_3,v_2]
+                                         \\&= [v_2, v_0]+[v_0,v_1]+[v_1,v_3]+[v_3,v_2],
+\end{align}$$<p>and indeed we get the correct oriented boundary&ndash; with the common edge canceled!</p>
+<p>This is great with different simplices, but what about something like $a+a$? We know that $a\cup a = a$, so perhaps we should write $a+a=a$? But since we have inverses, this would mean that we could subtract both sides by $-a$, getting $a=0$&ndash; which doesn&rsquo;t seem good at all. The second most natural option would be to write $a+a = 2a$, which wouldn&rsquo;t bring any algebraic problems. We could interpret this as &ldquo;following&rdquo;, or &ldquo;transversing&rdquo; $a$ twice, so that this formal addition we&rsquo;re describing is not to be understood as an union, but a &ldquo;composition&rdquo; of these actions. In the case of a 1-simplex, it would be as following the the path twice; for a 2-simplex, it is like doing a twist twice. This is more intuition than a formal relation, but it shows how geometrical simplices have a set-like logic, while oriented ones can indeed have an algebraic one!</p>
+<p>How to formalize this? Well, we will do that properly in the next section when we talk groups, but let us summarize the major points. For a simplicial complex, let $a_0,...,a_k$ be all its n-simplices. Then we saw that it makes senses to consider formal finite sums $a_i+...+a_j$, including inverses $-a_i$ and multiples $n\cdot a_i$, $n$ any integer. We have that $a_i-a_i=0$, $0$ being a null, formal element. Let us call the set of all these sums (which thus includes $0$) $C^s_n(X)$ !!! We also described a function $\partial _n : C^s_n(X)\rightarrow C^s_{n-1}(X)$, given by the formula above, satisfying some sort of linearity condition: $\partial_n(a+b)=\partial_n (a) + \partial_n (b)$ (note that the same $+$ symbol in each side represent operations on the different sets $C^s_n(X)$ and $C^s_{n-1}(X)$, respectively).</p>
+<p>EXAMPLE</p>
+<p>CHAINS</p>
+<p>This boundary definition also applies for general delta spaces. As we did in the previous section, instead of dealing directly with simplices and their faces, we use chains and their restrictions. Thus, we define the boundary of a chain $\sigma : \Delta^n\rightarrow X$ as</p>
+$$\partial_n(\sigma) = \sum_i (-1)^i \sigma |   [v_0, ..., \widehat{v_i}, v_n]$$<p>Seeing the circle as a delta space as we described previously, we also have that, if $\sigma$ is the one 1-chain in the construction, $\partial_1(\sigma)=\sigma|  [v_1]-\sigma|  [v_0]=0$ since $\sigma|  [v_1]=\sigma|  [v_0]$.</p>
+$$\begin{align}
+\partial_2(U+L)=\partial_2(U)+\partial_2(L)&=(U|  [v_1,v_2]-U|  [v_0,v_2]+U|  [v_0,v_1]) 
+\\&\,\,\,\,\,\,\, + (L|  [v_1,v_2]-L|  [v_0,v_2]+L|  [v_0,v_1])
+\\&=(-b-a+c)+(a-c+b)=0
+\end{align}$$<p>
+As intended, the sum corresponding to the whole torus has null boundary.</p>
+<h2 id="cycles-and-holes">Cycles and holes</h2>
+<p>So far, we haven&rsquo;t really needed any kind of more formal algebraic theory to make sense of our considerations, so let&rsquo;s dive a little deeper into how we can use the geometry of simplices, chains and their boundaries to study general topological spaces.</p>
+<p>First, boundaries allow us to properly define what &ldquo;cycles&rdquo; mean. As mentioned in the introduction, these correspond to loops on our space, but also to hollow surfaces, and the corresponding higher-dimensional cycles. What these have in common is that they are &ldquo;boundaryless&rdquo;, in some sense &ldquo;self-enclosing&rdquo;. We can thus describe these just the chains $\sigma$ with null boundaries, $ \partial_n(\sigma)=0$. We can reuse the terminology of linear algebra and then define the set of n-cycles in $X$ as $Z_n(X)=\ker \partial_n$.</p>
+<p>Still, there are many cycles that don&rsquo;t give rise to holes, and, as discussed, this is exactly because they&rsquo;re boundaries of some chain of the above dimension. Formally, these are the chains in the image of the boundary map, and form the set n-boundaries, $B_n = \im \partial_{n+1}$.</p>
+<p>In the example of the circle $S^1$, we have only one 1-chain of the form $c = [v_0,v_0]$, thus $\partial_1 (c)=v_0-v_0=0$ , and it is a cycle. Since we have no 2-chains, $\partial_2 = 0$, so it&rsquo;s not a boundary of anyone. For $D^2$ , we have a similar situation with the one 1-chain $c=[v_0,v_0]$ which is a cycle, but it&rsquo;s also the boundary of the 2-chain $U = [v_0, v_0, v_0]$ ($ \partial_2 ([v_0,v_0,v_0])=[v_0,v_0]-[v_0,v_0]+[v_0,v_0]=[v_0,v_0]=c$)&ndash; i.e., $ c$ is &ldquo;filled out&rdquo; by $ U$.</p>
+<p>The formula we gave above for the boundary allows us to easily prove some of the most important facts in all of algebraic topology (and, indeed, many other areas of maths as well): $ \partial_n(\partial_{n+1} (\sigma))= 0$&ndash; more succintly, $ \partial_n\circ \partial_{n+1}=0$, or even $ \partial ^2=0$. Visually, this means that the boundary of a boundary is null, or, equivalently, that all boundaries are cycles! Mathematically, $ \operatorname{im} \partial_{n+1} \subset \ker \partial_n$.</p>
+<p>This fits perfectly in the $S^1$ and $D^2$ examples: $S^1$ has a hole, but $D^2$ hasn&rsquo;t because it has been filled by a 2-chain (a 2d surface)!</p>
+<p>We&rsquo;d like now to find a formal way of getting holes. First, all boundaries should be considered a &ldquo;0 hole&rdquo;, and, as discussed, cycles differing by a boundary should be treated as the same hole. This fits perfectly with the notion of a quotient in group theory. Thus, we can&rsquo;t avoid it anymore: it&rsquo;s time to introduce group theory formally into our theory.</p>
+<h1 id="groups-permutations-and-their-games">Groups, permutations and their games</h1>
+<h2 id="definitions">Definitions</h2>
+<p>A group is an algebraic object that generalizes addition with the integers. I.e., it is a set with some operation such that there&rsquo;s a &ldquo;neutral element&rdquo; $ e$ and, for any element $a$, an inverse $a^{-1}$ such that $a*a^{-1}=a^{-1}a=e$:</p>
+<p>DEF</p>
+<p>When dealing with groups, we are not interested in all functions $f:G\rightarrow H$, but only in those that bring and respect algebraic information, stabilishing a relation between the operations of the different groups. These are called homomorphisms. A homomorphism between groups $G$ and $H$ is a function $f:G\rightarrow H$ such that $f(ab)=f(a)f(b)$ for all $a,b\in G$. These are to a general group what linear transformations are to vector spaces, in the sense they respect and can be defined by some operation as well as linear transformations respect and are defined by addition and scalar multiplication.</p>
+<h2 id="example-abelian-groups-and-modules">Example: abelian groups and modules</h2>
+<p>The classical exemple of a group are the integers $ \mathbb{Z}$ with respect to addition. Following it, we have the modular groups $ \mathbb{Z}/n\mathbb{Z}$, $ n\in \mathbb{Z}$. These have as base set $ {0, 1, ..., n}$, the operation $ a*b$, written $ a+b \mod n$ (or, if $ n$ is understood by the context, just $a+b$), being the rest of $ a+b$ divided by $ n$. I.e., it is &ldquo;clock addition&rdquo;: !!!</p>
+<p>For example, $ \mathbb{Z}/2\mathbb{Z}$ has base set $ {0,1}$, with mod 2 addition that satisfies $1+1=0$, as in the table below. As another example, in $ \mathbb{Z}/5\mathbb{Z}$ mod 5 addition gives us results like $3+2=0$ (the rest of $3+2$ divided by $5$ is 0), $4+3=2$ etc.</p>
+<p>We can describe the groups above through presentations, which are a compact way of analysing groups we&rsquo;ll use a lot. A presentation of a group $G$ is written as $G=\langle a_0, a_1,..., a_n \mid   R\rangle $, where $R$ is a set of algebraic relations using our group operations (things like $a_3 * a_2 = a_6^{-1}$, $a_1^2=a_0*a_3$ etc.). We interpret this as saying that $G$ is generated by elements $a_0,...,a_n$ and all their possible (finite) products, and that they satisfy the relations $R$ (the identity being assumed and thus omited).</p>
+<p>For example, $\mathbb{Z} = \langle 1 \rangle$, i.e., the integers are generated by a single element, without any relations (we say it is freely generated by $1$)&ndash; we say $\mathbb{Z}$ is freely generated by a single element. We also have $\mathbb{Z}/n\mathbb{Z} = \langle a \mid   a^n=e \rangle$.</p>
+<p>Vector spaces with vector addition are also classical examples of groups, and linear transformations are alse homomorphisms (NOTE). !!!</p>
+<p>Coming back to spaces and their holes, $C^s(X)$ and $C(X)$ as we defined are also groups with respect to simplex/chain addition. More than this, since we also described multiplication by an integer, they are $\mathbb{Z}$-modules: indeed, they are modules freely generated by simplices/chains on $X$.</p>
+<h2 id="example-fields-finite-projective-spaces-and-spot-it-">Example: fields, finite projective spaces and &ldquo;Spot It!&rdquo; *</h2>
+<p>FIELDS e VECTOR SPACES</p>
+<p>Finite fields</p>
+$$P( \mathbb{Z}^3_2)$$<p>Spot it e project</p>
+<h2 id="example-non-abelian-groups-and-permutation-games">Example: non-abelian groups and permutation games</h2>
+<p>All groups mentioned above are abelian, but many common groups aren&rsquo;t.</p>
+<p>D_n</p>
+<p>S_n</p>
+<p>Rubik</p>
+<p>Jogos de permutac</p>
+<h2 id="example-topological-groups-and-quaternions-">Example: topological groups and quaternions *</h2>
+<p>O(n), SO(n)</p>
+<p>SO(2) e S1</p>
+<p>C e SO(2)</p>
+<p>H e SO(3)</p>
+<p>Fibrac de Hopf</p>
+<p>RP3 = SO(3)</p>
+<h2 id="group-quotients">Group quotients</h2>
+<p>Now, the examples above should be sufficient to note some interesting behaviours. First, it seems like there&rsquo;s a strong relation between $ \mathbb{Z}$ and the groups $ \mathbb{Z}/n\mathbb{Z}$. Indeed, for each member of $ \mathbb{Z}$, we have a new mod group&ndash; and, since each subgroup of the integers is of the form $\langle n\rangle$, we can also say that every subgroup of $ \mathbb{Z}$ gives us a new group. Indeed, we also have, given the element/subgroup $\langle n\rangle$, a surjective homomorphism $f:  \mathbb{Z} \rightarrow \mathbb{Z}/n\mathbb{Z}$ given by $f(m) = m \mod n$.</p>
+<p>EX EM D6</p>
+<p>Let&rsquo;s try to generalize these constructions. Indeed, given a group $G$ and a subgroup $ H\leq G$, we&rsquo;ll consider the sets $aH = {ah \mid   h\in H}$ for every $a\in G$, which are called the (right) cosets of $ H$. &hellip;@@@</p>
+<p>These considerations prompt us to define a new group, whose base set are the cosets $aH, a\in G$, with the operation $aH * bH = (ab)H$. Let&rsquo;s denote this new wanna-be group as $G/H$, called the quotient of $G$ by $H$. In this way, we should get a homomorphism $f: G\rightarrow G/H$ given by $ f(a)=aH$. We should then have, for every $ h\in H$, $f(h)=hH=H=eH$&ndash; i.e., $G/H$ is a method for annihilating elements of $H$, in the same way mod addition nullifies multiples of $n$ (or, rather, elements of $\langle n\rangle$).</p>
+<p>In particular, if $h\in H$, $f(a+h)=f(a)*f(h)=f(a)$, so that elements differing by an element of $H$ are seen as equivalent. This reminds us of how cycles differing by a boundary should be considered as the same hole!</p>
+<p>We can check now if $G/H$ is actually a group. It indeed has an identity (the coset $H$ itself), inverses ($aH*a^{-1}H=eH=H$) and is associative. Seems like we have group, but not really: the operation itself is not neccesarily well-defined. By this, I mean that if we have identical right-cosets $aH=xH$ and $bH=yH$, then we should be able to swap them freely in the operation: $aH*bH$ should be the same as $xH*yH$, $xH*bH$, etc. If this isn&rsquo;t the case, no reasonable algebra will be possible!</p>
+<p>Sadly, not all subgroups $H$ of a group $G$ allow for a well-defined quotient operation. However, this actually won&rsquo;t be a problem, because all the subgroups we&rsquo;re interested in will have this property! For this, define a normal subgroup $ H\leq G$ to be a subgroup such that, for every $g\in G, \, h\inH$, $ghg^{-1}\in H$. Note that all subgroups of an abelian group are normal, since then $ghg^{-1}=gg^{-1}h=h\in H$.</p>
+<p>Theorem: the operation in $G/H$ is well-defined if and only if $H$ is normal. In particular, if $G$ is an abelian group, all quotients are well-defined.</p>
+<p>Proof:</p>
+<p>&hellip;</p>
+<h1 id="homology-theory">Homology theory</h1>
+<p>With all this group theory machinery, we can now finally define our homology groups where holes live!</p>
+<p>First, let&rsquo;s formalize the work we&rsquo;ve done so far with chains, cycles and boundaries. Given a $\Delta$-space structure on $X$, we let $C_n(X)=a_1\mathbb{Z}\times ... \times a_m \mathbb{Z}$ be the free abelian groups generated by all the n-chains $a_1,...,a_m$ in the structure. The boundary homomorphisms $ \partial_n : C_n(X)\rightarrow C_{n-1}(X)$ are defined by the formula we got earlier: $\partial_n(\sigma) = \sum_i (-1)^i \sigma \mid   [v_0, ..., \widehat{v_i}, v_n]$. We thus get the so-called chain complex of the $\Delta$-space structure on $X$:</p>
+$$...\xrightarrow{\partial_3}C_2(X)\xrightarrow{\partial_2}C_1(X)\xrightarrow{\partial_1}C_0(X)\rightarrow 0$$<p>We define the n-cycle subgroup to be $Z_n(X)=\ker \partial_n$ and the n-boundary subgroup to be $B_n(X)=\im \partial_{n+1}$. Since $\partial_n\circ \partial_{n+1}=0$, $B_n(X)\leq Z_n(X)$. Finally, the dimension n homology group of $X$ is the quotient</p>
+$$H_n(X) = \frac{\ker \partial_n}{\im \partial_{n+1}}$$<p>By all our previous considerations, elements of $H_n(X)$ represent n-dimensional holes in $X$!</p>
+<p>CIRCLE (PERHAPS USED ALL ALNG THE EXPALANTION)</p>
+<p>Let&rsquo;s consider</p>
+<p>$ \partial_1(\sigma)=\sigma \mid  [v_1] - \sigma \mid   [v_0] = \sigma \mid  [v_1]-\sigma \mid  [v_1] = 0$</p>
+<p>and thus $ H_1(S^1)=\mathbb{Z}$&ndash; as expected, the circle has a single hole!</p>
+<p>TORUS</p>
+<p>For the torus $ T^2=S^1\times S^1$, we can give DELTA STRUCT</p>
+<p>Let&rsquo;s compute all the neccesary kernels and images. For $$</p>
+<p>$ \ker \partial_1$:</p>
+<p>These correspond to classes of loops. Indeed, we have that $ \partial_1 (a)=\partial_1 (b)=\partial_1 (c)=0$, so that $ \ker \partial_1 = \langle a, b, c\rangle$, the entire 1-chain space.</p>
+<p>$ \im \partial_1$:</p>
+<p>By the above, $\im \partial_1 = 0$.</p>
+<p>$ \ker \partial_2$:</p>
+<p>Now, we have that $ C_2 = \langle U, L\rangle$: for the boundaries, we have $ \partial_2 (U) = c - b - a$ and $ \partial_2 (L) = b + a - c$, so $\partial_2 (U) = - \partial_2 (L)$, and since $\partial_n$ is a homomorphism, $\partial_2(U+L)=\partial_2(U)+\partial_2(L)=0$. We conclude that $\ker \partial_2 = \langle U+L\rangle $. Geometrically, this is very intuitive: $U+L$ corresponds to the whole surface of the torus, which indeed has no border.</p>
+<p>$ \im \partial_2$:</p>
+<p>The computations above also show us that $\im \partial_2 = \langle c - b - a \rangle = \langle a + b - c\rangle$ (remember that $\langle a\rangle$ always equals $\langle -a\rangle$, by definition of the generated subgroup).</p>
+<p>With these computations, we then get that $H_1(T)=\langle a, b, c\rangle / \langle a+b-c\rangle = \langle a, b, c\mid  a+b-c=0\rangle$. But in this group $ c=a+b$, so indeed the generator $c$ is reduntant in the presentation, and $H_1(T)\cong \langle a,b\rangle\cong \mathbb{Z}^2$. So we have two holes: those of the class of $a$ and those of the class of $b$, as expected!</p>
+<p>For $H_2(T)$, we have $H_2(T)=\langle U+L\rangle /0=\langle U+L\rangle \cong \mathbb{Z}$, with a &ldquo;2-dimensional hole&rdquo; corresponding to the hollow surface of the torus.</p>
+<p>K BOTTLE</p>
+<p>The Klein bottle has $ \partial_1 (a)=\partial_1 (b)=\partial_1 (c)=0$, similar to the torus. Also similar to $T^2$, $ \partial_2(U)=c-b-a$. However, $ \partial_2(L)=b-a-c$.</p>
+<p>Thus, in order to the chain $mU+nL$ to be a cycle, we must have $ \partial_2(mU+nL)=\partial(mU)+\partial(nL)=m\partial(U)+n\partial(L)=-(m+n)a+(n-m)b+(m-n)c=0$. In particular, since the chain group is freely generated of the form $ \langle a,b,c\rangle $, we must have the each of the three coefficients multuplying $a,b,c$ must be zero: $m+n=n-m=m-n=0$. Having $m=-n$ thus suffices, and we conclude that $ \ker \partial_2 = {mU-mL\mid  m\in\mathbb{Z}} = \langle U-L\rangle $.</p>
+<p>As for $ \im \partial_2$, we saw it is equal to $ \langle c-b-a, b-a-c\rangle $. Indeed, since $ (c-b-a)+(b-a-c)=-2a$, we also have $ \langle c-b-a, b-a-c\rangle =\langle c-b-a, 2a\rangle =\langle a+b-c, 2a\rangle $.</p>
+<p>We can then conclude that $H_1(K)=\langle a,b,c\rangle /\langle a+b-c, 2a\rangle =\langle a,b,c\mid  a+b-c=0,2a=0\rangle $. Again, $c$ is determined as $a+b$, and we may simplify to get $ H_1(K)=\langle a,b\mid  2a=0\rangle \cong \mathbb{Z}\times \mathbb{Z}/2\mathbb{Z}$.</p>
+<h1 id="applications">Applications</h1>
+<h2 id="retractions-and-fixed-points">Retractions and fixed points</h2>
+<p>Suppose we have a retraction $r:X\rightarrow A$. Then the induced homology homomorphisms $r_*^H :H_n(X)\rightarrow H_n(A)$ would be surjective, since for chains $r_*^C:C_n(X)\rightarrow C_n(A)$ is surjective.</p>
+<p>This simple remark shows us that <strong>there is no rectraction</strong> $r:D^2\rightarrow S^1$, since this would give a surjection $0\cong H_1(D^2) \rightarrow H_1(S^1) \cong \mathbb{Z}$, which is absurd. This is a very relevant topological fact, and one that isn&rsquo;t easy at all to prove without some algebraic machinery like homology! Its relevance can be seen, for example, in how it can be used to prove this extremely useful and powerful theorem:</p>
+<p><strong>Theorem (Brower&rsquo;s fixed point theorem)</strong>: Every continuous function $f:D^2\rightarrow D^2$ has a fixed point (i.e., $x$ such that $f(x)=x$).</p>
+<p><strong>Proof</strong>: Suppose we had some $f:D^2\rightarrow D^2$ without fixed points, so that, for all $x$, $x\neq f(x)$. Then we can form a ray going from $x$ to $f(x)$, and this ray intersects $S^1$ at some unique point. Define $r(x)$ to be this intersection. This $r$ is then a retraction $D^2\rightarrow S^1$, which isn&rsquo;t topologically possible, so we have a contradiction.</p>
+<div style="text-align: right;">\(\blacksquare\)</div>
+<p>Brower&rsquo;s fixed point theorem is a very useful theorem. It is, for example, commonly used to prove that certain equations have solutions with fixed points (e.g. equations of <strong>movement</strong>, like from liquids or planetary systems). It is also used in game theory to prove the existence equilibriums (see <a href="https://en.wikipedia.org/wiki/Nash_equilibrium">Nash equilibrium</a>) or lack thereof (see <a href="https://en.wikipedia.org/wiki/Arrow%27s_impossibility_theorem">Arrow&rsquo;s theorem</a>). Here, we will use it to prove a very interesting fact about the following board game.</p>
+<h2 id="the-hex-game">The Hex game</h2>
+<p>HEX</p>
+<p>HEX WINNER</p>
+<p><strong>Theorem</strong>: Hex always has a winner.</p>
+<p><strong>Proof</strong>: First, note that the graph $B_k$ gives us a <strong>triangulation</strong> of the square $D_k=[0,k]\times [0,k]$ (take the triangles to be filled), which is homeomorphic to a 2D disk (filled circle). Assuming there exists a Hex game without a winner, we will construct a map $f:D_k\rightarrow D_k$ without a fixed point, which is a contradiction.</p>
+<p>Since simplices are convex hulls and $D_k$ is triangulated by $B_k$, every element of $D_k$ can be written uniquely as a linear combination $\lambda_0 v_0 + \lambda_1 v_1 +\lambda_2 v_2$, for $v_0,v_1,v_2$ vertices of $B_k$ and $\lambda_0+\lambda_1+\lambda_2=0$, all $\lambda_i$ positive. In particular, every function $f:B_k\rightarrow \rt$ can extend to one $\widehat{f}:D_k\rightarrow \rt$ by defining $\widehat{f}(\lambda_0 v_0 + \lambda_1 v_1 +\lambda_2 v_2)=\lambda_0 f(v_0) + \lambda_1 f(v_1) +\lambda_2 f(v_2)$.</p>
+<p>Assume that we have $H,V$ such that there is no Hex winner. Now, let us define a function $f:B_k\rightarrow B_k$ which will be extended to $\widehat{f}:D_k\rightarrow D_k$ that will lead to the contradiction. Define $\widehat{W}$ to be the subset of $H$ connected to the western extreme $W$, and similarly for $\widehat{E}$, $\widehat{S}$ and $\widehat{N}$. The assumption we have no winner is equivalent to saying that $\widehat{W} \neq \widehat{E}$ and $\widehat{S} \neq \widehat{N}$, or that $\widehat{W}$ (or $\widehat{S}$) and $\widehat{E}$ (or $\widehat{N}$) are connected. Then define $f$ as</p>
+$$
+\begin{align}
+f(z)  &= z + (1, 0) \;\;\; \text{for} \; z\in \widehat{W} 
+    \\&= z - (1, 0) \;\;\; \text{for} \; z\in \widehat{E} 
+    \\&= z + (0, 1) \;\;\; \text{for} \; z\in \widehat{S} 
+    \\&= z - (0, 1) \;\;\; \text{for} \; z\in \widehat{N} 
+\end{align}
+$$<p>That is, we push elements of each set towards the winning direction. Since we assume this is a draw, doing so would still leave us inside the board $B_k$, so that indeed the function has type $f:B_k\rightarrow B_k$. We define $e(z)$ to be the vector $z$ is pushed by $f$. You can understand the vector $e(z)$ as giving you a victory direction, and $f(z)$ making $z$ follow this <strong>&ldquo;winning flow&rdquo;</strong>. Extending $f$ as we described above, we have a map $\widehat{f}:D_k\rightarrow D_k$.</p>
+<p>Note in particular that three points $v_0,v_1,v_2$ forming a triangle in $B_k$ can&rsquo;t have a pair $v_i, v_j$ such that $e(v_i)=-e(v_j)$, because that would imply $\widehat{W}$ and $\widehat{E}$ (or $\widehat{S}$ and $\widehat{N}$) are connected, and we would have a winner!</p>
+<p>By definition, if $x = \lambda_0 v_0 + \lambda_1 v_1 +\lambda_2 v_2$, then it is a fixing point of $\widehat{f}(x)$ only if</p>
+$$\begin{align}
+\widehat{f}(x)=\lambda_0 f(v_0) + \lambda_1 f(v_1) +\lambda_2 f(v_2) &= \lambda_0(v_0+e(v_0)) + \lambda_1(v_1+e(v_1)) + \lambda_2(v_2+e(v_2))
+\\&=\lambda_0 v_0 + \lambda_1 v_1 +\lambda_2 v_2=x
+\end{align}$$<p>This forces $\lambda_1e(v_0)+\lambda_1e(v_1)+\lambda_2e(v_2)=0$, which amounts to say that the 2-simplex generated by $e(v_0),e(v_1),e(v_2)$ contains the origin. This is only possible if some of these three vectors are inverses. However, as noted above, this is a contradiction! Thus, Hex can&rsquo;t have draws.</p>
+<div style="text-align: right;">\(\blacksquare\)</div>
+<p>REFORMULAR COM FLOW E VECTOR FIELDS DIRETO
+REMARKS SOBRE INTUICIONISMO</p>
+<h2 id="nash-equilibria-">Nash equilibria **</h2>
+<p>NASH EQUILIBRIA
+EXS PUROS (prisionners, eleic)
+EXS MISTOS (bach, pennies)</p>
+<p>EXISTÊNCIA
+<strong>Theorem</strong>: every game with finite players and actions has at least one Nash equilibrium;</p>
+<p><strong>Proof</strong>:
+Let $\sigma \in \Delta^{i_1}\times...\times\Delta^{i_k}$ be a mixed strategy. Let&rsquo;s try to define a &ldquo;winning flow&rdquo; which, for each $\sigma$, points in the direction of the direction of a strategy with better expected gains. For this, define for each $\sigma$ a function $\text{Gain} (\sigma): A \rightarrow \ro^i$ that, for each action $a$, returns the expected gain to player $i$ given the action:</p>
+$$\text{Gain}_i(\sigma)(a) = \max (0, u_i(a, \sigma_{-i}) - u_i(\sigma))$$<p>Then we can try to define the flow by pushing $\sigma$ by its gain: $g(\sigma)(a) = \sigma(a) + \text{Gain}(\sigma)(a)$. This, however, doesn&rsquo;t necessarily gives an element inside $\Delta = \Delta^{i_1}\times...\times\Delta^{i_k}$, because its components might not sum to one. What we need is a flow definition $f$ such that $\sum_{b\in A_i}f(\sigma)_i(a_j)=1$. To get this $f$, note that, since $\sigma_i$ is an element of a simplex,</p>
+$$\sum_{a\in A_i} g(\sigma)_i(a) = \sum_{a\in A_i} \big( \sigma_i(a) + \text{Gain}_i(\sigma)(a) \big)=1 + \sum_{a\in A_i} \text{Gain}_i(\sigma)(a).$$<p>This means we can define a flow $f:\Delta\rightarrow\Delta$ normalizing $g$ by this value:</p>
+$$f(\sigma)_i(a) = \frac{\sigma_i(a) + \text{Gain}_i(\sigma)(a)} 
+                      {1 + \sum_{b\in A_i} \text{Gain}_i(\sigma)(b)},$$<p>which indeed satisfies the property of returning mixed strategies.</p>
+<p>Since $\Delta$ is a product of simplices, it is homeomorphic to a disk of some higher dimension, and the fixed point theorem applies. That is, there exists at least one $\sigma^*\in\Delta$ such that $f(\sigma^*)=\sigma^*$. We claim this mixed strategy is a Nash equilibrium. Let&rsquo;s prove that.</p>
+<p>Defining $S=1 + \sum_{b\in A_i} \text{Gain}_i(\sigma)(b)$ to be the constant normalizing factor above, $\sigma^*$ being a fixed point means $\sigma^*_i(a)=\frac{1}{S}(\sigma^*_i(a) + \text{Gain}_i(\sigma^*, a))$, and so $(S-1)\sigma^*_i(a)=\text{Gain}_i(\sigma^*, a)$.</p>
+<p>Now, note that the expected value of gains for the player $i$ according to the strategy $\sigma^*$ is zero:</p>
+$$
+\begin{align}
+    \sum_{a\in A_i}\sigma^*_i(a)\text{Gain}_i(\sigma^*, a) &=\sum_{a\in A_i}\sigma^*_i(a)(u_i(a, \sigma_{-i}^*) - u_i(\sigma_i^*))
+    \\&= \left(\sum_{a\in A_i}\sigma^*_i(a)u_i(a, \sigma_{-i}^*)\right) - u_i(\sigma_i^*)
+    \\& = u_i(\sigma_i^*) - u_i(\sigma_i^*)=0
+\end{align}
+$$<p>where the penultimate equality comes from $\sigma^*_i$ being a simplex and $u_i(\sigma_i^*)$ constand, and the last one by the very definition of $u_i(\sigma_i^*)$.</p>
+<p>However, we also have that $\sum_{a\in A_i}\sigma^*_i(a)\text{Gain}_i(\sigma^*, a)=\sum_{a\in A_i}(S-1)\sigma^*_i(a)^2$, and, since there&rsquo;s at least one $a$ such that $\sigma^*_i(a)>0$ (otherwise mixed strategies wouldn&rsquo;t sum to one), $S=1$ in order for the expected value of the gains to be null. Thus we have $\sigma^*_i(a)=\sigma^*_i(a) + \text{Gain}_i(\sigma^*, a)$, and $\text{Gain}_i(\sigma, a)=0$ for any player $i$ and action $a\in A_i$&ndash; proving that $\sigma^*$ is indeed a Nash equilibrium.</p>
+<div style="text-align: right;">\(\blacksquare\)</div>
+<p>Conversely, every possible Nash equilibrium gives a fixed point of the flow above&ndash; i.e., <strong>equilibria are exactly the fixed points of the &ldquo;winning flow&rdquo;</strong> $f$.</p>
+<h1 id="going-further">Going further</h1>
+<p>oi</p>
+
+
+<p>
+  
+  <a href="http://localhost:1313/blog/topology-for-artists/">#Topology for Artists</a>
+  
+</p>
+
+  </main>
+
+  <footer>
+</footer>
+
+    
+
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "your-disqus-shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  
+</body>
+
+</html>
