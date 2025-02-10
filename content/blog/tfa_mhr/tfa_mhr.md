@@ -38,8 +38,9 @@ In our search for topological invariants, we'll learn how **holes** can be defin
 
 TODO:
     melhorar parte de complexos
-    3d: setup geral de 3d render, melhorar explicac dos algoritmos, iluminac e orientac. Usar imgs e shaders
+    3d: setup geral de 3d render, melhorar explicac dos algoritmos (CORREC: depth é do pixel, n do triangulo. precisa melhorar bastante ambas as explicacs), iluminac e orientac. Usar imgs e shaders. Orientac das edges tbm!
     delta spaces: corrigir e revisar
+    deixar claro q orientac é prop topológica já no início!
 
 TODO:Corrigir estrutura de simplexo do círculo. Dar exemplo do disco.
 
@@ -208,7 +209,7 @@ IMG!!!
 
 Another very interesting shape we can get this way is the **Möbius strip**. You leave the north and south edges alone, and joing the west and east ones-- but with a twist, since they are labeled going in the opposite directions, and thus you have to joing one's start to the other's end. The Möbius strip is the simplest example of a **non-orientable space**, specifically a non-orientable surface here. This means you can't define what is "inside" or "outside" it: try pointing your finger towards a direction you this is outwards from the surface, and then follow the strip until you come back. Your finger will now point to the opposite direction! I.e., you can't define a cohesive notion of outside-ness within the strip. 
 
-More formally, we can't define coherently a normal vector for each point in the strip. A normal vector is a vector perpendicular to a point in a specified surface.
+More formally, we can't define coherently a normal vector for each point in the strip. A normal vector is a vector perpendicular to a point in a specified surface. Spaces with this property are called non-orientable, and those in which you can define coherent normal vectors for all points are called orientable. Sheres, tori and disks, for example, are all orientable.
 
 Similarly, if an ant transverses the strip in one direction, when it comes back to its initial position it will be facing the opposite direction from the beginning! You can't define inside and outside, nor can you define a cohesive transversing direction! ???
 
@@ -297,7 +298,7 @@ ESTRATEGS DOMINADAS
 
 Simplices and simplicial complexes shouldn't be foreign to those artists working with 3D rendering. In this area, they go by the name of **meshes**, which are just simplicial complexes constructed only gluing 2-simplices, plus some extra data we will discuss below. 
 
-Meshes have different implementations on different frameworks, but here is a quite minimalistic one we'll use here:
+Meshes have different implementations on different frameworks, but here is a quite minimalistic one we'll use in this post:
 
 {{< highlight cpp "linenos=table,hl_lines=0,linenostart=1" >}}
 struct Mesh{
@@ -306,9 +307,9 @@ struct Mesh{
 }
 {{< / highlight >}}
 
-In the structure above, each consecutive elements of the array `vertices` represent a triangle in the simplicial structure. The standard 2-simplex $\Delta^2$ embedded in $\rth$, for example, has `vertices = [(0, 0, 0), (1, 0, 0), (0, 1, 0)]`; the complex formed by two 2-simplices forming a square may have `vertices = [(0, 0, 0), (1, 0, 0), (0, 1, 0), (1, 0, 0), (1, 1, 0), (0, 1, 0)]`, with the last three vertices representing the triangle we joined with $\Delta^2$. Finally, defining `v0 = (0, 0, 0), v1 = (1, 0, 0), v2 = (0, 1, 0), v3 = (0, 0, 1)` the standard 3-simplex $\Delta^3$ may be given `vertices = [v1, v2, v3, v0, v2, v2, v0, v1, v3, v0, v1, v2]`. This last array may seem a bit daunting, but note that it's just made of the faces of $\Delta^3$, for which we've already found a formula above.
+In the structure above, each three consecutive elements of the array `vertices` represent a triangle in the simplicial structure. The standard 2-simplex $\Delta^2$ embedded in $\rth$, for example, has `vertices = [(0, 0, 0), (1, 0, 0), (0, 1, 0)]`; the complex formed by two 2-simplices making a square may have `vertices = [(0, 0, 0), (1, 0, 0), (0, 1, 0), (1, 0, 0), (1, 1, 0), (0, 1, 0)]`, with the last three vertices representing the triangle we joined with $\Delta^2$. Finally, defining `v0 = (0, 0, 0), v1 = (1, 0, 0), v2 = (0, 1, 0), v3 = (0, 0, 1)`, the boundary of the standard 3-simplex  $\Delta^3$  may be given `vertices = [v1, v2, v3, v0, v2, v2, v0, v1, v3, v0, v1, v2]` (this may seem a bit daunting, but not it is just a matter of applying the formula for the boundary we found before).
 
-For each vertex, we also associate a so-called UV value, which is a vector of dimension 2. Values inside the triangle are interpolated using barycentric coordinates. These help us texturing our surface: the $(u,v)$ value of a point in the triangle indicates that it should have the colour of the pixel in position $(u,v)$ inside the texture sprite.
+For each vertex, we also associate a so-called UV value, which is a vector of dimension 2. Points inside the triangle also have UV values, obtained by interpolating using their barycentric coordinates. UV maps help us texturing our surface: the $(u,v)$ value of a point in the triangle indicates that it should have the colour of the pixel in position $(u,v)$ inside the texture image.
 
 3D SCENES
 But why are meshes used in 3D rendering? 
@@ -344,7 +345,9 @@ for(pixel in image){
 }
 {{< / highlight >}}
 
-The crucial mathematical step in the algorithm is how to get the distance from $p$ to surfaces inside our scene. How might we find that value? The most straightaway way is to use the surfaces' SDFs-- their "signed distance functions". This is a function that directly-- or, using the more common mathematical term, analitically-- tells you the distance between a point and an embedded (orientable) space, giving positive sign if it is "outside" the object, and negative if it is "inside" it. Below is an example of a SDF for a sphere of radius $r$ and center $c$ in $\rth$:
+The crucial mathematical step in the algorithm is how to get the distance from $p$ to surfaces inside our scene. How might we find that value? The most straightaway way is to use the surfaces' SDFs-- their "signed distance functions". This is a function that directly-- or, using the more common mathematical term, analitically-- tells you the distance between a point and an embedded (orientable) space, giving positive sign if it is "outside" the object, and negative if it is "inside" it. The reader might note that there is a problem here: SDFs only really work with orientable surfaces! This doesn't strictly mean that, say, that it's impossible to render a Möbius strip using raytracing, but it would sure require adjustments to the algorithm.
+
+Below is an example of a SDF for a sphere of radius $r$ and center $c$ in $\rth$:
 
 {{< highlight c "linenos=table,hl_lines=0,linenostart=1" >}}
 float sphereSdf(vec3 p, vec3 c, float r){
@@ -355,9 +358,11 @@ float sphereSdf(vec3 p, vec3 c, float r){
 
 When used to render a 3D scene, this will give us a smooth sphere. Sadly, most shapes you will see on, say, video games, do not have such an easy SDF. This may change with the progress of [neural SDFs](https://research.nvidia.com/labs/toronto-ai/nglod), which use neural networks to learn these functions, but, for the most part of the history of computer graphics, using SDFs to render was not practical for most situations. 
 
-The solution was to try to approximate surfaces with simplers shapes-- namely, triangles, or 2-simplices, for which we can use a single known SDF ([see here](https://www.shadertoy.com/view/4sXXRN) for an implementation). And so were meshes born! That is, meshes are just triangulations of surfaces we want to approximate. The more 2-simplices a mesh has, the more detail our model will be able to have. 
+The solution was to try to approximate surfaces using simplers shapes-- namely, triangles, or 2-simplices, for which we can use a single known SDF ([see here](https://www.shadertoy.com/view/4sXXRN) for an implementation). And so were meshes born, as complexes made by these triangles. That is, meshes are just triangulations of surfaces we want to approximate. The more 2-simplices a mesh has, the more detail our model will be able to have. 
 
-Raytracing has the problem that it can take too much time inside the `while` loop trying to hit a surface. Rasterization is then a more efficient alternative. In it, we project our mesh vertices into the vision plane-- something that can be quickly done by the GPU using linear algebra and projectivization. For each pixel we check if it is contained inside one of the projected triangles defined by the projected vertices, and use that to define its color. We also have to check in the case a pixel is inside many of these triangles: to solve that, we compute the depth of each projected triangle, and render only the color of the one with least depth. These depth values for each pixel are stored in an array called the **depth buffer**.
+Raytracing has the problem that it can take too much time inside the `while` loop trying to hit a surface. Rasterization is then a more efficient alternative. In it, we project our mesh triangles into the vision plane-- something that can be quickly done by the GPU using linear algebra and projectivization. For each pixel we then check if it is contained inside one of these triangles, and use that to define its color. 
+
+We also have to check in the case a pixel is inside many of these triangles-- for example, if we have two triangles in our scene, one behind the other in relation to the camera. To solve that, we compare each point projecting to that pixel, and render only the color associated to the point closest to the camera- i.e., the one with least "depth". These depth values for each pixel are stored in an array called the **depth buffer**.
 
 {{< highlight cpp "linenos=table,hl_lines=0,linenostart=1" >}}
 // General rasterization algorithm
@@ -384,13 +389,21 @@ for(pixel in image){
 
 {{< / highlight >}}
 
-Meshes become more interesting when you introduce **lighting and shading** to your rendering pipeline. Imagine you have a lamp somewhere on your 3D scene, and want to use it to illuminate objects. EXPLAIN FIRST NORMAL, THEN FORMULA
+Meshes become more interesting when you introduce **lighting and shading** to your rendering pipeline. Imagine you have a lamp on a point $O$ on your 3D scene, and want to use it to illuminate objects. One of the basic ways to do so is to, for each point $P$ in the surface, trace a line from $P$ to $O$. In vector terms, getting $O-P$. Then you get the normal $N_P$ of the surface at $P$. If they are colinear and pointing in the same direction, this means $P$ is standing right in front of $O$, so if itsn't obstructed by any other object, it should receive maximum lighting. The closest $P$ and $N_P$ are to being pointing in the same direction, the more iluminated $P$ should be. That's exactly what the dot product measures, so the lighting $L(P)$ in $P$ will be proportional to $(O-P)\cdot N_P$, and so it should also be in relation to the intensity $I$ of the lamp. It also should be inversely proportional to the distance $d(O,P)$, and be strictly positive. This means we might model $L(P)$ with the following formula:
 
-$$L = I\, \frac {(O-P) \cdot N_P} {d(O, P)},$$
+$$L(P) = \max (I\, \frac {(O-P) \cdot N_P} {d(O, P)}, 0)$$
+
+Note that, as we're using normals, this method doesn't really work with non-orientable surfaces-- which, again, isn't really the end of the world. The real problem is: how to get $N_P$ for all $P$? Using meshes, this is actually pretty simple: if $\angled{v_0, v_1, v_2}$ is a 2-simplex, then its normal should be a vector ortogonal to the plane containing $v_1 - v_0$ and $v_2 - v_0$, which can be computed using the cross product. The question is, however, in each direction should this normal point to-- i.e., if we use $(v_1 - v_0)\times (v_2 - v_0)$ or $(v_2 - v_0)\times (v_1 - v_0)=-(v_1 - v_0)\times (v_2 - v_0)$. The **convention** is to do $(v_1 - v_0)\times (v_2 - v_0)$, and we call this the "**positive orientation**" of the 2-simplex, the other possibility being the negative one.
+
+We can quickly integrate orientation in our mesh structure. Indeed, for each three consecutive vertices `v0, v1, v2` representing a triangle, we'll use the positive orientation in the convention above. Presenting everything in the correct order then becomes very important-- if we get a single triangle wrong, our mesh will be shaded in an absurd way, with some triangles being suddenly bright and other suddenly dark because of the wrong orientations.
+
+Note that the orientation of a 2-simplex here is simultaneously an orientation of its edges: if we write `vertices = [v0, v1, v2]`, it means we have a triangle with normal $(v_1 - v_0)\times (v_2 - v_0)$, so we may interpret it as having edges going in the direction `v0 -> v1` and $$?????????????
 
 ## Orientations and boundaries
 
-With the discussion above, we see that meshes aggregate a bit more information than the simplices we have discussed so far. Not only on the more visual and computational aspects, but also on the geometrical side: they are oriented. This turned out to give us a lot of important information, so perhaps we would like to extend this to further dimensions. This is simple for 1-simplices, as they can then be seen as directed paths: we will say $\os$ goes from $v_0$ to $v_1$, and $[v_1,v_0]$ does the opposite. In the same way meshes' orientations were associated to the orientation of their edges, may say that $\os$ gives $[v_1]$ a "positive" orientation and $[v_0]$ a "negative" one. 
+With the discussion above, it really seems like orientation is a very relevant topological property with important applications. Meshes also showed us how to integrate this notion with complexes-- which, per se, are just sets of points, without any orientation information. So perhaps we'd like to do this same move in the mathematical level, getting "**oriented complexes**" which do come with some orientation. This will also require a change in terminology: instead of writing $\angled{v_0,...,v_n}$, we'll write $[v_0,...,v_n]$ for this new kind of spaces, and order will matter in the presentation.
+
+Let's begin defining oriented simplices, and specifically to 1-simplices. This is simple, as they can then be seen as directed paths: we will say $\os$ is an oriented simplex with base $\angled{v_0,v_1}$, and going from $v_0$ to $v_1$-- $[v_1,v_0]$ then being the oriented simplex going in the opposite direction. In the same way meshes' orientations were associated to the orientation of their edges, may say that $\os$ gives $[v_1]$ a "positive" orientation and $[v_0]$ a "negative" one. 
 
 This all means that, with oriented simplices, the order we write our base vectors in $[v_0,...,v_k]$ will from now on matter.
 
@@ -423,7 +436,8 @@ CHAINS!!!
 
 As for chains,
 
-DOING ALGEBRA
+## Doing algebra with faces
+
 Now that we know how to describe faces, we can define the boundary of a simplex $\a$, denoted $\partial (a)$ or simply $\partial a$. For an isolate geometrical simplex $\angled{v_0,...,v_k}$, 
 
 $$\partial \angled{v_0,...,v_k} = \bigcup_{i=0}^n \angled{v_0,...,\widehat{v_i},...,v_k},$$
