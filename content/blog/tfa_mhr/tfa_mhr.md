@@ -40,7 +40,8 @@ TODO:
     melhorar parte de complexos
     3d: setup geral de 3d render, melhorar explicac dos algoritmos (CORREC: depth é do pixel, n do triangulo. precisa melhorar bastante ambas as explicacs), iluminac e orientac. Usar imgs e shaders. Orientac das edges tbm!
     delta spaces: corrigir e revisar
-    deixar claro q orientac é prop topológica já no início!
+    #deixar claro q orientac é prop topológica já no início!
+    MESHES N SÃO 2-SIMPLEXOS (EG TRIANGS INTERSECTANDO), MAS BASEADOS E REDUTÍVEIS A ESTES
 
 TODO:Corrigir estrutura de simplexo do círculo. Dar exemplo do disco.
 
@@ -345,7 +346,7 @@ for(pixel in image){
 }
 {{< / highlight >}}
 
-The crucial mathematical step in the algorithm is how to get the distance from $p$ to surfaces inside our scene. How might we find that value? The most straightaway way is to use the surfaces' SDFs-- their "signed distance functions". This is a function that directly-- or, using the more common mathematical term, analitically-- tells you the distance between a point and an embedded (orientable) space, giving positive sign if it is "outside" the object, and negative if it is "inside" it. The reader might note that there is a problem here: SDFs only really work with orientable surfaces! This doesn't strictly mean that, say, that it's impossible to render a Möbius strip using raytracing, but it would sure require adjustments to the algorithm.
+The crucial mathematical step in the algorithm is how to get the distance from $p$ to surfaces inside our scene. How might we find that value? The most straightaway way is to use the surfaces' SDFs-- their "signed distance functions". This is a function that directly-- or, using the more common mathematical term, analitically-- tells you the distance between a point and an embedded (orientable) space, giving positive sign if it is "outside" the object, and negative if it is "inside" it. 
 
 Below is an example of a SDF for a sphere of radius $r$ and center $c$ in $\rth$:
 
@@ -358,7 +359,10 @@ float sphereSdf(vec3 p, vec3 c, float r){
 
 When used to render a 3D scene, this will give us a smooth sphere. Sadly, most shapes you will see on, say, video games, do not have such an easy SDF. This may change with the progress of [neural SDFs](https://research.nvidia.com/labs/toronto-ai/nglod), which use neural networks to learn these functions, but, for the most part of the history of computer graphics, using SDFs to render was not practical for most situations. 
 
-The solution was to try to approximate surfaces using simplers shapes-- namely, triangles, or 2-simplices, for which we can use a single known SDF ([see here](https://www.shadertoy.com/view/4sXXRN) for an implementation). And so were meshes born, as complexes made by these triangles. That is, meshes are just triangulations of surfaces we want to approximate. The more 2-simplices a mesh has, the more detail our model will be able to have. 
+The solution was to try to approximate surfaces using simplers shapes-- namely, triangles, or 2-simplices, for which we can use a single known SDF ([see here](https://www.shadertoy.com/view/4sXXRN) for an implementation). And so were meshes born, as complexes made by these triangles. That is, meshes are just triangulations of surfaces we want to approximate. 
+The more 2-simplices a mesh has, the more detail our model will be able to have. 
+
+The reader might have noted that there is a slight mathematical problem here: SDFs only really work with orientable surfaces! This is a problem if you try to render a Möbius strip directly using a SDF, but not really if you approximate it using triangles, specially because these have positive SDFs in 3D space, so there's no problem here concerning "inside" or "outside".
 
 Raytracing has the problem that it can take too much time inside the `while` loop trying to hit a surface. Rasterization is then a more efficient alternative. In it, we project our mesh triangles into the vision plane-- something that can be quickly done by the GPU using linear algebra and projectivization. For each pixel we then check if it is contained inside one of these triangles, and use that to define its color. 
 
@@ -413,6 +417,8 @@ Reiterating, this all means that, with oriented simplices, the order we write ou
 
 Formalizing for the 2-dimensional case, we determine that $\ts$ has oriented edges $[v_0, v_1]$, $[v_1,v_2]$ and $[v_2,v_0]$. The other possible oriented 2-simplex would be the one with inverted edges $[v_1,v_0]$, $[v_0,v_2]$ and $[v_2,v_1]$, which can then be written as $[v_1,v_0,v_2]$. Note that $[v_1,v_2,v_0]$ has the same orientation as $\ts$, both being positive, since their edges follow the same path. Indeed, whenever you swap two neighboring vectors in the presentation, you get the 2-simplex going in the opposite direction. This means that if you do an odd amount of swaps (in what we will call an **odd permutation**), you get the opposite simplex; if you do an even amount (in an **even permutation**), you get the same one. You can see this rule also applies for 1-simplices, and indeed will be the case for any n-simplex.
 
+IMG !!! (MOSTRANDO COMO SE DESENHA ORIENTAC P/ TRIANGULO, BARICENTRICO TBM)
+
 Suggestively, we may write $-[v_0,...,v_k]$ for the simplex with the opposite orientation of $[v_0,...,v_k]$. In particular, we just saw that $[v_0,v_1]=-[v_1,v_0]$ and 
 
 
@@ -422,20 +428,35 @@ for example.
 
 Indeed, we can see that defining an orientation for 1 and 2-simplices is actually the same as giving an orientation for all its faces. In both cases, for a simplex $[v_0,...,v_k]$, we used the convention that $[v_1,...,v_k]$ (excluding the first vector from the presentation) was one of its oriented edges-- $[v_1]$ in the case of $\os$, $[v_1,v_2]$ in the case of $\ts$.
 
-We can generalize all of this. Indeed, $[v_0,...,v_k]$ is now to be seen as an **oriented simplex**. We will use the convention that it has $[\widehat{v_0},...,v_k]$ as one of its faces, which, by the above considerations, is enough to determine the orientation of all its other faces. What we noted for 1 and 2-simplices with regard to permutations is still valid: odd permutations of vertices in the presentation give the opposite simplex, even ones give you the same simplex. From now on, we'll also call "oriented simplices" just "simplices" ????????
+We can generalize all of this. Indeed, $[v_0,...,v_k]$ will denote from now on an **oriented k-simplex**. We will use the convention that it has $[\widehat{v_0},...,v_k]$ as one of its faces, which, by the above considerations, is enough to determine the orientation of all its other faces. What we noted for 1 and 2-simplices with regard to permutations is still valid: odd permutations of vertices in the presentation give the opposite simplex, even ones give you the same simplex. From now on, we'll also call "oriented simplices" just "simplices" ????????
 
-What about complexes? Consider the case of the boundary of 2-simplex, which is a complex. 
+What about complexes? We'll say a simplicial complex is oriented if we give each of its simplices an orientation. There are many possible such orientations. Applying to 3D rendering, each of these orientations represents a way of shading our mesh. In many of these, neighbouring triangles have different orientations, resulting in suddenly light or dark regions, which isn't an effect we really desire. For orientable surfaces, we might want to find a single, "canonical", orientation such that all triangles have coherent normals, so that the whole surface will have a smoother and cohesive lighting-- indeed, that's precisely the definition of an orientable surface. 
 
-Consider the simplicial complex below, made by gluing the two oriented 2-simplices $\ts$ and $[v_1,v_3,v_2]$ on the common non-oriented face $[v_1,v_2]$, making a square. The first simplex does indeed have $[v_1,v_2]$ as a face, but the other transverses it in the opposite direction, giving instead $[v_2,v_1]=-[v_1,v_2]$. Similarly, inside the 2-simplex $\ts$ itself, every vertex has the same amount of edges going in and out from it. In general, every time you glue two n-simplices together, their common $n-1$ face will come from faces of the opposite direction in each original simplex. 
+To obtain this orientation, consider the complex made by gluing the two 2-simplices $\gts$ and $\angled{v_1,v_3,v_2}$ on the common face $\angled{v_1,v_2}$, making a square. Say we orient the first one as $\os$, so that, using the right-hand rule, its normal points towards us. What orientation should we give to the other triangle so that its normal may have the same direction? Again using the right-hand rule, it should be $[v_1, v_3, v_2]$. Note that, at their common edge, they have different orientations: one has $[v_1, v_2]$ as an edge, the other $[v_2, v_1]$. Since the orientation of a single face defines the orientation of a simplex, we could've guaranteed coherent normals by just positing the oriented simplices have opposite orientations on their common face.
 
-IMG!!! 
+This is valid in general: every time you glue two n-simplices together and you want them to have coherent normals (either both pointing outwards or inwards), their common $n-1$ face should come from faces of the opposite direction in each original simplex-- and this last condition is indeed sufficient. Orientable surfaces are exactly those that can be approximated by oriented simplices satisfying this property for all simplices with common faces.
 
-This rules is valid for all n-simplices themselves. So, seeing the 2-simplex as a collage of 1-simplices forming a triangle, if two edges are glued, then one's end must be the other's starting point (remember, a point has positive orientation in a 1-simplex if it is its end point). This collage perspective allows us to know the orientation of a 2-simplex just by knowing the orientation of one of its edges, and similarly can be done for a 1-simplex (if we know the positive point, we know the other must be negative). 
+For example, this **can** be done on the triangulation we provided for the torus, as shown belown. 
 
+IMG!!! (ESQUEMA, SHADER)
+
+As a result, we can correctly shade this triangulation-- and, since orientability is a topological property, this applies for any other mesh representing a torus:
+
+SHADER!!!
+
+For example, that's something you **can't** do in the triangulation we presented of the Möbius strip. Consider, say, the orientation provided in the image below, where we're trying to which can be noted on the triangles at the horizontal extremes: they meet booth in the same oriented face $[p_0, p_5]$! Any other orientation will eventually have the same problem. 
+
+IMG!!! (ESQUEMA, SHADER)
+
+As a result, we can't shade this Möbius strip triangulation correclty-- and, since orientability is a topological property, this applies for any other mesh representing the strip:
+
+SHADER!!!
+
+This rules is valid for all n-simplices themselves, which are all orientable. So, seeing the 2-simplex as a collage of 1-simplices forming a triangle, if two edges are glued, then one's end must be the other's starting point (remember, a point has positive orientation in a 1-simplex if it is its end point). This collage perspective allows us to know the orientation of a 2-simplex just by knowing the orientation of one of its edges, and similarly can be done for a 1-simplex (if we know the positive point, we know the other must be negative). 
 
 Let's see how this works in the example of a 3-simplex $\ths$. By our convention, it has an oriented face $[v_1,v_2,v_3]$. This 2-simplex shares the oriented edge $[v_2,v_3]$ with $\angled{v_0,v_2,v_3}$, so the oriented version of the latter must contain the edge $[v_3,v_2]$ going in the opposite direction, and so it must be $-[v_0,v_2,v_3]$. Doing similarly for all other faces of the pyramid, we get that its oriented faces are $[v_1,v_2,v_3]$, $-[v_0,v_2,v_3]$, $[v_0,v_1,v_3]$ and $-[v_0,v_1,v_2]$.
 
-All of this alows us to get a formula for the oriented faces of a simplex $[v_0,...,v_k]$. We know that its geometrical faces are all the possible $\langle v_0,...,\widehat{v_i},...,v_k\rangle$, so we just need to find their *oriented* versions. We have one already: $[\widehat{v_0},...,v_k]$, by our convention. As for the orientation of $\angled{v_0,\widehat{v_1},...,v_k}$, we see that it shares the face $[v_2,...,v_k]$ with $[\widehat{v_0},...,v_k]$***, so it must have the opposite orientation as it has-- i.e., it is negativ***e. Going by a similar procedure, we see that $\langle v_0,...,\widehat{v_{i+1}},...,v_k\rangle$ always has the opposite orientation of $\langle v_0,...,\widehat{v_i},...,v_k\rangle$. Thus, using our suggestive sign notation, we get that the **oriented** faces of $[v_0,...,v_k]$ are
+These considerations actually allows us to get a formula for the oriented faces of a simplex $[v_0,...,v_k]$. We know that its geometrical faces are all the possible $\langle v_0,...,\widehat{v_i},...,v_k\rangle$, so we just need to find their *oriented* versions. We have one already: $[\widehat{v_0},...,v_k]$, by our convention. As for the orientation of $\angled{v_0,\widehat{v_1},...,v_k}$, we see that it shares the face $[v_2,...,v_k]$ with $[\widehat{v_0},...,v_k]$***, so it must have the opposite orientation as it has-- i.e., it is negativ***e. Going by a similar procedure, we see that $\langle v_0,...,\widehat{v_{i+1}},...,v_k\rangle$ always has the opposite orientation of $\langle v_0,...,\widehat{v_i},...,v_k\rangle$. Thus, using our suggestive sign notation, we get that the **oriented** faces of $[v_0,...,v_k]$ are
 
 $$(-1)^i[v_0,...,\widehat{v_i},...,v_k],$$
 
@@ -447,27 +468,27 @@ As for chains,
 
 ## Doing algebra with faces
 
-Now that we know how to describe faces, we can define the boundary of a simplex $\a$, denoted $\partial (a)$ or simply $\partial a$. For an isolate geometrical simplex $\angled{v_0,...,v_k}$, 
+Now that we know how to describe faces, we can define the boundary of a simplex $\a$, denoted $\partial (a)$ or simply $\partial a$. For an isolate geometrical simplex $\angled{v_0,...,v_k}$, remember we have
 
 $$\partial \angled{v_0,...,v_k} = \bigcup_{i=0}^n \angled{v_0,...,\widehat{v_i},...,v_k},$$
 
-and, for an oriented simplex,
+and, for an oriented simplex, we just found out
 
 $$\partial [v_0,...,v_k] = \bigcup_{i=0}^n (-1)^i[v_0,...,\widehat{v_i},...,v_k]$$
 
 But what about the union of simplices $a,b$ inside a simplicial complex? For geometrical simplices, we should have this as the union of their boundaries, disconsidering common faces:
 
-$$\partial (a\cup b)=\bigcup_{e\in (\partial a \cup \partial b) - (\partial a \cap \partial b)}e,$$
+$$\partial (a\cup b)=\bigcup_{e\in (\partial a \cup \partial b) - (\partial a \cap \partial b)}e$$
 
-which is also a valid formula for oriented simplices. However, in this last case we could get a cleaner, smarter formula. Remember that simplices with common faces on a complex have induced opposite orientation in this face. These common faces are disconsidered for computing the boundary of the union, as if this face was "canceled"-- exactly because it had different signs in each simplex. This means there might be some algebra going behind the curtains!
+What about for oriented simplices? Take the case of two simplices meeting in an orientable mesh, with a coherent orientation. Their common face should be disconsidered for boundary of the union, as if this face was "canceled"-- exactly because it had different signs in each simplex. This means there might be some algebra going behind the curtains!
 
-Indeed, let us think of union of oriented simplices as a kind of a sum, and opposite orientations giving us negative sign. We write $a-a=0$, indicating that faces of opposite orientation should be cancelled in a sum. We can understand $0$ as the null set, or some sort of formal "null n-simplex". In that case, we could write something like
+Indeed, let us think of union of oriented simplices as a kind of a sum, and opposite orientations giving us negative sign. We write $a-a=0$, indicating that faces of opposite orientation should be cancelled in a sum. We can understand $0$ as the null set, or some sort of formal "null n-simplex", satisfying $a+0=0+a=a$ for any simplex $a$. In that case, we could write something like
 
 $$\partial_n([v_0,...,v_n]) = \sum_{i=0}^n (-1)^i [v_0, ..., \widehat{v_i}, ..., v_n]$$
 
-And then we would have $\partial(a + b)=\partial a + \partial b$! This is a much cleaner formula, but actually even more: it leads us to think in algebraic terms, revealing potential extra structure involved with oriented simplices. Also note how it follows some sort of "linearity", as do linear transformations. Structures and connections: these are a mathematician's dream!
+And then postulate $\partial(a + b)=\partial a + \partial b$-- which, in particular, would cancel common faces. This leads us to think in algebraic terms, revealing potential extra structure involved with oriented simplices. Also note how the boundary follows some sort of "linearity", as do linear transformations. Structures and connections: these are a mathematician's dream!
 
-Take as an example two 2-simplices $a=\ts$ and $b=[v_1,v_3,v_2]$ glued along the edge $[v_1,v_2]$. In that case, $\partial a = [v_1,v_2]-[v_0,v_2]+[v_0,v_1]$ and $\partial b = [v_3,v_2]-[v_1,v_2]+[v_1,v_3]$, so that
+Take as an example two 2-simplices $a=\ts$ and $b=[v_1,v_3,v_2]$ glued along the edge $\angled{v_1,v_2}$. In that case, $\partial a = [v_1,v_2]-[v_0,v_2]+[v_0,v_1]$ and $\partial b = [v_3,v_2]-[v_1,v_2]+[v_1,v_3]$, so that
 
 $$\begin{align}
     \partial (a+b)=\partial a + \partial b &= -[v_0,v_2]+[v_0,v_1]+[v_1,v_3]+[v_3,v_2]
@@ -476,9 +497,9 @@ $$\begin{align}
 
 and indeed we get the correct oriented boundary-- with the common edge canceled!
 
-This is great with different simplices, but what about something like $a+a$? We know that $a\cup a = a$, so perhaps we should write $a+a=a$? But since we have inverses, this would mean that we could subtract both sides by $-a$, getting $a=0$-- which doesn't seem good at all. The second most natural option would be to write $a+a = 2a$, which wouldn't bring any algebraic problems. We could interpret this as "following", or "transversing" $a$ twice, so that this formal addition we're describing is not to be understood as an union, but a "composition" of these actions. In the case of a 1-simplex, it would be as following the the path twice; for a 2-simplex, it is like doing a twist twice. This is more intuition than a formal relation, but it shows how geometrical simplices have a set-like logic, while oriented ones can indeed have an algebraic one!
+This is great with different simplices, but what about something like $a+a$? We know that $a\cup a = a$, so perhaps we should write $a+a=a$? But since we have inverses, this would mean that we could subtract both sides by $-a$, getting $a=0$-- which doesn't seem good at all. The second most natural option would be to write $a+a = 2a$, which wouldn't bring any algebraic problems. We could interpret this as "following", or "transversing" $a$ twice, so that this formal addition we're describing is not to be understood as an union, but a "composition" of these actions. In the case of a 1-simplex, it would be as following the the path twice; for a 2-simplex, it is like doing a twist twice. This is more intuition than a formal relation, but it shows how geometrical simplices have a set-like logic, while oriented ones can indeed have an algebraic one.
 
-How to formalize this? Well, we will do that properly in the next section when we talk groups, but let us summarize the major points. For a simplicial complex, let $a_0,...,a_k$ be all its n-simplices. Then we saw that it makes senses to consider formal finite sums $a_i+...+a_j$, including inverses $-a_i$ and multiples $n\cdot a_i$, $n$ any integer. We have that $a_i-a_i=0$, $0$ being a null, formal element. Let us call the set of all these sums (which thus includes $0$) $C^s_n(X)$ !!! We also described a function $\partial _n : C^s_n(X)\rightarrow C^s_{n-1}(X)$, given by the formula above, satisfying some sort of linearity condition: $\partial_n(a+b)=\partial_n (a) + \partial_n (b)$ (note that the same $+$ symbol in each side represent operations on the different sets $C^s_n(X)$ and $C^s_{n-1}(X)$, respectively).
+How to formalize this? Well, we will do that properly in the next section when we talk groups, but let us summarize the major points. For a simplicial complex, let $a_0,...,a_k$ be all its n-simplices. Then we saw that it makes senses to consider formal finite sums $n_i \cdot a_i+...+n_j\cdot a_j$, $n_i$ being any integer-- possibly even negative or equal to $0$. We also write $a_i-a_i=0$, $0$ being a null, formal element. Let us call the set of all these sums $C^s_n(X)$ !!! We also described a function $\partial _n : C^s_n(X)\rightarrow C^s_{n-1}(X)$, given by the formula above, satisfying some sort of linearity condition: $\partial_n(a+b)=\partial_n (a) + \partial_n (b)$ (note that the same $+$ symbol in each side represent operations on the different sets $C^s_n(X)$ and $C^s_{n-1}(X)$, respectively).
 
 EXAMPLE
 
@@ -593,6 +614,8 @@ Theorem: the operation in $G/H$ is well-defined if and only if $H$ is normal. In
 Proof:
 
 ...
+
+EXS DE QUOCIENTES COM PRESENTACS
 
 # Homology theory
 
