@@ -37,6 +37,7 @@ In our search for topological invariants, we'll learn how **holes** can be defin
 {{< shadertoy id="DlffR8" caption="oiiii" >}}
 
 TODO:
+    TRIANG CILINDRO
     melhorar parte de complexos
     3d: setup geral de 3d render, melhorar explicac dos algoritmos (CORREC: depth é do pixel, n do triangulo. precisa melhorar bastante ambas as explicacs), iluminac e orientac. Usar imgs e shaders. Orientac das edges tbm!
     delta spaces: corrigir e revisar
@@ -50,7 +51,7 @@ Delta sets tem q FILL o espaço (td ponto no interior de algm)
 ALG LIN:
     matrizes
     tipos de coisas q são trans lins, TRANSLAC NÃO É
-    Distância euclidiana $d(a,b)$
+    Distância euclidiana $d(a,b)$, norma e normalizac
     dot e exterior products (matrizes tbm?)
 
 ÁLGEBRA N É PRA SER EXPERIMENTO OU SURPRESINHA, MAS ALGO Q SURGE PRA SOLUCIONAR E JUNTAR TUDO NUM MESMO ESPAÇO!!!
@@ -62,19 +63,27 @@ This post will connect many different topics, but let us begin straight away wit
 
 See, if topology is rubbersheet geometry-- where things can be seen as equivalent whenever you can transform one into another continuously, without gluing or cutting--, then it should be intuitive that "holes" could lead us to topological invariants. You can't, for example, turn a circle into a disk or a line without cutting it or gluing stuff to it. Equally, a hollow sphere can't be turned homeomorphically to a plane or something similar. Holes are getting in the way of such transformations. This visually makes sense, but how to actually "compute" the holes of a space? This is the main theoretical purpose of this post: developing a theory of holes mathematicians call **homology theory**, which uses notions from topology, geometry and algebra.
 
-First note that there is a dimensionality factor when we talk about what we intuitively call a hole. For 1D spaces (lines, circles, segments, graphics, etc.), we're thinking about a loop-- a path that ends where it begins. Not only that, but a loop which has "no interior" inside our shape. For 2D spaces (planes, spheres, surfaces like the torus, etc.), having a hole means they're "hollow", in the sense they're surfaces without a border and "not filled". This means that, for each dimension, we have a unique notion of n-dimensional hole.  
+First note that there is a dimensionality factor when we talk about what we intuitively call a hole. For 1D spaces (lines, circles, segments, graphics, etc.), we're thinking about a loop-- a path that ends where it begins. Not only that, but a loop which has "no interior" filling its inside. For 2D spaces (planes, spheres, surfaces like the torus, etc.), having a hole means they're "hollow", in the sense they're surfaces without a border and "not filled". This means that each dimension has a unique notion of "n-dimensional hole", but we'll find these all have something in common.  
 
-Both for 1D and 2D holes, there are two intuitive ideas in play. First, holes should represent shapes that are "closed into itself", that are "cycles" in the sense they have no border-- that an ant can transverse them forever, and never fall off. They are also "unfilled", there's nothing "inside them"-- or, rather, they aren't the boundary some filling matter. Both of these conditions are neccessary. For example, if we take the boundary circle of a disk by itself, it is indeed a loop, a cycle. But it is also filled by the content of the disk, being its boundary. On the other hand, a circle has a hole, but can be filled to become a disk, which is hole-less.
+Both for 1D and 2D holes, there are two intuitive ideas in play. First, holes should represent shapes that are "closed into itself", that are "cycles" in the sense they have no border-- that an ant can transverse them forever, and never fall off. They are also "unfilled", there's nothing "inside them"-- or, rather, they aren't the boundary of some filling matter. Both of these conditions are neccessary. For example, if we take the boundary circle of a disk by itself, it is indeed a loop, a cycle. But it is also filled by the content of the disk, being its boundary. On the other hand, a circle has a hole, but can be filled to become a disk, which is hole-less.
+
+IMG!!! (S1 E D2)
 
 I.e., holes are represented by cycles (boundaryless shapes) that aren't filled (not the boundary of anything, non-boundary shapes). 
 
 Imagine we have a surface-- say, a cylinder-- and want to find 1D holes in it. We can try to see the different loops we can draw on this cylinder. Some of these loops are filled and can be continuously contracted inside the surface to a single point. These don't really tell us anything about holes. However, there is another class of loops that are not filled within the cylinder-- those that "go around it", so to speak. These all should represent holes!
 
+IMG!!! (CILINDRO E CICLOS)
+
 Similarly, take a 2D shape like a ring-- i.e., a disk with a smaller disk cut out from it, like a DVD. We have a single hole in this space. Consider the two circles that compose the boundary of this shape. Both are cycles. None of them are the complete boundary of some subspace, indicating they're also unfilled. They should be seen as representing the hole we made-- and the same can be said about all the loops in between them! Note that this is all because of the puncture we introduced in the original disk, otherwise all these loops would be boundaries.
+
+IMG!!! (RING)
 
 This could be perfected, though. See, in both examples above, we have a single hole, but infinitely many non-boundary cycles representing it. This seems a little awkward. Thankfully, all these cycles have something in common: whevener you pick two of them, they form the complete border of a surface (in the first case, of a "mini-cylinder", in the second of a "mini-ring" contained in the original space).
 
-This leads us to think of holes as actually **classes of non-boundary cycles**, two cycles being on the same class if they are the boundary of some surface of one dimension above-- so to speak, if they are "connected", or "joined" by that surface. 
+This leads us to think of holes as actually **classes of non-boundary cycles**, two cycles being on the same class if they together form the boundary of some space of one dimension above-- so to speak, if they are "connected", or "joined" by that surface. 
+
+Most of this post will deal with the non-trivial, although highly enriching proccess of formalizing this inutitive definition.
 
 # Basic linear algebra
 
@@ -126,6 +135,8 @@ Equivalently, a linear transformation is a function $f:\mathbb{R}^m\rightarrow \
 
 The two equivalent definitions above tell us two different ways of defining and considering mathematical objetcs. In the first one, we're explicit, or, rather, **extensional**, clearly constructing our objects of interesting. In the second one, we are **intensional**, defining and describing through properties and relations that should be satisfied. Extensive statements are very intuitive and in many cases the definitions we're actually thinking of. Intensive statements, in the other hand, are more generalizable and allow for cleaner reasoning.
 
+Topologically, all linear functions are continuous, since vector addition and multiplication themselves are so.
+
 Linear transformations are very useful for dealing in a systematic way with the solutions of systems linear equations. If we have such a system 
 
 $$\begin{cases}
@@ -146,19 +157,27 @@ The proof that $ \overline{S}$ as defined is indeed the convex hull can be made 
 # Simplices and topology
 
 ## N-simplices and complexes
-With that in mind, we'll now define the simpler spaces that will be our building blocks. These are called simplices. Formally, an n-dimensional simplex is defined as the convex hull of $n+1$ linearly independent points.
+In order to compute holes, we'll first approximate our spaces using simpler ones-- concretely, polygons-- that will allow for concrete computations. The building blocks of these approximations are called **n-simplices**. Formally, an n-dimensional simplex is defined as the convex hull of $n+1$ points $v_0,...,v_n$ such that the vectors $v_i-v_0$ are all linearly independent, for $i>0$.
 
-For example, for a 1-simplex in $\mathbb{R}^1$, we take two different points $v_0, v_1$, and then fill the interval $[v_0, v_1]$, getting a line betwen $v_0, v_1$. For a 2-simplex in $\mathbb{R}^2$, take three l.i. points $ v_0, v_1, v_2$: the 2-simplex will be the triangle with them as vertices. Similarly, a 3-simplex is a pyramid with vertices $v_0,v_1,_v2_,v_3$ in $\mathbb{R}^3$. That is, **simplices are polygons**.
+For example, for a 1-simplex in $\mathbb{R}^1$, we take two different points $v_0, v_1$, and then fill the interval $[v_0, v_1]$, getting a line betwen $v_0, v_1$: a 1-simplex is a straight line. For a 2-simplex in $\mathbb{R}^2$, we take three l.i. points $ v_0, v_1, v_2$ satisfying $v_1 - v_0$ and $v_2-v_0$ being non-colinear: the 2-simplex will be the triangle with them as vertices. Similarly, a 3-simplex is a pyramid with vertices $v_0,v_1,_v2_,v_3$ in $\mathbb{R}^3$ (assuming these points satisfy the l.i. condition in the definition). That is, **simplices are generalization of polygons**.
 
-Since a n-simplex is completely determined by its $n+1$ points $v_0,...,v_n$, we'll denote it as $\angled{v_0,...,v_n}$. For now, the order you put these points in the presentation doesn't matter- but soon it will. Also, note that 0-simplices are just points.
+The condition that all $v_i-v_0$ should be l.i. guarantees the "faces" of our polygon won't glue to each other: if we had, say, $v_0=(0,0), v_1=(1, 1), v_2=(2,2)$, $v_2-v_0=v_2$ and $v_1-v_0=v_1$ being colinear, the hull of these points would just be a line from $v_0$ to $v_2$, which isn't a triangle-- or rather, it is a triangle with glued, "degenerate" edges, something we don't want to have here.
 
-By the expression we found for convex hulls, each element $p$ of an n-simplex $\angled{v_0,...,v_n}$ is of the form $\lambda_0 v_0+...+\lambda v_n$, with $\sum \lambda_i=0$ and $\lambda_i\geq 0$ for all $i$. These $\lambda_i$ can be interpreted as "simplicial coordinates" of $p$. In the 2-simplex case, each element of the interior of the triangle is given an unique such coordinate in respect to the vertices, known as its **barycentric coordinate**.
+Since a n-simplex is completely determined by its $n+1$ points $v_0,...,v_n$ (as the hull is unique), we'll denote it as $\angled{v_0,...,v_n}$. For now, the order you put these points in the presentation doesn't matter- but soon it will. Also, note that 0-simplices are just points, the l.i. condition being "nully satisfied" (there are no vectors $v_i-v_0$ for $i>0$!), $\angled{v_0}$ being exactly the set $\{v_0\}$.
 
-For practicality, we also define the standard n-simplex $ \Delta^n$ to be the simplex in $\mathbb{R}^n$ with base points $(0,...,0),(1,0,...,0),(0,1,...,0),...,(0,...,0,1)$. By the formula for the convex hull we gave, $ \Delta^n=\{(\lambda_1,...,\lambda_n)\mid  \sum_i^n \lambda_i=1, \,\lambda_i\geq 0\}$. Every n-simplex is homeomorphic to $ \Delta^n$ by simple linear transformations of translation and stretching. Topologically, n-simplices are all homeomorphic to $D^n$, since that's the case for $ \Delta^n$. 
+By the expression we found for convex hulls, each element $p$ of an n-simplex $\angled{v_0,...,v_n}$ is of the form $\lambda_0 v_0+...+\lambda_n v_n$, with $\sum \lambda_i=1$ and $\lambda_i\geq 0$ for all $i$. These $\lambda_i$ can be interpreted as "simplicial coordinates" of $p$. In the 2-simplex case, each element of the interior of the triangle is given an unique such coordinate in respect to the three vertices, known as its **barycentric coordinate**.
 
-For a simplex $\angled{v_0,...,v_n}$, its **faces** are all the sub-simplices $\angled{v_0,...,\widehat{v_i}, ...,v_n}$, where this notation indicates that the index $i$ vertex is ommited. For example, a 1-simplex $\gos$ has faces are $\angled{v_0}$ and $\angled{v_1}$, its start and end points. For a 2-simplex, the faces of $\gts$ are $\gos$, $\angled{v_1, v_2}$ and $\angled{v_2, v_0}$, which in this case we can also call the edges of the 2-simplex. Finally, for the 3-simplex $\gths$, its faces are the 2-simplices $\gts, \angled{v_1, v_2, v_3}, \angled{v_0, v_2, v_3}$ and $\angled{v_0, v_1, v_3}$, in which case the use of the term "face" is closer to the usual. For higher dimensions, the same formula for faces applies as well, even though we can't properly see these simplices.
+These coordinates are very important because they allow us to extend maps from the vertices $v_0,...,v_n$ to the whole simplex $\angled{v_0,...,v_n}$: if we have **any** function $f:\{v_0,...,v_n\}\rightarrow \mathbb{R}^k$, we can extend it to a linear (and thus **continuous**) map $\widehat{f}:\angled{v_0,...,v_n}\rightarrow \mathbb{R}^k$ by defining 
 
-We'll then call the boundary of a simplex to be the set
+$$\widehat{f}(\lambda_0 v_0+...+\lambda_n v_n) = \lambda_0 f(v_0)+...+\lambda_n f(v_n),$$
+
+so that, in particular, the image of $\widehat{f}$ is exactly the n-simplex $\angled{f(v_0),...,f(v_n)}$.
+
+For practicality, we also define the standard n-simplex $ \Delta^n$ to be the simplex in $\mathbb{R}^n$ with base points $(0,...,0),(1,0,...,0),(0,1,...,0),...,(0,...,0,1)$. By the formula for the convex hull we gave, $ \Delta^n=\{(\lambda_1,...,\lambda_n)\mid  \sum_i^n \lambda_i=1, \,\lambda_i\geq 0\}$. Every n-simplex is homeomorphic to $ \Delta^n$ by simple linear transformations of translation and stretching. Topologically, $\Delta^n$ is homeomorphic to $D^n$, and so is the case for all other n-simplices. 
+
+For a simplex $\angled{v_0,...,v_n}$, its **faces** are all the sub-simplices $\angled{v_0,...,\widehat{v_i}, ...,v_n}$, where this notation indicates that the index $0\leq i\leq n$ vertex is ommited. For example, a 1-simplex $\gos$ has faces are $\angled{v_1}$ and $\angled{v_0}$, its end and start points. For a 2-simplex, the faces of $\gts$ are $\angled{v_1, v_2}$, $\angled{v_0, v_2}$ and $\gos$, which in this case we can also call the edges of the 2-simplex. Finally, for the 3-simplex $\gths$, its faces are the 2-simplices $\angled{v_1, v_2, v_3},$ $\angled{v_0, v_2, v_3},$ $\angled{v_0, v_1, v_3}$ and $\gts$, in which case the use of the term "face" is closer to the usual. For higher dimensions, the same formula for faces applies as well, even though we can't properly see these simplices.
+
+We'll then call the **boundary** of a simplex to be the set
 
 $$\partial \angled{v_0,...,v_k} = \bigcup_{i=0}^n \angled{v_0,...,\widehat{v_i},...,v_k},$$
 
@@ -166,23 +185,25 @@ i.e., the union of its faces.
 
 The use of intuitive and familiar concepts (like of a face) and this recursive property of simplices-- i.e., they are made of smaller simplices themselves-- are the main reasons why we will use simplices in our computations.
 
-Now, how can we use simplices to understand our spaces better? The idea is to fill spaces by simplices, seeing them as collages of homeomorphic copies of $ \Delta^n$. Thus, we will be considering continuous maps $\sigma:\Delta^n\rightarrow X$, called chains, and we will want to describe $X$ as the union of images of chains. It is also common to call $\im \sigma$ itself a chain on $X$. The simplest conceptual way of describing this is with simplicial complexes.
+Now, how can we use simplices to understand our spaces better? We'll discuss two ways: simplicial complexes and delta spaces. The first is basically gluing simplices together in order to approximate our space with a polygonal homeomorphic version of it. Formally, **simplicial complex** on $\mathbb{R^n}$ is a set of simplices $S=\{s_1,...,s_k\}$ of possibly different dimensions such that every face of $s_i$ is also in $S$ and so that if $s_1, s_2$ intersect, then their intersection is a common face between them. This means simplicial complexes are constructed by simplices through disjoint unions or gluing their faces together.
 
-SIMPL COMPLEXES
+For example, a square can be seen as a simplicial complex with two 2-simplices glued on a common edge, as below. These are usually called **quads**. If we use $\Delta^2$ and $\angled{(0, 1), (1, 1), (1, 0)}$ glued along the edge $\angled{(0, 1), (1, 0)}$ to form a quad, we call this simplex the "**standard quad**".
 
-A simplicial complex on $\mathbb{R^n}$ is a set of simplices $S=\{s_1,...,s_k\}$ of possibly different dimensions such that every face of $s_i$ is also in $S$ and so that if $s_1, s_2$ intersect, then their intersection is a common face between them. This means simplicial complexes are constructed by simplices through disjoint unions or gluing their faces together.
+IMG!!! (quad)
 
-For example, a square can be seen as a simplicial complex with two 2-simplices, as below.
+IMG!!! (complexos gerais)
 
-IMG!!!
-
-Indeed, many spaces of interest can be described as homeomorphic to a simplicial complex on $\mathbb{R}^n$, at least for a high enough $n$. When this is the case, we say our space is triangulable, since in the two-dimensional, surface case this is equivalent to dividing our embedded space into triangles. Generally, a **triangulation** of a space is a homeomorphic space which is a simplicial complex-- i.e., it is a **polygonal topological approximation**.
+Indeed, many spaces of interest can be described as homeomorphic to a simplicial complex on $\mathbb{R}^n$, at least for a high enough $n$. When this is the case, we say our space is triangulable, since in the two-dimensional, surface case this is equivalent to dividing our embedded space into triangles. Generally, a **triangulation** of a space is a homeomorphic space to it which is a simplicial complex-- i.e., it is a **polygonal topological approximation**.
 
 Let's see some examples of complexes homeomorphic to spaces of interest. First, the $\Delta^n$ themselves give us a simplicial model of $D^n$. For the n-dimensional sphere $S^n$, $\partial \Delta^n$ is a complex homeomorphic to it. In the case of the circle, this is just the three edges of a triangle. 
 
-What about, say, a cylinder? This can be done by gluing four squares in sequence, and then gluing the first and last ones together as well, forming a "square straw".
+IMG!!!
+
+What about, say, a cylinder? This can be done by gluing four quads in sequence, and then gluing the first and last ones together as well, forming a "square straw".
 
 IMG!!!
+
+Schematically, we could represent this triangulation as follows
 
 For the torus, this is a bit more intricate. We can first form a skewed cylinder with two triangles as its boundary. Make three copies of this shape, and then glue them together in their boundaries, as shown below.
 
