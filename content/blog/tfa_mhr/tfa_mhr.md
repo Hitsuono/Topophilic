@@ -197,23 +197,18 @@ Indeed, many spaces of interest can be described as homeomorphic to a simplicial
 
 Let's see some examples of complexes homeomorphic to spaces of interest. First, the $\Delta^n$ themselves give us a simplicial model of $D^n$. For the n-dimensional sphere $S^n$, $\partial \Delta^n$ is a complex homeomorphic to it. In the case of the circle, this is just the three edges of a triangle. 
 
-IMG!!!
+IMG!!! (desengo dos espaços)
+
+SHADER!!! (D3)
 
 What about, say, a cylinder? This can be done by gluing four quads in sequence, and then gluing the first and last ones together as well, forming a "square straw".
 
-IMG!!!
-
-Schematically, we could represent this triangulation as follows
-
-For the torus, this is a bit more intricate. We can first form a skewed cylinder with two triangles as its boundary. Make three copies of this shape, and then glue them together in their boundaries, as shown below.
-
 SHADER!!!
 
-Schematically, we can see this triangulation as follows. First, take one of the cylinders and cut the edge joining its two boundary triangles, making a flat piece as shown below. The edges marked as "a" indicate that they should be glued together, and the fact they follow the same direction indicate their start and ending points should be matched (we could reverse these, and get a "twist", as we're going to see further below). Then we join three of these representations in sequence, gluing along the adequate edges. We also mark with "b" the edges that should be finally glued together to form the complete torus. 
+For the torus, this is a bit more intricate. First, form a skewed cylinder with two triangles as its boundary. Make three copies of this shape, and then glue them together in their boundaries and you'll get a torus, as shown below.
 
-IMG!!!
+SHADER!!! (BARRA, TORO)
 
-For schematic purposes, we can further simplify this figure flattening it to a square, getting the following (note, this is only a schematic description of how to get the triangulationwe described):
 
 IMG!!!
 
@@ -221,35 +216,82 @@ Of course, all these shapes could be made with many more simplices, getting a be
 
 ## Surfaces from squares
 
-### The torus
+**Note**: in this section, we'll adopt the lazy topological convention of calling every rectangle a square.
 
-The last figure above is reminiscent of a common way of getting surfaces. You begin with a square, then label its edges and glue them respecting their start and end points as marked. The torus, as we saw, can be obtained by first joining its north and south edges, forming a cylinder, and then their west and east ones (which, in the cylinder, became its boundary circles).
+### The cylinder
+Schematically, we could represent the triangulation of the cylinder we provided as three quads joined in a row, and then with the edges at the horizontal extremes glues together, as below:
+
+IMG!!! Triang do cilindro
+
+Above, we have the three quads and the glued edges marked as the same one, called $a$. We give a direction to these edges in order to denote where we should join their vertices: their end points should be glued together, as their starting ones ("end on end, start on start"). That is, we glue $v_0$ to $v_6$ and $v_2$ to $v_7$, so that these will be identified in the cylinder. This is not the only way to paste the edges $\angled{v_0, v_1}$ and $\angled{v_6, v_7}$ together, though. We could instead decide to do a "twist" and identify $v_0$ with $v_7$ and $v_2$ with $v_6$-- a case which we'll consider soon. 
+
+That is: we represented a triangulation of the cylinder drawing some quads and then indicating how to glue edges, according to some direction. Note that this is just a way of representing our triangulation, not the triangulation per se.
+
+Topologically, this means we can obtain a cylinder from a square by gluing two of its faces as done above. This works even without using simplices, so we get the following representation of a cylinder:
 
 IMG!!!
 
+This actually gives a general way of forming surfaces. You begin with a square, then label its edges and glue them respecting their start and end points as marked. 
+
+### The torus
+
+We can do something similar for the triangulation of the torus we used before. First, take one of the skewed cylinders and cut it along one edge joining its two boundary triangles, making a flat piece as shown below. The edges marked as "a" indicate that they should be glued together, according to the given direction ("end on end, start on start"). Then we join three of these representations in sequence, gluing along the adequate edges. We also mark with "b" the edges that should be finally glued together to form the complete torus. 
+
+IMG!!! (flat piece, glued)
+
+For schematic purposes, we can further simplify this figure flattening it to a square, getting the following representation:
+
+IMG!!! (full triang)
+
+Similarly to the cylinder, this means we can get the torus as given by the figure below: join two edges to form a cylinder. The other two edges are now cycles, and to form a torus all you have is to glue them as well.
+
+IMG!!!
+
+### The sphere
+
+As we've seen, $\Delta^3$ is a triangulation of $S^2$-- and so is any pyramid. To get something similar as we got for the cylinder and the torus, take a pyramid and cut the edges connecting triangles above the base, getting something like this diagram indicating how to glue the edges to form a pyramid back again:
+
+IMG!!! (RECORTADO)
+
+Then, continuously deform this into a square:
+
+IMG!!! (QUADRADO)
+
+Finally, glue the $c$ edges together, to get this indication of how to topologically get $S^2$ from a square:
+
+IMG!!! (FINAL)
+
+You can try this on a sheet of paper, and see that it forms a cone-- which is homeomorphic to a sphere!
+
 ### The Möbius strip
 
-Another very interesting shape we can get this way is the **Möbius strip**. You leave the north and south edges alone, and joing the west and east ones-- but with a twist, since they are labeled going in the opposite directions, and thus you have to joing one's start to the other's end. The Möbius strip is the simplest example of a **non-orientable space**, specifically a non-orientable surface here. This means you can't define what is "inside" or "outside" it: try pointing your finger towards a direction you this is outwards from the surface, and then follow the strip until you come back. Your finger will now point to the opposite direction! I.e., you can't define a cohesive notion of outside-ness within the strip. 
+Another very interesting shape we can get this way is the **Möbius strip**. You leave the north and south edges alone, and joing the west and east ones-- but with a twist, as we'd mentioned on the cylinder case:
 
-More formally, we can't define coherently a normal vector for each point in the strip. A normal vector is a vector perpendicular to a point in a specified surface. Spaces with this property are called non-orientable, and those in which you can define coherent normal vectors for all points are called orientable. Indeed, orientability is a **topological** property: it doesn't how much you strecth an (non)orientable, it will always remain (non)orientable. Spheres, tori and disks, for example, are all space.
+IMG!!! (SQUARE, TRIANG)
 
-Similarly, if an ant transverses the strip in one direction, when it comes back to its initial position it will be facing the opposite direction from the beginning! You can't define inside and outside, nor can you define a cohesive transversing direction! ???
+SHADER!!!(MOBIUS)
 
-IMG!!! (mobius via square)
+The Möbius strip is the simplest example of a **non-orientable space**, specifically a non-orientable surface. This means you can't define what is "inside" or "outside" it: try pointing your finger towards a direction you think is outwards from the surface, and then follow the strip until you come back to the same point. Your finger will now point to the opposite direction! I.e., you can't define a cohesive notion of outside-ness within the strip. 
+
+More formally, we can't define coherently a **normal vector** for each point in the strip. A normal vector is a vector perpendicular to a point in a specified surface. Spaces with this property are called non-orientable, and those in which you can define coherent normal vectors for all points are called orientable. Indeed, orientability is a **topological** property: it doesn't how much you strecth an (non)orientable, it will always remain (non)orientable. Spheres, tori and disks, for example, are all space.
+
+Similarly, if an ant transverses the strip in one direction, when it comes back to its initial position it will be facing the opposite direction from the beginning! You can't define inside and outside, nor can you define a cohesive transversing direction! Mathematically, this has to do with how we get normals from tangent vectors to a surface by doing the cross product-- something that will be a bit clearer later.
 
 The Möbius strip is a very alusive shape, and has inspired many artists and thinkers as a powerful metaphor. The whole world is outside and inside it, so to speak. It is a truly hegelian shape in this sense, a pure form that unifies object and subject, in and out, consciousness and self-consciousness. But let's leave its philosophy for another post of its own.
 
 IMG!!! (obra do MAC)
 
+Note also that the strip is a surface with a boundary, which is homeomorphic to a circle (you can check this in the square representation by noting that the north and south edges are glued together to form this cycle boundary). This circle geometrically performs a twist-- a fact that might not seem particularly relevant here, but actually has quite deep connections to other topics in topology. 
+
 ### The Klein bottle
-Another interesting property of $\ro \text{P}^2$ is that it can't be properly seen in 3D space. Technically, we say it isn't embedded in $\rth$-- i.e., it isn't a subspace of it. So don't try to phisically get it from a Möbius strip-- it's impossible to do so in 3D space!
+What happens if we glue the Möbius strip boundary? Again, using the square representation, there are two ways: joining the remaining edges with and without a twist. When we do so without one, we get a space called the **Klein bottle**, which also has been an object of interest by many mathematicians and math-entusiasts alike. This is also a non-orientable space, but **non-embeddable** in $\rth$: that it is, it can't be properly seen in 3D space-- i.e., it can't be properly described as a subspace of $\rth$. So don't try to phisically get it from a Möbius strip-- it's impossible to do so in 3D space! As another example of this concept, $S^2$ can't be embedded in $\rt$-- i.e., you can't properly have the sphere as a subspace of the plane.
 
-What if we glue the Möbius strip boundary, but without a twist? Well, we would get a space called the **Klein bottle**, which also has been an object of enthusiasm by many mathematicians and math-entusiasts alike. This is also a non-orientable space, and non-embeddable in $\rth$ as well. However, you might have seen the image below, in which the bottle has some of its points glued in order to force it to be able to be seen in 3D space. It is not the Klein bottle, just a way of trying to force it into $\rth$: try fitting a sphere into $\ro$! You will also need to identify some points.
+However, you might have seen the image below, which is meant to represent a Klein bottle. It isn't the bottle per se: it is a representation in which the some of its points are glued in order to force it to be able to be seen in 3D space. If we tried to somehow represent a sphere on the plane, we'd have to make similar accommodations by gluing different points together. This doesn't mean this is a bad or meaningless way to see the Klein bottle: quite on the contrary, we can use it, for example, to see that it isn't orientable, as the image below shows:
 
-IMG!!! rep square, img
+IMG!!! rep square, img mostrando n orient
 
 
-### Perspective and homogenous coordinates * 
+### Projective spaces: perspective and homogenous coordinates * 
 
 There are two other interesting surfaces we can form in this manner which we will use as examples. The first one is the known as the **real projective plane** $\rpt$. It is a space that formalizes the notion of visual perspective, as understood for example in painting and design. Human vision interprets parallel lines as going closer at greater distances, tending to a "vanish point" where they meet. They never arrive this point: only "at infinity" do they do so.
 
@@ -280,6 +322,8 @@ To see how $\rpt$ can be obtained from a square, note that if $S^2_N$ is the nor
 IMG!!!
 
 One very interesting way of getting $\rpt$ is through the Möbius strip. See, the latter has a boundary, which is a single loop. In the square representation, this loop is the non-glued horizontal edges. What if we glue them in opposite directions (i.e., again with a twist)? Well, the representation above just showed that we would get the projective plane! In particular, we also have that $\rpt$ isn't orientable.
+
+Another interesting property of $\ro \text{P}^2$ is  NON EMBED
 
 ## Delta spaces
 
@@ -601,7 +645,7 @@ Rubik
 
 Jogos de permutac
 
-## Example: topological groups and quaternions *
+## Example: topological groups, quaternions and the Hopf fibration *
 O(n), SO(n)
 
 SO(2) e S1
@@ -642,7 +686,7 @@ EXS DE QUOCIENTES COM PRESENTACS
 
 With all this group theory machinery, we can now finally define our homology groups where holes live!
 
-First, let's formalize the work we've done so far with chains, cycles and boundaries. Given a $\Delta$-space structure on $X$, we let $C_n(X)=a_1\mathbb{Z}\times ... \times a_m \mathbb{Z}$ be the free abelian groups generated by all the n-chains $a_1,...,a_m$ in the structure. The boundary homomorphisms $ \partial_n : C_n(X)\rightarrow C_{n-1}(X)$ are defined by the formula we got earlier: $\partial_n(\sigma) = \sum_i (-1)^i \sigma \mid   [v_0, ..., \widehat{v_i}, v_n]$. We thus get the so-called chain complex of the $\Delta$-space structure on $X$:
+First, let's formalize the work we've done so far with chains, cycles and boundaries. Given a $\Delta$-space structure on $X$, we let $C_n(X)=a_1\mathbb{Z}\times ... \times a_m \mathbb{Z}$ be the $\mathbb{Z}$-module freely generated by all the n-chains $a_1,...,a_m$ in the structure. The boundary homomorphisms $ \partial_n : C_n(X)\rightarrow C_{n-1}(X)$ are defined by the formula we got earlier: $\partial_n(\sigma) = \sum_i (-1)^i \sigma \mid   [v_0, ..., \widehat{v_i}, v_n]$. We thus get the so-called chain complex of the $\Delta$-space structure on $X$:
 
 $$...\xrightarrow{\partial_3}C_2(X)\xrightarrow{\partial_2}C_1(X)\xrightarrow{\partial_1}C_0(X)\rightarrow 0$$
 
