@@ -171,11 +171,11 @@ These coordinates are very important because they allow us to extend maps from t
 
 $$\widehat{f}(\lambda_0 v_0+...+\lambda_n v_n) = \lambda_0 f(v_0)+...+\lambda_n f(v_n),$$
 
-so that, in particular, the image of $\widehat{f}$ is exactly the n-simplex $\angled{f(v_0),...,f(v_n)}$.
+so that, in particular, the image of $\widehat{f}$ is exactly the (possibly degenerate) n-simplex $\angled{f(v_0),...,f(v_n)}$.
 
 For practicality, we also define the standard n-simplex $ \Delta^n$ to be the simplex in $\mathbb{R}^n$ with base points $(0,...,0),(1,0,...,0),(0,1,...,0),...,(0,...,0,1)$. By the formula for the convex hull we gave, $ \Delta^n=\{(\lambda_1,...,\lambda_n)\mid  \sum_i^n \lambda_i=1, \,\lambda_i\geq 0\}$. Every n-simplex is homeomorphic to $ \Delta^n$ by simple linear transformations of translation and stretching. Topologically, $\Delta^n$ is homeomorphic to $D^n$, and so is the case for all other n-simplices. 
 
-For a simplex $\angled{v_0,...,v_n}$, its **faces** are all the sub-simplices $\angled{v_0,...,\widehat{v_i}, ...,v_n}$, where this notation indicates that the index $0\leq i\leq n$ vertex is ommited. For example, a 1-simplex $\gos$ has faces are $\angled{v_1}$ and $\angled{v_0}$, its end and start points. For a 2-simplex, the faces of $\gts$ are $\angled{v_1, v_2}$, $\angled{v_0, v_2}$ and $\gos$, which in this case we can also call the edges of the 2-simplex. Finally, for the 3-simplex $\gths$, its faces are the 2-simplices $\angled{v_1, v_2, v_3},$ $\angled{v_0, v_2, v_3},$ $\angled{v_0, v_1, v_3}$ and $\gts$, in which case the use of the term "face" is closer to the usual. For higher dimensions, the same formula for faces applies as well, even though we can't properly see these simplices.
+For a simplex $\angled{v_0,...,v_n}$, its **faces** are all the sub-simplices $\angled{v_0,...,\widehat{v_i}, ...,v_n}$, where this notation indicates that the vertex of index $0\leq i\leq n$ is ommited. For example, a 1-simplex $\gos$ has faces $\angled{v_1}$ and $\angled{v_0}$, its end and start points. For a 2-simplex, the faces of $\gts$ are $\angled{v_1, v_2}$, $\angled{v_0, v_2}$ and $\gos$, which in this case we can also call the edges of the 2-simplex. Finally, for the 3-simplex $\gths$-- its faces are the 2-simplices $\angled{v_1, v_2, v_3},$ $\angled{v_0, v_2, v_3},$ $\angled{v_0, v_1, v_3}$ and $\gts$, in which case the use of the term "face" is closer to the usual. For higher dimensions, the same formula for faces applies as well, even though we can't properly see these simplices.
 
 We'll then call the **boundary** of a simplex to be the set
 
@@ -183,11 +183,11 @@ $$\partial \angled{v_0,...,v_k} = \bigcup_{i=0}^n \angled{v_0,...,\widehat{v_i},
 
 i.e., the union of its faces.
 
-The use of intuitive and familiar concepts (like of a face) and this recursive property of simplices-- i.e., they are made of smaller simplices themselves-- are the main reasons why we will use simplices in our computations.
+The use of intuitive and familiar concepts (like of a face) and this recursive property of simplices-- i.e., that they are made of smaller simplices themselves-- are the main reasons why we will use simplices in our computations.
 
-Now, how can we use simplices to understand our spaces better? We'll discuss two ways: simplicial complexes and delta spaces. The first is basically gluing simplices together in order to approximate our space with a polygonal homeomorphic version of it. Formally, **simplicial complex** on $\mathbb{R^n}$ is a set of simplices $S=\{s_1,...,s_k\}$ of possibly different dimensions such that every face of $s_i$ is also in $S$ and so that if $s_1, s_2$ intersect, then their intersection is a common face between them. This means simplicial complexes are constructed by simplices through disjoint unions or gluing their faces together.
+Now, how can we use simplices to understand our spaces better? We'll discuss two ways: simplicial complexes and delta spaces. The first is basically consists in gluing simplices together in order to approximate our space with a polygonal homeomorphic version of it. Formally, a **simplicial complex** on $\mathbb{R}^n$ is a set of simplices $S=\{s_1,...,s_k\}$ of possibly different dimensions such that every face of $s_i$ is also in $S$ and so that if $s_1, s_2$ intersect, then their intersection is a common face between them. This means simplicial complexes are constructed by simplices through disjoint unions or gluing their faces together.
 
-For example, a square can be seen as a simplicial complex with two 2-simplices glued on a common edge, as below. These are usually called **quads**. If we use $\Delta^2$ and $\angled{(0, 1), (1, 1), (1, 0)}$ glued along the edge $\angled{(0, 1), (1, 0)}$ to form a quad, we call this simplex the "**standard quad**".
+For example, a square can be seen as a simplicial complex with two 2-simplices glued on a common edge, as below. These are usually called **quads**. If we use $\Delta^2$ and $\angled{(0, 1), (1, 1), (1, 0)}$ glued along the edge $\angled{(0, 1), (1, 0)}$ to form a quad, we'll call this simplex the "**standard quad**".
 
 IMG!!! (quad)
 
@@ -219,11 +219,11 @@ Of course, all these shapes could be made with many more simplices, getting a be
 **Note**: in this section, we'll adopt the lazy topological convention of calling every rectangle a square.
 
 ### The cylinder
-Schematically, we could represent the triangulation of the cylinder we provided as three quads joined in a row, and then with the edges at the horizontal extremes glues together, as below:
+Schematically, we could represent the triangulation of the cylinder we provided as three quads joined in a row, and then with the edges at the horizontal extremes glued together, as below:
 
 IMG!!! Triang do cilindro
 
-Above, we have the three quads and the glued edges marked as the same one, called $a$. We give a direction to these edges in order to denote where we should join their vertices: their end points should be glued together, as their starting ones ("end on end, start on start"). That is, we glue $v_0$ to $v_6$ and $v_2$ to $v_7$, so that these will be identified in the cylinder. This is not the only way to paste the edges $\angled{v_0, v_1}$ and $\angled{v_6, v_7}$ together, though. We could instead decide to do a "twist" and identify $v_0$ with $v_7$ and $v_2$ with $v_6$-- a case which we'll consider soon. 
+Above, we have the three quads and the glued edges marked as the same one, called $a$. We give a direction to these edges in order to denote where we should join their vertices: their end points should be glued together, as should the starting ones ("end on end, start on start"). That is, we glue $v_0$ to $v_6$ and $v_2$ to $v_7$, so that these will be identified in the cylinder. This is not the only way to paste the edges $\angled{v_0, v_1}$ and $\angled{v_6, v_7}$ together, though. We could instead decide to do a "twist" and identify $v_0$ with $v_7$ and $v_2$ with $v_6$-- a case which we'll consider soon. 
 
 That is: we represented a triangulation of the cylinder drawing some quads and then indicating how to glue edges, according to some direction. Note that this is just a way of representing our triangulation, not the triangulation per se.
 
@@ -249,7 +249,7 @@ IMG!!!
 
 ### The sphere
 
-As we've seen, $\Delta^3$ is a triangulation of $S^2$-- and so is any pyramid. To get something similar as we got for the cylinder and the torus, take a pyramid and cut the edges connecting triangles above the base, getting something like this diagram indicating how to glue the edges to form a pyramid back again:
+As we've seen, $\Delta^3$ is a triangulation of $S^2$-- and so is any pyramid. To get something similar as we got for the cylinder and the torus, take a pyramid and cut the edges connecting triangles above the base, getting this figure:
 
 IMG!!! (RECORTADO)
 
@@ -474,7 +474,7 @@ That is, an orientation of a 2-simplex also orients its faces. The opposite is a
 
 ## Orientations and boundaries
 
-With the discussions above, it really seems like orientation is a very relevant topological property with important applications. Meshes also showed us how to integrate this notion with complexes-- which, per se, are just sets of points, without any orientation information. So perhaps we'd like to do this same move in the mathematical level, getting "**oriented simplices and complexes**" which do come with some orientation. This will also require a change in terminology: instead of writing $\angled{v_0,...,v_n}$, we'll write $[v_0,...,v_n]$ for this new kind of spaces, and order will matter in the presentation. Similarly to the 2-simplex case, giving an orientation to a n-simplex will be equivalent to giving one for one of its faces.
+With the discussions above, it really seems like orientation is a very relevant topological property with important applications. Meshes also showed us how to integrate this notion with complexes-- which, per se, are just sets of points, without any orientation information. So perhaps we'd like to do this same move in the mathematical level, getting "**oriented simplices and complexes**" which do come with some orientation, and non-oriented simplices will sometimes be called **geometrical**. This will also require a change in terminology: instead of writing $\angled{v_0,...,v_n}$, we'll write $[v_0,...,v_n]$ for this new kind of spaces, and order will matter in the presentation. Similarly to the 2-simplex case, giving an orientation to a n-simplex will be equivalent to giving one for one of its faces.
 
 Let's begin orienting 1-simplices. This is simple, as they can then be seen as directed paths: we will say $\os$ is an oriented simplex with base $\angled{v_0,v_1}$, and going from $v_0$ to $v_1$-- $[v_1,v_0]$ then being the oriented simplex going in the opposite direction. In the same way meshes' orientations were associated to the orientation of their edges, may say that $\os$ gives $[v_1]$ a "positive" orientation and $[v_0]$ a "negative" one. 
 
@@ -493,11 +493,11 @@ for example.
 
 Indeed, we can see that defining an orientation for 1 and 2-simplices is actually the same as giving an orientation for all its faces. In both cases, for a simplex $[v_0,...,v_k]$, we used the convention that $[v_1,...,v_k]$ (excluding the first vector from the presentation) was one of its oriented edges-- $[v_1]$ in the case of $\os$, $[v_1,v_2]$ in the case of $\ts$.
 
-We can generalize all of this. Indeed, $[v_0,...,v_k]$ will denote from now on an **oriented k-simplex**. We will use the convention that it has $[\widehat{v_0},...,v_k]$ as one of its faces, which, by the above considerations, is enough to determine the orientation of all its other faces. What we noted for 1 and 2-simplices with regard to permutations is still valid: odd permutations of vertices in the presentation give the opposite simplex, even ones give you the same simplex. From now on, we'll also call "oriented simplices" just "simplices" ????????
+Generalization is now straightforward. From now on, $[v_0,...,v_k]$ will denote from now on an **oriented k-simplex**. We will use the convention that it has $[\widehat{v_0},...,v_k]$ as one of its faces, which we'll soon see as also being enough to define the orientation of every other face. What we noted for 1 and 2-simplices with regard to permutations is still valid: odd permutations of vertices in the presentation give the opposite simplex, even ones give you the same simplex. From now on, we'll also call "oriented simplices" just "simplices" if it's clear from the context.
 
 What about complexes? We'll say a simplicial complex is oriented if we give each of its simplices an orientation. There are many possible such orientations. Applying to 3D rendering, each of these orientations represents a way of shading our mesh. In many of these, neighbouring triangles have different orientations, resulting in suddenly light or dark regions, which isn't an effect we really desire. For orientable surfaces, we might want to find a single, "canonical", orientation such that all triangles have coherent normals, so that the whole surface will have a smoother and cohesive lighting-- indeed, that's precisely the definition of an orientable surface. 
 
-To obtain this orientation, consider the complex made by gluing the two 2-simplices $\gts$ and $\angled{v_1,v_3,v_2}$ on the common face $\angled{v_1,v_2}$, making a square. Say we orient the first one as $\os$, so that, using the right-hand rule, its normal points towards us. What orientation should we give to the other triangle so that its normal may have the same direction? Again using the right-hand rule, it should be $[v_1, v_3, v_2]$. Note that, at their common edge, they have different orientations: one has $[v_1, v_2]$ as an edge, the other $[v_2, v_1]$. Since the orientation of a single face defines the orientation of a simplex, we could've guaranteed coherent normals by just positing the oriented simplices have opposite orientations on their common face.
+To obtain this orientation, consider the example of the standard quad with vertices labeled $v_0,v_1,v2_,v_3$. Say we orient the first triangle as $\os$, so that, using the right-hand rule, its normal points towards us. What orientation should we give to the other triangle so that its normal may have the same direction? Again using the right-hand rule, it should be $[v_1, v_3, v_2]$. Note that, at their common edge, they have different orientations: one has $[v_1, v_2]$ as an edge, the other $[v_2, v_1]$. Since the orientation of a single face defines the orientation of a simplex, we could've guaranteed coherent normals by just positing the oriented simplices have opposite orientations on their common face.
 
 This is valid in general: every time you glue two n-simplices together and you want them to have coherent normals (either both pointing outwards or inwards), their common $n-1$ face should come from faces of the opposite direction in each original simplex-- and this last condition is indeed sufficient. Orientable surfaces are exactly those that can be approximated by oriented simplices satisfying this property for all simplices with common faces.
 
@@ -517,27 +517,23 @@ As a result, we can't shade this Möbius strip triangulation correclty-- and, si
 
 SHADER!!!
 
-This rules is valid for all n-simplices themselves, which are all orientable. So, seeing the 2-simplex as a collage of 1-simplices forming a triangle, if two edges are glued, then one's end must be the other's starting point (remember, a point has positive orientation in a 1-simplex if it is its end point). This collage perspective allows us to know the orientation of a 2-simplex just by knowing the orientation of one of its edges, and similarly can be done for a 1-simplex (if we know the positive point, we know the other must be negative). 
+This rules is valid for all n-simplices themselves, which are all, per definition almost, orientable. So, seeing the 2-simplex as a collage of 1-simplices forming a triangle, if two edges are glued, then one's end must be the other's starting point (remember, a point has positive orientation in a 1-simplex if it is its end point). This is the case for all dimensions. This means that if we have the orientation of a single face of a simplex, we can deduce the orientation of all other faces, by just applying this rule of "opposite orientation intersection".
 
 Let's see how this works in the example of a 3-simplex $\ths$. By our convention, it has an oriented face $[v_1,v_2,v_3]$. This 2-simplex shares the oriented edge $[v_2,v_3]$ with $\angled{v_0,v_2,v_3}$, so the oriented version of the latter must contain the edge $[v_3,v_2]$ going in the opposite direction, and so it must be $-[v_0,v_2,v_3]$. Doing similarly for all other faces of the pyramid, we get that its oriented faces are $[v_1,v_2,v_3]$, $-[v_0,v_2,v_3]$, $[v_0,v_1,v_3]$ and $-[v_0,v_1,v_2]$.
 
-These considerations actually allows us to get a formula for the oriented faces of a simplex $[v_0,...,v_k]$. We know that its geometrical faces are all the possible $\langle v_0,...,\widehat{v_i},...,v_k\rangle$, so we just need to find their *oriented* versions. We have one already: $[\widehat{v_0},...,v_k]$, by our convention. As for the orientation of $\angled{v_0,\widehat{v_1},...,v_k}$, we see that it shares the face $[v_2,...,v_k]$ with $[\widehat{v_0},...,v_k]$***, so it must have the opposite orientation as it has-- i.e., it is negativ***e. Going by a similar procedure, we see that $\langle v_0,...,\widehat{v_{i+1}},...,v_k\rangle$ always has the opposite orientation of $\langle v_0,...,\widehat{v_i},...,v_k\rangle$. Thus, using our suggestive sign notation, we get that the **oriented** faces of $[v_0,...,v_k]$ are
+These considerations actually allows us to get a formula for the oriented faces of a simplex $[v_0,...,v_k]$. We know that its geometrical faces are all the possible $\langle v_0,...,\widehat{v_i},...,v_k\rangle$, so we just need to find their *oriented* versions. We have one already: $[\widehat{v_0},...,v_k]$, by our convention. As for the orientation of $\angled{v_0,\widehat{v_1},...,v_k}$, we see that it shares the face $[v_2,...,v_k]$ with $\angled{\widehat{v_0},...,v_k}$, and so these must have opposite orientations. Going by a similar procedure, we see that $\langle v_0,...,\widehat{v_{i+1}},...,v_k\rangle$ always has the opposite orientation of $\langle v_0,...,\widehat{v_i},...,v_k\rangle$. Thus, using our suggestive sign notation, we get that the **oriented** faces of $[v_0,...,v_k]$ are
 
 $$(-1)^i[v_0,...,\widehat{v_i},...,v_k],$$
 
 for $0\leq i\leq k$.
 
-CHAINS!!!
-
-As for chains,
-
 ## Doing algebra with faces
 
-Now that we know how to describe faces, we can define the boundary of a simplex $\a$, denoted $\partial (a)$ or simply $\partial a$. For an isolate geometrical simplex $\angled{v_0,...,v_k}$, remember we have
+Now that we know how to describe faces, we can define the boundary of a n-simplex $a$, denoted $\partial_n (a)$ or simply $\partial (a)$ when the dimension is clear (we'll also ommit the parenthesis when possible). For an isolate geometrical simplex $\angled{v_0,...,v_k}$, remember we have
 
 $$\partial \angled{v_0,...,v_k} = \bigcup_{i=0}^n \angled{v_0,...,\widehat{v_i},...,v_k},$$
 
-and, for an oriented simplex, we just found out
+and, for an oriented simplex, we just found out that
 
 $$\partial [v_0,...,v_k] = \bigcup_{i=0}^n (-1)^i[v_0,...,\widehat{v_i},...,v_k]$$
 
@@ -553,28 +549,33 @@ $$\partial_n([v_0,...,v_n]) = \sum_{i=0}^n (-1)^i [v_0, ..., \widehat{v_i}, ...,
 
 And then postulate $\partial(a + b)=\partial a + \partial b$-- which, in particular, would cancel common faces. This leads us to think in algebraic terms, revealing potential extra structure involved with oriented simplices. Also note how the boundary follows some sort of "linearity", as do linear transformations. Structures and connections: these are a mathematician's dream!
 
-Take as an example two 2-simplices $a=\ts$ and $b=[v_1,v_3,v_2]$ glued along the edge $\angled{v_1,v_2}$. In that case, $\partial a = [v_1,v_2]-[v_0,v_2]+[v_0,v_1]$ and $\partial b = [v_3,v_2]-[v_1,v_2]+[v_1,v_3]$, so that
+Take as an example two 2-simplices $a=\ts$ and $b=[v_1,v_3,v_2]$ forming a quad along the edge $\angled{v_1,v_2}$. In that case, $\partial a = [v_1,v_2]-[v_0,v_2]+[v_0,v_1]$ and $\partial b = [v_3,v_2]-[v_1,v_2]+[v_1,v_3]$, so that
 
 $$\begin{align}
     \partial (a+b)=\partial a + \partial b &= -[v_0,v_2]+[v_0,v_1]+[v_1,v_3]+[v_3,v_2]
                                          \\&= [v_2, v_0]+[v_0,v_1]+[v_1,v_3]+[v_3,v_2],
 \end{align}$$
 
-and indeed we get the correct oriented boundary-- with the common edge canceled!
+and indeed we get the correct oriented boundary with edges in the proper directions-- and with the common edge canceled!
 
-This is great with different simplices, but what about something like $a+a$? We know that $a\cup a = a$, so perhaps we should write $a+a=a$? But since we have inverses, this would mean that we could subtract both sides by $-a$, getting $a=0$-- which doesn't seem good at all. The second most natural option would be to write $a+a = 2a$, which wouldn't bring any algebraic problems. We could interpret this as "following", or "transversing" $a$ twice, so that this formal addition we're describing is not to be understood as an union, but a "composition" of these actions. In the case of a 1-simplex, it would be as following the the path twice; for a 2-simplex, it is like doing a twist twice. This is more intuition than a formal relation, but it shows how geometrical simplices have a set-like logic, while oriented ones can indeed have an algebraic one.
+This is great with different simplices, but what about something like $a+a$? We know that $a\cup a = a$, so perhaps we should write $a+a=a$? But since we have inverses, this would mean that we could subtract both sides by $-a$, getting $a=0$-- which doesn't seem good at all. The second most natural option would be to write $a+a = 2a$, which wouldn't bring any algebraic problems. We could interpret this as "following", or "transversing" $a$ twice. That is, we can understand these algebraic elements as "transversions" of simplices, or a generic action over our simplex, so that this formal addition we're describing is not to be understood as an union, but a "composition" of these actions. In the case of a 1-simplex, it would be as following the the path described by it twice; for a 2-simplex, it is like doing a twist twice along the triangle. This is more intuition than a formal relation, but it shows how geometrical simplices have a **static, set-like** logic, while oriented ones can indeed have a **dynamic, algebraic** one.
 
-How to formalize this? Well, we will do that properly in the next section when we talk groups, but let us summarize the major points. For a simplicial complex, let $a_0,...,a_k$ be all its n-simplices. Then we saw that it makes senses to consider formal finite sums $n_i \cdot a_i+...+n_j\cdot a_j$, $n_i$ being any integer-- possibly even negative or equal to $0$. We also write $a_i-a_i=0$, $0$ being a null, formal element. Let us call the set of all these sums $C^s_n(X)$ !!! We also described a function $\partial _n : C^s_n(X)\rightarrow C^s_{n-1}(X)$, given by the formula above, satisfying some sort of linearity condition: $\partial_n(a+b)=\partial_n (a) + \partial_n (b)$ (note that the same $+$ symbol in each side represent operations on the different sets $C^s_n(X)$ and $C^s_{n-1}(X)$, respectively).
+How to formalize this? Well, we will do that properly in the next section when we talk groups, but let us summarize the major points. For a simplicial complex homeomorphic to a space $X$, let $a_0,...,a_k$ be all its n-simplices. Then we saw that it makes senses to consider formal finite sums $n_i \cdot a_i+...+n_j\cdot a_j$, $n_i$ being any integer-- possibly even negative or equal to $0$. We also write $a_i-a_i=0$, $0$ being a null, formal element (note that we only sum simplices of the same dimension). This sum and multiplication work like vector sum and scalar multiplication, basically satisfying all the properties we used to define vector spaces above (commutativity, distributivity, etc.). We'll call these sums **n-chains**, and they form the set of n-chains $C^s_n(X)$. We also described a function $\partial _n : C_n(X)\rightarrow C_{n-1}(X)$, given by the formula above, satisfying some sort of linearity condition: $\partial_n(a+b)=\partial_n (a) + \partial_n (b)$ (note that the same $+$ symbol in each side represent operations on the different sets $C_n(X)$ and $C_{n-1}(X)$, respectively).
 
-EXAMPLE
+The sets $C_n(X)$ above depend on the simplicial complex we're using to model $X$, but, thankfully, this won't actually matter for the computations involving holes we'll do later.
 
-CHAINS
+EXAMPLE?
 
-This boundary definition also applies for general delta spaces. As we did in the previous section, instead of dealing directly with simplices and their faces, we use chains and their restrictions. Thus, we define the boundary of a chain $\sigma : \Delta^n\rightarrow X$ as
+## The case of delta spaces
 
-$$\partial_n(\sigma) = \sum_i (-1)^i \sigma |   [v_0, ..., \widehat{v_i}, v_n]$$
+EXPLICAR MELHOR QUESTÃO DOS DELTA COM DELTA SPACES
+These definitions can be directly transported to the delta space case. We'll let $C^\Delta _n(X)$ be the set of formal finite sums $n_i\sigma_i+...+n_k\sigma_k$, $n_j\in\mathbb{Z}$ and the $\sigma_j$ being part of the delta structure we're using on $X$. Thus, we define the boundary map $\partial_n:C^\Delta _n(X)\rightarrow C^\Delta _{n-1}(X)$ of a chain as
 
-Seeing the circle as a delta space as we described previously, we also have that, if $\sigma$ is the one 1-chain in the construction, $\partial_1(\sigma)=\sigma|  [v_1]-\sigma|  [v_0]=0$ since $\sigma|  [v_1]=\sigma|  [v_0]$.
+$$\partial_n(\sigma) = \sum_i (-1)^i \sigma |   [v_0, ..., \widehat{v_i},..., v_n]$$
+
+
+
+For example, seeing the circle as a delta space as we described previously, we also have that, if $\sigma$ is the one 1-chain in the construction, $\partial_1(\sigma)=\sigma|  [v_1]-\sigma|  [v_0]=0$ since $\sigma|  [v_1]=\sigma|  [v_0]$.
 
 For the torus as a delta space, 
 $$\begin{align}
@@ -588,17 +589,19 @@ As intended, the sum corresponding to the whole torus has null boundary.
 
 So far, we haven't really needed any kind of more formal algebraic theory to make sense of our considerations, so let's dive a little deeper into how we can use the geometry of simplices, chains and their boundaries to study general topological spaces. 
 
-First, boundaries allow us to properly define what "cycles" mean. As mentioned in the introduction, these correspond to loops on our space, but also to hollow surfaces, and the corresponding higher-dimensional cycles. What these have in common is that they are "boundaryless", in some sense "self-enclosing". We can thus describe these just the chains $\sigma$ with null boundaries, $ \partial_n(\sigma)=0$. We can reuse the terminology of linear algebra and then define the set of n-cycles in $X$ as $Z_n(X)=\ker \partial_n$.
+First, boundaries allow us to properly define what "cycles" mean. As mentioned in the introduction, these correspond to loops on our space, but also to hollow surfaces, and the corresponding higher-dimensional cycles. What these have in common is that they are "boundaryless", in some sense "self-enclosing". We can thus describe these as the chains $c$ with null boundary, $ \partial_n(c)=0$. We can reuse the terminology of linear algebra and then define the set of n-cycles in $X$ as $Z_n(X)=\ker \partial_n$.
 
 Still, there are many cycles that don't give rise to holes, and, as discussed, this is exactly because they're boundaries of some chain of the above dimension. Formally, these are the chains in the image of the boundary map, and form the set n-boundaries, $B_n = \im \partial_{n+1}$. 
 
-In the example of the circle $S^1$, we have only one 1-chain of the form $c = [v_0,v_0]$, thus $\partial_1 (c)=v_0-v_0=0$ , and it is a cycle. Since we have no 2-chains, $\partial_2 = 0$, so it's not a boundary of anyone. For $D^2$ , we have a similar situation with the one 1-chain $c=[v_0,v_0]$ which is a cycle, but it's also the boundary of the 2-chain $U = [v_0, v_0, v_0]$ ($ \partial_2 ([v_0,v_0,v_0])=[v_0,v_0]-[v_0,v_0]+[v_0,v_0]=[v_0,v_0]=c$)-- i.e., $ c$ is "filled out" by $ U$.
+In the example of the delta structure on circle $S^1$, we have only one 1-chain of the form $c = [v_0,v_0]$, thus $\partial_1 (c)=v_0-v_0=0$ , and it is a cycle. Since we have no 2-chains, $\partial_2 = 0$, so it's not a boundary of anyone. For $D^2$ , we have a similar situation with the one 1-chain $c=[v_0,v_0]$ which is a cycle, but it's also the boundary of the 2-chain $U = [v_0, v_0, v_0]$ ($ \partial_2 ([v_0,v_0,v_0])=[v_0,v_0]-[v_0,v_0]+[v_0,v_0]=[v_0,v_0]=c$)-- i.e., $ c$ is "filled out" by $ U$.
 
 The formula we gave above for the boundary allows us to easily prove some of the most important facts in all of algebraic topology (and, indeed, many other areas of maths as well): $ \partial_n(\partial_{n+1} (\sigma))= 0$-- more succintly, $ \partial_n\circ \partial_{n+1}=0$, or even $ \partial ^2=0$. Visually, this means that the boundary of a boundary is null, or, equivalently, that all boundaries are cycles! Mathematically, $ \operatorname{im} \partial_{n+1} \subset \ker \partial_n$. 
 
-This fits perfectly in the $S^1$ and $D^2$ examples: $S^1$ has a hole, but $D^2$ hasn't because it has been filled by a 2-chain (a 2d surface)!
+PROVA!!!
 
-We'd like now to find a formal way of getting holes. First, all boundaries should be considered a "0 hole", and, as discussed, cycles differing by a boundary should be treated as the same hole. This fits perfectly with the notion of a quotient in group theory. Thus, we can't avoid it anymore: it's time to introduce group theory formally into our theory.
+This fits perfectly in the $S^1$ and $D^2$ examples: $S^1$ has a hole represented by a non-boundary cycle, but $D^2$ hasn't because it has been filled by a 2-chain (a 2D surface)!
+
+As discussed in the introduction, however, **holes are classes of cycles**, in which cycles differing by a boundary should be treated seen as being in the same class-- i.e., representing the same hole in our space. This fits perfectly with the notion of a **quotient** in group theory. Thus, we can't avoid it anymore: it's time to introduce group theory formally into our considerations.
 
 # Groups, permutations and their games
 
@@ -659,6 +662,8 @@ Fibrac de Hopf
 RP3 = SO(3)
 
 ## Group quotients
+
+INTRODUZIR COMO G/~, a~b SE a-b EM H
 
 Now, the examples above should be sufficient to note some interesting behaviours. First, it seems like there's a strong relation between $ \mathbb{Z}$ and the groups $ \mathbb{Z}/n\mathbb{Z}$. Indeed, for each member of $ \mathbb{Z}$, we have a new mod group-- and, since each subgroup of the integers is of the form $\langle n\rangle$, we can also say that every subgroup of $ \mathbb{Z}$ gives us a new group. Indeed, we also have, given the element/subgroup $\langle n\rangle$, a surjective homomorphism $f:  \mathbb{Z} \rightarrow \mathbb{Z}/n\mathbb{Z}$ given by $f(m) = m \mod n$.
 
