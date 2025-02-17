@@ -85,6 +85,22 @@ This leads us to think of holes as actually **classes of non-boundary cycles**, 
 
 Most of this post will deal with the non-trivial, although highly enriching proccess of formalizing this inutitive definition.
 
+So that we're all on the same page, here are some examples of what we expect to get as the holes of some spaces:
+
+- Circle $S^1$: the prototypical loop, it only has one 1-dimensional hole;
+
+- Disk $D^2$: the prototypical filled loop, it has many 1D cycles, but all filled-- thus no holes;
+
+- Cylinder $S^1\times [0,1]$: similarly to the circle, only one 1D hole;
+
+- Sphere $S^2$: the prototypical hollow surface, it only has one 2D hole;
+
+- Torus $T^2$: it has one single 2D hole, representing its entire, hollow surface. It also has two 1D ones: one "transversal" (around the whole doughnut), one "longidutinal" (around the tube made by the torus);
+
+- The reals $\mathbb{R}^n$: lines, planes and their higher-dimensional generalizations are all convex, so should have no holes at all.
+
+IMGS!!! (cylinder?, torus)
+
 # Basic linear algebra
 
 To actually be able to apply our considerations to topological spaces and compute holes, let's start by defining simpler, "model" spaces. First, a quick reminder on basic linear algebra.
@@ -97,7 +113,7 @@ Interestingly, this means that we could informally define $\mathbb{R}^n$ as the 
 
 Vectors unite algebra and geometry very deeply. We can define an addition with vectors by adding all their components: $ a+b= (a_0,...,a_n)+(b_0,...,b_n)=(a_0+b_0,...,a_n+b_n)$. Geometrically, this corresponds as taking $b$ and setting its origin to the end of $a$, and taking the sum as the arrow from the origin to the end of this displaced $b$ vector. This forms a triangle, as seen in the image below.
 
-ADD VETORIAL
+IMG!!! ADD VETORIAL
 
 We also define what's called **scalar multiplication** between a real number $ \alpha$ (called a "scalar") and a vector $v=(a_0,...,a_1)$: $\alpha v = (\alpha \cdot a_0,...,\alpha \cdot a_1)$. Geometrically, we're stretching $v$ by a factor of $\alpha$ (negative numbers inverting the direction of the vector).
 
@@ -327,13 +343,23 @@ Another interesting property of $\ro \text{P}^2$ is  NON EMBED
 
 ## Delta spaces
 
-As we can see by the examples above, finding a triangulation of a space can be very tedious. This is because we strictly require that our spaces be composed of simplices. But what if we just asked for it to be composed of chains--i.e., images of simplices? For the circle, e.g., instead of making it with two 1-simplices, we could just take one 1-simplex and glue its ends. This wouldn't be a simplicial complex, but would still be an image of one, with just one 1-chain.
+Finding triangulations for topological spaces can be a great exercise to understand simplicial complexes, but it's also quite tedious. This is because we strictly require that our spaces be composed of simplices, which in particular aren't curved. This is a quite strong restriction. But what if we just asked for it to be composed of **images of simplices**? This way, we could stretch and manipulate simplices, and try to see our space as the union of these resulting spaces.
 
-For the torus, instead of the exhausting triangulation we could do as follows. Take two 2-chains (filled triangles), and name each edge $a,b,c$. Glue the respective $c$ edges, forming a square. Then also glue the $a$ edges, forming a cylinder. Finally, glue the $b$ edges, forming a torus.
+For the circle, e.g., instead of making it with three 1-simplices, forming the boundary of a circle, we could just take one 1-simplex and glue its ends. This wouldn't be a simplicial complex, but would still be an image of one, with just one altered 1-simplex.
 
-This gives us the notion of a $\Delta$-space. Technically, it is a space $X$ with a set of chains $\sigma_i:\Delta^n\rightarrow X$ such that the image of the restriction $\sigma_i\mid  F$ for a face of $\Delta^n$ is itself the image of another chain $\sigma_j:\Delta^{n-1}\rightarrow X$ of one dimension below. As we did in the case of simplicial complexes, we also require that the interiors of the images of $\sigma_i,\sigma_j$ be disjoint. 
+For the torus, instead of the exhausting triangulation we could describe it as the image of a complex as follows: take a quad and glue its horizontal edges, and do the same for the vertical ones, both without twists-- exactly as in the description of the torus from a square. This is not a complex, but it is a **continous image** of one.
 
-$\Delta$-spaces present us with some incoveniences when representing chains. With simplicial complexes, every simplex could be uniquely described by a list of (non-repeating) vertices. We can't really do the same with $\Delta$-spaces: take the example of the circle we described, where there's only one vertex with a 1-chain $\sigma$ connecting it to itself. We could try to represent it as $\os$, but it is clearer if we instead just write it as $ \sigma |{\os}$, with $ \sigma |  [v_0]=\sigma | [v_1]$.
+This gives us the notion of a $\Delta$**-space**. Technically, it is a space $X$ with a set $S$ of maps $\sigma_i:\Delta^k\rightarrow X$, for different $k$. We require, similarly to the simplicial case, that if $\sigma \in S$, then for all the faces $F$ of $\Delta^k$, the restriction $\sigma \mid F$ of $\sigma$ to $F$ (which can be described as a map $\tau: \Delta^{k-1}\rightarrow X$) is also in $S$. We also ask that the restriction of $\sigma$ to the interior $\Delta^k\setminus \partial \Delta^k$ is injective (so that the images of these maps are filled as simplices are filled), and that every point in $X$ is inside $\im \sigma$ for some $\sigma\in S$. It is common to call such set $S$ a "**delta structure**" over $X$.
+
+In the circle example we gave above, we have $S=\{\sigma_0, \sigma_1\}$, with $\sigma_0:\Delta^0\rightarrow S^1$ having image a single vertex $v_0$, and $\sigma_1:\Delta^1\rightarrow S^1$ a function such that $\sigma_1(0)=\sigma_1(1)$, giving a loop with base point $v_0$.
+
+In the torus example we gave above, we have $S=\{\sigma_0,\sigma_1,\sigma_2,\sigma_3,\sigma_4,\sigma_5\}$, where $\sigma_0:\Delta^0\rightarrow T^2$ maps to the corner point $v$, $\sigma_1:\Delta^1\rightarrow T^2$ maps to the edge labeled $a$, $\sigma_2$ to $b$ and $\sigma_3$ to $c$. Then $\sigma_4:\Delta^2\rightarrow T^2$ maps to one of the triangles with edges $a,b,c$, and $\sigma_5$ to the other one. 
+
+Note: we're dealing with functions here, not with spaces. Hoever, it will still be pretty common for us to call these maps by their images. So we'll usually call $\sigma_0$ just as $v$, $\sigma_1$ as $a$, $\sigma_2$ as $b$, $\sigma_3$ as $c$, $\sigma_4$ as $U$ and $\sigma_5$ as $L$, even though this is a little stretch of our terminology. 
+
+Delta spaces will simplify our computations a lot, so here are some ways of describing the surfaces we've discussed so far as $\Delta$-spaces (note that these are just the square representation we studied applied to a quad):
+
+IMGS!!!
 
 ## Simplices, probabilities and decision games **
 PROB
@@ -373,7 +399,7 @@ struct Mesh{
 }
 {{< / highlight >}}
 
-In the structure above, each three consecutive elements of the array `vertices` represent a triangle in the simplicial structure. The standard 2-simplex $\Delta^2$ embedded in $\rth$, for example, has `vertices = [(0, 0, 0), (1, 0, 0), (0, 1, 0)]`; the complex formed by two 2-simplices making a square may have `vertices = [(0, 0, 0), (1, 0, 0), (0, 1, 0), (1, 0, 0), (1, 1, 0), (0, 1, 0)]`, with the last three vertices representing the triangle we joined with $\Delta^2$. Finally, defining `v0 = (0, 0, 0), v1 = (1, 0, 0), v2 = (0, 1, 0), v3 = (0, 0, 1)`, the boundary of the standard 3-simplex  $\Delta^3$  may be given `vertices = [v1, v2, v3, v0, v2, v2, v0, v1, v3, v0, v1, v2]` (this may seem a bit daunting, but not it is just a matter of applying the formula for the boundary we found before).
+In the structure above, each three consecutive elements of the array `vertices` represent a triangle in the simplicial structure. The standard 2-simplex $\Delta^2$ embedded in $\rth$, for example, has `vertices = [(0, 0, 0), (1, 0, 0), (0, 1, 0)]`; the complex formed by two 2-simplices making a square may have `vertices = [(0, 0, 0), (1, 0, 0), (0, 1, 0), (1, 0, 0), (1, 1, 0), (0, 1, 0)]`, with the last three vertices representing the triangle we joined with $\Delta^2$. Finally, defining `v0 = (0, 0, 0), v1 = (1, 0, 0), v2 = (0, 1, 0), v3 = (0, 0, 1)`, the boundary of the standard 3-simplex  $\Delta^3$  may be given `vertices = [v1, v2, v3, v0, v2, v2, v0, v1, v3, v0, v1, v2]` (this may seem a bit daunting, but note it is just a matter of applying the formula for the boundary we found before).
 
 For each vertex, we also associate a so-called UV value, which is a vector of dimension 2. Points inside the triangle also have UV values, obtained by interpolating using their barycentric coordinates. UV maps help us texturing our surface: the $(u,v)$ value of a point in the triangle indicates that it should have the colour of the pixel in position $(u,v)$ inside the texture image.
 
@@ -497,7 +523,7 @@ Generalization is now straightforward. From now on, $[v_0,...,v_k]$ will denote 
 
 What about complexes? We'll say a simplicial complex is oriented if we give each of its simplices an orientation. There are many possible such orientations. Applying to 3D rendering, each of these orientations represents a way of shading our mesh. In many of these, neighbouring triangles have different orientations, resulting in suddenly light or dark regions, which isn't an effect we really desire. For orientable surfaces, we might want to find a single, "canonical", orientation such that all triangles have coherent normals, so that the whole surface will have a smoother and cohesive lighting-- indeed, that's precisely the definition of an orientable surface. 
 
-To obtain this orientation, consider the example of the standard quad with vertices labeled $v_0,v_1,v2_,v_3$. Say we orient the first triangle as $\os$, so that, using the right-hand rule, its normal points towards us. What orientation should we give to the other triangle so that its normal may have the same direction? Again using the right-hand rule, it should be $[v_1, v_3, v_2]$. Note that, at their common edge, they have different orientations: one has $[v_1, v_2]$ as an edge, the other $[v_2, v_1]$. Since the orientation of a single face defines the orientation of a simplex, we could've guaranteed coherent normals by just positing the oriented simplices have opposite orientations on their common face.
+To obtain this orientation, consider the example of the standard quad with vertices labeled $v_0,v_1,v_2,v_3$. Say we orient the first triangle as $\os$, so that, using the right-hand rule, its normal points towards us. What orientation should we give to the other triangle so that its normal may have the same direction? Again using the right-hand rule, it should be $[v_1, v_3, v_2]$. Note that, at their common edge, they have different orientations: one has $[v_1, v_2]$ as an edge, the other $[v_2, v_1]$. Since the orientation of a single face defines the orientation of a simplex, we could've guaranteed coherent normals by just positing the oriented simplices have opposite orientations on their common face.
 
 This is valid in general: every time you glue two n-simplices together and you want them to have coherent normals (either both pointing outwards or inwards), their common $n-1$ face should come from faces of the opposite direction in each original simplex-- and this last condition is indeed sufficient. Orientable surfaces are exactly those that can be approximated by oriented simplices satisfying this property for all simplices with common faces.
 
@@ -521,7 +547,7 @@ This rules is valid for all n-simplices themselves, which are all, per definitio
 
 Let's see how this works in the example of a 3-simplex $\ths$. By our convention, it has an oriented face $[v_1,v_2,v_3]$. This 2-simplex shares the oriented edge $[v_2,v_3]$ with $\angled{v_0,v_2,v_3}$, so the oriented version of the latter must contain the edge $[v_3,v_2]$ going in the opposite direction, and so it must be $-[v_0,v_2,v_3]$. Doing similarly for all other faces of the pyramid, we get that its oriented faces are $[v_1,v_2,v_3]$, $-[v_0,v_2,v_3]$, $[v_0,v_1,v_3]$ and $-[v_0,v_1,v_2]$.
 
-These considerations actually allows us to get a formula for the oriented faces of a simplex $[v_0,...,v_k]$. We know that its geometrical faces are all the possible $\langle v_0,...,\widehat{v_i},...,v_k\rangle$, so we just need to find their *oriented* versions. We have one already: $[\widehat{v_0},...,v_k]$, by our convention. As for the orientation of $\angled{v_0,\widehat{v_1},...,v_k}$, we see that it shares the face $[v_2,...,v_k]$ with $\angled{\widehat{v_0},...,v_k}$, and so these must have opposite orientations. Going by a similar procedure, we see that $\langle v_0,...,\widehat{v_{i+1}},...,v_k\rangle$ always has the opposite orientation of $\langle v_0,...,\widehat{v_i},...,v_k\rangle$. Thus, using our suggestive sign notation, we get that the **oriented** faces of $[v_0,...,v_k]$ are
+These considerations actually allows us to get a formula for the oriented faces of a simplex $[v_0,...,v_k]$. We know that its geometrical faces are all the possible $\langle v_0,...,\widehat{v_i},...,v_k\rangle$, so we just need to find their *oriented* versions. We have one already: $[\widehat{v_0},...,v_k]$, by our convention. As for the orientation of $\angled{v_0,\widehat{v_1},...,v_k}$, we see that it shares the face $\angled{v_2,...,v_k}$ with $[\widehat{v_0},...,v_k]$, and so these must have opposite orientations-- i.e., we have the negatively oriented face $-[v_0,\widehat{v_1},...,v_k]$. Going by a similar procedure, we see that $\langle v_0,...,\widehat{v_{i+1}},...,v_k\rangle$ always has the opposite orientation of $\langle v_0,...,\widehat{v_i},...,v_k\rangle$, so that orientations alternate between positive and negative, beginning from $[\widehat{v_0},...,v_k]$ with a positive one. Thus, using our suggestive sign notation, we get that the **oriented** faces of $[v_0,...,v_k]$ are
 
 $$(-1)^i[v_0,...,\widehat{v_i},...,v_k],$$
 
@@ -560,48 +586,71 @@ and indeed we get the correct oriented boundary with edges in the proper directi
 
 This is great with different simplices, but what about something like $a+a$? We know that $a\cup a = a$, so perhaps we should write $a+a=a$? But since we have inverses, this would mean that we could subtract both sides by $-a$, getting $a=0$-- which doesn't seem good at all. The second most natural option would be to write $a+a = 2a$, which wouldn't bring any algebraic problems. We could interpret this as "following", or "transversing" $a$ twice. That is, we can understand these algebraic elements as "transversions" of simplices, or a generic action over our simplex, so that this formal addition we're describing is not to be understood as an union, but a "composition" of these actions. In the case of a 1-simplex, it would be as following the the path described by it twice; for a 2-simplex, it is like doing a twist twice along the triangle. This is more intuition than a formal relation, but it shows how geometrical simplices have a **static, set-like** logic, while oriented ones can indeed have a **dynamic, algebraic** one.
 
-How to formalize this? Well, we will do that properly in the next section when we talk groups, but let us summarize the major points. For a simplicial complex homeomorphic to a space $X$, let $a_0,...,a_k$ be all its n-simplices. Then we saw that it makes senses to consider formal finite sums $n_i \cdot a_i+...+n_j\cdot a_j$, $n_i$ being any integer-- possibly even negative or equal to $0$. We also write $a_i-a_i=0$, $0$ being a null, formal element (note that we only sum simplices of the same dimension). This sum and multiplication work like vector sum and scalar multiplication, basically satisfying all the properties we used to define vector spaces above (commutativity, distributivity, etc.). We'll call these sums **n-chains**, and they form the set of n-chains $C^s_n(X)$. We also described a function $\partial _n : C_n(X)\rightarrow C_{n-1}(X)$, given by the formula above, satisfying some sort of linearity condition: $\partial_n(a+b)=\partial_n (a) + \partial_n (b)$ (note that the same $+$ symbol in each side represent operations on the different sets $C_n(X)$ and $C_{n-1}(X)$, respectively).
+According to the linearity property described above, we also set $\partial(n\cdot a)=n\partial(a)$, $n$ and integer.
 
-The sets $C_n(X)$ above depend on the simplicial complex we're using to model $X$, but, thankfully, this won't actually matter for the computations involving holes we'll do later.
+How to formalize this? Well, we will do that properly in the next section when we talk groups, but let us summarize the major points. For a simplicial complex homeomorphic to a space $X$, let $a_0,...,a_k$ be all its n-simplices. Then we saw that it makes senses to consider formal finite sums $n_i \cdot a_i+...+n_j\cdot a_j$, $n_i$ being any integer-- possibly even negative or equal to $0$. We also write $a_i-a_i=0$, $0$ being a null, formal element (note that we only sum simplices of the same dimension). This sum and multiplication work like vector sum and scalar multiplication, basically satisfying all the properties we used to define vector spaces above (commutativity, distributivity, etc.). We'll call these sums **n-chains**, and they form the set of n-chains $C^s_n(X)$. We also described a function $\partial _n : C_n(X)\rightarrow C_{n-1}(X)$, given by the formula above, satisfying some sort of linearity condition: $\partial_n(a+b)=\partial_n (a) + \partial_n (b)$ (note that the same $+$ symbol in each side represent operations on the different sets $C_n(X)$ and $C_{n-1}(X)$, respectively) and $\partial(n\cdot a)=n\partial(a)$.
+
+The sets $C_n(X)$ above depend on the simplicial complex we're using to model $X$, but, thankfully, this won't actually matter for the computations involving holes we'll do later. Note also that they don't depend on any choice of orientation, since all possible oriented simplices of our complex are contained as chains in $C_n(X)$.
 
 EXAMPLE?
 
 ## The case of delta spaces
 
-EXPLICAR MELHOR QUESTÃO DOS DELTA COM DELTA SPACES
-These definitions can be directly transported to the delta space case. We'll let $C^\Delta _n(X)$ be the set of formal finite sums $n_i\sigma_i+...+n_k\sigma_k$, $n_j\in\mathbb{Z}$ and the $\sigma_j$ being part of the delta structure we're using on $X$. Thus, we define the boundary map $\partial_n:C^\Delta _n(X)\rightarrow C^\Delta _{n-1}(X)$ of a chain as
+These considerations can all be generalized to the delta space case. See, the maps $\sigma:\Delta^k\rightarrow X$ we considered before don't have any notion of orientation-- and, in particular, of normals on our space. We can orient these maps by seeing them as functions from oriented simplices, not geometric ones, so that the orientation of their domains will matter. We may write something like $\sigma : [v_0,...,v_k]\rightarrow X$ instead of $\sigma:\angled{v_0,...,v_k}\rightarrow X$ to indicate $\sigma$ inherits its orientation from $[v_0,...,v_k]$-- and not, say, from $-[v_0,...,v_k]$, in which case we could write we have $-\sigma$. That is, for each $\sigma$ in the delta structure, we have oriented maps $\sigma$ and $-\sigma$, according to the orientation we give to the domain simplex.
 
-$$\partial_n(\sigma) = \sum_i (-1)^i \sigma |   [v_0, ..., \widehat{v_i},..., v_n]$$
+Here are the delta structures we presented before, but now oriented so that at least the oriented surfaces will have coherent normals:
 
+IMGS!!! (oriented deltas)
 
+With oriented dela structures, we can generalize the rest of our previous definitions. We'll let $C^\Delta _n(X)$ be the set of formal finite sums $n_i\sigma_i+...+n_k\sigma_k$, $n_j\in\mathbb{Z}$ and the $\sigma_j$ being part of the delta structure we're using on $X$. These sums are also called chains. We cand then define the boundary map $\partial_n:C^\Delta _n(X)\rightarrow C^\Delta _{n-1}(X)$ of a chain as
 
-For example, seeing the circle as a delta space as we described previously, we also have that, if $\sigma$ is the one 1-chain in the construction, $\partial_1(\sigma)=\sigma|  [v_1]-\sigma|  [v_0]=0$ since $\sigma|  [v_1]=\sigma|  [v_0]$.
+$$\partial_n(\sigma) = \sum_i (-1)^i \sigma \mid   [v_0, ..., \widehat{v_i},..., v_n],$$
 
-For the torus as a delta space, 
+and we extend to sums and products linearly: $\partial_n(a+b)=\partial_n(a)+\partial_n(b)$, $\partial(n\cdot a)=n\partial(a)$.
+
+Note that, since $\sigma$ has signature $\Delta^n\rightarrow X$, the $v_i$ here refer to the vertices of the standard simplex, with $v_0$ the origin and $v_i\in\mathbb{R}^{n}$ having a $1$ in its $i$-th coordinates and $0$ elsewhere. Similarly to the simplicial case, the definition of $C^\Delta(X)$ depends on the delta structure, but not on specific orientations.
+
+For example, seeing the circle as a delta space as we described previously, we also have that, if $\sigma$ is the one 1-chain in the construction, $\partial_1(\sigma)=\sigma\mid  [v_1]-\sigma\mid  [v_0]=0$ since $\sigma\mid  [v_1]=\sigma\mid  [v_0]$.
+
+For the torus as a delta space, we have that, for example, $\partial U = U\mid [v_1,v_2]-U\mid [v_0,v_2]+U\mid [v_0,v_1]$. Using our vertex labels, $U\mid [v_1, v_2]=-b$, $-U\mid[v_0,v_2]=-a$ and $U\mid[v_0,v_1]=c$. An easier way to see this is just to follow the orientation of the boundary induced by $U$ and note it transverses $c$, then $-a$ and then $-b$, so that $\partial U = -b-a+c$. Similarly, $\partial L = a-c+b$. Thus,  
+
 $$\begin{align}
-\partial_2(U+L)=\partial_2(U)+\partial_2(L)&=(U|  [v_1,v_2]-U|  [v_0,v_2]+U|  [v_0,v_1]) 
-\\&\,\,\,\,\,\,\, + (L|  [v_1,v_2]-L|  [v_0,v_2]+L|  [v_0,v_1])
+\partial_2(U+L)=\partial_2(U)+\partial_2(L)&=(U\mid  [v_1,v_2]-U\mid  [v_0,v_2]+U\mid  [v_0,v_1]) 
+\\&\,\,\,\,\,\,\, + (L\mid [v_1,v_2]-L\mid [v_0,v_2]+L\mid [v_0,v_1])
 \\&=(-b-a+c)+(a-c+b)=0
 \end{align}$$
-As intended, the sum corresponding to the whole torus has null boundary.
+
+As intended, the chain corresponding to the whole torus surface has null boundary!
 
 ## Cycles and holes
 
-So far, we haven't really needed any kind of more formal algebraic theory to make sense of our considerations, so let's dive a little deeper into how we can use the geometry of simplices, chains and their boundaries to study general topological spaces. 
+Let's dive a little deeper into how we can use the geometry of simplices, chains and their boundaries to study general topological spaces. What we'll say here will apply both to $C_n(X)$ and $C^\Delta_n(X)$.
 
 First, boundaries allow us to properly define what "cycles" mean. As mentioned in the introduction, these correspond to loops on our space, but also to hollow surfaces, and the corresponding higher-dimensional cycles. What these have in common is that they are "boundaryless", in some sense "self-enclosing". We can thus describe these as the chains $c$ with null boundary, $ \partial_n(c)=0$. We can reuse the terminology of linear algebra and then define the set of n-cycles in $X$ as $Z_n(X)=\ker \partial_n$.
 
 Still, there are many cycles that don't give rise to holes, and, as discussed, this is exactly because they're boundaries of some chain of the above dimension. Formally, these are the chains in the image of the boundary map, and form the set n-boundaries, $B_n = \im \partial_{n+1}$. 
 
-In the example of the delta structure on circle $S^1$, we have only one 1-chain of the form $c = [v_0,v_0]$, thus $\partial_1 (c)=v_0-v_0=0$ , and it is a cycle. Since we have no 2-chains, $\partial_2 = 0$, so it's not a boundary of anyone. For $D^2$ , we have a similar situation with the one 1-chain $c=[v_0,v_0]$ which is a cycle, but it's also the boundary of the 2-chain $U = [v_0, v_0, v_0]$ ($ \partial_2 ([v_0,v_0,v_0])=[v_0,v_0]-[v_0,v_0]+[v_0,v_0]=[v_0,v_0]=c$)-- i.e., $ c$ is "filled out" by $ U$.
+In the example of the delta structure on circle $S^1$, we have only one $\sigma:\Delta^1\rightarrow S^1$ with $\partial \sigma = 0$, as seen above, which then represents a cycle. Since we have no 2-chains, $\partial_2 = 0$, so $\sigma$ is not a boundary of anyone, and thus it represents an actual hole. For $D^2$ as the simplex $\Delta^2$, we have a similar situation with the one 1-chain $c=[v_0,v_1]+[v_1,v_2]+[v_2,v_0]$ which is a cycle, but it's also the boundary of the 2-chain $U = [v_0, v_1, v_2]$ representing the surface of the triangle-- i.e., $c$ is "filled out" by $U$, and thus can't be interpreted as giving rise to a hole.
 
-The formula we gave above for the boundary allows us to easily prove some of the most important facts in all of algebraic topology (and, indeed, many other areas of maths as well): $ \partial_n(\partial_{n+1} (\sigma))= 0$-- more succintly, $ \partial_n\circ \partial_{n+1}=0$, or even $ \partial ^2=0$. Visually, this means that the boundary of a boundary is null, or, equivalently, that all boundaries are cycles! Mathematically, $ \operatorname{im} \partial_{n+1} \subset \ker \partial_n$. 
+That is, $S^1$ has a hole represented by a non-boundary cycle, but $D^2$ hasn't because it has been filled by a 2-chain (a 2D surface). Similarly happens with the chain $U+L$ representing the entire torus surface above, which is a non-bounded cycle as well.
 
-PROVA!!!
+The formula we gave above for the boundary allows us to easily prove some of the most important facts in all of algebraic topology (and, indeed, many other areas of maths as well): $ \partial_{n-1}(\partial_n (\sigma))= 0$-- more succintly, $ \partial_{n-1}\circ \partial_n=0$, or even $ \partial ^2=0$-- for any chain $\sigma$. Visually, this means that **boundaries are boundaryless, or, equivalently, that all boundaries are cycles**! In particular, this implies $ \operatorname{im} \partial_{n+1} \subseteq \ker \partial_n$. 
 
-This fits perfectly in the $S^1$ and $D^2$ examples: $S^1$ has a hole represented by a non-boundary cycle, but $D^2$ hasn't because it has been filled by a 2-chain (a 2D surface)!
+To prove $\partial^2=0$ is actually just a matter of computation (we do it for delta spaces, but for complexes it's really the same thing):
 
-As discussed in the introduction, however, **holes are classes of cycles**, in which cycles differing by a boundary should be treated seen as being in the same class-- i.e., representing the same hole in our space. This fits perfectly with the notion of a **quotient** in group theory. Thus, we can't avoid it anymore: it's time to introduce group theory formally into our considerations.
+$$\begin{align}
+\partial_{n-1}(\partial_n \sigma) &= \partial_{n-1}(\sum_i (-1)^i \sigma \mid   [v_0, ..., \widehat{v_i},..., v_n])
+\\&= \sum_{j< i} (-1)^i(-1)^j\sigma\mid[v_0,...,\widehat{v_j},...,\widehat{v_i},...,v_n]
+\\&\,\,\,\,\,\,\, + \sum_{j>i} (-1)^i(-1)^{j-1}\sigma\mid[v_0,...,\widehat{v_i},...,\widehat{v_j},...,v_n],
+\end{align}$$
+
+
+where we have $j-1$ in the last sum because, since $j>i$, the vertex $v_i$ was already skipped in the presentation. For any pair $i,j$ such that $i>j$, we get a term $(-1)^i(-1)^j\sigma\mid[v_0,...,\widehat{v_j},...,\widehat{v_i},...,v_n]$ in the first sum. But we also get the term $(-1)^j(-1)^{i-1}\sigma\mid[v_0,...,\widehat{v_j},...,\widehat{v_i},...,v_n]$ in the other one. These cancel each other; as the sums are only made of these terms, we get that $\partial_{n-1}(\partial_n \sigma)=0$ for any $\sigma$.
+
+ERRADO: É NEC CONSID ORIENTAC. VIDE XEMPLO DO CILINDRO
+As discussed in the introduction, however, **holes are classes of cycles**. N-cycles $c_1$ and $c_2$ are members of the same "hole class" (we may write $c_1\sim c_2$) if they together form the boundary of a chain one dimension above. I.e., $c_1\sim c_2$ only if there exists a $(n+1)$-chain $a$ such that $\partial a = c_1 + c_2$-- or, equivalently, if $c_1 = \partial(a)-c_2$. Note that we always have $c\sim -c$ since $c+(-c)=0=\partial(0)$. This implies that we also have $c_1\sim c_2$ when $c_1 - c_2 = \partial(a)$, or $c_1=c_2+\partial(a)$. We then say $c_1$ and $c_2$ "**differ by a boundary**". 
+
+Mathematically, this fits perfectly with the notion of a **quotient** in group theory. Thus, we can't avoid it anymore: it's time to introduce group theory formally into our study.
 
 # Groups, permutations and their games
 
@@ -664,6 +713,11 @@ RP3 = SO(3)
 ## Group quotients
 
 INTRODUZIR COMO G/~, a~b SE a-b EM H
+HOLES
+
+EX DE MOD
+
+EX VETORIAL
 
 Now, the examples above should be sufficient to note some interesting behaviours. First, it seems like there's a strong relation between $ \mathbb{Z}$ and the groups $ \mathbb{Z}/n\mathbb{Z}$. Indeed, for each member of $ \mathbb{Z}$, we have a new mod group-- and, since each subgroup of the integers is of the form $\langle n\rangle$, we can also say that every subgroup of $ \mathbb{Z}$ gives us a new group. Indeed, we also have, given the element/subgroup $\langle n\rangle$, a surjective homomorphism $f:  \mathbb{Z} \rightarrow \mathbb{Z}/n\mathbb{Z}$ given by $f(m) = m \mod n$.
 
@@ -769,9 +823,9 @@ HEX WINNER
 
 **Proof**: First, note that the graph $B_k$ gives us a **triangulation** of the square $D_k=[0,k]\times [0,k]$ (take the triangles to be filled), which is homeomorphic to a 2D disk (filled circle). Assuming there exists a Hex game without a winner, we will construct a map $f:D_k\rightarrow D_k$ without a fixed point, which is a contradiction. 
 
-Since simplices are convex hulls and $D_k$ is triangulated by $B_k$, every element of $D_k$ can be written uniquely as a linear combination $\lambda_0 v_0 + \lambda_1 v_1 +\lambda_2 v_2$, for $v_0,v_1,v_2$ vertices of $B_k$ and $\lambda_0+\lambda_1+\lambda_2=0$, all $\lambda_i$ positive. In particular, every function $f:B_k\rightarrow \rt$ can extend to one $\widehat{f}:D_k\rightarrow \rt$ by defining $\widehat{f}(\lambda_0 v_0 + \lambda_1 v_1 +\lambda_2 v_2)=\lambda_0 f(v_0) + \lambda_1 f(v_1) +\lambda_2 f(v_2)$.
+Since $D_k$ is triangulated by $B_k$, every element $x$ of $D_k$ can be written uniquely in barycentric coordinates as a linear combination $x=\lambda_0 v_0 + \lambda_1 v_1 +\lambda_2 v_2$, for $v_0,v_1,v_2$ vertices of $B_k$ forming the triangle containing $x$, and $\lambda_0+\lambda_1+\lambda_2=1$,  $\lambda_i\geq 0$. In particular, every function $f:B_k\rightarrow \rt$ can extend to one $\widehat{f}:D_k\rightarrow \rt$ by defining $\widehat{f}(\lambda_0 v_0 + \lambda_1 v_1 +\lambda_2 v_2)=\lambda_0 f(v_0) + \lambda_1 f(v_1) +\lambda_2 f(v_2)$.
 
-Assume that we have $H,V$ such that there is no Hex winner. Now, let us define a function $f:B_k\rightarrow B_k$ which will be extended to $\widehat{f}:D_k\rightarrow D_k$ that will lead to the contradiction. Define $\widehat{W}$ to be the subset of $H$ connected to the western extreme $W$, and similarly for $\widehat{E}$, $\widehat{S}$ and $\widehat{N}$. The assumption we have no winner is equivalent to saying that $\widehat{W} \neq \widehat{E}$ and $\widehat{S} \neq \widehat{N}$, or that $\widehat{W}$ (or $\widehat{S}$) and $\widehat{E}$ (or $\widehat{N}$) are connected. Then define $f$ as
+Assume that we have $H,V$ such that there is no Hex winner. Now, let us define a function $f:B_k\rightarrow B_k$ which will be extended to $\widehat{f}:D_k\rightarrow D_k$ that will lead to the contradiction. Define $\widehat{W}$ to be the subset of $H$ connected to the western extreme $W$, and similarly for $\widehat{E}\subset H$, $\widehat{S}\subset V$ and $\widehat{N}\subset V$. The assumption we have no winner is equivalent to saying that $\widehat{W} \neq \widehat{E}$ and $\widehat{S} \neq \widehat{N}$, or that $\widehat{W}$ (or $\widehat{S}$) and $\widehat{E}$ (or $\widehat{N}$) are connected. Then define $f$ as
 
 $$
 \begin{align}
@@ -805,11 +859,10 @@ NASH EQUILIBRIA
     EXS PUROS (prisionners, eleic)
     EXS MISTOS (bach, pennies)
 
-EXISTÊNCIA
-**Theorem**: every game with finite players and actions has at least one Nash equilibrium;
+**Theorem**: Every game with finite players and actions has at least one Nash equilibrium.
 
 **Proof**:
-Let $\sigma \in \Delta^{i_1}\times...\times\Delta^{i_k}$ be a mixed strategy. Let's try to define a "winning flow" which, for each $\sigma$, points in the direction of the direction of a strategy with better expected gains. For this, define for each $\sigma$ a function $\text{Gain} (\sigma): A \rightarrow \ro^i$ that, for each action $a$, returns the expected gain to player $i$ given the action:
+Let $\sigma \in \Delta^{i_1}\times...\times\Delta^{i_k}$ be a mixed strategy. Let's try to define a "winning flow" which, for each $\sigma$, points in the direction of the direction of a strategy with better expected gains. The idea is that fixed points of this flow will exactly be the strategies that can't be improved for any player-- i.e., Nash equilibria. For this, define for each $\sigma$ a function $\text{Gain} (\sigma): A \rightarrow \ro^i$ that, for each action $a$, returns the expected gain to player $i$ given the action:
 
 $$\text{Gain}_i(\sigma)(a) = \max (0, u_i(a, \sigma_{-i}) - u_i(\sigma))$$
 
