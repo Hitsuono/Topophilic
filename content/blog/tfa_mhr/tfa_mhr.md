@@ -673,7 +673,7 @@ In the example of the delta structure on circle $S^1$, we have only one $\sigma:
 
 That is, $S^1$ has a hole represented by a non-boundary cycle, but $D^2$ hasn't because it has been filled by a 2-chain (a 2D surface). Similarly happens with the chain $U+L$ representing the entire torus surface above, which is a non-bounded cycle as well.
 
-The formula we gave above for the boundary allows us to easily prove one of the most important facts in all of algebraic topology (and, indeed, of many other areas of math as well): $ \partial_{n-1}(\partial_n (\sigma))= 0$-- more succintly, $ \partial_{n-1}\circ \partial_n=0$, or even $ \partial ^2=0$-- for any chain $\sigma$. Visually, this means that **boundaries are boundaryless, or, equivalently, that all boundaries are cycles**! In particular, this implies $ \operatorname{im} \partial_{n+1} \subseteq \ker \partial_n$. 
+The formula we gave above for the boundary allows us to easily prove one of the most important facts in all of algebraic topology (and, indeed, of many other areas of math as well): $ \partial_{n-1}(\partial_n (\sigma))= 0$-- more succintly, $ \partial_{n-1}\circ \partial_n=0$, or even $ \partial ^2=0$-- for any chain $\sigma$. Visually, this means that **boundaries are boundaryless, or, equivalently, all boundaries are cycles**! In particular, this implies $ \operatorname{im} \partial_{n+1} \subseteq \ker \partial_n$. 
 
 To prove $\partial^2=0$ is actually just a matter of computation (we do it for delta spaces, but for complexes it's really the same thing):
 
@@ -704,7 +704,9 @@ Mathematically, this fits perfectly with the notion of a **quotient** in group t
 
 # Groups, permutations and their games
 
-## Definitions
+Now that we have some basic group examples, let's see how to combine them and how to generate even more groups.
+
+## Definitions and basic examples
 A **group** is a set $G$ with an **binary operation** $*:G\times G\rightarrow G$ taking two elements $a,b\in G$ and returning $a*b\in G$. We require this operation to be "well-behaved" and satisfy properties resembling integer addition (which also models our chain sums above), namely:
 
 * Associativity: $(a*b)*c=a*(b*c)$ for all $a,b,c\in G$;
@@ -720,6 +722,10 @@ Note, however, that we **didn't** require the following property satisfied by $(
 * Commutativity: $a*b=b*a$ for all $a,b\in G$.
 
 Groups satisfying this relation are called commutative, or also **abelian** (after [Abel](https://en.wikipedia.org/wiki/Niels_Henrik_Abel)). Again $(\zo, +)$ is the primordial example of this class.
+
+Following $(\zo, +)$, the second most classical example of a group are the modular groups $ \mathbb{Z}/n\mathbb{Z}$, for $ n\in \mathbb{Z}$ (the notation will be clearer when we study quotients). These have as base set $\{0, 1, ..., n-1\}$, with mod sum as operation. As a reminder, if $a,b\in \zo$, this is the mod sum $(a+b) \mod n$ is the rest of $a+b$ divided by $n$. I.e., it is "clock addition": the result of a sum is equal to its excess relative to $n$. Programmers will also recognize it through the remainder operator `%`, although $\text{mod}$ and `%` aren't properly the same in most languages. !!! Generally, $\zmod{n}$ has neutral element $0$ and the inverse of $k\in \zmod{n}$, $k\neq 0$, is exactly $n-k$.
+
+For example, $\zmod{2}$ has base set $\{0,1\}$, with mod 2 addition that satisfies $1+1=0$. Seconds and minutes are counted inside $\zmod{60}$, while hours in $\zmod{24}$. When $n$ is understood from the context, we'll write $\text{mod}\,\,\,\, n$ addition just using a plain $+$ sign. 
 
 Another fundamental example of a group are the $(C_n(X),+)$ and $(C^\Delta _n(X),+)$ we defined previously, which are all abelian per definition. If $V$ is a vector space, then $(V,+)$ is also a classic example of an abelian group.
 
@@ -741,23 +747,39 @@ Here are some simple, quick properties of groups due to the good behaviour of op
 
 Thus, we're justified when we talk about **the** neutral element of $G$ and **the** inverse of $a\in G$. Notice also that the neutral element is always its own inverse (in the integers, $0=-0$).
 
+As sets have subsets and spaces subspaces, groups also contain subgroups. Formally, $H$ is a subgroup of $G$ when $H\subset G$ and, for all $h_1,h_2\in H$, the product $h_1*h_2$ is also in $H$. I.e., when $H$ is a group of its own together with the operation $*$ of $G$ restricted to elements of $H$. We then write $H\leq G$.
+
+For example, even numbers form a subgroup of $(\zo, +)$ since whenever you add two of these you still end up with an even number. In general, if $n\in \zo$, the set $n\zo = \{n\cdot m \mid m\in\zo\}$ (i.e., the multiples of $n$) is a subgroup of the integers. Subspaces of vector spaces are also subgroups.
+
 When dealing with groups, we are not interested in all functions $f:G\rightarrow H$, but only in those that bring and respect algebraic information, stabilishing a relation between the operations of the different groups. Examples of these are linear transformations, as well as the boundary operators $\partial_n$ we defined previously. In group theory, these maps are called **homomorphisms**. A homomorphism between groups $(G,*_G)$ and $(H,*_H)$ is a function $f:G\rightarrow H$ such that $f(a *_G b)=f(a)*_H f(b)$ for all $a,b\in G$. 
 
 Bijective homomorphisms are also called **isomorphims**. If we have an isomorphism $f:G\rightarrow H$, it means $G$ and $H$ have operations with the exact same behaviour. They may give different names to their elements, but to group theory $G,H$ can be seen as the same object.
 
 In many cases, we'll ommit the operation $*$ in $a*b$ and just write $ab,$ the actual operation being deduced from context. For example, we'll write $f(ab)=f(a)f(b)$ for homomorphisms, even if $ab$ and $f(a)f(b)$ actually involve two different operations in two distinct groups.
 
-## Example: abelian groups and modules
+## Generating groups
 
-The classical exemple of a group are the integers $ \mathbb{Z}$ with respect to addition. Following it, we have the modular groups $ \mathbb{Z}/n\mathbb{Z}$, $ n\in \mathbb{Z}$. These have as base set $ {0, 1, ..., n}$, the operation $ a*b$, written $ a+b \mod n$ (or, if $ n$ is understood by the context, just $a+b$), being the rest of $ a+b$ divided by $ n$. I.e., it is "clock addition": !!! 
+### Products
+Similarly to sets with their binary operations $\cup, \cap, \times,$ etc., groups can also be joined together. There are three common ways to take two groups in order to get another one: **direct products**, **quotients** and **semi-direct products**. The first is a simple "groupification" of the cartesian product $\times$, and the second one will be studied at the end of this section. Semi-direct products are very powerful-- specially applied to finite groups-- and we will even see an example when studying the Rubik's cube, but we'll not study them here.
 
-For example, $ \mathbb{Z}/2\mathbb{Z}$ has base set $ {0,1}$, with mod 2 addition that satisfies $1+1=0$, as in the table below. As another example, in $ \mathbb{Z}/5\mathbb{Z}$ mod 5 addition gives us results like $3+2=0$ (the rest of $3+2$ divided by $5$ is 0), $4+3=2$ etc. 
+As for direct products: if we have two groups $(G, *_G)$ and $(H, *_H)$, then the set $G\times H$ has a very natural way to become a group, by taking the operation $*$ on it such that $(g_1, h_1) * (g_2, h_2)=(g_1*_G g_1, h_1 *_H h_1).$ I.e., we apply operations component-wise. This is known as the direct product of $G$ and $H$, written just as $G\times H$ (operations being implicit, as we'll often do). Similarly to sets, we'll write $G^n$ for the (direct) product of $G$ with itself $n$ times.
+
+Finite groups are specially interesting because they can be to some extent classified. Below is one of the first steps in this direction, which we'll not prove. We'll see more on group classification later on when we study quotients.
+
+**Theorem**: all finite abelian groups are isomorphic to a group of the form
+
+$$\zmod{a_1}\times...\times\zmod{a_k}$$
+
+### Presentations
 
 We can describe the groups above through presentations, which are a compact way of analysing groups we'll use a lot. A presentation of a group $G$ is written as $G=\langle a_0, a_1,..., a_n \mid   R\rangle $, where $R$ is a set of algebraic relations using our group operations (things like $a_3 * a_2 = a_6^{-1}$, $a_1^2=a_0*a_3$ etc.). We interpret this as saying that $G$ is generated by elements $a_0,...,a_n$ and all their possible (finite) products, and that they satisfy the relations $R$ (the identity being assumed and thus omited). 
 
 For example, $\mathbb{Z} = \langle 1 \rangle$, i.e., the integers are generated by a single element, without any relations (we say it is freely generated by $1$)-- we say $\mathbb{Z}$ is freely generated by a single element. We also have $\mathbb{Z}/n\mathbb{Z} = \langle a \mid   a^n=e \rangle$.
 
-Vector spaces with vector addition are also classical examples of groups, and linear transformations are alse homomorphisms (NOTE). !!!
+
+## Example: modules
+
+
 
 Coming back to spaces and their holes, $C^s(X)$ and $C(X)$ as we defined are also groups with respect to simplex/chain addition. More than this, since we also described multiplication by an integer, they are $\mathbb{Z}$-modules: indeed, they are modules freely generated by simplices/chains on $X$.
 
