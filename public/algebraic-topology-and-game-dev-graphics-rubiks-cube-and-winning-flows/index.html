@@ -40,7 +40,7 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
   <meta itemprop="description" content="TL;DR In our search for topological invariants, we’ll learn how holes can be defined and be used to study spaces. This will require studying “model” spaces, known as simplicial complexes, which are widely used in 3D rendering. We will be able to define general topological concepts like “boundary” and “cycle”. This will be formalized through a quick detour on group theory, the study of permutations and their algebras, which can be exemplified by the moves and configurations of a Rubik’s cube. With this machinery, we’ll define the homology groups of a topological space, in which holes live, and are one of the most important and studied topological invariants of spaces.">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="16160">
+  <meta itemprop="wordCount" content="17859">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -273,6 +273,7 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
             <li><a href="#the-möbius-strip">The Möbius strip</a></li>
             <li><a href="#the-klein-bottle">The Klein bottle</a></li>
             <li><a href="#projective-spaces-perspective-and-homogenous-coordinates-">Projective spaces: perspective and homogenous coordinates *</a></li>
+            <li><a href="#connecting-surfaces-together">Connecting surfaces together</a></li>
           </ol>
         </li>
         <li><a href="#delta-spaces">Delta spaces</a></li>
@@ -293,14 +294,18 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
             <li><a href="#presentations">Presentations</a></li>
           </ol>
         </li>
-        <li><a href="#example-modules">Example: modules</a></li>
+        <li><a href="#example-rings-and-modules">Example: rings and modules</a></li>
         <li><a href="#example-fields-finite-projective-spaces-and-spot-it-">Example: fields, finite projective spaces and &ldquo;Spot It!&rdquo; *</a></li>
         <li><a href="#example-non-abelian-groups-and-permutation-games">Example: non-abelian groups and permutation games</a></li>
         <li><a href="#example-topological-groups-quaternions-and-the-hopf-fibration-">Example: topological groups, quaternions and the Hopf fibration *</a></li>
         <li><a href="#group-quotients">Group quotients</a></li>
       </ol>
     </li>
-    <li><a href="#homology-theory">Homology theory</a></li>
+    <li><a href="#homology-theory">Homology theory</a>
+      <ol>
+        <li><a href="#holes-of-order-2">Holes of order 2</a></li>
+      </ol>
+    </li>
     <li><a href="#applications">Applications</a>
       <ol>
         <li><a href="#retractions-and-fixed-points">Retractions and fixed points</a></li>
@@ -711,6 +716,7 @@ $$\partial \angled{v_0,...,v_k} = \bigcup_{i=0}^n \angled{v_0,...,\widehat{v_i},
 <p>IMG!!!</p>
 <p>One very interesting way of getting $\rpt$ is through the Möbius strip. See, the latter has a boundary, which is a single loop. In the square representation, this loop is the non-glued horizontal edges. What if we glue them in opposite directions (i.e., again with a twist)? Well, the representation above just showed that we would get the projective plane! In particular, we also have that $\rpt$ isn&rsquo;t orientable.</p>
 <p>Another interesting property of $\ro \text{P}^2$ is  NON EMBED</p>
+<h3 id="connecting-surfaces-together">Connecting surfaces together</h3>
 <h2 id="delta-spaces">Delta spaces</h2>
 <p>Finding triangulations for topological spaces can be a great exercise to understand simplicial complexes, but it&rsquo;s also quite tedious. This is because we strictly require that our spaces be composed of simplices, which in particular aren&rsquo;t curved. This is a quite strong restriction. But what if we just asked for it to be composed of <strong>images of simplices</strong>? This way, we could stretch and manipulate simplices, and try to see our space as the union of these distorted polygons.</p>
 <p>For the circle, e.g., instead of making it with three 1-simplices, forming the boundary of a triangle, we could just take one 1-simplex and glue its ends together&ndash; thus forming a loop. This wouldn&rsquo;t be a simplicial complex, but would still be an image of one, with just one altered 1-simplex.</p>
@@ -946,6 +952,7 @@ $$\begin{align}
 <p>According to the linearity property described above, we also set $\partial(n\cdot a)=n\partial(a)$, $n$ and integer.</p>
 <p>How to formalize this? Well, we will do that properly in the next section when we talk groups, but let us summarize the major points. For a simplicial complex $X$, let $a_0,...,a_k$ be all its n-simplices. Then we saw that it makes senses to consider formal finite sums $n_i \cdot a_i+...+n_j\cdot a_j$, $n_i$ being any integer&ndash; possibly even negative or equal to $0$. We also write $a_i-a_i=0$, $0$ being a null, formal element (note that we only sum simplices of the same dimension). We also set the rules $a+0=0+a=a$ and $0a=0$. This sum and multiplication work like vector sum and scalar multiplication, basically satisfying all the properties we used to define vector spaces above (commutativity, distributivity, etc.). We&rsquo;ll call these sums <strong>n-chains</strong>, and say they form the set of n-chains $C_n(X)$. We also described a function $\partial _n : C_n(X)\rightarrow C_{n-1}(X),$ given by the formula above, satisfying some sort of linearity condition: $\partial_n(a+b)=\partial_n (a) + \partial_n (b)$ (note that the same $+$ symbol in each side represent operations on the different sets $C_n(X)$ and $C_{n-1}(X),$ respectively) and $\partial(n\cdot a)=n\partial(a)$.</p>
 <p>The sets $C_n(X)$ above depend on the simplicial complex we&rsquo;re using to model $X$, but, thankfully, this won&rsquo;t actually matter for the computations involving holes we&rsquo;ll do later. They also don&rsquo;t depend on any choice of orientation, since all possible oriented simplices of our complex are contained as chains in $C_n(X)$.</p>
+<p>Notice that the $C_n(X)$ really look similar to vector spaces (and $\partial_n$ to linear transformations), but, since we only allowed here for integet scalar multiplication, they are not vector spaces! They&rsquo;re actually cases of another algebraic structure, namely <strong>modules</strong> (which we&rsquo;ll study soon) which are generalizations of vector spaces.</p>
 <p>Finally, note that $C_n(X)$ always contains the null element $0$, even when the complex $X$ contains no n-simplices. In particular, if that&rsquo;s the case, then $\partial_n(0)=0$, and we may write $\partial_n=0$.</p>
 <h2 id="the-case-of-delta-spaces">The case of delta spaces</h2>
 <p>These considerations can all be generalized to the delta space case. See, the maps $\sigma:\Delta^k\rightarrow X$ we considered before don&rsquo;t have any notion of orientation&ndash; and, in particular, of normals on our space. We can orient these maps by seeing them as functions from oriented simplices, not geometric ones, so that the orientation of their domains will matter. We may write something like $\sigma : [v_0,...,v_k]\rightarrow X$ instead of $\sigma:\angled{v_0,...,v_k}\rightarrow X$ to indicate $\sigma$ inherits its orientation from $[v_0,...,v_k]$&ndash; and not, say, from $-[v_0,...,v_k]$, in which case we could write we have $-\sigma$. That is, for each $\sigma$ in the delta structure, we have oriented maps $\sigma$ and $-\sigma$, according to the orientation we give to the domain simplex.</p>
@@ -983,7 +990,7 @@ $$U=[v_0,v_1,v_2]+[v_1, v_3, v_2]+[v_1,v_4,v_3]+[v_4,v_5,v_3]+[v_4,v_6,v_5]+[v_6
 <p>In general, we will say that n-chains $c_1$ and $c_2$ in our space $X$ are members of the same &ldquo;hole class&rdquo; whenever there exists a $(n+1)$-chain $a$ such that $\partial a = c_1 - c_2$, or, equivalently, $c_1 = c_2 + \partial a$. We then say that these chains &ldquo;<strong>differ by a boundary</strong>&rdquo;.</p>
 <p>Mathematically, this fits perfectly with the notion of a <strong>quotient</strong> in group theory. Thus, we can&rsquo;t avoid it anymore: it&rsquo;s time to introduce group theory formally into our study.</p>
 <h1 id="groups-permutations-and-their-games">Groups, permutations and their games</h1>
-<p>Now that we have some basic group examples, let&rsquo;s see how to combine them and how to generate even more groups.</p>
+<p>Since most of the topological intuition for this post has already been described, we&rsquo;ll allow ourselves to be rather quick with definitions and properties in this section, assuming most of the work here is of formalizing and generalizing what we&rsquo;ve already seen.</p>
 <h2 id="definitions-and-basic-examples">Definitions and basic examples</h2>
 <p>A <strong>group</strong> is a set $G$ with an <strong>binary operation</strong> $*:G\times G\rightarrow G$ taking two elements $a,b\in G$ and returning $a*b\in G$. We require this operation to be &ldquo;well-behaved&rdquo; and satisfy properties resembling integer addition (which also models our chain sums above), namely:</p>
 <ul>
@@ -1002,11 +1009,12 @@ $$U=[v_0,v_1,v_2]+[v_1, v_3, v_2]+[v_1,v_4,v_3]+[v_4,v_5,v_3]+[v_4,v_6,v_5]+[v_6
 <ul>
 <li>Commutativity: $a*b=b*a$ for all $a,b\in G$.</li>
 </ul>
-<p>Groups satisfying this relation are called commutative, or also <strong>abelian</strong> (after <a href="https://en.wikipedia.org/wiki/Niels_Henrik_Abel">Abel</a>). Again $(\zo, +)$ is the primordial example of this class.</p>
-<p>Following $(\zo, +)$, the second most classical example of a group are the modular groups $ \mathbb{Z}/n\mathbb{Z}$, for $ n\in \mathbb{Z}$ (the notation will be clearer when we study quotients). These have as base set $\{0, 1, ..., n-1\}$, with mod sum as operation. As a reminder, if $a,b\in \zo$, this is the mod sum $(a+b) \mod n$ is the rest of $a+b$ divided by $n$. I.e., it is &ldquo;clock addition&rdquo;: the result of a sum is equal to its excess relative to $n$. Programmers will also recognize it through the remainder operator <code>%</code>, although $\text{mod}$ and <code>%</code> aren&rsquo;t properly the same in most languages. !!! Generally, $\zmod{n}$ has neutral element $0$ and the inverse of $k\in \zmod{n}$, $k\neq 0$, is exactly $n-k$.</p>
+<p>Groups satisfying this relation are called commutative, or also <strong>abelian</strong> (after <a href="https://en.wikipedia.org/wiki/Niels_Henrik_Abel">Abel</a>). Again $(\zo, +)$ is the primordial example of this class. $(\mathbb{Q}, +),$ $(\mathbb{R}, +)$ and $(\mathbb{C}, +)$ are all groups as well. $(\mathbb{N}, +),$ on the other hand, isn&rsquo;t one because it doesn&rsquo;t contain negative numbers.</p>
+<p>Following $(\zo, +)$, the second most classical example of a group are the modular groups $ \mathbb{Z}/n\mathbb{Z}$, for $ n\in \mathbb{Z}$ (the notation will be clearer when we study quotients). These have as base set $\{0, 1, ..., n-1\}$, with mod sum as operation. As a reminder, if $a,b\in \zo$, this is the mod sum $(a+b) \mod n$ is the rest of $a+b$ divided by $n$. I.e., it is &ldquo;clock addition&rdquo;: the result of a sum is equal to its excess relative to $n$. Programmers will also recognize it through the remainder operator <code>%</code>, although $\text{mod}$ and <code>%</code> aren&rsquo;t properly the same in most languages. Generally, $\zmod{n}$ has neutral element $0$ and the inverse of $k\in \zmod{n}$, $k\neq 0$, is exactly $n-k$.</p>
 <p>For example, $\zmod{2}$ has base set $\{0,1\}$, with mod 2 addition that satisfies $1+1=0$. Seconds and minutes are counted inside $\zmod{60}$, while hours in $\zmod{24}$. When $n$ is understood from the context, we&rsquo;ll write $\text{mod}\,\,\,\, n$ addition just using a plain $+$ sign.</p>
 <p>Another fundamental example of a group are the $(C_n(X),+)$ and $(C^\Delta _n(X),+)$ we defined previously, which are all abelian per definition. If $V$ is a vector space, then $(V,+)$ is also a classic example of an abelian group.</p>
-<p>We also have the <strong>trivial group</strong> $G=\{e\}$ which contains a single element $e$ with $e*e=e$. That is, $G$ has a neutral element and that&rsquo;s all.</p>
+<p>We also have the <strong>trivial group</strong> $G=\{e\}$ which contains a single element $e$ with $e*e=e$. That is, $G$ has a neutral element and that&rsquo;s all. We&rsquo;ll often write this group just $0$, since it is composed of a single zero, neutral element.</p>
+<p>Finally, another familiar group is the set of strictly positive reals $\ro_{>0}$ with multiplication. Its neutral element is $1$ and the inverse of $x$ is $\frac{1}{x}.$</p>
 <p>Here are some simple, quick properties of groups due to the good behaviour of operations:</p>
 <p><strong>Proposition</strong>: if $a*c=b*c$, then $a=b$ (you can cancel common factors). Similarly, if $c*a=c*b,$ then $a=b$.</p>
 <p><strong>Proof</strong>: by associativity, $(a*c)*\inv{c}=a*(c*\inv{c})=a*e=a.$ Similarly, $(b*c)*\inv{c}=b.$ Since $a*c=b*c,$ $(a*c)*\inv{c}=(b*c)*\inv{c}$ and so $a=b.$ The proof of the other half of the proposition is basically identical.</p>
@@ -1015,22 +1023,67 @@ $$U=[v_0,v_1,v_2]+[v_1, v_3, v_2]+[v_1,v_4,v_3]+[v_4,v_5,v_3]+[v_4,v_6,v_5]+[v_6
 <p><strong>Propostion</strong>: the inverse of $a$ is unique (i.e., if both $b,c$ are inverses of $a$, then $b=c$).</p>
 <p><strong>Proof</strong>: if $b,c$ are inverses of $a,$ then $a*b=e=a*c.$ Canceling $a,$ $b=c.$</p>
 <p>Thus, we&rsquo;re justified when we talk about <strong>the</strong> neutral element of $G$ and <strong>the</strong> inverse of $a\in G$. Notice also that the neutral element is always its own inverse (in the integers, $0=-0$).</p>
+<p>We&rsquo;ll sometimes ommit the operation $*$ if it&rsquo;s clear from context, writing just $ab$ for $a*b.$ We&rsquo;ll also write $a^n$ for $a*...*a$ n times and $a^{-n}$ for the inverse of $a^n$, which is equal to $(\inv{a})^n.$</p>
+<p>Another basic result is that $\inv{(ab)}=\inv{b}\inv{a}$ since $(ab)\inv{b}\inv{a}=a\inv{a}=e$ and $\inv{b}\inv{a}(ab)=\inv{b}b=e.$</p>
 <p>As sets have subsets and spaces subspaces, groups also contain subgroups. Formally, $H$ is a subgroup of $G$ when $H\subset G$ and, for all $h_1,h_2\in H$, the product $h_1*h_2$ is also in $H$. I.e., when $H$ is a group of its own together with the operation $*$ of $G$ restricted to elements of $H$. We then write $H\leq G$.</p>
 <p>For example, even numbers form a subgroup of $(\zo, +)$ since whenever you add two of these you still end up with an even number. In general, if $n\in \zo$, the set $n\zo = \{n\cdot m \mid m\in\zo\}$ (i.e., the multiples of $n$) is a subgroup of the integers. Subspaces of vector spaces are also subgroups.</p>
+<p>If $H\leq G$, then $H$ must contain the neutral element $e_G$ of $G$: if $e_H$ were to be a neutral element of $H$ and only $H$, then $he_H=h=e_G$ for any $h\in H$, thus $e_H=e_G$. Similarly, if $h\in H$, the inverse of $h$ in $H$ is identical to the inverse of $h$ in $G$.</p>
 <p>When dealing with groups, we are not interested in all functions $f:G\rightarrow H$, but only in those that bring and respect algebraic information, stabilishing a relation between the operations of the different groups. Examples of these are linear transformations, as well as the boundary operators $\partial_n$ we defined previously. In group theory, these maps are called <strong>homomorphisms</strong>. A homomorphism between groups $(G,*_G)$ and $(H,*_H)$ is a function $f:G\rightarrow H$ such that $f(a *_G b)=f(a)*_H f(b)$ for all $a,b\in G$.</p>
-<p>Bijective homomorphisms are also called <strong>isomorphims</strong>. If we have an isomorphism $f:G\rightarrow H$, it means $G$ and $H$ have operations with the exact same behaviour. They may give different names to their elements, but to group theory $G,H$ can be seen as the same object.</p>
+<p>Note that if $f:G\rightarrow H$ is a homomorphism, $f(e_G)=e_H$ since $e_Hf(a)=f(a)=f(e_Ga)=f(e_G)f(a)$; canceling $f(a),$ $e_H=f(e_G).$ We also have that $f(\inv{a})=\inv{f(a)}$ since $f(a\inv{a})=f(e_G)=e_H=f(a)f(\inv{a}).$ That is, homomorphisms map neutral elements to neutral elements and inverses to inverses. This is, then, also the case for linear transformations and our boundary operators $\partial_n.$</p>
+<p>Bijective homomorphisms are also called <strong>isomorphims</strong>. If we have an isomorphism $f:G\rightarrow H$, it means $G$ and $H$ have operations with the exact same behaviour. They may give different names to their elements, but to group theory $G,H$ can be seen as the same object. We&rsquo;ll then write $G\cong H$ for isomorphic groups. This $\cong$ is an equivalence relation: i.e., it satisfies $G\cong G$, $G\cong H\implies H\cong G$ and $G\cong H\cong K \implies G\cong K$.</p>
+<p>A familiar set of homomorphisms is, for some $x\in\ro$, $f_x:(\ro, +)\rightarrow (\ro_{>0}, \cdot)$ given by $f_x(a)=x^a$, since $f_x(a+b)=x^{a+b}=x^ax^b=f_x(a)f_x(b).$ Similarly, we have logarithms giving us a class of homomorphisms $g_x:(\ro_{>0}, \cdot)\rightarrow (\ro, +)$ defined as $g_x(a)=\log_x(a)$, since $g_x(ab)=\log_x(ab)=\log_x(a)+\log_x(b)=g_x(a)+g_x(b)$. Indeed, we have that $f_x$ is exactly the inverse of $g_x$ since, for all $a>0,$ $f_x(g_x(a))=f_x(\log_x(a))=x^{\log_x(a)}=a$. That is, exponentiation is a homomorphism between $(\ro, +)$ and $(\ro_{>0}, \cdot)$, and the logarithm is its inverse. Thus, we have an isomorphism $(\ro, +)\cong (\ro_{>0}, \cdot).$</p>
+<p>In analogy to linear algebra, every homomorphism $f:G\rightarrow H$ has its kernel $\ker f = \{g\in G\mid f(g)=e_H\},$ $e_H$ the neural element of $H.$ This is a subgroup of $G$ since, for any $a,b\in \ker f$, $f(ab)=f(a)f(b)=e_He_H=e_H.$ Similarly, the image $\im f = \{h\in H\mid f(g)=h\text{ for some }g\in G\}$ is a subgroup of $H$, since $h_1h_2=f(g_1)f(g_2)=f(g_1g_2)$ for any $h_1,h_2\in \im f.$</p>
+<p>In particular, since $\partial_n:C_n(X)\rightarrow C_{n-1}(X)$ is a homomorphism, the set of n-cycles $\ker \partial_n$ and n-boundaries $\im \partial_{n+1}$ are bouth subgroups of $C_n(X)$. We also saw previously that $\im \partial_{n+1}\leq \ker \partial_n.$</p>
 <p>In many cases, we&rsquo;ll ommit the operation $*$ in $a*b$ and just write $ab,$ the actual operation being deduced from context. For example, we&rsquo;ll write $f(ab)=f(a)f(b)$ for homomorphisms, even if $ab$ and $f(a)f(b)$ actually involve two different operations in two distinct groups.</p>
 <h2 id="generating-groups">Generating groups</h2>
+<p>Now that we have some basic group examples, let&rsquo;s see how to combine them and how to generate even more groups.</p>
 <h3 id="products">Products</h3>
 <p>Similarly to sets with their binary operations $\cup, \cap, \times,$ etc., groups can also be joined together. There are three common ways to take two groups in order to get another one: <strong>direct products</strong>, <strong>quotients</strong> and <strong>semi-direct products</strong>. The first is a simple &ldquo;groupification&rdquo; of the cartesian product $\times$, and the second one will be studied at the end of this section. Semi-direct products are very powerful&ndash; specially applied to finite groups&ndash; and we will even see an example when studying the Rubik&rsquo;s cube, but we&rsquo;ll not study them here.</p>
 <p>As for direct products: if we have two groups $(G, *_G)$ and $(H, *_H)$, then the set $G\times H$ has a very natural way to become a group, by taking the operation $*$ on it such that $(g_1, h_1) * (g_2, h_2)=(g_1*_G g_1, h_1 *_H h_1).$ I.e., we apply operations component-wise. This is known as the direct product of $G$ and $H$, written just as $G\times H$ (operations being implicit, as we&rsquo;ll often do). Similarly to sets, we&rsquo;ll write $G^n$ for the (direct) product of $G$ with itself $n$ times.</p>
 <p>Finite groups are specially interesting because they can be to some extent classified. Below is one of the first steps in this direction, which we&rsquo;ll not prove. We&rsquo;ll see more on group classification later on when we study quotients.</p>
 <p><strong>Theorem</strong>: all finite abelian groups are isomorphic to a group of the form</p>
 $$\zmod{a_1}\times...\times\zmod{a_k}$$<h3 id="presentations">Presentations</h3>
-<p>We can describe the groups above through presentations, which are a compact way of analysing groups we&rsquo;ll use a lot. A presentation of a group $G$ is written as $G=\langle a_0, a_1,..., a_n \mid   R\rangle $, where $R$ is a set of algebraic relations using our group operations (things like $a_3 * a_2 = a_6^{-1}$, $a_1^2=a_0*a_3$ etc.). We interpret this as saying that $G$ is generated by elements $a_0,...,a_n$ and all their possible (finite) products, and that they satisfy the relations $R$ (the identity being assumed and thus omited).</p>
-<p>For example, $\mathbb{Z} = \langle 1 \rangle$, i.e., the integers are generated by a single element, without any relations (we say it is freely generated by $1$)&ndash; we say $\mathbb{Z}$ is freely generated by a single element. We also have $\mathbb{Z}/n\mathbb{Z} = \langle a \mid   a^n=e \rangle$.</p>
-<h2 id="example-modules">Example: modules</h2>
-<p>Coming back to spaces and their holes, $C^s(X)$ and $C(X)$ as we defined are also groups with respect to simplex/chain addition. More than this, since we also described multiplication by an integer, they are $\mathbb{Z}$-modules: indeed, they are modules freely generated by simplices/chains on $X$.</p>
+<p>We can describe all examples and constructions above through <strong>presentations</strong>, which are a compact way of analysing groups we&rsquo;ll use a lot. A presentation of a group $G$ is written as $G=\langle a_0,..., a_n \mid   R\rangle $, where $R$ is a set of algebraic relations using our group operations (things like $a_3 * a_2 = a_6^{-1}$, $a_1^2=a_0*a_3$ etc.). We interpret this as saying that $G$ is formally generated by elements $a_0,...,a_n$, a neutral element, their inverses, and all their possible (finite) products, and that they satisfy the relations $R$ (the identity being assumed and thus omited). That is, elements of $G$ are arbitrary products of $a_0,...,a_n$, including their inverses, subject to the relations $R$.</p>
+<p>For example, $\zo \cong \angled{a}$. I.e., $\zo$ can be seen as the group generated by a single element $a$ without any relations, its distinct elements thus being $a,\inv{a},a^2,a^{-2},...,$ with the isomorphism $\zo\rightarrow \angled{a}$ sending $n$ to $a^n.$ For $\zmod{n}$, these have the presentation $\angled{a\mid a^n=e},$ $e$ being the neutral element. The isomorphism is again given by sending $n$ to $a^n$.</p>
+<p>Presentations are not unique, with it being possible to a group to be described by many of these. In particular, presentations can sometimes be simplified by disconsidering redundant elements. For example, $\angled{a}$ could be presented as $\angled{a, a^2}$, but $a^2$ is redundant since its already included in $\angled{a}$. We&rsquo;ll often strive for the simplest presentation.</p>
+<p>If you have two presentations $G=\angled{S_G\mid R_G}$ and $H=\angled{S_H\mid R_H},$ you can also get a presentation fro $G\times H$: it is given by $\angled{S_G\cup S_H\mid R_G\cup R_H \cup R_C},$ where $R_C$ is the set of relations $s_gs_h=s_hs_g$ for all $s_g\in S_G$ and $s_h\in S_H.$ Each $s_g\in G$ should be associated to the pair $(s_g, e_H)\in G\times H,$ and similar for $s_h$. For example, $\zmod{n}\times\zmod{m}$ has the presentation $\angled{a,b\mid a^n=b^m=e, ab=ba}$ (note that we simplified the commuting relations $R_C$).</p>
+<p>Groups that can be described by finite presentations are called finitely generated. Here&rsquo;s another important classification theorem:</p>
+<p><strong>Theorem</strong>: all finitely generated abelian groups are isomorphic to a group of the form</p>
+$$\zo^r\times\zmod{a_1}\times...\times\zmod{a_k}$$<h2 id="example-rings-and-modules">Example: rings and modules</h2>
+<p>If groups generalize integers with addition, it is very natural to try to generalize integers with the operations of addition and multiplication. In this case, we get structures called <strong>rings</strong>. Formally, a ring $(R,+,\cdot)$ is a set $R$ with two operations $+$ and $\cdot$ satisfying:</p>
+<ul>
+<li>
+<p>(R, +) is an <strong>abelian group</strong>;</p>
+</li>
+<li>
+<p>Distributivity: $(a + b) \cdot c = ac + bc$ and $a(b+c)=ab+ac$ for all $a,b,c\in R$;</p>
+</li>
+<li>
+<p>Associativity of the product: $a(bc)=(ab)c$ for all $a,b,c\in R$;</p>
+</li>
+<li>
+<p>Identity: there is an element $1\in R$ such that $1a=a1=a$ for all $a\in R$.</p>
+</li>
+</ul>
+<p>The prototypical example is, again, $(\zo, +, \cdot)$, others being $(\mathbb{Q}, +, \cdot),$ $(\ro, +, \cdot)$ and $(\mathbb{C}, +, \cdot).$ Note that we didn&rsquo;t require for the product to be commutative.</p>
+<p>Coming back to spaces and their holes, we saw that the $(C_n(X), +)$ and $(C_n^\Delta(X), +)$ we defined are both abelian groups. However, we also saw they bring more structure than that: they also have scalar multiplication by an integer. This is neatly described by the concept of <strong>modules</strong>. Concretely, if $(R, +, \cdot)$ is a ring, then an $R$-module is an abelian group $(M, +)$ such that, for all $a\in R$ and $m\in M$, there exists an element $a\cdot m\in M$ for some notion of a scalar product $\cdot.$ These must satisfy the following relations:</p>
+<ul>
+<li>
+<p>Distributivity: $a\cdot(m+n)=a\cdot m+a\cdot n$;</p>
+</li>
+<li>
+<p>Scalar distributivity: $(a+b)\cdot m=a\cdot m + b\cdot m$;</p>
+</li>
+<li>
+<p>Scalar associativity: $a\cdot(b\cdot m)=(ab)\cdot m$;</p>
+</li>
+<li>
+<p>Product by the identity: $1\cdot a=a$.</p>
+</li>
+</ul>
+<p>We then see that our chain groups are all $\zo$-modules, with a proper definition of integer scalar multiplication. It is also, per definition, clear that all real vector spaces are $\ro$-modules.</p>
+<p>As vector spaces have bases, so do modules. For $C_n(X)$, the set of simplices $a_1,...,a_k$ in our complex gives us a basis. More than that, for each $n\in \zo$, $na_i$ is a distinct chain, so that we say that $C_n(X)$ is &ldquo;<strong>freely generated</strong>&rdquo; by the elements $a_1,...,a_k,$ and we write</p>
+$$C_n(X)=\zo a_1\times ...\times \zo a_k,$$<p>each $\zo a_i$ being the set (and group) spanned (with scalar multiplication) by $a_i$. Similar applies to $C^\Delta_n(X)$ with a delta structure over $X.$</p>
 <h2 id="example-fields-finite-projective-spaces-and-spot-it-">Example: fields, finite projective spaces and &ldquo;Spot It!&rdquo; *</h2>
 <p>FIELDS e VECTOR SPACES</p>
 <p>Finite fields</p>
@@ -1049,21 +1102,41 @@ $$P( \mathbb{Z}^3_2)$$<p>Spot it e project</p>
 <p>Fibrac de Hopf</p>
 <p>RP3 = SO(3)</p>
 <h2 id="group-quotients">Group quotients</h2>
-<p>INTRODUZIR COMO G/<del>, a</del>b SE a-b EM H
-HOLES</p>
-<p>EX DE MOD</p>
-<p>EX VETORIAL</p>
-<p>Now, the examples above should be sufficient to note some interesting behaviours. First, it seems like there&rsquo;s a strong relation between $ \mathbb{Z}$ and the groups $ \mathbb{Z}/n\mathbb{Z}$. Indeed, for each member of $ \mathbb{Z}$, we have a new mod group&ndash; and, since each subgroup of the integers is of the form $\langle n\rangle$, we can also say that every subgroup of $ \mathbb{Z}$ gives us a new group. Indeed, we also have, given the element/subgroup $\langle n\rangle$, a surjective homomorphism $f:  \mathbb{Z} \rightarrow \mathbb{Z}/n\mathbb{Z}$ given by $f(m) = m \mod n$.</p>
-<p>EX EM D6</p>
-<p>Let&rsquo;s try to generalize these constructions. Indeed, given a group $G$ and a subgroup $ H\leq G$, we&rsquo;ll consider the sets $aH = {ah \mid   h\in H}$ for every $a\in G$, which are called the (right) cosets of $ H$. &hellip;@@@</p>
-<p>These considerations prompt us to define a new group, whose base set are the cosets $aH, a\in G$, with the operation $aH * bH = (ab)H$. Let&rsquo;s denote this new wanna-be group as $G/H$, called the quotient of $G$ by $H$. In this way, we should get a homomorphism $f: G\rightarrow G/H$ given by $ f(a)=aH$. We should then have, for every $ h\in H$, $f(h)=hH=H=eH$&ndash; i.e., $G/H$ is a method for annihilating elements of $H$, in the same way mod addition nullifies multiples of $n$ (or, rather, elements of $\langle n\rangle$).</p>
-<p>In particular, if $h\in H$, $f(a+h)=f(a)*f(h)=f(a)$, so that elements differing by an element of $H$ are seen as equivalent. This reminds us of how cycles differing by a boundary should be considered as the same hole!</p>
-<p>We can check now if $G/H$ is actually a group. It indeed has an identity (the coset $H$ itself), inverses ($aH*a^{-1}H=eH=H$) and is associative. Seems like we have group, but not really: the operation itself is not neccesarily well-defined. By this, I mean that if we have identical right-cosets $aH=xH$ and $bH=yH$, then we should be able to swap them freely in the operation: $aH*bH$ should be the same as $xH*yH$, $xH*bH$, etc. If this isn&rsquo;t the case, no reasonable algebra will be possible!</p>
-<p>Sadly, not all subgroups $H$ of a group $G$ allow for a well-defined quotient operation. However, this actually won&rsquo;t be a problem, because all the subgroups we&rsquo;re interested in will have this property! For this, define a normal subgroup $ H\leq G$ to be a subgroup such that, for every $g\in G, \, h\inH$, $ghg^{-1}\in H$. Note that all subgroups of an abelian group are normal, since then $ghg^{-1}=gg^{-1}h=h\in H$.</p>
-<p>Theorem: the operation in $G/H$ is well-defined if and only if $H$ is normal. In particular, if $G$ is an abelian group, all quotients are well-defined.</p>
-<p>Proof:</p>
-<p>&hellip;</p>
-<p>EXS DE QUOCIENTES COM PRESENTACS</p>
+<p>We&rsquo;re finally ready to study quotients. Remember that we found out that two n-cycles $c_1,c_2$ should be seen as representing the same hole in $X$ if they &ldquo;differ by a boundary&rdquo;: $c_1-c_2=\partial_{n+1} a$ for some $a\in C_{n+1}(X)$. Translating to group theory, the situation is that we have a group $Z_n(X)$ of cycles and a subgroup $B_n(X)$ of boundaries. We want to take two elements $c_1, c_2\in Z_n(X)$ to be <strong>equivalent</strong> whenever there&rsquo;s some $b\in B_n(X)$ with $\partial b = c_1-c_2$&ndash; or, equivalently, if $c_1-c_2\in B_n(X).$ We&rsquo;ll then write $c_1\sim c_2.$</p>
+<p>In particular, since $\partial_{n+1} a = \partial_{n+1} a - 0 \in B_n(X)$, $\partial_{n+1}a\sim 0$ and every element of $B_n(X)$ (i.e., bounded chains) should be seen as not representing a hole&ndash; or, rather, as a &ldquo;null hole&rdquo;.</p>
+<p>This is actually surprisingly similar to how we get modular numbers. If $\angled{n}\leq \zo$ is the subgroup of multiples of an integer $n$, then, for integers $a,b$, $a\mod n=b\mod n$ exactly when $a-b$ is a multiple of $n$&ndash; i.e., it is contained in $\angled{n}.$ We also have that, if $a$ is a multiple of $n,$ $a \mod n = 0$&ndash; i.e., elements of $\angled{n}$ are &ldquo;killed&rdquo; by the mod operator. This prompts us to a generalization!</p>
+<p>Generally, if we have a group $G$ and a subgroup $H$, we can define the relation $\sim$ in $G$ having $a\sim b$ whenever there&rsquo;s some $h\in H$ and $h=a\inv{b}$&ndash; i.e., whenever $a\inv{b}\in H$. This is an <a href="https://en.wikipedia.org/wiki/Equivalence_relation">equivalence relation</a>: i.e., we always have a relation similar to equality $=$, satisfying</p>
+<ul>
+<li>
+<p>Reflexivity: $g\sim g$ ($e=g\inv{g}$ and $e\in H$);</p>
+</li>
+<li>
+<p>Symmetry: $a\sim b$ implies $b\sim a$ (if $h = a\inv{b}$, then $ \inv{h}= b\inv{a}$);</p>
+</li>
+<li>
+<p>Transitivity: $a\sim b$ and $b\sim c$ imply $a \sim c$ ($h_1 = a\inv{b}$ and $h_2=b\inv{c}$ multiply to give $h_1h_2=a\inv{c}$, $h_1h_2\in H$ since $H$ is a subgroup).</p>
+</li>
+</ul>
+<p>With this relation, we can form <strong>equivalence classes</strong>, which are the maximal sets containing equivalent elements. We&rsquo;ll denote the class of an element $g\in G$ as $[g].$ Note that $H$ is itself a class, all $h_1,h_2\in H$ being equivalent since $h_1\inv{h_2}\in H$ as $H$ is a subgroup.</p>
+<p>We can thus say that holes are equivalence classes of cycles.</p>
+<p>Let&rsquo;s denote the set of equivalence classes of this relation by $G/H.$ This can become a group, called the <strong>quotient group</strong> $G/H$, if we define the operation $[a][b]=[ab].$ The neutral element is given by the class $H$ since $h\inv{e}=h\in H$, so that $[h]=[e]$ and thus $[a][h]=[a][e]=[ae]=[a]$ for all $a\in G.$  The inverse of $[a]$ is $[\inv{a}]$ since $[a][\inv{a}]=[a\inv{a}]=[e]=H,$ as $e\in H.$ That is, the whole subgroup $H$ is condensed into a single element, which is the neutral element. It is as if we were <strong>canceling, annihilating</strong> $H$, sending all its elements to $0$. In the case of chains, this means we&rsquo;re &ldquo;killing&rdquo; all bounded cycles, which indeed shouldn&rsquo;t represent holes.</p>
+<p>In the mod example, we take as subgroup $\angled{n}$ and define $a\cong b$ whenever $a-b\in \angled{n}.$ Equivalence classes are also called mod classes. The quotient $\zo / \angled{n}$ is then the set of these classes with the operation $[a]+[b]=[a+b]$. This is isomoprhic to $\zmod{n}$ (thus our notation), with each class $[a]$ being sent to $a\mod n.$ Indeed, modular groups are prototypical quotients.</p>
+<p>There is, however, a small problem here! The quotient operation may not be well-defined: i.e., if $[x]=[x']$ and $[y]=[y']$, it may not be necessarily the case that $[x][y]=[xy]$ and $[x'][y']=[x'y']$. That is, the operation may depend on the specific representant we choose for our equivalence classes. If this is the case, then doing algebra in $G/H$ is basically impossible&ndash; imagine how chaotic that would be!</p>
+<p>Whar are, the, some possible conditions that may force $[xy]=[x'y']$ for $x\sim x'$ and $y\sim y'$? Well, we want $xy\sim x'y',$ which, by definition, is equivalent to $xy\inv{(x'y')}=x(y\inv{y'})\inv{x'}\in H.$ Since $x\sim x'$ and $y\sim y',$ there are $h_1,h_2\in H$ such that $x'=h_1x$ and $y'=yh_2.$ In particular, $\inv{x'}=\inv{x}h_1$ and $.$ Thus, we want to have</p>
+$$
+\begin{align}
+xy\inv{(x'y')}&=x(y\inv{y'})\inv{x'}=x (y\inv{y}\inv{h_2}) \inv{x}\inv{h_1}
+          \\&= (x\inv{h_2}\inv{x})\inv{h_1}\in H
+\end{align}
+$$<p>This last formula shows us that if we require $xh\inv{x}\in H$ for all $x\in G, h\in H,$ then the quotient operation will be well-defined! Subgroups satisfying this property are called <strong>normal</strong>, and thus we have that, if $H\leq G$ is normal, $G/H$ is a well-defined group. The condition is actually neccesary as well: multiplying the formula above by $h_1$ in the right, we still get an element of $H$ equal to $(x\inv{h_2}\inv{x}).$ Since $x$ and $h_2$ are arbitrary, this forces $H$ to be normal. This proves</p>
+<p><strong>Theorem</strong>: The quotient $G/H$ is a well-defined group if and only if $H\leq G$ is normal.</p>
+<p>Luckilly, every subgroup of an abelian group is normal, since $xh\inv{x}=x\inv{x}h=h\in H$! In particular, this shows that the construction of $\zmod{n}$ as a quotient is correct, and that we don&rsquo;t have to worry about normality in our $C_n(X).$</p>
+<p>Another more trivial examples of normal subgroups, for all $G$, are $\{e\}\leq G$ and $G$ itself. In the first case $G/\{ e\}$&ndash; which we&rsquo;ll also write $G/0$ since $\{e\}$ is isomorphic to the trivial group&ndash; is isomorphic to $G$, since in this case $a\sim b$ if and only if $a\inv{b}=e$ and $b=a,$ so that the equivalence classes are all the sets $\{g\}$ for $g\in G$, and the quotient operation is identical with the one of $G.$ I.e., $G/0\cong G.$ On the other hand, $G/G$ has a single element, since we have $a\sim b$ for all $a,b \in G$ ($a\inv{b}\in G$ always), so that $G/G \cong 0.$</p>
+<p>A guaranted type of normal subgroups are the kernels $\ker f$ of homomorphisms: if $x\in G$ and $h\in \ker f,$ then $f(xh\inv{x})=f(x)f(h)f(\inv{x})=f(x)f(\inv{x})=f(x\inv{x})=f(e_G)=e_H,$ so that $xh\inv{x}\in \ker f.$ Now, if $H\leq G$ is normal, then the map $f: G\rightarrow G/H$ is a homomorphism (basically by definition), and its kernel is exactly $H,$ as we discussed above. Thus, every kernel is normal, and every normal subgroup is a kernel: <strong>homomorphism kernels and normal subgroups are the same</strong>! We then have</p>
+<p><strong>Theorem (Isomorphism Theorem)</strong>: for every homomorphism $f:G\rightarrow H$, $f$ induces an isomorphism $\im f \cong G/\ker f.$</p>
+<p>Normal groups are very important, since in some precise way they are responsible for &ldquo;constructing&rdquo; our groups. These means groups without normal subgrouos&ndash; which are called <strong>simple</strong>&ndash; are specially important, as they can be interpreted as the &ldquo;building blocks&rdquo; of groups. They&rsquo;re to groups what primes are to integers. !!!</p>
+<p>IMG!!! Tabela periodica</p>
+<p>One last important thing about quotients is how they interact with presentations. Namely, if $G=\angled{S_G\mid R_G}$ and $H\leq G$ is normal, then $G/H = \angled{S_G\mid R_G \cup H_0},$ with $H_0$ being the set of relations $h=0$ for $h=0.$ For example, since $\zo=\angled{a}$, then $\zo/\angled{n}=\angled{a \mid a^n=0, a^{2n}=0,...},$ which simplifies to $\angled{a\mid a^n=0}$ (all the $a^{2n}=0,a^{3n}=0,...$ are reduntant since we already have $a^n=0$), as we had before. This makes clear how doing quotients is somehow a process of annihilating normal subgroups.</p>
 <h1 id="homology-theory">Homology theory</h1>
 <p>With all this group theory machinery, we can now finally define our homology groups where holes live!</p>
 <p>First, let&rsquo;s formalize the work we&rsquo;ve done so far with chains, cycles and boundaries. Given a $\Delta$-space structure on $X$, we let $C_n(X)=a_1\mathbb{Z}\times ... \times a_m \mathbb{Z}$ be the $\mathbb{Z}$-module freely generated by all the n-chains $a_1,...,a_m$ in the structure. The boundary homomorphisms $ \partial_n : C_n(X)\rightarrow C_{n-1}(X)$ are defined by the formula we got earlier: $\partial_n(\sigma) = \sum_i (-1)^i \sigma \mid   [v_0, ..., \widehat{v_i}, v_n]$. We thus get the so-called chain complex of the $\Delta$-space structure on $X$:</p>
@@ -1119,7 +1192,8 @@ H_n(\rpt)=
 \zo, & n=0 \\
 0, & \text{else}
 \end{cases}
-$$<h1 id="applications">Applications</h1>
+$$<h2 id="holes-of-order-2">Holes of order 2</h2>
+<h1 id="applications">Applications</h1>
 <h2 id="retractions-and-fixed-points">Retractions and fixed points</h2>
 <p>Suppose we have a retraction $r:X\rightarrow A$. Then the induced homology homomorphisms $r_*^H :H_n(X)\rightarrow H_n(A)$ would be surjective, since for chains $r_*^C:C_n(X)\rightarrow C_n(A)$ is surjective.</p>
 <p>This simple remark shows us that <strong>there is no rectraction</strong> $r:D^2\rightarrow S^1$, since this would give a surjection $0\cong H_1(D^2) \rightarrow H_1(S^1) \cong \mathbb{Z}$, which is absurd. This is a very relevant topological fact, and one that isn&rsquo;t easy at all to prove without some algebraic machinery like homology! Its relevance can be seen, for example, in how it can be used to prove this extremely useful and powerful theorem:</p>
