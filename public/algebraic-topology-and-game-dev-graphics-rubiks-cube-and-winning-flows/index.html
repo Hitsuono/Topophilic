@@ -40,7 +40,7 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
   <meta itemprop="description" content="TL;DR In our search for topological invariants, we’ll learn how holes can be defined and be used to study spaces. This will require studying “model” spaces, known as simplicial complexes, which are widely used in 3D rendering. We will be able to define general topological concepts like “boundary” and “cycle”. This will be formalized through a quick detour on group theory, the study of permutations and their algebras, which can be exemplified by the moves and configurations of a Rubik’s cube. With this machinery, we’ll define the homology groups of a topological space, in which holes live, and are one of the most important and studied topological invariants of spaces.">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="17859">
+  <meta itemprop="wordCount" content="19099">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -219,7 +219,9 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
         angled : ["{\\langle #1 \\rangle}", 1],
         zo : "\\mathbb{Z}",
         zmod : ["\\mathbb{Z}/#1 \\mathbb{Z}", 1],
-        inv : ["#1 ^{-1}", 1]
+        inv : ["#1 ^{-1}", 1],
+        cdn : ["C^\\Delta_#1", 1],
+        csn : ["C^s_#1", 1]
       }
     }
   };
@@ -303,12 +305,19 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
     </li>
     <li><a href="#homology-theory">Homology theory</a>
       <ol>
+        <li><a href="#homology-groups">Homology groups</a></li>
+        <li><a href="#holes-of-dimension-0">Holes of dimension 0</a></li>
+        <li><a href="#disks">Disks</a></li>
+        <li><a href="#the-circle-and-the-spheres">The circle and the spheres</a></li>
+        <li><a href="#the-torus-1">The torus</a></li>
+        <li><a href="#the-klein-bottle-1">The Klein bottle</a></li>
+        <li><a href="#the-projective-plane">The projective plane</a></li>
         <li><a href="#holes-of-order-2">Holes of order 2</a></li>
       </ol>
     </li>
     <li><a href="#applications">Applications</a>
       <ol>
-        <li><a href="#retractions-and-fixed-points">Retractions and fixed points</a></li>
+        <li><a href="#functors-retractions-and-fixed-points">Functors, retractions and fixed points</a></li>
         <li><a href="#the-hex-game">The Hex game</a></li>
         <li><a href="#nash-equilibria-">Nash equilibria **</a></li>
       </ol>
@@ -645,7 +654,7 @@ $$\partial \angled{v_0,...,v_k} = \bigcup_{i=0}^n \angled{v_0,...,\widehat{v_i},
 <p>IMG!!! (quad)</p>
 <p>Another simple example of a complex is the boundary $\partial \angled{v_0,...,v_n}$ of a simplex. In the 2-simplex case, for example, this is the three edges of our triangle joined together at the vertices.</p>
 <p>Indeed, many spaces of interest can be described as homeomorphic to a simplicial complex on $\mathbb{R}^n$, at least for a high enough $n$. When this is the case, we say our space is <strong>triangulable</strong>, since in the two-dimensional, surface case this is equivalent to dividing our embedded space into triangles. Generally, a <strong>triangulation</strong> of a space is a homeomorphic space to it which is a simplicial complex&ndash; i.e., it is a <strong>polygonal topological approximation</strong>, so to speak.</p>
-<p>Let&rsquo;s see some examples of complexes homeomorphic to spaces of interest. First, the $\Delta^n$ themselves give us a simplicial model of $D^n$. For the n-dimensional sphere $S^n$, $\partial \Delta^n$ is a complex homeomorphic to it. In the case of the circle, this is just the three edges of a triangle.</p>
+<p>Let&rsquo;s see some examples of complexes homeomorphic to spaces of interest. First, the $\Delta^n$ themselves give us a simplicial model of $D^n$. For the n-dimensional sphere $S^n$, $\partial \Delta^{n+1}$ is a complex homeomorphic to it. In the case of the circle, this is just the three edges of a triangle.</p>
 <p>IMG!!! (desengo dos espaços)</p>
 <p>SHADER!!! (D3)</p>
 <p>What about, say, a cylinder? This can be done by gluing three quads in sequence, and then gluing the first and last ones together as well, forming a &ldquo;triangular straw&rdquo;.</p>
@@ -1136,35 +1145,74 @@ $$<p>This last formula shows us that if we require $xh\inv{x}\in H$ for all $x\i
 <p><strong>Theorem (Isomorphism Theorem)</strong>: for every homomorphism $f:G\rightarrow H$, $f$ induces an isomorphism $\im f \cong G/\ker f.$</p>
 <p>Normal groups are very important, since in some precise way they are responsible for &ldquo;constructing&rdquo; our groups. These means groups without normal subgrouos&ndash; which are called <strong>simple</strong>&ndash; are specially important, as they can be interpreted as the &ldquo;building blocks&rdquo; of groups. They&rsquo;re to groups what primes are to integers. !!!</p>
 <p>IMG!!! Tabela periodica</p>
-<p>One last important thing about quotients is how they interact with presentations. Namely, if $G=\angled{S_G\mid R_G}$ and $H\leq G$ is normal, then $G/H = \angled{S_G\mid R_G \cup H_0},$ with $H_0$ being the set of relations $h=0$ for $h=0.$ For example, since $\zo=\angled{a}$, then $\zo/\angled{n}=\angled{a \mid a^n=0, a^{2n}=0,...},$ which simplifies to $\angled{a\mid a^n=0}$ (all the $a^{2n}=0,a^{3n}=0,...$ are reduntant since we already have $a^n=0$), as we had before. This makes clear how doing quotients is somehow a process of annihilating normal subgroups.</p>
+<p>One last important thing about quotients is how they interact with presentations. Namely, if $G=\angled{S_G\mid R_G}$ and $H\leq G$ is normal, then $G/H = \angled{S_G\mid R_G \cup H_0},$ with $H_0$ being the set of relations $h=0$ for $h=0.$ In particular, if $H=\angled{S_H},$ we can further simplify to get $G/H = \angled{S_G\mid R_G \cup S_H}.$ For example, since $\zo=\angled{a}$, then $\zo/\angled{n}=\angled{a \mid a^n=0, a^{2n}=0,...},$ which simplifies to $\angled{a\mid a^n=0}$ (all the $a^{2n}=0,a^{3n}=0,...$ are reduntant since we already have $a^n=0$), as we had before. This makes clear how doing quotients is somehow a process of annihilating normal subgroups.</p>
 <h1 id="homology-theory">Homology theory</h1>
-<p>With all this group theory machinery, we can now finally define our homology groups where holes live!</p>
-<p>First, let&rsquo;s formalize the work we&rsquo;ve done so far with chains, cycles and boundaries. Given a $\Delta$-space structure on $X$, we let $C_n(X)=a_1\mathbb{Z}\times ... \times a_m \mathbb{Z}$ be the $\mathbb{Z}$-module freely generated by all the n-chains $a_1,...,a_m$ in the structure. The boundary homomorphisms $ \partial_n : C_n(X)\rightarrow C_{n-1}(X)$ are defined by the formula we got earlier: $\partial_n(\sigma) = \sum_i (-1)^i \sigma \mid   [v_0, ..., \widehat{v_i}, v_n]$. We thus get the so-called chain complex of the $\Delta$-space structure on $X$:</p>
-$$...\xrightarrow{\partial_3}C_2(X)\xrightarrow{\partial_2}C_1(X)\xrightarrow{\partial_1}C_0(X)\rightarrow 0$$<p>We define the n-cycle subgroup to be $Z_n(X)=\ker \partial_n$ and the n-boundary subgroup to be $B_n(X)=\im \partial_{n+1}$. Since $\partial_n\circ \partial_{n+1}=0$, $B_n(X)\leq Z_n(X)$. Finally, the dimension n homology group of $X$ is the quotient</p>
+<h2 id="homology-groups">Homology groups</h2>
+<p>With all this group theory machinery, we can finally define our <strong>homology groups</strong> where holes live.</p>
+<p>Given a simplicial complex $X$, we let $C_n(X)=a_1\mathbb{Z}\times ... \times a_m \mathbb{Z}$ be the $\mathbb{Z}$-module freely generated by all the n-simplices $a_1,...,a_m$ in $X$ (if there are none, $C_n(X)=0$). The boundary homomorphisms $\partial_n : C_n(X)\rightarrow C_{n-1}(X)$ are defined by the formula we got earlier: $\partial_n(\sigma) = \sum_i (-1)^i [v_0, ..., \widehat{v_i},..., v_n].$ Define $\partial_0:C_0(X)\rightarrow 0.$ to be the trivial homomorphism to the trivial group $0,$ which we also write as simply $0.$ We thus get the so-called <strong>chain complex</strong> of $X$:</p>
+$$...\xrightarrow{\partial_3}C_2(X)\xrightarrow{\partial_2}C_1(X)\xrightarrow{\partial_1}C_0(X)\xrightarrow{0}0$$<p>We define the n-cycle subgroup to be $Z_n(X)=\ker \partial_n$ and the n-boundary subgroup to be $B_n(X)=\im \partial_{n+1}$. Since $\partial_n\circ \partial_{n+1}=0$, $B_n(X)\leq Z_n(X)$. Finally, the dimension n homology group of $X$ is the quotient</p>
 $$H_n(X) = \frac{\ker \partial_n}{\im \partial_{n+1}}$$<p>By all our previous considerations, elements of $H_n(X)$ represent n-dimensional holes in $X$!</p>
-<p>CIRCLE (PERHAPS USED ALL ALNG THE EXPALANTION)</p>
-<p>Let&rsquo;s consider</p>
-<p>$ \partial_1(\sigma)=\sigma \mid  [v_1] - \sigma \mid   [v_0] = \sigma \mid  [v_1]-\sigma \mid  [v_1] = 0$</p>
-<p>and thus $ H_1(S^1)=\mathbb{Z}$&ndash; as expected, the circle has a single hole!</p>
+<p>We can do the same construction with delta spaces $X$ and $C^\Delta_n(X)$, getting the homology groups $H_n^\Delta(X).$ It is a theorem we&rsquo;ll not prove here that we always have</p>
+$$H_n(X)\cong H^\Delta_n(X),$$<p>i.e., it doesn&rsquo;t matter whether we use complexes or delta spaces to represent our spaces, homology groups will always be the same. We&rsquo;ll use the most convenient version depending on the specific computation.</p>
+<p>It&rsquo;s now time to properly compute the homology of the spaces we&rsquo;ve been studying! We&rsquo;ll use heavy use of presentations for that: since $H_n(X)$ is abelian (since $C_n(X)$ is so), always assume we have the commutative relation $a_i+a_j=a_j+a_i$ between generators. We&rsquo;ll ommit it for brevity&ndash; so that, for example, we&rsquo;ll write $\zo^2\cong\angled{a,b}$ even thought the complete presentation is $\zo^2=\angled{a,b\mid ab=ba}.$</p>
+<h2 id="holes-of-dimension-0">Holes of dimension 0</h2>
+<p>Note that we also defined a trivial boundary $\partial_1$ for vertices: for $v\in C_0(X),$ $\partial_1v=0$, as <strong>all points are boundaryless</strong>. I.e., $\ker \partial_0=C_0(X).$ When are two vertices $v_0, v_1$ equivalent in the quotient? Well, whenever there&rsquo;s a 1-chain $c$ such that $\partial_1 c=v_0-v_1.$ Suppose that, for each pair of vertices $X$, there is a sequence $c_1,...,c_k$ of 1-simplices forming a path from $v_1$ to $v_0$; then $c_1+...+c_k=v_0-v_1,$ as common vertices between the lines get canceled. When this is possible, we say $X$ is <strong>path-connected</strong>. All the complexes we&rsquo;ve seen so far are path-connected, since they&rsquo;re composed of a single &ldquo;<strong>connected component</strong>&rdquo;.</p>
+<p>In particular, if $X$ is path-connected, all 1-simplices $v_i,v_j$ are equivalent in the quotient: $v_i\sim v_j.$ Their common multiples are also equivalent: $nv_i\sim nv_j.$ This means that, for each $n\in\zo$, we have a class represented by $[nv_0],$ $v_0$ beinf a fixed vertex of $X.$ Thus, $H_0(X)\cong \zo.$ The same is valid using delta structures.</p>
+<p>Actually, the converse is also true: if $H_0(X)\cong \zo,$ then you can find a path connecting all vertices $v_i,v_j,$ and $X$ is connected. We ommit a thorough proof.</p>
+<p>If $X$ had, say, two connected components $X_1, X_2 \subset X,$ then the vertices of $X_1$ would be identified only with themselves, and same in $X_2.$ Thus,</p>
+$$H_0(X)=\angled{v_1,v_2}=H_0(X_1)\times H_0(X_2)\cong \zo^2,$$<p>for fixed vertices $v_1\in X_1, v_2\in X_2.$ In general, if $X$ has $k$ connected components, $H_0(X)\cong \zo^k.$ Thus, we may say that <strong>0-dimensional holes measure connectivity</strong>.</p>
+<h2 id="disks">Disks</h2>
+<p>The disk $D^2$ can be seen as the simplex $\Delta^2$. It is path-connected, so that $H_0(D^2)\cong \zo.$ For 1D cycles, we have only the boundary chain $[v_0,v_1]+[v_1,v_2]+[v_2,v_0]$ and its multiples, but they&rsquo;re all boundaries of $[v_0,v_1,v_2],$ thus being eliminated in the quotient&ndash; thus, $H_1(D^2)=0.$ Since $[v_0,v_1,v_2]$ is the only 2-chain of $\Delta^2$ and it isn&rsquo;t a cycle, $H_2(D^2)=0.$</p>
+<p>In general, all the k-chains of $\Delta^n$, $k$ smaller than $n$, are bounded faces of a sub-simplex, and the only n-chain isn&rsquo;t a cycle. This proves that</p>
+$$
+H_n(D^k)=
+\begin{cases}
+\zo, & n=0 \\
+0, & \text{else}
+\end{cases}
+$$<h2 id="the-circle-and-the-spheres">The circle and the spheres</h2>
+<p>Using our delta structure for $S^1,$ we get that $\cdn{1}(S^1)=c\zo$ and $\cdn{0}(S^1)=v\zo$, with</p>
+$$ \partial_1 c = c \mid  [v_1] - c \mid   [v_0] = c \mid  [v_0]-\sigma \mid  [v_0] = 0,$$<p>and so $\ker \partial_1=\cdn{1}(S^1).$ Since $\partial_2 = 0$ (as $\cdn{2}=0$), we have $H_1(S^1)=\angled{c}\cong\zo.$ Since the circle is connected,</p>
 $$
 H_n(S^1)=
 \begin{cases}
 \zo, & n=1, 0 \\
 0, & \text{else}
 \end{cases}
-$$<p>TORUS</p>
-<p>For the torus $ T^2=S^1\times S^1$, we can give DELTA STRUCT</p>
-<p>Let&rsquo;s compute all the neccesary kernels and images. For $$</p>
-<p>$ \ker \partial_1$:</p>
-<p>These correspond to classes of loops. Indeed, we have that $ \partial_1 (a)=\partial_1 (b)=\partial_1 (c)=0$, so that $ \ker \partial_1 = \langle a, b, c\rangle$, the entire 1-chain space.</p>
-<p>$ \im \partial_1$:</p>
-<p>By the above, $\im \partial_1 = 0$.</p>
-<p>$ \ker \partial_2$:</p>
-<p>Now, we have that $ C_2 = \langle U, L\rangle$: for the boundaries, we have $ \partial_2 (U) = c - b - a$ and $ \partial_2 (L) = b + a - c$, so $\partial_2 (U) = - \partial_2 (L)$, and since $\partial_n$ is a homomorphism, $\partial_2(U+L)=\partial_2(U)+\partial_2(L)=0$. We conclude that $\ker \partial_2 = \langle U+L\rangle $. Geometrically, this is very intuitive: $U+L$ corresponds to the whole surface of the torus, which indeed has no border.</p>
-<p>$ \im \partial_2$:</p>
-<p>The computations above also show us that $\im \partial_2 = \langle c - b - a \rangle = \langle a + b - c\rangle$ (remember that $\langle a\rangle$ always equals $\langle -a\rangle$, by definition of the generated subgroup).</p>
-<p>With these computations, we then get that $H_1(T)=\langle a, b, c\rangle / \langle a+b-c\rangle = \langle a, b, c\mid  a+b-c=0\rangle$. But in this group $ c=a+b$, so indeed the generator $c$ is reduntant in the presentation, and $H_1(T)\cong \langle a,b\rangle\cong \mathbb{Z}^2$. So we have two holes: those of the class of $a$ and those of the class of $b$, as expected!</p>
-<p>For $H_2(T)$, we have $H_2(T)=\langle U+L\rangle /0=\langle U+L\rangle \cong \mathbb{Z}$, with a &ldquo;2-dimensional hole&rdquo; corresponding to the hollow surface of the torus.</p>
+$$<p>We can intepret this as saying that the circle is connected and has a single 1D hole.</p>
+<p>In general, the sphere $S^k$ can be seen as the boundary $\partial \Delta ^{k+1}.$ The n-chain $a$ summing all the faces of this boundary is an n-cycle, and so similarly we always have $H_k(S^k)=\angled{a}\cong\zo.$ As for the other groups with $k>0,$ they&rsquo;re trivial since every face of a face is bounded. Thus</p>
+$$
+H_n(S^k)=
+\begin{cases}
+\zo, & n=k, 0 \\
+0, & \text{else}
+\end{cases}
+$$<p>Proving that indeed k-spheres are the prototypical examples of k-holes.</p>
+<h2 id="the-torus-1">The torus</h2>
+<p>The delta structure we used for the torus has $\cdn{2}(T^2)=U\zo\times L\zo,$ $\cdn{1}(T^2)=a\zo\times b\zo \times c\zo$ and $\cdn{0}(T^2)=v\zo.$</p>
+<p>Let&rsquo;s begin by computing all the neccesary kernels and images, then compute the homology.</p>
+<ul>
+<li>$\ker \partial_1$:</li>
+</ul>
+<p>We have that $ \partial_1 (a)=\partial_1 (b)=\partial_1 (c)=v-v=0$, so that $ \ker \partial_1 = \langle a, b, c\rangle$, the entire 1-chain space.</p>
+<ul>
+<li>$\im \partial_2$:</li>
+</ul>
+<p>As previously computed, $ \partial_2 (U) = c - b - a$ and $ \partial_2 (L) = b + a - c,$ so that $\partial U =-\partial L$. Thus, $\im \partial_2=\angled{c-b-a, a+b-c}=\angled{a+b-c}$ ($c-b-a$ is generated by $a+b-c$ as its inverse).</p>
+<ul>
+<li>$\ker \partial_2$:</li>
+</ul>
+<p>If $mU+nL\in \cdn{2}(T^2),$ then, by linearity, $\partial_2(nU+mL)=(m-n)a + (m-n)b + (n-m)c,$  for $m,n\in \zo.$ This is equal to $0$ if, and only if, $m=n,$ and then $\ker \partial_2 = \angled{nU+nL}=\angled{U+L}.$ As we saw previously, the chain $U+L$ corresponds to the whole torus surface, and thus is boundaryless.</p>
+<ul>
+<li>$H_1(T^2)$:</li>
+</ul>
+<p>With these computations, we then get that</p>
+$$H_1(T)=\langle a, b, c\rangle / \langle a+b-c\rangle = \langle a, b, c\mid  a+b-c=0\rangle$$<p>But in this group $ c=a+b$, so indeed the generator $c$ is reduntant in the presentation, and $H_1(T)\cong \langle a,b\rangle\cong \mathbb{Z}^2$. So we have two holes: those of the class of $a$ and those of the class of $b$, as expected!</p>
+<ul>
+<li>$H_2(T^2)$:</li>
+</ul>
+<p>For $H_2(T)$, we have $H_2(T)=\langle U+L\rangle /0=\langle U+L\rangle \cong \mathbb{Z}$ as $\cdn{3}(T^2)=0$, and we have a &ldquo;2-dimensional hole&rdquo; corresponding to the hollow surface of the torus.</p>
+<p>Summarizing:</p>
 $$
 H_n(T^2)=
 \begin{cases}
@@ -1172,11 +1220,30 @@ H_n(T^2)=
 \zo^2, & n=1 \\
 0, & \text{else}
 \end{cases}
-$$<p>K BOTTLE</p>
-<p>The Klein bottle has $ \partial_1 (a)=\partial_1 (b)=\partial_1 (c)=0$, similar to the torus. Also similar to $T^2$, $ \partial_2(U)=c-b-a$, but here $ \partial_2(L)=b-a-c$.</p>
-<p>Thus, in order to the chain $mU+nL$ to be a cycle, we must have $ \partial_2(mU+nL)=\partial(mU)+\partial(nL)=m\partial(U)+n\partial(L)=-(m+n)a+(n-m)b+(m-n)c=0$. In particular, since the chain group is freely generated of the form $ \langle a,b,c\rangle $, we must have that each of the three coefficients multiplying $a,b,c$ must be zero: $m+n=n-m=m-n=0$. This is only possible if $m=n=0$, so that $\ker \partial_2 = 0$, which directly implies $H_2(K)=0$.</p>
-<p>As for $ \im \partial_2$, we saw it is equal to $ \langle c-b-a, b-a-c\rangle $. Indeed, since $ (c-b-a)+(b-a-c)=-2a$, we also have $ \langle c-b-a, b-a-c\rangle =\langle c-b-a, 2a\rangle =\langle a+b-c, 2a\rangle $.</p>
-<p>We can then conclude that $H_1(K)=\langle a,b,c\rangle /\langle a+b-c, 2a\rangle =\langle a,b,c\mid  a+b-c=0,2a=0\rangle $. Again, $c$ is determined as $a+b$, and we may simplify to get $ H_1(K)=\langle a,b\mid  2a=0\rangle \cong \mathbb{Z}\times \mathbb{Z}/2\mathbb{Z}$.</p>
+$$<h2 id="the-klein-bottle-1">The Klein bottle</h2>
+<p>The delta structure we used for the Klein bottle has $\cdn{2}(K)=U\zo\times L\zo,$ $\cdn{1}(K)=a\zo\times b\zo \times c\zo$ and $\cdn{0}(K)=v\zo.$</p>
+<ul>
+<li>$\ker \partial_1$:</li>
+</ul>
+<p>The Klein bottle has $ \partial_1 (a)=\partial_1 (b)=\partial_1 (c)=0$, similar to the torus. Thus, $\ker \partial_1=\cdn{1}(K).$</p>
+<ul>
+<li>$\im \partial_2$:</li>
+</ul>
+<p>Also similar to $T^2$, $ \partial_2(U)=c-b-a$, but here $ \partial_2(L)=b-a-c$. Thus, $\im \partial_2 = \angled{-a-b+c, -a+b-c}.$ Since $(-a-b+c)+(-a+b-c)=-2a$ and $-(-a-b+c)-2a=(-a+b-c),$ $(-a-b+c)$ (and, consequently, its inverse $(a+b-c)$)and $2a$ are sufficient generators of the image: $\im \partial_2=\angled{a+b-c, 2a}.$</p>
+<ul>
+<li>$\ker \partial_2$:</li>
+</ul>
+<p>In order to the chain $nU+mL$ to be a cycle, we must have $ \partial_2(nU+mL)=-(n+m)a+(m-n)b+(n-m)c=0$. In particular, since the chain group is freely generated of the form $ \langle a,b,c\rangle $, we must have that each of the three coefficients multiplying $a,b,c$ must be zero: $m+n=n-m=m-n=0$. This is only possible if $m=n=0$, so that $\ker \partial_2 = 0$.</p>
+<ul>
+<li>$H_1(K)$:</li>
+</ul>
+<p>We have</p>
+$$H_1(K)=\langle a,b,c\rangle /\langle a+b-c, 2a\rangle =\langle a,b,c\mid  a+b-c=0,2a=0\rangle$$<p>Again, $c$ is determined as $a+b$, and we may simplify to get</p>
+$$H_1(K)=\langle b,a\mid  2a=0\rangle \cong \mathbb{Z}\times \mathbb{Z}/2\mathbb{Z}$$<ul>
+<li>$H_2(K)$:</li>
+</ul>
+<p>Since $\ker \partial_2=0$, $H_2(K)=0$ as well.</p>
+<p>Summarizing:</p>
 $$
 H_n(K)=
 \begin{cases}
@@ -1184,7 +1251,30 @@ H_n(K)=
 \zo, & n=0 \\
 0, & \text{else}
 \end{cases}
-$$<p>RP2</p>
+$$<h2 id="the-projective-plane">The projective plane</h2>
+<p>The delta structure we used for the projective plane has $\cdn{2}(\rpt)=U\zo\times L\zo,$ $\cdn{1}(\rpt)=a\zo\times b\zo \times c\zo$ and $\cdn{0}(\rpt)=v_0\zo\times v_1\zo.$</p>
+<ul>
+<li>$\ker \partial_1$:</li>
+</ul>
+<p>We have that $\partial_1 a=\partial_2=v_1-v_0$ and $\partial_1 c=v_0-v_0=0.$ Thus, $\ker \partial_1=\angled{na-nb+mc},$ for $m,n\in\zo.$ This simplifies to $\angled{a-b, c}.$</p>
+<ul>
+<li>$\im \partial_2$:</li>
+</ul>
+<p>We have that $\partial_2 U=-a+b+c$ and $\partial_2 L = -a+b-c,$ so that $\im \partial_2 = \angled{-a+b+c, -a+b-c}.$ Similarly to the Klein bottle, we have $(-a+b+c)+(-a+b-c)=2(-a+b)$, and we can simplify to $\angled{-a+b+c, 2(-a+b)}.$ For convenience later, we&rsquo;ll use the inverses: $\im \partial_2=\angled{a-b-c, 2(a-b)}.$</p>
+<ul>
+<li>$\ker \partial_2$:</li>
+</ul>
+<p>For integers $n,m,$ linearity gives $\partial_2 (nU+mL)=-(n+m)a+(n+m)b+(n-m)c.$ If we want this to be null, we must have $n+m=n-m=0,$ this only being possible if $n=m=0$ and $\ker \partial_2 = 0.$</p>
+<ul>
+<li>$H_1(\rpt)$:</li>
+</ul>
+<p>We have</p>
+$$H_1(\rpt)=\angled{a-b, c}/\angled{a-b-c, 2(a-b)}=\angled{a-b, c \mid (a-b)-c=0, 2(a-b)=0}$$<p>Again, $c=a-b$ is reduntant, so that $H_1(\rpt)=\angled{a-b\mid 2(a-b)}\cong \zmod{2}.$</p>
+<ul>
+<li>$H_2(\rpt)$:</li>
+</ul>
+<p>$\ker \partial_2=0$ forces $H_2(\rpt)=0.$</p>
+<p>Summarizing:</p>
 $$
 H_n(\rpt)=
 \begin{cases}
@@ -1194,13 +1284,30 @@ H_n(\rpt)=
 \end{cases}
 $$<h2 id="holes-of-order-2">Holes of order 2</h2>
 <h1 id="applications">Applications</h1>
-<h2 id="retractions-and-fixed-points">Retractions and fixed points</h2>
-<p>Suppose we have a retraction $r:X\rightarrow A$. Then the induced homology homomorphisms $r_*^H :H_n(X)\rightarrow H_n(A)$ would be surjective, since for chains $r_*^C:C_n(X)\rightarrow C_n(A)$ is surjective.</p>
-<p>This simple remark shows us that <strong>there is no rectraction</strong> $r:D^2\rightarrow S^1$, since this would give a surjection $0\cong H_1(D^2) \rightarrow H_1(S^1) \cong \mathbb{Z}$, which is absurd. This is a very relevant topological fact, and one that isn&rsquo;t easy at all to prove without some algebraic machinery like homology! Its relevance can be seen, for example, in how it can be used to prove this extremely useful and powerful theorem:</p>
-<p><strong>Theorem (Brower&rsquo;s fixed point theorem)</strong>: Every continuous function $f:D^2\rightarrow D^2$ has a fixed point (i.e., $x$ such that $f(x)=x$).</p>
+<h2 id="functors-retractions-and-fixed-points">Functors, retractions and fixed points</h2>
+<p>Not only spaces can be studied using homology, but also continuous maps between them! If we have a continuous function $f:X\rightarrow Y$, then, for each $n$, we have the <strong>induced homomorphism</strong> $f_\#:\cdn{n}(X)\rightarrow \cdn{n}(Y)$ given by sending $\sigma:\Delta^n\rightarrow X$ to the composition $f\circ \sigma.$</p>
+<p>This definition has a problem, however: nothing guarantees $f\circ \sigma$ is in the delta structure of $Y.$ To solve this, we define the <strong>singular n-chain groups</strong> $C^s_n(X)$, which is freely generated by <strong>all</strong> continuous maps $\sigma:\Delta^n\rightarrow X.$ These groups are huge, since usually are infinitely many such functions. However, they make the theory much cleaner without actually losing anything: with the same formulas as with delta spaces, you can define the singular homology groups $H^s_n(X)$ using $\csn{n},$ and we have an isomorphism $H^s_n(X)\cong H_n(X).$ Actually, you prove that complex and delta space homologies are the same by proving that both are isomorphic singular homology. We won&rsquo;t do that here, though.</p>
+<p>Now, we have no problem defining $f_\#:\csn{n}(X)\rightarrow \csn{n}Y$ for each $n$ as $f_\#(\sigma)=f\circ \sigma.$</p>
+<p>We would like to extend these to homomorphisms $f_*:H_n(X)\rightarrow H_n(Y)$ for each $n$ sending the class $[h]$ to $[f_\#(h)].$ This is only well-defined, however, if it sends cycles to cycles (or else we&rsquo;d land outside of $\ker \partial_n$ in $\csn{n}(Y)$), and if $f_\#$ maps boundaries to boundaries. Otherwise, there would exist a boundary $b$ whose class is the neutral element $B_n(X)$, but being sent to a non-neutral element in $H_n(Y).$</p>
+<p>Luckily, we always have $f_\#$ being well-behaved. This is because of the relation $f_\#\partial_n=\partial_{n}f_\#$: if $c$ is a cycle in $\csn{n}(X),$ then $f_\#(\partial c)=\partial(f_\#c),$ but also $f_\#(\partial c)=f_\#(0)=0,$ so that $\partial (f_\#c),$ $f_\#c$ being then a cycle. If $c=\partial b$ is a boundary, $f(c)=f(\partial b)=\partial f(b)$ is also one.</p>
+<p>Proving $f_\#\partial_n=\partial_{n}f_\#$: if $b\in B_n(X)$ is basically just an application of $f_\#$ being, per definition, a homomorphism:</p>
+$$
+\begin{align}
+f_\#\partial_n (\sigma) &= f_\#(\sum_i (-1)^i \sigma \mid   [v_0, ..., \widehat{v_i},..., v_n])
+                     \\&= \sum_i (-1)^i f_\#(\sigma \mid   [v_0, ..., \widehat{v_i},..., v_n])=\partial_n f_\#(\sigma)
+\end{align}
+$$<p>Thus, the induced homomorphisms $f_*:H_n(X)\rightarrow H_n(Y)$ sending $[h]$ to $[f_\#(h)]$ are well-defined. This means homology is a theory that associated spaces $X$ to (abelian) groups $H_n(X)$, and continuous functions $f:X\rightarrow Y$ to $f_*:H_n(X)\rightarrow H_n(Y)$. This is called homology&rsquo;s <strong>functorial</strong> property.</p>
+<p>Homology being a <strong>functor</strong> is actually a very, very useful and powerful property; for example, when applied to <strong>retractions</strong>. Formally, a retraction from a space $X$ to a subspace $A\subseteq X$ is a continuous functions $r:X\rightarrow A$ such that $r(a)=a$ for all $a\in A.$ That is, we leave $A$ alone and send the rest of $X$ to it.</p>
+<p>IMG !!!</p>
+<p>Suppose we have a retraction $r:X\rightarrow A$. The chain homomorphisms $r_\#:\csn{n}(X)\rightarrow \csn{n}(A)$ are surjective since each $\sigma:\Delta^n\rightarrow A$ can be given as $r_\#(\sigma'),$ $\sigma':\Delta^n\rightarrow X$ being the exact same as $\sigma,$ but with extended range. This implies that the homology induced homomorphisms $r_* :H_n(X)\rightarrow H_n(A)$ are also surjective.</p>
+<p>This simple remark shows us that <strong>there is no rectraction</strong> $r:D^2\rightarrow S^1$, since this would give a surjection $0\cong H_1(D^2) \rightarrow H_1(S^1) \cong \mathbb{Z}$, which is absurd. Intuitively, this means that if tou take a sheet of fabric and fix its boundary, it&rsquo;s impossible to retract it to the boundary without cutting the sheet. This also applies for any dimension, since retractions would imply surjections $r_*:H_n(D^n)\cong 0 \rightarrow H_n(S^n)\cong \zo.$ This is a very relevant topological fact, and one that isn&rsquo;t easy at all to prove without some algebraic machinery like homology! Its relevance can be seen, for example, in how it can be used to prove this extremely useful and powerful theorem:</p>
+<p><strong>Theorem (2D Brower&rsquo;s fixed point theorem)</strong>: Every continuous function $f:D^2\rightarrow D^2$ has a fixed point (i.e., $x$ such that $f(x)=x$).</p>
 <p><strong>Proof</strong>: Suppose we had some $f:D^2\rightarrow D^2$ without fixed points, so that, for all $x$, $x\neq f(x)$. Then we can form a ray going from $x$ to $f(x)$, and this ray intersects $S^1$ at some unique point. Define $r(x)$ to be this intersection. This $r$ is then a retraction $D^2\rightarrow S^1$, which isn&rsquo;t topologically possible, so we have a contradiction.</p>
 <div style="text-align: right;">\(\blacksquare\)</div>
-<p>Brower&rsquo;s fixed point theorem is a very useful theorem. It is, for example, commonly used to prove that certain equations have solutions with fixed points (e.g. equations of <strong>movement</strong>, like from liquids or planetary systems). It is also used in game theory to prove the existence equilibriums (see <a href="https://en.wikipedia.org/wiki/Nash_equilibrium">Nash equilibrium</a>) or lack thereof (see <a href="https://en.wikipedia.org/wiki/Arrow%27s_impossibility_theorem">Arrow&rsquo;s theorem</a>). Here, we will use it to prove a very interesting fact about the following board game.</p>
+<p>IMG !!!</p>
+<p>Actually, this applies to any dimension, using the same exact argument. Thus</p>
+<p><strong>Theorem (Brower&rsquo;s fixed point theorem)</strong>: Every continuous function $f:D^n\rightarrow D^n$ has a fixed point.</p>
+<p>Brower&rsquo;s fixed point theorem is a very useful theorem. It is, for example, commonly used to prove that certain equations have solutions with fixed points (e.g. equations of <strong>movement</strong>, like from liquids or planetary systems). We&rsquo;re now going to study two fascinating applications to games, both fundamentally due to <a href="https://en.wikipedia.org/wiki/John_Forbes_Nash_Jr.">John Nash</a>.</p>
 <h2 id="the-hex-game">The Hex game</h2>
 <p>HEX</p>
 <p>HEX WINNER</p>
@@ -1249,6 +1356,7 @@ $$<p>where the penultimate equality comes from $\sigma^*_i$ being a simplex and 
 <p>However, we also have that $\sum_{a\in A_i}\sigma^*_i(a)\text{Gain}_i(\sigma^*, a)=\sum_{a\in A_i}(S-1)\sigma^*_i(a)^2$, and, since there&rsquo;s at least one $a$ such that $\sigma^*_i(a)>0$ (otherwise mixed strategies wouldn&rsquo;t sum to one), $S=1$ in order for the expected value of the gains to be null. Thus we have $\sigma^*_i(a)=\sigma^*_i(a) + \text{Gain}_i(\sigma^*, a)$, and $\text{Gain}_i(\sigma, a)=0$ for any player $i$ and action $a\in A_i$&ndash; proving that $\sigma^*$ is indeed a Nash equilibrium.</p>
 <div style="text-align: right;">\(\blacksquare\)</div>
 <p>Conversely, every possible Nash equilibrium gives a fixed point of the flow above&ndash; i.e., <strong>equilibria are exactly the fixed points of the &ldquo;winning flow&rdquo;</strong> $f$.</p>
+<p>ARROWS!!!!</p>
 <h1 id="going-further">Going further</h1>
 <p>oi</p>
 
