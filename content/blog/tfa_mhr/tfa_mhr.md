@@ -408,7 +408,9 @@ ELEIC?
 
 ESTRATEGS DOMINADAS
 
-## 3D graphics and simplices
+# 3D graphics and the algebra of holes
+
+## Meshes and simplices
 
 Simplices and simplicial complexes shouldn't be foreign to those artists working with 3D rendering. In this area, they go by the name of **meshes**, which are just simplicial complexes constructed only gluing 2-simplices, plus some extra data we will discuss below. 
 
@@ -743,13 +745,19 @@ Here are some simple, quick properties of groups due to the good behaviour of op
 
 **Proof**: by associativity, $(a*c)*\inv{c}=a*(c*\inv{c})=a*e=a.$ Similarly, $(b*c)*\inv{c}=b.$ Since $a*c=b*c,$ $(a*c)*\inv{c}=(b*c)*\inv{c}$ and so $a=b.$ The proof of the other half of the proposition is basically identical.
 
+{{< qed >}}
+
 **Proposition**: the neutral element $e$ of $G$ is unique (i.e., if there is another neutral element $e'\in G,$ $e=e'$).
 
 **Proof**: if $e,e'$ are netural elemnts, then for all $a\in G$ we have $a*e=a=a*e'.$ By above, we cancel $a$ and get $e=e'.$
 
+{{< qed >}}
+
 **Propostion**: the inverse of $a$ is unique (i.e., if both $b,c$ are inverses of $a$, then $b=c$).
 
 **Proof**: if $b,c$ are inverses of $a,$ then $a*b=e=a*c.$ Canceling $a,$ $b=c.$
+
+{{< qed >}}
 
 Thus, we're justified when we talk about **the** neutral element of $G$ and **the** inverse of $a\in G$. Notice also that the neutral element is always its own inverse (in the integers, $0=-0$).
 
@@ -763,11 +771,15 @@ For example, even numbers form a subgroup of $(\zo, +)$ since whenever you add t
 
 If $H\leq G$, then $H$ must contain the neutral element $e_G$ of $G$: if $e_H$ were to be a neutral element of $H$ and only $H$, then $he_H=h=e_G$ for any $h\in H$, thus $e_H=e_G$. Similarly, if $h\in H$, the inverse of $h$ in $H$ is identical to the inverse of $h$ in $G$.
 
+Every group $G$ has at least two subgroups: $G$ itself and $\{e\},$ the trivial subgroup.
+
 When dealing with groups, we are not interested in all functions $f:G\rightarrow H$, but only in those that bring and respect algebraic information, stabilishing a relation between the operations of the different groups. Examples of these are linear transformations, as well as the boundary operators $\partial_n$ we defined previously. In group theory, these maps are called **homomorphisms**. A homomorphism between groups $(G,*_G)$ and $(H,*_H)$ is a function $f:G\rightarrow H$ such that $f(a *_G b)=f(a)*_H f(b)$ for all $a,b\in G$.
 
 Note that if $f:G\rightarrow H$ is a homomorphism, $f(e_G)=e_H$ since $e_Hf(a)=f(a)=f(e_Ga)=f(e_G)f(a)$; canceling $f(a),$ $e_H=f(e_G).$ We also have that $f(\inv{a})=\inv{f(a)}$ since $f(a\inv{a})=f(e_G)=e_H=f(a)f(\inv{a}).$ That is, homomorphisms map neutral elements to neutral elements and inverses to inverses. This is, then, also the case for linear transformations and our boundary operators $\partial_n.$
 
 Bijective homomorphisms are also called **isomorphims**. If we have an isomorphism $f:G\rightarrow H$, it means $G$ and $H$ have operations with the exact same behaviour. They may give different names to their elements, but to group theory $G,H$ can be seen as the same object. We'll then write $G\cong H$ for isomorphic groups. This $\cong$ is an equivalence relation: i.e., it satisfies $G\cong G$, $G\cong H\implies H\cong G$ and $G\cong H\cong K \implies G\cong K$.
+
+Isomorphisms from $G$ to itself are called **automorphisms**, which form the set $\text{Aut}(G).$ Since their range and domains are the same, they can be composed-- and, as they are all bijections, thus invertible, $(\text{Aut}(G), \circ)$ is a group.
 
 A familiar set of homomorphisms is, for some $x\in\ro$, $f_x:(\ro, +)\rightarrow (\ro_{>0}, \cdot)$ given by $f_x(a)=x^a$, since $f_x(a+b)=x^{a+b}=x^ax^b=f_x(a)f_x(b).$ Similarly, we have logarithms giving us a class of homomorphisms $g_x:(\ro_{>0}, \cdot)\rightarrow (\ro, +)$ defined as $g_x(a)=\log_x(a)$, since $g_x(ab)=\log_x(ab)=\log_x(a)+\log_x(b)=g_x(a)+g_x(b)$. Indeed, we have that $f_x$ is exactly the inverse of $g_x$ since, for all $a>0,$ $f_x(g_x(a))=f_x(\log_x(a))=x^{\log_x(a)}=a$. That is, exponentiation is a homomorphism between $(\ro, +)$ and $(\ro_{>0}, \cdot)$, and the logarithm is its inverse. Thus, we have an isomorphism $(\ro, +)\cong (\ro_{>0}, \cdot).$
 
@@ -775,22 +787,19 @@ In analogy to linear algebra, every homomorphism $f:G\rightarrow H$ has its kern
 
 In particular, since $\partial_n:C_n(X)\rightarrow C_{n-1}(X)$ is a homomorphism, the set of n-cycles $\ker \partial_n$ and n-boundaries $\im \partial_{n+1}$ are bouth subgroups of $C_n(X)$. We also saw previously that $\im \partial_{n+1}\leq \ker \partial_n.$
 
+The kernel is a useful subgroup because it tell you a lot about $f.$ In particular, 
+
+**Proposition**: $f$ is injective if and only if $\ker f$ is the trivial subgroup.
+
+**Proof**: if $f$ is injective, by definition $\ker f$ must contain a single element-- which must be the neutral element. If $\ker f$ is trivial, then if $f(a)=f(b),$ $f(a)\inv{f(b)}=f(a\inv{b})=e,$ and $a\inv{b} \in \ker f,$ implying $a\inv{b}=e,$ thus $a=b$ and so $f$ is injective.
+
+{{< qed >}}
+
 In many cases, we'll ommit the operation $*$ in $a*b$ and just write $ab,$ the actual operation being deduced from context. For example, we'll write $f(ab)=f(a)f(b)$ for homomorphisms, even if $ab$ and $f(a)f(b)$ actually involve two different operations in two distinct groups.
 
-## Generating groups
+## Describing groups
 
-Now that we have some basic group examples, let's see how to combine them and how to generate even more groups.
-
-### Products
-Similarly to sets with their binary operations $\cup, \cap, \times,$ etc., groups can also be joined together. There are three common ways to take two groups in order to get another one: **direct products**, **quotients** and **semi-direct products**. The first is a simple "groupification" of the cartesian product $\times$, and the second one will be studied at the end of this section. Semi-direct products are very powerful-- specially applied to finite groups-- and we will even see an example when studying the Rubik's cube, but we'll not study them here.
-
-As for direct products: if we have two groups $(G, *_G)$ and $(H, *_H)$, then the set $G\times H$ has a very natural way to become a group, by taking the operation $*$ on it such that $(g_1, h_1) * (g_2, h_2)=(g_1*_G g_1, h_1 *_H h_1).$ I.e., we apply operations component-wise. This is known as the direct product of $G$ and $H$, written just as $G\times H$ (operations being implicit, as we'll often do). Similarly to sets, we'll write $G^n$ for the (direct) product of $G$ with itself $n$ times.
-
-Finite groups are specially interesting because they can be to some extent classified. Below is one of the first steps in this direction, which we'll not prove. We'll see more on group classification later on when we study quotients.
-
-**Theorem**: all finite abelian groups are isomorphic to a group of the form
-
-$$\zmod{a_1}\times...\times\zmod{a_k}$$
+### Tables
 
 ### Presentations
 
@@ -800,13 +809,55 @@ For example, $\zo \cong \angled{a}$. I.e., $\zo$ can be seen as the group genera
 
 Presentations are not unique, with it being possible to a group to be described by many of these. In particular, presentations can sometimes be simplified by disconsidering redundant elements. For example, $\angled{a}$ could be presented as $\angled{a, a^2}$, but $a^2$ is redundant since its already included in $\angled{a}$. We'll often strive for the simplest presentation.
 
-If you have two presentations $G=\angled{S_G\mid R_G}$ and $H=\angled{S_H\mid R_H},$ you can also get a presentation fro $G\times H$: it is given by $\angled{S_G\cup S_H\mid R_G\cup R_H \cup R_C},$ where $R_C$ is the set of relations $s_gs_h=s_hs_g$ for all $s_g\in S_G$ and $s_h\in S_H.$ Each $s_g\in G$ should be associated to the pair $(s_g, e_H)\in G\times H,$ and similar for $s_h$. For example, $\zmod{n}\times\zmod{m}$ has the presentation $\angled{a,b\mid a^n=b^m=e, ab=ba}$ (note that we simplified the commuting relations $R_C$).
-
 Groups that can be described by finite presentations are called finitely generated. Here's another important classification theorem:
 
 **Theorem**: all finitely generated abelian groups are isomorphic to a group of the form
 
 $$\zo^r\times\zmod{a_1}\times...\times\zmod{a_k}$$
+
+The groups with presentation $F_n=\angled{a_1,...,a_n}$ are called the **free groups** generated by $n$ elements. They contain no relations at all. This is actually somewhat circular: the proper, formal way to define presentations is actually by using the free groups and then quotients. But we're doing a more informal definition here.
+
+
+## Generating groups
+
+Now that we have some basic group examples, let's see how to combine them and how to generate even more groups.
+
+### Direct products
+Similarly to sets with their binary operations $\cup, \cap, \times,$ etc., groups can also be joined together. There are three common ways to take two groups in order to get another one: **direct products**, **semidirect products** and **quotients**. The first is a simple "groupification" of the cartesian product $\times.$
+
+If we have two groups $(G, *_G)$ and $(H, *_H)$, then the set $G\times H$ has a very natural way to become a group, by taking the operation $*$ on it such that $(g_1, h_1) * (g_2, h_2)=(g_1*_G g_1, h_1 *_H h_1).$ I.e., we apply operations component-wise. This is known as the direct product of $G$ and $H$, written just as $G\times H$ (operations being implicit, as we'll often do). Similarly to sets, we'll write $G^n$ for the (direct) product of $G$ with itself $n$ times.
+
+The neutral element of $G\times H$ is $(e_G, e_H)$ and the inverse of $(g,h)$ is $(\inv{g}, \inv{h}).$
+
+Finite groups are specially interesting because they can be to some extent classified. Below is one of the first steps in this direction, which we'll not prove. We'll see more on group classification later on when we study quotients.
+
+**Theorem**: all finite abelian groups are isomorphic to a group of the form
+
+$$\zmod{a_1}\times...\times\zmod{a_k}$$
+
+Below is the table for the group $\zmod{2}\times \zmod{2}.$ You can check it is different from that of $\zmod{4}$ so that these two are non-isomorphic groups of four elements:
+
+$$\begin{array}{c|c c c c}
+  & (0,0) & (1, 0) & (0, 1) & (1, 1)  \\
+\hline
+(0,0) & (0,0) & (1,0) & (0,1) & (1,1) \\
+(1,0) & (1,0) & (0,0) & (1,1) & (0, 1) \\
+(0,1) & (0,1) & (1,1) & (0,0) & (1, 0) \\
+(1,1) & (1,1) & (0, 1) & (1, 0) & (0,0) \\
+\end{array}
+$$
+
+If you have two presentations $G=\angled{S_G\mid R_G}$ and $H=\angled{S_H\mid R_H},$ you can also get a presentation fro $G\times H$: it is given by $\angled{S_G\cup S_H\mid R_G\cup R_H \cup R_C},$ where $R_C$ is the set of relations $s_gs_h=s_hs_g$ for all $s_g\in S_G$ and $s_h\in S_H.$ Each $s_g\in G$ should be associated to the pair $(s_g, e_H)\in G\times H,$ and similar for $s_h$. For example, $\zmod{n}\times\zmod{m}$ has the presentation $\angled{a,b\mid a^n=b^m=e, ab=ba}$ (note that we simplified the commuting relations $R_C$).
+
+### Semidirect products
+
+The operation we defined on $G\times H$ doesn't have any sort of "interference" between the operations of $G$ and $H.$ I.e., the first component only cares about $G$, being completely independent of whatever happens on the second one corresponding to $H.$ 
+
+We can add some interplay between the two groups as follows. Choose and fix some homomorphism $\phi : H\rightarrow \text{Aut}(G).$ This means that, for each $h\in H$, $\phi (h)$ is some sort of permutation, an action over $G.$ Instead of multiplying elements $g_1,g_2\in G$ to get $g_1g_2$ in the first component, we could add some interdependence on $H$ by multiply $g_1$ with $\phi(h_1)(g_2)$-- so to speak, a multiplication "twisted" by $\phi(h).$ I.e., we get the operation
+
+$$(g_1, h_1)*(g_2,h_2)=(g_1\phi(h_1)(g_2),h_1h_2).$$
+
+The set $G\times H$ together with this new operation (dependant on $\phi$) is called the semidirect product of $G$ and $H,$ denoted $G\rtimes_\phi H.$ These products are very powerful and can genrate a wide class of groups- as we'll see later with the Rubik's cube group.
 
 ## Example: rings and modules
 
@@ -917,15 +968,39 @@ Luckilly, every subgroup of an abelian group is normal, since $xh\inv{x}=x\inv{x
 
 Another more trivial examples of normal subgroups, for all $G$, are $\{e\}\leq G$ and $G$ itself. In the first case $G/\{ e\}$-- which we'll also write $G/0$ since $\{e\}$ is isomorphic to the trivial group-- is isomorphic to $G$, since in this case $a\sim b$ if and only if $a\inv{b}=e$ and $b=a,$ so that the equivalence classes are all the sets $\{g\}$ for $g\in G$, and the quotient operation is identical with the one of $G.$ I.e., $G/0\cong G.$ On the other hand, $G/G$ has a single element, since we have $a\sim b$ for all $a,b \in G$ ($a\inv{b}\in G$ always), so that $G/G \cong 0.$
 
-A guaranted type of normal subgroups are the kernels $\ker f$ of homomorphisms: if $x\in G$ and $h\in \ker f,$ then $f(xh\inv{x})=f(x)f(h)f(\inv{x})=f(x)f(\inv{x})=f(x\inv{x})=f(e_G)=e_H,$ so that $xh\inv{x}\in \ker f.$ Now, if $H\leq G$ is normal, then the map $f: G\rightarrow G/H$ is a homomorphism (basically by definition), and its kernel is exactly $H,$ as we discussed above. Thus, every kernel is normal, and every normal subgroup is a kernel: **homomorphism kernels and normal subgroups are the same**! We then have 
+One important thing about quotients is how they interact with presentations. Namely, if $G=\angled{S_G\mid R_G}$ and $H\leq G$ is normal, then $G/H = \angled{S_G\mid R_G \cup H_0},$ with $H_0$ being the set of relations $h=0$ for $h=0.$ In particular, if $H=\angled{S_H},$ we can further simplify to get $G/H = \angled{S_G\mid R_G \cup S_H}.$ For example, since $\zo=\angled{a}$, then $\zo/\angled{n}=\angled{a \mid a^n=0, a^{2n}=0,...},$ which simplifies to $\angled{a\mid a^n=0}$ (all the $a^{2n}=0,a^{3n}=0,...$ are reduntant since we already have $a^n=0$), as we had before. This makes clear how doing quotients is somehow a process of annihilating normal subgroups.
 
-**Theorem (Isomorphism Theorem)**: for every homomorphism $f:G\rightarrow H$, $f$ induces an isomorphism $\im f \cong G/\ker f.$
+That's pretty much what you need to know about quotients to understand homology. The rest of this section is optional.
+
+### The isomorphism theorem and the classification of finite groups (optional)
+
+A guaranted type of normal subgroups are the kernels $\ker f$ of homomorphisms: if $x\in G$ and $h\in \ker f,$ then $f(xh\inv{x})=f(x)f(h)f(\inv{x})=f(x)f(\inv{x})=f(x\inv{x})=f(e_G)=e_H,$ so that $xh\inv{x}\in \ker f.$ Now, if $H\leq G$ is normal, then the map $f: G\rightarrow G/H$ is a homomorphism (basically by definition), and its kernel is exactly $H,$ as we discussed above. Thus, every kernel is normal, and every normal subgroup is a kernel: **homomorphism kernels and normal subgroups are the same**! 
+
+Important in the quotient construction is the "projection homomorphism" $\pi : G\rightarrow G/H$ sending $a$ to its class $[a].$ Its kernel is exactly $H$.
+
+All of this allows us to prove the following, highly useful theorem:
+
+**Theorem (Isomorphism Theorem)**: for every homomorphism $f:G\rightarrow H$, $\phi:G/\ker f\rightarrow \im f$ defined as $\phi([a])=f(a)$ is an isomorphism 
+
+$$G/\ker f \cong \im f$$
+
+**Proof**:
+
+$\phi$ is well-defined: if $[a]=[b],$ then $a=kb,$ with $k\in \ker f.$ Thus, if $\phi([a])=f(a)=f(kb)=f(k)f(b)=f(b)=\phi([b]).$ It is a homomorphism because $f$ is one and by the definition of the quotient product (well-defined since $\ker f$ is normal): $\phi([a][b])=\phi([ab])=f(ab)=f(a)f(b)=\phi([a])\phi([b]).$
+
+$\phi$ is, by definition, surjective. It is injective since $\ker \phi$ is trivial: $\phi([a])=e$ implies $f(a)=e,$ $a\in \ker f,$ and so $[a]$ is the trivial class $\ker f$ in the quotient.
+
+Note in particular that $\phi \circ \pi=f.$ The whole situation is described on the diagram below (you can't escape from diagrams in algebra!):
+
+{{< figure src="firstiso.png" alt="First Isomorphism Theorem diagram" width="25%" height="auto" >}}
+
+{{< qed >}}
+
+The isomorphism theorem tells us that normal groups can actually be used
 
 Normal groups are very important, since in some precise way they are responsible for "constructing" our groups. These means groups without normal subgrouos-- which are called **simple**-- are specially important, as they can be interpreted as the "building blocks" of groups. They're to groups what primes are to integers. !!!
 
 IMG!!! Tabela periodica
-
-One last important thing about quotients is how they interact with presentations. Namely, if $G=\angled{S_G\mid R_G}$ and $H\leq G$ is normal, then $G/H = \angled{S_G\mid R_G \cup H_0},$ with $H_0$ being the set of relations $h=0$ for $h=0.$ In particular, if $H=\angled{S_H},$ we can further simplify to get $G/H = \angled{S_G\mid R_G \cup S_H}.$ For example, since $\zo=\angled{a}$, then $\zo/\angled{n}=\angled{a \mid a^n=0, a^{2n}=0,...},$ which simplifies to $\angled{a\mid a^n=0}$ (all the $a^{2n}=0,a^{3n}=0,...$ are reduntant since we already have $a^n=0$), as we had before. This makes clear how doing quotients is somehow a process of annihilating normal subgroups.
 
 # Homology theory
 
@@ -933,7 +1008,7 @@ One last important thing about quotients is how they interact with presentations
 
 With all this group theory machinery, we can finally define our **homology groups** where holes live.
 
-Given a simplicial complex $X$, we let $C_n(X)=a_1\mathbb{Z}\times ... \times a_m \mathbb{Z}$ be the $\mathbb{Z}$-module freely generated by all the n-simplices $a_1,...,a_m$ in $X$ (if there are none, $C_n(X)=0$). The boundary homomorphisms $\partial_n : C_n(X)\rightarrow C_{n-1}(X)$ are defined by the formula we got earlier: $\partial_n(\sigma) = \sum_i (-1)^i [v_0, ..., \widehat{v_i},..., v_n].$ Define $\partial_0:C_0(X)\rightarrow 0.$ to be the trivial homomorphism to the trivial group $0,$ which we also write as simply $0.$ We thus get the so-called **chain complex** of $X$:
+Given a simplicial complex $X$, we let $C_n(X)=\mathbb{Z}a_1\times ... \times \mathbb{Z}a_m$ be the $\mathbb{Z}$-module freely generated by all the n-simplices $a_1,...,a_m$ in $X$ (if there are none, $C_n(X)=0$). The boundary homomorphisms $\partial_n : C_n(X)\rightarrow C_{n-1}(X)$ are defined by the formula we got earlier: $\partial_n(\sigma) = \sum_i (-1)^i [v_0, ..., \widehat{v_i},..., v_n].$ Define $\partial_0:C_0(X)\rightarrow 0.$ to be the trivial homomorphism to the trivial group $0,$ which we also write as simply $0.$ We thus get the so-called **chain complex** of $X$:
 
 $$...\xrightarrow{\partial_3}C_2(X)\xrightarrow{\partial_2}C_1(X)\xrightarrow{\partial_1}C_0(X)\xrightarrow{0}0$$
 
@@ -957,7 +1032,7 @@ Note that we also defined a trivial boundary $\partial_1$ for vertices: for $v\i
 
 In particular, if $X$ is path-connected, all 1-simplices $v_i,v_j$ are equivalent in the quotient: $v_i\sim v_j.$ Their common multiples are also equivalent: $nv_i\sim nv_j.$ This means that, for each $n\in\zo$, we have a class represented by $[nv_0],$ $v_0$ beinf a fixed vertex of $X.$ Thus, $H_0(X)\cong \zo.$ The same is valid using delta structures.
 
-Actually, the converse is also true: if $H_0(X)\cong \zo,$ then you can find a path connecting all vertices $v_i,v_j,$ and $X$ is connected. We ommit a thorough proof.
+Actually, the converse is also true: if $H_0(X)\cong \zo,$ then you can find a path connecting all vertices $v_i,v_j,$ and $X$ is connected. We ommit the proof.
 
 If $X$ had, say, two connected components $X_1, X_2 \subset X,$ then the vertices of $X_1$ would be identified only with themselves, and same in $X_2.$ Thus, 
 
@@ -978,6 +1053,8 @@ H_n(D^k)=
 0, & \text{else}
 \end{cases}
 $$
+
+We interpret this as saying that the disks are all connected, but have no holes at any dimension.
 
 ## The circle and the spheres
 
@@ -1007,7 +1084,7 @@ H_n(S^k)=
 \end{cases}
 $$
 
-Proving that indeed k-spheres are the prototypical examples of k-holes.
+Again, this tells us the sphere $S^k$ is connected an has a single hole at dimension $k.$
 
 ## The torus
 
@@ -1033,7 +1110,7 @@ With these computations, we then get that
 
 $$H_1(T)=\langle a, b, c\rangle / \langle a+b-c\rangle = \langle a, b, c\mid  a+b-c=0\rangle$$ 
 
-But in this group $ c=a+b$, so indeed the generator $c$ is reduntant in the presentation, and $H_1(T)\cong \langle a,b\rangle\cong \mathbb{Z}^2$. So we have two holes: those of the class of $a$ and those of the class of $b$, as expected!
+But in this group $ c=a+b$, so indeed the generator $c$ is reduntant in the presentation, and $H_1(T)\cong \langle a,b\rangle\cong \mathbb{Z}^2$. So we have two 1D holes: those of the class of $a$ and those of the class of $b$, as expected!
 
 * $H_2(T^2)$:
 
@@ -1056,7 +1133,7 @@ The delta structure we used for the Klein bottle has $\cdn{2}(K)=U\zo\times L\zo
 
 * $\ker \partial_1$:
 
-The Klein bottle has $ \partial_1 (a)=\partial_1 (b)=\partial_1 (c)=0$, similar to the torus. Thus, $\ker \partial_1=\cdn{1}(K).$
+The Klein bottle has $ \partial_1 (a)=\partial_1 (b)=\partial_1 (c)=0$, similar to the torus. Thus, $\ker \partial_1=\cdn{1}(K)=\angled{a,b,c}.$
 
 * $\im \partial_2$:
 
@@ -1113,7 +1190,7 @@ We have
 
 $$H_1(\rpt)=\angled{a-b, c}/\angled{a-b-c, 2(a-b)}=\angled{a-b, c \mid (a-b)-c=0, 2(a-b)=0}$$
 
-Again, $c=a-b$ is reduntant, so that $H_1(\rpt)=\angled{a-b\mid 2(a-b)}\cong \zmod{2}.$
+Again, $c=a-b$ is reduntant, so that $H_1(\rpt)=\angled{a-b\mid 2(a-b)=0}\cong \zmod{2}.$
 
 * $H_2(\rpt)$:
 
@@ -1130,7 +1207,7 @@ H_n(\rpt)=
 \end{cases}
 $$
 
-## Holes of order 2
+## Holes of order 2 *
 
 # Applications
 ## Functors, retractions and fixed points
@@ -1143,7 +1220,7 @@ Now, we have no problem defining $f_\#:\csn{n}(X)\rightarrow \csn{n}Y$ for each 
 
 We would like to extend these to homomorphisms $f_*:H_n(X)\rightarrow H_n(Y)$ for each $n$ sending the class $[h]$ to $[f_\#(h)].$ This is only well-defined, however, if it sends cycles to cycles (or else we'd land outside of $\ker \partial_n$ in $\csn{n}(Y)$), and if $f_\#$ maps boundaries to boundaries. Otherwise, there would exist a boundary $b$ whose class is the neutral element $B_n(X)$, but being sent to a non-neutral element in $H_n(Y).$
 
-Luckily, we always have $f_\#$ being well-behaved. This is because of the relation $f_\#\partial_n=\partial_{n}f_\#$: if $c$ is a cycle in $\csn{n}(X),$ then $f_\#(\partial c)=\partial(f_\#c),$ but also $f_\#(\partial c)=f_\#(0)=0,$ so that $\partial (f_\#c),$ $f_\#c$ being then a cycle. If $c=\partial b$ is a boundary, $f(c)=f(\partial b)=\partial f(b)$ is also one.
+Luckily, we always have $f_\#$ being well-behaved. This is because of the relation $f_\#\partial_n=\partial_{n}f_\#$: if $c$ is a cycle in $\csn{n}(X),$ then $f_\#(\partial c)=\partial(f_\#c),$ but also $f_\#(\partial c)=f_\#(0)=0,$ so that $\partial (f_\#c)=0,$ $f_\#c$ being then a cycle. If $c=\partial b$ is a boundary, $f(c)=f(\partial b)=\partial f(b)$ is also one.
 
 Proving $f_\#\partial_n=\partial_{n}f_\#$: if $b\in B_n(X)$ is basically just an application of $f_\#$ being, per definition, a homomorphism:
 
@@ -1154,15 +1231,17 @@ f_\#\partial_n (\sigma) &= f_\#(\sum_i (-1)^i \sigma \mid   [v_0, ..., \widehat{
 \end{align}
 $$
 
-Thus, the induced homomorphisms $f_*:H_n(X)\rightarrow H_n(Y)$ sending $[h]$ to $[f_\#(h)]$ are well-defined. This means homology is a theory that associated spaces $X$ to (abelian) groups $H_n(X)$, and continuous functions $f:X\rightarrow Y$ to $f_*:H_n(X)\rightarrow H_n(Y)$. This is called homology's **functorial** property.
+Thus, the induced homomorphisms $f_*:H_n(X)\rightarrow H_n(Y)$ sending $[h]$ to $[f_\#(h)]$ are well-defined. This means homology is a theory that associated spaces $X$ to (abelian) groups $H_n(X)$, and continuous functions $f:X\rightarrow Y$ to $f_*:H_n(X)\rightarrow H_n(Y)$. This is called homology's **functorial** property, and the n-th homology $H_n(\cdot)$ is called a **functor** between spaces and groups.
 
-Homology being a **functor** is actually a very, very useful and powerful property; for example, when applied to **retractions**. Formally, a retraction from a space $X$ to a subspace $A\subseteq X$ is a continuous functions $r:X\rightarrow A$ such that $r(a)=a$ for all $a\in A.$ That is, we leave $A$ alone and send the rest of $X$ to it.
+The idea of some theory $F$ bringing mathematical objects $o$ to $Fo$ and maps $f:o\rightarrow o'$ to maps $Ff:Fo\rightarrow Fo'$ is one of the most fundamental insights of [category theory](https://en.wikipedia.org/wiki/Category_theory) ([see also](https://en.wikipedia.org/wiki/Functor)), and is widely applied in [functional programming](https://en.wikipedia.org/wiki/Functor_(functional_programming)).
+
+Homology being a functor is actually a very, very useful and powerful property; for example, when applied to **retractions**. Formally, a retraction from a space $X$ to a subspace $A\subseteq X$ is a continuous functions $r:X\rightarrow A$ such that $r(a)=a$ for all $a\in A.$ That is, we leave $A$ alone and send the rest of $X$ to it.
 
 IMG !!!
 
 Suppose we have a retraction $r:X\rightarrow A$. The chain homomorphisms $r_\#:\csn{n}(X)\rightarrow \csn{n}(A)$ are surjective since each $\sigma:\Delta^n\rightarrow A$ can be given as $r_\#(\sigma'),$ $\sigma':\Delta^n\rightarrow X$ being the exact same as $\sigma,$ but with extended range. This implies that the homology induced homomorphisms $r_* :H_n(X)\rightarrow H_n(A)$ are also surjective. 
 
-This simple remark shows us that **there is no rectraction** $r:D^2\rightarrow S^1$, since this would give a surjection $0\cong H_1(D^2) \rightarrow H_1(S^1) \cong \mathbb{Z}$, which is absurd. Intuitively, this means that if tou take a sheet of fabric and fix its boundary, it's impossible to retract it to the boundary without cutting the sheet. This also applies for any dimension, since retractions would imply surjections $r_*:H_n(D^n)\cong 0 \rightarrow H_n(S^n)\cong \zo.$ This is a very relevant topological fact, and one that isn't easy at all to prove without some algebraic machinery like homology! Its relevance can be seen, for example, in how it can be used to prove this extremely useful and powerful theorem:
+This simple remark shows us that **there is no rectraction** $r:D^2\rightarrow S^1$, since this would give a surjection $0\cong H_1(D^2) \rightarrow H_1(S^1) \cong \mathbb{Z}$, which is absurd. Intuitively, this means that if tou take a sheet of fabric and fix its boundary, it's impossible to retract it to the boundary without cutting the sheet. This also applies for any dimension, since retractions would imply surjections $r_*:H_n(D^{n+1})\cong 0 \rightarrow H_n(S^n)\cong \zo.$ This is a very relevant topological fact, and one that isn't easy at all to prove without some algebraic machinery like homology! Its relevance can be seen, for example, in how it can be used to prove this extremely useful and powerful theorem:
 
 **Theorem (2D Brower's fixed point theorem)**: Every continuous function $f:D^2\rightarrow D^2$ has a fixed point (i.e., $x$ such that $f(x)=x$).
 
@@ -1172,22 +1251,39 @@ This simple remark shows us that **there is no rectraction** $r:D^2\rightarrow S
 
 IMG !!!
 
-Actually, this applies to any dimension, using the same exact argument. Thus
+Actually, this applies to any dimension, using the exact same argument. Thus
 
 **Theorem (Brower's fixed point theorem)**: Every continuous function $f:D^n\rightarrow D^n$ has a fixed point.
 
 Brower's fixed point theorem is a very useful theorem. It is, for example, commonly used to prove that certain equations have solutions with fixed points (e.g. equations of **movement**, like from liquids or planetary systems). We're now going to study two fascinating applications to games, both fundamentally due to [John Nash](https://en.wikipedia.org/wiki/John_Forbes_Nash_Jr.).
 
 ## The Hex game
-HEX
 
-HEX WINNER
+Hex is a board game invented by the norwegian polymath [Piet Hein](https://en.wikipedia.org/wiki/Piet_Hein_(scientist)) and later further studied by Nash. It's played on an 11x11 hexagonal board, between two players: black (which starts) and white. Each one places a stone on a cell of the according color in its turn. Stones can't be taken away from the board. Black's objective is to connect the horizontal sides of the board by black stones, and similarly white has to connect the vertical sides. Here's, for example, a game won by black:
 
-**Theorem**: Hex always has a winner.
+IMG !!!
 
-**Proof**: First, note that the graph $B_k$ gives us a **triangulation** of the square $D_k=[0,k]\times [0,k]$ (take the triangles to be filled), which is homeomorphic to a 2D disk (filled circle). Assuming there exists a Hex game without a winner, we will construct a map $f:D_k\rightarrow D_k$ without a fixed point, which is a contradiction. 
+Interestingly, Hex can also be played on a Go-like board, shown below. As in Go, you place stones in vertices on the board, but, unlike in Go, these vertices are not connected only in a square lattice: they also contain diagonal connections! These are such that the connectivity of the hexagonal and the Go-like board are exactly the same. Each row of vertices corresponds to a row of hexagonal cells, and you can check that the connectivities are the same.
 
-Since $D_k$ is triangulated by $B_k$, every element $x$ of $D_k$ can be written uniquely in barycentric coordinates as a linear combination $x=\lambda_0 v_0 + \lambda_1 v_1 +\lambda_2 v_2$, for $v_0,v_1,v_2$ vertices of $B_k$ forming the triangle containing $x$, and $\lambda_0+\lambda_1+\lambda_2=1$,  $\lambda_i\geq 0$. In particular, every function $f:B_k\rightarrow \rt$ can extend to one $\widehat{f}:D_k\rightarrow \rt$ by defining $\widehat{f}(\lambda_0 v_0 + \lambda_1 v_1 +\lambda_2 v_2)=\lambda_0 f(v_0) + \lambda_1 f(v_1) +\lambda_2 f(v_2)$.
+IMG!!! go-like
+
+You can play Hex solo and check the equivalence between the hexagonal and Go-like boards below:
+
+GAME!!!
+
+The fascinating thing about Hex is that is an inherently **topological game**, in the sense it involves connectivity, independent of any actual geometry. The relation is, however, even deeper, specifically when you consider the possible end results of the game. What results are possible? Since we have a finite board, we must have that each game either leads to a black win, to a white victory or a draw. This last ending, however, is **impossible**, and this is an application of Brower's fixed point theorem!
+
+**Theorem**: No Hex game can end in a draw.
+
+**Proof**: 
+
+The proof is appliable to any $k\times k$ board (actually to any dimensions, the proof being identical).
+
+First, note that the Go-like board gives us a **triangulation** of the square $D_k=[0,k]\times [0,k]$ (with the connections giving the edges of the triangles), which is homeomorphic to a 2D disk. Denote this complex as $B_k$. Assuming there exists a Hex game without a winner, we will construct a map $f:D_k\rightarrow D_k$ without a fixed point, which is a contradiction. 
+
+Since $D_k$ is triangulated by $B_k$, every element $x$ of $D_k$ can be written uniquely in barycentric coordinates as a linear combination $x=\lambda_0 v_0 + \lambda_1 v_1 +\lambda_2 v_2$, for $v_0,v_1,v_2$ vertices of $B_k$ forming the triangle containing $x$, and $\lambda_0+\lambda_1+\lambda_2=1$,  $\lambda_i\geq 0$. Remember that this means that every function $f:B_k\rightarrow \rt$ can extend to one $\widehat{f}:D_k\rightarrow \rt$ by defining $\widehat{f}(\lambda_0 v_0 + \lambda_1 v_1 +\lambda_2 v_2)=\lambda_0 f(v_0) + \lambda_1 f(v_1) +\lambda_2 f(v_2)$.
+
+Let $H, V$ denote the sets the positions of black (*Horizotal*-winning) and white (*Vertical*-winning) pieces on a board, respectively.
 
 Assume that we have $H,V$ such that there is no Hex winner. Now, let us define a function $f:B_k\rightarrow B_k$ which will be extended to $\widehat{f}:D_k\rightarrow D_k$ that will lead to the contradiction. Define $\widehat{W}$ to be the subset of $H$ connected to the western extreme $W$, and similarly for $\widehat{E}\subset H$, $\widehat{S}\subset V$ and $\widehat{N}\subset V$. The assumption we have no winner is equivalent to saying that $\widehat{W} \neq \widehat{E}$ and $\widehat{S} \neq \widehat{N}$, or that $\widehat{W}$ (or $\widehat{S}$) and $\widehat{E}$ (or $\widehat{N}$) are connected. Then define $f$ as
 
@@ -1215,8 +1311,17 @@ This forces $\lambda_1e(v_0)+\lambda_1e(v_1)+\lambda_2e(v_2)=0$, which amounts t
 
 {{< qed >}}
 
-REFORMULAR COM FLOW E VECTOR FIELDS DIRETO
-REMARKS SOBRE INTUICIONISMO
+The result is actually even stronger: Hex having no draws is **equivalent** to the 2D Brower fixed point theorem. The proof requires some use of real analysis, so we won't write it here. See the references for a proof.
+
+The interactive game above shows this winning flow, it being null at positions without any placed stones. Colors represent the direction (and length by their intensity) of the flow vectors, according to the color-coding shown in the disk below (right is blue-ish, up is red-ish, left is green-ish and down is cyan). Black indicates null-flow.
+
+IMG !!! circulo
+
+IMG!!!!  jogo e exemplo
+
+By [Zermelo's Theorem](https://en.wikipedia.org/wiki/Zermelo%27s_theorem_(game_theory)), since Hex has no draws, there must be a winning strategy for either black or white. Well, if white-- the second player-- had such a strategy, then black could begin with a generic move and then immitate it. Since in Hex a placed stone can never be a disadvantage, black's first stone wouldn't stop them from following the immitated winning strategy. Thus, if white had such a forced win, black would have one as well-- which is a contradiction. Thus, it must be that **black-- the first player-- has a winning strategy from the beginning**.
+
+In that sense, Hex is "solved". But note that we didn't actually construct this strategy, and the "perfect Hex game" is still unknown. The strategies for the 7x7, 8x8 and 9x9 boards, however, have been found.
 
 ## Nash equilibria **
 NASH EQUILIBRIA
