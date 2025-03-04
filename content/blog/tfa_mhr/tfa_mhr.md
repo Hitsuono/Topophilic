@@ -737,6 +737,8 @@ Another fundamental example of a group are the $(C_n(X),+)$ and $(C^\Delta _n(X)
 
 We also have the **trivial group** $G=\{e\}$ which contains a single element $e$ with $e*e=e$. That is, $G$ has a neutral element and that's all. We'll often write this group just $0$, since it is composed of a single zero, neutral element.
 
+Invertible (real, complex) matrices of the same size $n\times n,$ together with matrix multiplication, form a group. It will be non-abelian as long as $n>1.$ This group is written as $\text{GL}(n, \ro)$ (or $\text{GL}(n, \mathbb{C})$ in the complex case).
+
 Finally, another familiar group is the set of strictly positive reals $\ro_{>0}$ with multiplication. Its neutral element is $1$ and the inverse of $x$ is $\frac{1}{x}.$
 
 Here are some simple, quick properties of groups due to the good behaviour of operations:
@@ -767,11 +769,13 @@ Another basic result is that $\inv{(ab)}=\inv{b}\inv{a}$ since $(ab)\inv{b}\inv{
 
 As sets have subsets and spaces subspaces, groups also contain subgroups. Formally, $H$ is a subgroup of $G$ when $H\subset G$ and, for all $h_1,h_2\in H$, the product $h_1*h_2$ is also in $H$. I.e., when $H$ is a group of its own together with the operation $*$ of $G$ restricted to elements of $H$. We then write $H\leq G$.
 
+Every group $G$ has at least two subgroups: $G$ itself and $\{e\},$ the trivial subgroup.
+
 For example, even numbers form a subgroup of $(\zo, +)$ since whenever you add two of these you still end up with an even number. In general, if $n\in \zo$, the set $n\zo = \{n\cdot m \mid m\in\zo\}$ (i.e., the multiples of $n$) is a subgroup of the integers. Subspaces of vector spaces are also subgroups.
 
-If $H\leq G$, then $H$ must contain the neutral element $e_G$ of $G$: if $e_H$ were to be a neutral element of $H$ and only $H$, then $he_H=h=e_G$ for any $h\in H$, thus $e_H=e_G$. Similarly, if $h\in H$, the inverse of $h$ in $H$ is identical to the inverse of $h$ in $G$.
+The subgroups of $\text{GL}(n, \ro)$ are very interesting and usually bring geometric information, as matrices represent linear transformations. For example, rotations form a subgroup (written $\text{SO}(n)$), since they are invertible and the composition of two rotations is still a rotation. We'll study $\text{SO}(n)$ later, as a deep connection between it, algebra and projective spaces will be described.
 
-Every group $G$ has at least two subgroups: $G$ itself and $\{e\},$ the trivial subgroup.
+If $H\leq G$, then $H$ must contain the neutral element $e_G$ of $G$: if $e_H$ were to be a neutral element of $H$ and only $H$, then $he_H=h=e_G$ for any $h\in H$, thus $e_H=e_G$. Similarly, if $h\in H$, the inverse of $h$ in $H$ is identical to the inverse of $h$ in $G$.
 
 When dealing with groups, we are not interested in all functions $f:G\rightarrow H$, but only in those that bring and respect algebraic information, stabilishing a relation between the operations of the different groups. Examples of these are linear transformations, as well as the boundary operators $\partial_n$ we defined previously. In group theory, these maps are called **homomorphisms**. A homomorphism between groups $(G,*_G)$ and $(H,*_H)$ is a function $f:G\rightarrow H$ such that $f(a *_G b)=f(a)*_H f(b)$ for all $a,b\in G$.
 
@@ -779,7 +783,7 @@ Note that if $f:G\rightarrow H$ is a homomorphism, $f(e_G)=e_H$ since $e_Hf(a)=f
 
 Bijective homomorphisms are also called **isomorphims**. If we have an isomorphism $f:G\rightarrow H$, it means $G$ and $H$ have operations with the exact same behaviour. They may give different names to their elements, but to group theory $G,H$ can be seen as the same object. We'll then write $G\cong H$ for isomorphic groups. This $\cong$ is an equivalence relation: i.e., it satisfies $G\cong G$, $G\cong H\implies H\cong G$ and $G\cong H\cong K \implies G\cong K$.
 
-Isomorphisms from $G$ to itself are called **automorphisms**, which form the set $\text{Aut}(G).$ Since their range and domains are the same, they can be composed-- and, as they are all bijections, thus invertible, $(\text{Aut}(G), \circ)$ is a group.
+Isomorphisms from $G$ to itself are called **automorphisms**, which form the set $\text{Aut}(G).$ Since their range and domains are the same, they can be composed-- and, as they are all bijections, thus invertible, $(\text{Aut}(G), \circ)$ is a group. The identity $\text{id}$ sending elements to themselves is the neutral element.
 
 A familiar set of homomorphisms is, for some $x\in\ro$, $f_x:(\ro, +)\rightarrow (\ro_{>0}, \cdot)$ given by $f_x(a)=x^a$, since $f_x(a+b)=x^{a+b}=x^ax^b=f_x(a)f_x(b).$ Similarly, we have logarithms giving us a class of homomorphisms $g_x:(\ro_{>0}, \cdot)\rightarrow (\ro, +)$ defined as $g_x(a)=\log_x(a)$, since $g_x(ab)=\log_x(ab)=\log_x(a)+\log_x(b)=g_x(a)+g_x(b)$. Indeed, we have that $f_x$ is exactly the inverse of $g_x$ since, for all $a>0,$ $f_x(g_x(a))=f_x(\log_x(a))=x^{\log_x(a)}=a$. That is, exponentiation is a homomorphism between $(\ro, +)$ and $(\ro_{>0}, \cdot)$, and the logarithm is its inverse. Thus, we have an isomorphism $(\ro, +)\cong (\ro_{>0}, \cdot).$
 
@@ -801,22 +805,67 @@ In many cases, we'll ommit the operation $*$ in $a*b$ and just write $ab,$ the a
 
 ### Tables
 
+The simplest way to visualize a group is by a table representing its operation. 
+
+Here is, for example, the table for $\zmod{2}$:
+
+$$\begin{array}{c|c c}
+  & 0 & 1  \\
+\hline
+0 & 0 & 1 \\
+1 & 1 & 0 \\
+\end{array}
+$$
+
+And for $\zmod{4}$:
+
+$$\begin{array}{c|c c c c}
+  & 0 & 1 & 2 & 3  \\
+\hline
+0 & 0 & 1 & 2 & 3 \\
+1 & 1 & 2 & 3 & 0 \\
+2 & 2 & 3 & 0 & 1 \\
+3 & 3 & 0 & 1 & 2 \\
+\end{array}
+$$
+
+Tables can help us quickly identify some properties of groups: for example, a group is abelian if, and only if its table is symmetric along the (negative) diagonal. However, tables aren't that helpful for larger, let alone infinite, groups.
+
 ### Presentations
 
-We can describe all examples and constructions above through **presentations**, which are a compact way of analysing groups we'll use a lot. A presentation of a group $G$ is written as $G=\langle a_0,..., a_n \mid   R\rangle $, where $R$ is a set of algebraic relations using our group operations (things like $a_3 * a_2 = a_6^{-1}$, $a_1^2=a_0*a_3$ etc.). We interpret this as saying that $G$ is formally generated by elements $a_0,...,a_n$, a neutral element, their inverses, and all their possible (finite) products, and that they satisfy the relations $R$ (the identity being assumed and thus omited). That is, elements of $G$ are arbitrary products of $a_0,...,a_n$, including their inverses, subject to the relations $R$.
+A more powerful way to represent groups is through **presentations**, which provide compact descriptions we'll use a lot. A presentation of a group $G$ is written as $G=\langle a_0,..., a_n \mid   R\rangle $, where $R$ is a set of algebraic relations using our group operations (things like $a_3 * a_2 = a_6^{-1}$, $a_1^2=a_0*a_3$ etc.). We interpret this as saying that $G$ is formally generated by elements $a_0,...,a_n$, a neutral element, their inverses, and all their possible (finite) products, and that they satisfy the relations $R$ (the identity being assumed and thus omited). That is, elements of $G$ are arbitrary products of $a_0,...,a_n$, including their inverses, subject to the relations $R$.
 
-For example, $\zo \cong \angled{a}$. I.e., $\zo$ can be seen as the group generated by a single element $a$ without any relations, its distinct elements thus being $a,\inv{a},a^2,a^{-2},...,$ with the isomorphism $\zo\rightarrow \angled{a}$ sending $n$ to $a^n.$ For $\zmod{n}$, these have the presentation $\angled{a\mid a^n=e},$ $e$ being the neutral element. The isomorphism is again given by sending $n$ to $a^n$.
+For example, $\zo \cong \angled{a}$. I.e., $\zo$ can be seen as the group generated by a single element $a$ (representing $1$) without any relations, its distinct elements thus being $a,\inv{a},a^2,a^{-2},...,$ with the isomorphism $\zo\rightarrow \angled{a}$ sending $n$ to $a^n.$ For $\zmod{n}$, these have the presentation $\angled{a\mid a^n=e},$ $e$ being the neutral element. The isomorphism is again given by sending $n$ to $a^n$.
 
 Presentations are not unique, with it being possible to a group to be described by many of these. In particular, presentations can sometimes be simplified by disconsidering redundant elements. For example, $\angled{a}$ could be presented as $\angled{a, a^2}$, but $a^2$ is redundant since its already included in $\angled{a}$. We'll often strive for the simplest presentation.
 
-Groups that can be described by finite presentations are called finitely generated. Here's another important classification theorem:
+Another example is if instead of presenting $\zo = \angled{a}$ generated by $1$, we present it as generated by $2$ and $3$: $\zo = \angled{b, c \mid b^3=c^2}$ ($b$ is $2$ and $c$ represents $3$). These presentations are isomorphic via $f:\angled{b, c \mid b^3=c^2}\rightarrow \angled{a}$ sending $b\mapsto a^2$ and $c\mapsto a^3.$
 
-**Theorem**: all finitely generated abelian groups are isomorphic to a group of the form
-
-$$\zo^r\times\zmod{a_1}\times...\times\zmod{a_k}$$
+Groups that can be described by finite presentations are called **finitely generated**. 
 
 The groups with presentation $F_n=\angled{a_1,...,a_n}$ are called the **free groups** generated by $n$ elements. They contain no relations at all. This is actually somewhat circular: the proper, formal way to define presentations is actually by using the free groups and then quotients. But we're doing a more informal definition here.
 
+Presentations are also useful for getting homomorphisms. Indeed, if $G=\langle a_0,..., a_n \mid   R\rangle$ and you want to define a homomorphism $f:G\rightarrow H,$ all you have to do is to define the $f(a_i)$ and be sure they also satisfy the relations $R,$ but now in $H.$ Then, for any other generated element $a_i...a_k,$ all you have to do is to define $f(a_i...a_k)=f(a_i)...f(a_k)$-- the condition that the $f(a_i)$ satisfy $R$ guaranteeing there will be no ambiguity. This is similar to how, in linear algebra, you can define a transformation by just setting its values on a basis.
+
+### Cayley graphs
+
+If you have a presentation for some group $G,$ you can visualize it by its Cayley graph. Each element of $G$ is a vertex; two vertices $g_1,g_2$ are connected by an edge if $g_1=ag_2$ for some generator $a$ in the specific presentation. I.e., we connect vertices whenever you can get one from another via a generator. We may also mark edges by the generator they represent.
+
+For example, the Cayley graph of $\zmod{3}=\angled{a\mid a^3=e}$ is a triangle:
+
+IMG!!!
+
+The Cayley graph of $\zo$ with the presentation $\angled{a}$ is a line:
+
+IMG!!!
+
+Note that these graphs do depend heavily on the presentation. Using the presentation $\angled{b, c \mid b^3=c^2},$ for example, we get the following Cayley graph for $\zo$ (a sort of "infinite braid"):
+
+IMG!!!
+
+The Cayley graph of $F_2=\angled{a,b}$ is an infinite binary tree. In general, $F_n=\angled{a_1,...,a_n}$ has as its graph an infinite n-ary tree. This is because any cycle going through edges $a_i...a_j$ from elements $g_1$ to $g_2$ in the graph would imply a relation $g_1=a_i...a_jg_2$ (equivalently, $\inv{g_1}a_i...a_jg_2=e$), which, by definition, doesn't exist.
+
+IMG!!!
 
 ## Generating groups
 
@@ -829,21 +878,21 @@ If we have two groups $(G, *_G)$ and $(H, *_H)$, then the set $G\times H$ has a 
 
 The neutral element of $G\times H$ is $(e_G, e_H)$ and the inverse of $(g,h)$ is $(\inv{g}, \inv{h}).$
 
-Finite groups are specially interesting because they can be to some extent classified. Below is one of the first steps in this direction, which we'll not prove. We'll see more on group classification later on when we study quotients.
+Here's a very important classification theorem, whose proof we'll ommit:
 
-**Theorem**: all finite abelian groups are isomorphic to a group of the form
+**Theorem**: all finitely generated abelian groups are isomorphic to a group of the form
 
-$$\zmod{a_1}\times...\times\zmod{a_k}$$
+$$\zo^r\times\zmod{a_1}\times...\times\zmod{a_k}$$
 
-Below is the table for the group $\zmod{2}\times \zmod{2}.$ You can check it is different from that of $\zmod{4}$ so that these two are non-isomorphic groups of four elements:
+Below is the table for the group $\zmod{2}\times \zmod{2}.$ You can check it is non-isomorphic to that of $\zmod{4}$ so that these are two non-isomorphic groups of four elements:
 
 $$\begin{array}{c|c c c c}
   & (0,0) & (1, 0) & (0, 1) & (1, 1)  \\
 \hline
 (0,0) & (0,0) & (1,0) & (0,1) & (1,1) \\
-(1,0) & (1,0) & (0,0) & (1,1) & (0, 1) \\
-(0,1) & (0,1) & (1,1) & (0,0) & (1, 0) \\
-(1,1) & (1,1) & (0, 1) & (1, 0) & (0,0) \\
+(1,0) & (1,0) & (0,0) & (1,1) & (0,1) \\
+(0,1) & (0,1) & (1,1) & (0,0) & (1,0) \\
+(1,1) & (1,1) & (0,1) & (1,0) & (0,0) \\
 \end{array}
 $$
 
@@ -853,11 +902,29 @@ If you have two presentations $G=\angled{S_G\mid R_G}$ and $H=\angled{S_H\mid R_
 
 The operation we defined on $G\times H$ doesn't have any sort of "interference" between the operations of $G$ and $H.$ I.e., the first component only cares about $G$, being completely independent of whatever happens on the second one corresponding to $H.$ 
 
-We can add some interplay between the two groups as follows. Choose and fix some homomorphism $\phi : H\rightarrow \text{Aut}(G).$ This means that, for each $h\in H$, $\phi (h)$ is some sort of permutation, an action over $G.$ Instead of multiplying elements $g_1,g_2\in G$ to get $g_1g_2$ in the first component, we could add some interdependence on $H$ by multiply $g_1$ with $\phi(h_1)(g_2)$-- so to speak, a multiplication "twisted" by $\phi(h).$ I.e., we get the operation
+We can add some interplay between the two groups as follows. Choose and fix some homomorphism $\phi : H\rightarrow \text{Aut}(G).$ This means that, for each $h\in H$, $\phi (h)$ is some sort of permutation, an action over $G.$ Instead of multiplying elements $g_1,g_2\in G$ to get $g_1g_2$ in the first component, we could add some interdependence on $H$ by multiplying $g_1$ with $\phi(h_1)(g_2)$-- so to speak, a multiplication "twisted" by $\phi(h).$ I.e., we get the operation
 
 $$(g_1, h_1)*(g_2,h_2)=(g_1\phi(h_1)(g_2),h_1h_2).$$
 
 The set $G\times H$ together with this new operation (dependant on $\phi$) is called the semidirect product of $G$ and $H,$ denoted $G\rtimes_\phi H.$ These products are very powerful and can genrate a wide class of groups- as we'll see later with the Rubik's cube group.
+
+If $\phi(h) = \text{id}$ for all $h\in H,$ then $G\rtimes_\phi H$ is the same thing as $G\times H$-- i.e., direct products are the "trivial example" of the semi-direct ones.
+
+Let's, for example, construct a product $\zmod{3}\rtimes_\phi \zmod{2}.$ The automorphism group $\text{Aut}(\zmod{3})$ is composed of the identity $\text{id}$ and the isomorphism $f:\zmod{3}\rightarrow \zmod{3}$ sending the generator $1$ to $2.$ Thus, we let $\phi:\zmod{2}\rightarrow \text{Aut}(\zmod{3})$ send $0$ to $\text{id}$ and $1$ to $f$; $\zmod{3}\rtimes_\phi \zmod{2}$ then has the following table:
+
+$$\begin{array}{c|c c c c c c}
+  & (0,0) & (1, 0) & (2, 0) & (0, 1) & (1, 1) & (2, 1) \\
+\hline
+(0, 0) & (0, 0) & (1, 0) & (2, 0) & (0, 1) & (1, 1) & (2, 1) \\ 
+(1, 0) & (1, 0) & (2, 0) & (0, 0) & (1, 1) & (2, 1) & (0, 1) \\ 
+(2, 0) & (2, 0) & (0, 0) & (1, 0) & (2, 1) & (0, 1) & (1, 1) \\ 
+(0, 1) & (0, 1) & (2, 1) & (1, 1) & (0, 0) & (2, 0) & (1, 0) \\ 
+(1, 1) & (1, 1) & (0, 1) & (2, 1) & (1, 0) & (0, 0) & (2, 0) \\ 
+(2, 1) & (2, 1) & (1, 1) & (0, 1) & (2, 0) & (1, 0) & (0, 0) \\ 
+\end{array}
+$$
+
+In particular, it isn't abelian and, letting $a=(0,1),$ $b=(1,1)$ and $c=(1,0),$ we get the presentation $\zmod{3}\rtimes_\phi \zmod{2}=\angled{a,b\mid a^2=b^2=c^3=e,abc=e}.$ This group will become important later as an example.
 
 ## Example: rings and modules
 
@@ -873,6 +940,8 @@ If groups generalize integers with addition, it is very natural to try to genera
 
 The prototypical example is, again, $(\zo, +, \cdot)$, others being $(\mathbb{Q}, +, \cdot),$ $(\ro, +, \cdot)$ and $(\mathbb{C}, +, \cdot).$ Note that we didn't require for the product to be commutative.
 
+A homomorphism $f:R\rightarrow S$ between rings is a map such that $f(a+b)=f(a)+f(b)$ and $f(ab)=f(a)f(b),$ in analogy with the group case.
+
 Coming back to spaces and their holes, we saw that the $(C_n(X), +)$ and $(C_n^\Delta(X), +)$ we defined are both abelian groups. However, we also saw they bring more structure than that: they also have scalar multiplication by an integer. This is neatly described by the concept of **modules**. Concretely, if $(R, +, \cdot)$ is a ring, then an $R$-module is an abelian group $(M, +)$ such that, for all $a\in R$ and $m\in M$, there exists an element $a\cdot m\in M$ for some notion of a scalar product $\cdot.$ These must satisfy the following relations:
 
 * Distributivity: $a\cdot(m+n)=a\cdot m+a\cdot n$;
@@ -885,11 +954,15 @@ Coming back to spaces and their holes, we saw that the $(C_n(X), +)$ and $(C_n^\
 
 We then see that our chain groups are all $\zo$-modules, with a proper definition of integer scalar multiplication. It is also, per definition, clear that all real vector spaces are $\ro$-modules.
 
-As vector spaces have bases, so do modules. For $C_n(X)$, the set of simplices $a_1,...,a_k$ in our complex gives us a basis. More than that, for each $n\in \zo$, $na_i$ is a distinct chain, so that we say that $C_n(X)$ is "**freely generated**" by the elements $a_1,...,a_k,$ and we write
+As vector spaces have bases, so do modules. For $C_n(X)$, the set of simplices $a_1,...,a_k$ in our complex gives us a basis. More than that, for each $n\in \zo$, $na_i$ is a distinct chain, so that we say that $C_n(X)$ is "**freely generated**" by the elements $a_1,...,a_k.$ In general, we say an $R$-module $M$ is freely generated by elements $e_1,...e_k$ if any element $m\in M$ can be **uniquely** written as a linear combination $r_1\cdot e_1+...+r_k \cdot e_k,$ and we write
 
-$$C_n(X)=\zo a_1\times ...\times \zo a_k,$$
+$$M=\zo e_1\times ...\times \zo e_k,$$
 
-each $\zo a_i$ being the set (and group) spanned (with scalar multiplication) by $a_i$. Similar applies to $C^\Delta_n(X)$ with a delta structure over $X.$
+each $\zo e_i$ being the set (and group) spanned (with scalar multiplication) by $e_i$. This applies to both $C_n(X)$ and to $C^\Delta_n(X)$ with a delta structure over $X.$ The $e_i$ then form a basis of the module, all in analogy to linear algebra.
+
+A homomorphism $f:M\rightarrow N$ between $R$-modules is a map such that $f(a+b)=f(a)+f(b)$ and $f(r\cdot a)=r\cdot f(b).$ In particular, linear transformations are $\ro$-module homomorphisms.
+
+Whenever you have a freely generated $R$-module $M$, you can define an $R$-module homomorphism $f:M\rightarrow N$ by just setting its values on the generators $a_1,...,a_k$ and setting $f(r_1a_1+...+r_ka_k)=r_1f(a_1)+...+r_kf(a_k).$
 
 ## Example: fields, finite projective spaces and "Spot It!" * 
 FIELDS e VECTOR SPACES
@@ -902,11 +975,70 @@ $$P( \mathbb{Z}^3_2)$$
 Spot it e project
 
 ## Example: non-abelian groups and permutation games
-All groups mentioned above are abelian, but many common groups aren't. 
 
-D_n
+So far, the only non-abelian groups we've seen so far are matrix groups, $F_n$ and $\zmod{3}\rtimes_\phi \zmod{2}.$ Most other non-abelian groups arise when you consider **permutations** and **symmetries** of objects.
 
-S_n
+### Dihedral groups
+
+For example, take a square with labeled vertices. It has two kinds of symmetries: rotations and reflections around an axis going from the origin to a vertex. You can compose these to form all symmetries, which then form a group, since the identity is a symmetry, these transformations are inversible and compose to give further symmetries. We call this group $D_4.$ 
+
+IMG!!!
+
+Let $r_i$ be the counter-clockwise 90-degree rotation applied $i$ times to the square, and $s_i$ the reflection around the axis groing from the origin to the $i$-th vertex. Elements of $D_4$ are exactly all the compositions $r_is_j$ and $s_jr_i.$ Each of these is a function from the vertex label set $\{1, 2, 3, 4\}$ to itself: for example, $r_i$ send $i$ to $i+1\mod 4,$ and $s_1$ swaps $2$ and $4,$ leaving the other vertices unaltered. What algebraic relations do these elements satisfy? First, note that all the $r_i$ can be described as $r_1^i,$ and $r^4=r^0=e.$ Then, see that doing reflection around an axis and then a rotation is equivalent to a reflection around the rotated axis. This gives the relations $r_is_j=s_{i+j}.$ Thus, all reflections can be generated as $r_is_1.$ Concluding, every element of $D_4$ can be generated by composing $r_1$ and $s_1$ together in some form. Between them, we have the relation $r_1s_1=\inv{s_1}\inv{r_1},$ or, equivalently since $\inv{s_1}=s_1,$ $r_1s_1=s_1\inv{r_1}$  we derive the presentation
+
+$$D_4=\angled{r, s \mid r^4=s^2=e, rs=s\inv{r}}$$
+
+All these simmetries are also linear transformations. Indeed, $r_1=\begin{pmatrix}
+0 & -1 \\
+1 & 0
+\end{pmatrix}
+$ and $s_1=\begin{pmatrix}
+-1 & 0 \\
+0 & -1
+\end{pmatrix}
+,$ so that we get an isomorphism of $D_4$ with a matrix subgroup
+
+$$D_4\cong \angled{\begin{pmatrix}
+0 & -1 \\
+1 & 0
+\end{pmatrix}, 
+\begin{pmatrix}
+-1 & 0 \\
+0 & -1
+\end{pmatrix}}\leq \text{GL}(2, \ro)$$
+
+In general, if we have a regular $n$-polygon (equilateral triangle, square, ...), we get its symmetry group $D_n,$ called the **n-th dihedral group**. These are also generated by all rotations $r_i$ and reflections $s_i,$ with $0\leq i\leq 4.$ All $r_i$ can be derived from $r_1$ and all $s_i$ from the product $r_js_1,$ and the presentation generalizes:
+
+$$D_n=\angled{r, s \mid r^n=s^2=e, rs=s\inv{r}}$$
+
+Similarly, all the symmetries are linear representations, with $r_1=\begin{pmatrix}
+\cos(\frac{2\pi}{n}) & -\sin(\frac{2\pi}{n}) \\
+\sin(\frac{2\pi}{n}) & \cos(\frac{2\pi}{n})
+\end{pmatrix}$ 
+and $s_1=\begin{pmatrix}
+\cos(\frac{2\pi}{n}) & \sin(\frac{2\pi}{n}) \\
+\sin(\frac{2\pi}{n}) & -\cos(\frac{2\pi}{n})
+\end{pmatrix},$ and we thus have an isomorphism with $D_n$ and the subgroup of $\text{GL}(2,\ro)$ generated by these transformations.
+
+In group theory, representing groups through matrices is actually an extremely important and powerful technique. In general, if we have a homomorphism $\phi : G\rightarrow \text{GL}(n,\ro)$, we call this $\phi$ a **(real) representation** of $G.$ Representation theory is unavoidable in more advanced group theory.
+
+Finally, note something in the presentation of $D_n$: it contains two subgroups $\angled{r}$ (with $n$ elements) and $\angled{s}$ (with just two elements), and they together generate all of $D_n.$ Between $r$ and $s,$ we have an "interference" relation $rs=s\inv{r},$ as if $s$ was inverting $r.$ This fits perfectly into the description of a semidirect product: namely, if you define the homomorphism $\phi:\zmod{2}\rightarrow \text{Aut}(\zmod{n})$ by sending $1$ to $x \mapsto \inv{x},$ then we have an isomorphism
+
+$$D_n\cong \zmod{n}\rtimes_\phi \zmod{2}$$
+
+by sending $r^is^j$ to $(i,j).$
+
+In particular, we've seen the example of $D_3\cong \zmod{3}\rtimes_\phi \zmod{2}$ before, the group of symmetries of an equilateral triangle. Each pair $(m, n)$ represented doing $m$ rotations $r_1$ and then $n$ reflections $s_1.$
+
+### Symmetric groups
+
+The example above showed us that if you take some set $A$ and permutate its elements you can get a group. More formally, a **permutation** on $A$ is a bijective function $A\rightarrow A.$ These form a set $S_A,$ which, together with function composition, forms a group, called the **symmetric group** on $A.$ When $A=\{1,...,n\},$ we write $S_n$ for $S_A,$ getting the **symmetric group on n elements**.
+
+We can write a (finite) permutation $\sigma$ in many different ways. The most explicit one is just listing the elements $1,...,n$ and, one row below, $\sigma(1),...,\sigma(n).$ For example, the rotation $r_1$ of labeled edges in the square can be written as $\begin{pmatrix}
+1 & 2 & 3 & 4 \\
+2 & 3 & 4 & 1
+\end{pmatrix}.$ Note that it forms a single "cycle": that is, you can follow $1\mapsto 2\maptso 3\mapsto 4\mapsto 1$ and get back to $1.$  This prompts us to define the **cycle notation** of $\sigma$: 
+
 
 Rubik
 
