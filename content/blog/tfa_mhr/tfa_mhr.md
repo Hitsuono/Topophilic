@@ -394,11 +394,27 @@ ROUSSEAU (EX DO LIVRO + EX DO MAL AMIGO DAS CONFISSOES)
     ex mistos?
 BACH X SCHOENBERG (COM MÚSICAS EMBEDDADAS)
 
+I am less tempted by money than by other objects, because between the moment of possessing the money and that of using it to obtain the desired object there is always an interval, however short; whereas to possess the thing is to enjoy it. I see a thing and it tempts me; but if I see not the thing itself but only the means of acquiring it, I am not tempted. Therefore it is that I have been a pilferer, and am so even now, in the way of mere trifles to which I take a fancy, and which I find it easier to take than to ask for; but I never in my life recollect having taken a farthing from any one, except about fifteen years ago, when I stole seven francs and ten sous. The story is worth recounting, as it exhibits a concurrence of ignorance and stupidity I should scarcely credit, did it relate to any but myself.
+
+It was in Paris: I was walking with M. de Franceul at the Palais Royal; he pulled out his watch, he looked at it, and said to me, “Suppose we go to the opera?”—“With all my heart.” We go: he takes two box tickets, gives me one, and enters himself with the other; I follow, find the door crowded; and, looking in, see every one standing; judging, therefore, that M. de Franceul might suppose me concealed by the company, I go out, ask for my ticket, and, getting the money returned, leave the house, without considering, that by then I had reached the door every one would be seated, and M. de Franceul might readily perceive I was not there.
+
+As nothing could be more opposite to my natural inclination than this abominable meanness, I note it, to show there are moments of delirium when men ought not to be judged by their actions: this was not stealing the money, it was only stealing the use of it, and was the more infamous for wanting the excuse of a temptation.
+
+(absurd convertions by me give it equal to about 80 us dolars)
+
 $$\begin{array}{c|c c }
   & \text{Bach} & \text{Schoenberg}  \\
 \hline
 \text{Bach} & 2,1 & 0,0  \\
 \text{Schoenberg} & 0,0 & 1,2 \\
+\end{array}
+$$
+
+$$\begin{array}{c|c c }
+  & \text{Franceul} & \text{Rousseau}  \\
+\hline
+\text{Franceul} & -7.5, -7.5 & -15, 7.5  \\
+\text{Rousseau} & 7.5,-15 & 0, 0 \\
 \end{array}
 $$
 
@@ -712,7 +728,7 @@ Mathematically, this fits perfectly with the notion of a **quotient** in group t
 
 Since most of the topological intuition for this post has already been described, we'll allow ourselves to be rather quick with definitions and properties in this section, assuming most of the work here is of formalizing and generalizing what we've already seen.
 
-## Definitions and basic examples
+## Definitions and basic examples (H)
 A **group** is a set $G$ with an **binary operation** $*:G\times G\rightarrow G$ taking two elements $a,b\in G$ and returning $a*b\in G$. We require this operation to be "well-behaved" and satisfy properties resembling integer addition (which also models our chain sums above), namely:
 
 * Associativity: $(a*b)*c=a*(b*c)$ for all $a,b,c\in G$;
@@ -728,6 +744,8 @@ Note, however, that we **didn't** require the following property satisfied by $(
 * Commutativity: $a*b=b*a$ for all $a,b\in G$.
 
 Groups satisfying this relation are called commutative, or also **abelian** (after [Abel](https://en.wikipedia.org/wiki/Niels_Henrik_Abel)). Again $(\zo, +)$ is the primordial example of this class. $(\mathbb{Q}, +),$ $(\mathbb{R}, +)$ and $(\mathbb{C}, +)$ are all groups as well. $(\mathbb{N}, +),$ on the other hand, isn't one because it doesn't contain negative numbers.
+
+We'll write $|G|$ for the amount of elements of $G$, called its **order**.
 
 Following $(\zo, +)$, the second most classical example of a group are the modular groups $ \mathbb{Z}/n\mathbb{Z}$, for $ n\in \mathbb{Z}$ (the notation will be clearer when we study quotients). These have as base set $\{0, 1, ..., n-1\}$, with mod sum as operation. As a reminder, if $a,b\in \zo$, this is the mod sum $(a+b) \mod n$ is the rest of $a+b$ divided by $n$. I.e., it is "clock addition": the result of a sum is equal to its excess relative to $n$. Programmers will also recognize it through the remainder operator `%`, although $\text{mod}$ and `%` aren't properly the same in most languages. Generally, $\zmod{n}$ has neutral element $0$ and the inverse of $k\in \zmod{n}$, $k\neq 0$, is exactly $n-k$.
 
@@ -831,7 +849,7 @@ $$
 
 Tables can help us quickly identify some properties of groups: for example, a group is abelian if, and only if its table is symmetric along the (negative) diagonal. However, tables aren't that helpful for larger, let alone infinite, groups.
 
-### Presentations
+### Presentations (H)
 
 A more powerful way to represent groups is through **presentations**, which provide compact descriptions we'll use a lot. A presentation of a group $G$ is written as $G=\langle a_0,..., a_n \mid   R\rangle $, where $R$ is a set of algebraic relations using our group operations (things like $a_3 * a_2 = a_6^{-1}$, $a_1^2=a_0*a_3$ etc.). We interpret this as saying that $G$ is formally generated by elements $a_0,...,a_n$, a neutral element, their inverses, and all their possible (finite) products, and that they satisfy the relations $R$ (the identity being assumed and thus omited). That is, elements of $G$ are arbitrary products of $a_0,...,a_n$, including their inverses, subject to the relations $R$.
 
@@ -840,6 +858,10 @@ For example, $\zo \cong \angled{a}$. I.e., $\zo$ can be seen as the group genera
 Presentations are not unique, with it being possible to a group to be described by many of these. In particular, presentations can sometimes be simplified by disconsidering redundant elements. For example, $\angled{a}$ could be presented as $\angled{a, a^2}$, but $a^2$ is redundant since its already included in $\angled{a}$. We'll often strive for the simplest presentation.
 
 Another example is if instead of presenting $\zo = \angled{a}$ generated by $1$, we present it as generated by $2$ and $3$: $\zo = \angled{b, c \mid b^3=c^2}$ ($b$ is $2$ and $c$ represents $3$). These presentations are isomorphic via $f:\angled{b, c \mid b^3=c^2}\rightarrow \angled{a}$ sending $b\mapsto a^2$ and $c\mapsto a^3.$
+
+The trivial group has as a possible presentation $\angled{a\mid a^2=a}.$ Again, there are many other possibilities, some not obvious: for example, $G=\angled{a,b\mid ab\inv{a}b^{-2}=e, a^{-2}\inv{b}ab=e}$ is trivial. To see this, note that $ab=b^2a$ (by the first relation) and $ab=ba^2$ (by the second relation), so that $b^2a=ba^2.$ Canceling $b$ on the left and $a$ on the right, we get $b=a.$ Thus, the first relation is $aa\inv{a}a^{-2}=\inv{a}=e,$ and thus $a=e,$ $b=e$ and the group is trivial! 
+
+Generally, determining when two presentations generate the same group is a non-decidable problem: i.e., there's no algorithm that can determine it. This is because of the [word problem](https://en.wikipedia.org/wiki/Word_problem_(mathematics)), the problem of knowing if a certain product $a_i...a_j$ of generators (a "word") is equal to the identity-- which is also undecidable for many groups. However, deep results by [Gromov](https://en.wikipedia.org/wiki/Mikhael_Gromov_(mathematician)) show that, in a quite precise way, "most" finite groups have decidable word problem. 
 
 Groups that can be described by finite presentations are called **finitely generated**. 
 
@@ -867,16 +889,18 @@ The Cayley graph of $F_2=\angled{a,b}$ is an infinite binary tree. In general, $
 
 IMG!!!
 
+The geometry of Cayley graphs can tell a lot about your group, their study being the cornerstone of **geometric group theory**. One of its great successes, for example, is that [some finite groups satisfying certain geometrical properties](https://en.wikipedia.org/wiki/Hyperbolic_group) have decidable word problem.
+
 ## Generating groups
 
 Now that we have some basic group examples, let's see how to combine them and how to generate even more groups.
 
-### Direct products
+### Direct products (H)
 Similarly to sets with their binary operations $\cup, \cap, \times,$ etc., groups can also be joined together. There are three common ways to take two groups in order to get another one: **direct products**, **semidirect products** and **quotients**. The first is a simple "groupification" of the cartesian product $\times.$
 
 If we have two groups $(G, *_G)$ and $(H, *_H)$, then the set $G\times H$ has a very natural way to become a group, by taking the operation $*$ on it such that $(g_1, h_1) * (g_2, h_2)=(g_1*_G g_1, h_1 *_H h_1).$ I.e., we apply operations component-wise. This is known as the direct product of $G$ and $H$, written just as $G\times H$ (operations being implicit, as we'll often do). Similarly to sets, we'll write $G^n$ for the (direct) product of $G$ with itself $n$ times.
 
-The neutral element of $G\times H$ is $(e_G, e_H)$ and the inverse of $(g,h)$ is $(\inv{g}, \inv{h}).$
+The neutral element of $G\times H$ is $(e_G, e_H)$ and the inverse of $(g,h)$ is $(\inv{g}, \inv{h}).$ Note that $|G\times H|=|G|\cdot |H|,$ since that's the size of the set $G\times H.$
 
 Here's a very important classification theorem, whose proof we'll ommit:
 
@@ -910,6 +934,8 @@ The set $G\times H$ together with this new operation (dependant on $\phi$) is ca
 
 If $\phi(h) = \text{id}$ for all $h\in H,$ then $G\rtimes_\phi H$ is the same thing as $G\times H$-- i.e., direct products are the "trivial example" of the semi-direct ones.
 
+Similarly to the direct product, $|G\rtimes_\phi H|=|G|\cdot |H|.$
+
 Let's, for example, construct a product $\zmod{3}\rtimes_\phi \zmod{2}.$ The automorphism group $\text{Aut}(\zmod{3})$ is composed of the identity $\text{id}$ and the isomorphism $f:\zmod{3}\rightarrow \zmod{3}$ sending the generator $1$ to $2.$ Thus, we let $\phi:\zmod{2}\rightarrow \text{Aut}(\zmod{3})$ send $0$ to $\text{id}$ and $1$ to $f$; $\zmod{3}\rtimes_\phi \zmod{2}$ then has the following table:
 
 $$\begin{array}{c|c c c c c c}
@@ -926,7 +952,7 @@ $$
 
 In particular, it isn't abelian and, letting $a=(0,1),$ $b=(1,1)$ and $c=(1,0),$ we get the presentation $\zmod{3}\rtimes_\phi \zmod{2}=\angled{a,b\mid a^2=b^2=c^3=e,abc=e}.$ This group will become important later as an example.
 
-## Example: rings and modules
+## Example: rings and modules (H)
 
 If groups generalize integers with addition, it is very natural to try to generalize integers with the operations of addition and multiplication. In this case, we get structures called **rings**. Formally, a ring $(R,+,\cdot)$ is a set $R$ with two operations $+$ and $\cdot$ satisfying:
 
@@ -988,6 +1014,8 @@ Let $r_i$ be the counter-clockwise 90-degree rotation applied $i$ times to the s
 
 $$D_4=\angled{r, s \mid r^4=s^2=e, rs=s\inv{r}}$$
 
+In particular, we can see $D_4$ has only $8$ distinct elements, represented as $r^is^j$.
+
 All these simmetries are also linear transformations. Indeed, $r_1=\begin{pmatrix}
 0 & -1 \\
 1 & 0
@@ -1011,6 +1039,8 @@ In general, if we have a regular $n$-polygon (equilateral triangle, square, ...)
 
 $$D_n=\angled{r, s \mid r^n=s^2=e, rs=s\inv{r}}$$
 
+In particular, this shows that $D_n$ has order $2n.$
+
 Similarly, all the symmetries are linear representations, with $r_1=\begin{pmatrix}
 \cos(\frac{2\pi}{n}) & -\sin(\frac{2\pi}{n}) \\
 \sin(\frac{2\pi}{n}) & \cos(\frac{2\pi}{n})
@@ -1032,15 +1062,44 @@ In particular, we've seen the example of $D_3\cong \zmod{3}\rtimes_\phi \zmod{2}
 
 ### Symmetric groups
 
-The example above showed us that if you take some set $A$ and permutate its elements you can get a group. More formally, a **permutation** on $A$ is a bijective function $A\rightarrow A.$ These form a set $S_A,$ which, together with function composition, forms a group, called the **symmetric group** on $A.$ When $A=\{1,...,n\},$ we write $S_n$ for $S_A,$ getting the **symmetric group on n elements**.
+The example above showed us that if you take some set $A$ and permutate its elements you can get a group. More formally, a **permutation** on $A$ is a bijective function $A\rightarrow A.$ These form a set $S_A,$ which, together with function composition, forms a group, called the **symmetric group** on $A.$ When $A=\{1,...,n\},$ we write $S_n$ for $S_A,$ getting the **symmetric group on n elements**. We write the product $\sigma \tau= \sigma \circ \tau$ in the same order as composition.
 
-We can write a (finite) permutation $\sigma$ in many different ways. The most explicit one is just listing the elements $1,...,n$ and, one row below, $\sigma(1),...,\sigma(n).$ For example, the rotation $r_1$ of labeled edges in the square can be written as $\begin{pmatrix}
+We'll only study $S_n$ here. Note that it is a group of order $n!=n\cdot(n-1)\cdot...\cdot 1,$ since that's the number of possible sequences of distinct numbers from $1$ to $n$ of size $n.$ 
+
+We can write a permutation $\sigma$ in many different ways. The most explicit one is just listing the elements $1,...,n$ and, one row below, $\sigma(1),...,\sigma(n).$ For example, the rotation $r_1$ of labeled edges in the square can be written as $\begin{pmatrix}
 1 & 2 & 3 & 4 \\
 2 & 3 & 4 & 1
-\end{pmatrix}.$ Note that it forms a single "cycle": that is, you can follow $1\mapsto 2\maptso 3\mapsto 4\mapsto 1$ and get back to $1.$  This prompts us to define the **cycle notation** of $\sigma$: 
+\end{pmatrix}.$ Note that it forms a single "cycle". Formally, we defined a **cycle** of a permutation $\sigma$ as a sequence of numbers $c_1,...,c_k$ such that $\sigma(c_i)=c_{i+1}$ until $k$ and $\sigma(c_k)=c_1.$ A permutation $\sigma$ is cyclic if it has a single cycle $c_1,...,c_k,$ with all other numbers being fixed: in that case, we use the notation $\sigma=(c_1...c_k)$ (note that all numbers outside the decomposition are fixed by $\sigma$).
 
+Every $\sigma\in S_n$ can be written as the product of cyclic permutations: get the first number $x$ such that $\sigma(x)\neq x,$ and let $c_{1i}=\sigma^{i-1}(x).$ These $c_{1i}$ will form a cycle (if $i-1>n!,$ then we must find a repetition in them, since $S_n$ just has $n!$ elements). If they cover all the numbers $1,...,n,$ then $\sigma = (c_{11}...c_{1n}).$ If not, then look for the next number not contained in this cycle and that isn't fixed by $\sigma,$ and then let $c_{21},...,c_{2l}$ be the cycle containing it. Repeat this proccess, and in the end you'll find the decomposition of $\sigma$ in respect to its cycles:
+
+$$\sigma = (c_{11}...c_{1k})(c_{21}...c_{2l})...(c_{m1}...c_{mr})$$
+
+For example, the permutation $\sigma=\begin{pmatrix}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+7 & 3 & 2 & 8 & 5 & 1  & 6 & 4
+\end{pmatrix}$ in $S_8$ has cycle decomposition $\sigma=(1\, 7\, 6) (2\, 3) (4\, 8).$
+
+We can actually go further. Indeed, every permutation is a composition of single swaps between two numbers. Formally, we call these **transpositions**: a transposition $\tau\in S_n$ is a cycle of the form $\tau=(a_1\, a_2).$ If $(c_1...c_k)$ is a cycle, ... 
+
+Thus, we have that every permutation is a composition of transpositions. In particular, the $\sigma\in S_8$ above can be written as $(1\, 6)(1\, 7)(2\, 3)(4\, 8).$
+
+INVARIANT
+
+Since parity is a defining property of permutations, we can define the subgroup $A_n\leq S_n$ of **even permutations** (a group since its closed under composition), called **the alternating group** of order $n.$ Since these are exactly half of all permutations, $|A_n|=\frac{n!}{2}.$
+
+CAYLEY
+
+Symmetric groups are very important, since **each group** $G$ **can be seen as a subgroup of** $S_{G}.$ This is easy to see: each element $g\in G$ can be interpreted as the permutation taking elements $a$ to $ga.$ Since we have inverses, this does gives a bijective map. Formally, this gives us an injective homomorphism $f:G\rightarrow S_G,$ with $G\cong \im f\leq S_{G}$-- you can check it is indeed a homomorphism by applying associativity. This result is known as **Cayley's theorem**. For finite groups, you can label the elements of $G$ by numbers from $1$ to $n$, and then $G$ can be seen as isomorphic to a subgroup of $S_{|G|}.$
+
+For example, every element $m\in \zmod{n}$ can be interpreted as the permutation $k\rightarrow m+k\mod n$ in $S_n.$ In particular, $1\in\zmod{n}$ is the cycle $(1\; ...\; n),$ with $m$ generally being the cycle $(1\;...\;n)^m=(m\;m+1\;...\;n\; 1\;...\; m-1)$ (i.e., "pushing" through the cycle $(1\;...\;n)$ $m$ times).
+
+CONJUGATES
+
+### Permutation games
 
 Rubik
+
 
 Jogos de permutac
 
@@ -1057,7 +1116,7 @@ Fibrac de Hopf
 
 RP3 = SO(3)
 
-## Group quotients
+## Group quotients (H)
 
 We're finally ready to study quotients. Remember that we found out that two n-cycles $c_1,c_2$ should be seen as representing the same hole in $X$ if they "differ by a boundary": $c_1-c_2=\partial_{n+1} a$ for some $a\in C_{n+1}(X)$. Translating to group theory, the situation is that we have a group $Z_n(X)$ of cycles and a subgroup $B_n(X)$ of boundaries. We want to take two elements $c_1, c_2\in Z_n(X)$ to be **equivalent** whenever there's some $b\in B_n(X)$ with $\partial b = c_1-c_2$-- or, equivalently, if $c_1-c_2\in B_n(X).$ We'll then write $c_1\sim c_2.$
 
@@ -1134,6 +1193,14 @@ Normal groups are very important, since in some precise way they are responsible
 
 IMG!!! Tabela periodica
 
+## Spaces as quotients
+
+### Group actions
+
+### The torus as a quotient
+
+### The Möbius strip as a quotient
+
 # Homology theory
 
 ## Homology groups
@@ -1155,6 +1222,8 @@ We can do the same construction with delta spaces $X$ and $C^\Delta_n(X)$, getti
 $$H_n(X)\cong H^\Delta_n(X),$$
 
 i.e., it doesn't matter whether we use complexes or delta spaces to represent our spaces, homology groups will always be the same. We'll use the most convenient version depending on the specific computation.
+
+Indeed, the groups $H_n(X)$ are invariant in respect to homeomorphisms: if $X$ and $Y$ are homeomorphic, then $H_n(X)=H_n(Y)$ for all $n.$ The same is true if $X$ and $Y$ are just homotopically equivalent. That is, homology is a topological invariant. We won't prove that here, but we'll lay out the neccessary tools later on.
 
 It's now time to properly compute the homology of the spaces we've been studying! We'll use heavy use of presentations for that: since $H_n(X)$ is abelian (since $C_n(X)$ is so), always assume we have the commutative relation $a_i+a_j=a_j+a_i$ between generators. We'll ommit it for brevity-- so that, for example, we'll write $\zo^2\cong\angled{a,b}$ even thought the complete presentation is $\zo^2=\angled{a,b\mid ab=ba}.$
 
@@ -1354,7 +1423,7 @@ We would like to extend these to homomorphisms $f_*:H_n(X)\rightarrow H_n(Y)$ fo
 
 Luckily, we always have $f_\#$ being well-behaved. This is because of the relation $f_\#\partial_n=\partial_{n}f_\#$: if $c$ is a cycle in $\csn{n}(X),$ then $f_\#(\partial c)=\partial(f_\#c),$ but also $f_\#(\partial c)=f_\#(0)=0,$ so that $\partial (f_\#c)=0,$ $f_\#c$ being then a cycle. If $c=\partial b$ is a boundary, $f(c)=f(\partial b)=\partial f(b)$ is also one.
 
-Proving $f_\#\partial_n=\partial_{n}f_\#$: if $b\in B_n(X)$ is basically just an application of $f_\#$ being, per definition, a homomorphism:
+Proving $f_\#\partial_n=\partial_{n}f_\#$ is basically just an application of $f_\#$ being, per definition, a homomorphism:
 
 $$
 \begin{align}
@@ -1363,11 +1432,13 @@ f_\#\partial_n (\sigma) &= f_\#(\sum_i (-1)^i \sigma \mid   [v_0, ..., \widehat{
 \end{align}
 $$
 
-Thus, the induced homomorphisms $f_*:H_n(X)\rightarrow H_n(Y)$ sending $[h]$ to $[f_\#(h)]$ are well-defined. This means homology is a theory that associated spaces $X$ to (abelian) groups $H_n(X)$, and continuous functions $f:X\rightarrow Y$ to $f_*:H_n(X)\rightarrow H_n(Y)$. This is called homology's **functorial** property, and the n-th homology $H_n(\cdot)$ is called a **functor** between spaces and groups.
+Thus, the induced homomorphisms $f_*:H_n(X)\rightarrow H_n(Y)$ sending $[h]$ to $[f_\#(h)]$ are well-defined. This means homology is a theory that associated spaces $X$ to (abelian) groups $H_n(X)$, and continuous functions $f:X\rightarrow Y$ to homomorphisms $f_*:H_n(X)\rightarrow H_n(Y)$. This is called homology's **functorial** property, and the n-th homology $H_n(\cdot)$ is called a **functor** between spaces and groups.
 
 The idea of some theory $F$ bringing mathematical objects $o$ to $Fo$ and maps $f:o\rightarrow o'$ to maps $Ff:Fo\rightarrow Fo'$ is one of the most fundamental insights of [category theory](https://en.wikipedia.org/wiki/Category_theory) ([see also](https://en.wikipedia.org/wiki/Functor)), and is widely applied in [functional programming](https://en.wikipedia.org/wiki/Functor_(functional_programming)).
 
-Homology being a functor is actually a very, very useful and powerful property; for example, when applied to **retractions**. Formally, a retraction from a space $X$ to a subspace $A\subseteq X$ is a continuous functions $r:X\rightarrow A$ such that $r(a)=a$ for all $a\in A.$ That is, we leave $A$ alone and send the rest of $X$ to it.
+Homology being a functor is actually a very, very useful and powerful property. First, it allows us to prove that homology is a topological invariant: if $f,g$ provide a homotopy equivalence $X\simeq Y,$ then we can prove that $f_*$ and $g_*$ are inverses in homology, giving isomorphisms $H_n(X)\cong H_n(Y).$ The proof isn't actually hard and introduces some useful algebraic concepts, and can be found, say, on Hatcher's book.
+
+Functoriality is also useful when applied to **retractions**. Formally, a retraction from a space $X$ to a subspace $A\subseteq X$ is a continuous functions $r:X\rightarrow A$ such that $r(a)=a$ for all $a\in A.$ That is, we leave $A$ alone and send the rest of $X$ to it.
 
 IMG !!!
 
@@ -1375,7 +1446,7 @@ Suppose we have a retraction $r:X\rightarrow A$. The chain homomorphisms $r_\#:\
 
 This simple remark shows us that **there is no rectraction** $r:D^2\rightarrow S^1$, since this would give a surjection $0\cong H_1(D^2) \rightarrow H_1(S^1) \cong \mathbb{Z}$, which is absurd. Intuitively, this means that if tou take a sheet of fabric and fix its boundary, it's impossible to retract it to the boundary without cutting the sheet. This also applies for any dimension, since retractions would imply surjections $r_*:H_n(D^{n+1})\cong 0 \rightarrow H_n(S^n)\cong \zo.$ This is a very relevant topological fact, and one that isn't easy at all to prove without some algebraic machinery like homology! Its relevance can be seen, for example, in how it can be used to prove this extremely useful and powerful theorem:
 
-**Theorem (2D Brower's fixed point theorem)**: Every continuous function $f:D^2\rightarrow D^2$ has a fixed point (i.e., $x$ such that $f(x)=x$).
+**Theorem (2D Brouwer's fixed point theorem)**: Every continuous function $f:D^2\rightarrow D^2$ has a fixed point (i.e., $x$ such that $f(x)=x$).
 
 **Proof**: Suppose we had some $f:D^2\rightarrow D^2$ without fixed points, so that, for all $x$, $x\neq f(x)$. Then we can form a ray going from $x$ to $f(x)$, and this ray intersects $S^1$ at some unique point. Define $r(x)$ to be this intersection. This $r$ is then a retraction $D^2\rightarrow S^1$, which isn't topologically possible, so we have a contradiction.
 
@@ -1385,9 +1456,15 @@ IMG !!!
 
 Actually, this applies to any dimension, using the exact same argument. Thus
 
-**Theorem (Brower's fixed point theorem)**: Every continuous function $f:D^n\rightarrow D^n$ has a fixed point.
+**Theorem (Brouwer's fixed point theorem)**: Every continuous function $f:D^n\rightarrow D^n$ has a fixed point.
 
-Brower's fixed point theorem is a very useful theorem. It is, for example, commonly used to prove that certain equations have solutions with fixed points (e.g. equations of **movement**, like from liquids or planetary systems). We're now going to study two fascinating applications to games, both fundamentally due to [John Nash](https://en.wikipedia.org/wiki/John_Forbes_Nash_Jr.).
+The theorem applies for any space $X$ homeomorphic to $D^n.$ For if $h:X\rightarrow D^n$ is a homeomorphism and we have a continuous function $f:X\rightarrow X,$ then $h\circ f\circ \inv{h}:D^n\rightarrow D^n$ has no fixed point. Suppose there was an $x\in X$ fixed by $f.$ Since $h$ is bijective, there is a $p\in D^n$ such that $\inv{h}(p)=x.$ Thus, $h(f(\inv{h}(p)))=h(\inv{h}(p))=p,$ and $p$ is a fixed point of $h\circ f\circ \inv{h},$ which is a contradiction.
+
+In the 1D case, the theorem states that, if we have a continuous function $f:[a,b]\rightarrow [a,b],$ then $f(x)=x$ for some $x\in [a,b].$ We can see this through the graphic of $f$, which is contained inside the square $[a,b]^2.$ The fact that there's $x\in[a,b]$ such that $f(x)=x$ is equivalent to the graph of $f$ being forced to intersect the diagonal from $(a,a)$  to $(b,b)$ in the square. I.e., continuous graphs can't avoid touching this diagonal. This 1D example is actually a standard exercise on analysis, and can be proved only using the compactness of $[a,b]$ and the [intermediate value theorem](https://en.wikipedia.org/wiki/Intermediate_value_theorem)-- but topological methods are required for higher dimensional proofs. 
+
+IMG!!!
+
+Brouwer's fixed point theorem is a very useful theorem. It is, for example, commonly used to prove that certain equations have solutions with fixed points (e.g. equations of **movement**, like from liquids or planetary systems). We're now going to study two fascinating applications to games, both fundamentally due to [John Nash](https://en.wikipedia.org/wiki/John_Forbes_Nash_Jr.).
 
 ## The Hex game
 
@@ -1403,7 +1480,7 @@ You can play Hex solo and check the equivalence between the hexagonal and Go-lik
 
 GAME!!!
 
-The fascinating thing about Hex is that is an inherently **topological game**, in the sense it involves connectivity, independent of any actual geometry. The relation is, however, even deeper, specifically when you consider the possible end results of the game. What results are possible? Since we have a finite board, we must have that each game either leads to a black win, to a white victory or a draw. This last ending, however, is **impossible**, and this is an application of Brower's fixed point theorem!
+The fascinating thing about Hex is that is an inherently **topological game**, in the sense it involves connectivity, independent of any actual geometry. The relation is, however, even deeper, specifically when you consider the possible end results of the game. What results are possible? Since we have a finite board, we must have that each game either leads to a black win, to a white victory or a draw. This last ending, however, is **impossible**, and this is an application of Brouwer's fixed point theorem!
 
 **Theorem**: No Hex game can end in a draw.
 
@@ -1443,7 +1520,7 @@ This forces $\lambda_1e(v_0)+\lambda_1e(v_1)+\lambda_2e(v_2)=0$, which amounts t
 
 {{< qed >}}
 
-The result is actually even stronger: Hex having no draws is **equivalent** to the 2D Brower fixed point theorem. The proof requires some use of real analysis, so we won't write it here. See the references for a proof.
+The result is actually even stronger: Hex having no draws is **equivalent** to the 2D Brouwer fixed point theorem. The proof requires some use of real analysis, so we won't write it here. See the references for a proof.
 
 The interactive game above shows this winning flow, it being null at positions without any placed stones. Colors represent the direction (and length by their intensity) of the flow vectors, according to the color-coding shown in the disk below (right is blue-ish, up is red-ish, left is green-ish and down is cyan). Black indicates null-flow.
 
