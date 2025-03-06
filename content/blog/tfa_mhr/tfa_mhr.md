@@ -48,10 +48,10 @@ TODO:Corrigir estrutura de simplexo do círculo. Dar exemplo do disco.
 Delta sets tem q FILL o espaço (td ponto no interior de algm)
 
 ALG LIN:
-    matrizes
-    tipos de coisas q são trans lins, TRANSLAC NÃO É
-    Distância euclidiana $d(a,b)$, norma e normalizac
-    dot e exterior products (matrizes tbm?)
+    matrizes OK
+    tipos de coisas q são trans lins, TRANSLAC NÃO É OK
+    Distância euclidiana $d(a,b)$, norma e normalizac OK
+    dot e exterior products (matrizes tbm?) OK
 
 ÁLGEBRA N É PRA SER EXPERIMENTO OU SURPRESINHA, MAS ALGO Q SURGE PRA SOLUCIONAR E JUNTAR TUDO NUM MESMO ESPAÇO!!!
 
@@ -110,6 +110,8 @@ We can see elements $(a_0,...a_n)$ of $ \mathbb{R}^n$ in two ways: as points in 
 
 Bearing in mind the geometry-topology distinction, the fact that points in $ \mathbb{R}^n$ are also vectors-- i.e., directions-- is actually a geometric property, related directly to curvature. Indeed, if we curved the plane in order to get the upper hemisphere of a sphere, points wouldn't coincide if directions, as seen in the image below. Directions at a certain point $x$ in our base space $X$ in the so-called tangent space $T_xX$, which is a copy of $ \mathbb{R}^{dim(X)}$. With the reals, these spaces can be identified, but not for any curved space.
 
+IMG !!!
+
 Interestingly, this means that we could informally define $\mathbb{R}^n$ as the space of all directions. Thus, if arithmetic and calculus never lead us to the notion of real numbers (and their sequences), we could still find them through this definition, as a sort of configuration/state space of directed arrows. This method-- defining a space as the "state space" of objects we're studying-- is extremely fruitful, and we'll apply it in later posts.
 
 Vectors unite algebra and geometry very deeply. We can define an addition with vectors by adding all their components: $ a+b= (a_0,...,a_n)+(b_0,...,b_n)=(a_0+b_0,...,a_n+b_n)$. Geometrically, this corresponds as taking $b$ and setting its origin to the end of $a$, and taking the sum as the arrow from the origin to the end of this displaced $b$ vector. This forms a triangle, as seen in the image below.
@@ -126,7 +128,13 @@ We could do these operations with other sets instead of $\mathbb{R}^n$-- like wi
 
 Similarly, we define scalar multiplication $\alpha \cdot a$ for all $\alpha\in \ro, a\in V$, satisfying the distributive propert $\lambda \cdot(a+b)=\lambda a + \lambda b$. We could also define scalars coming from other sets instead of the reals, like the complex numbers. For linear algebra to make sense, these sets also need some algebraic structure, forming what's called a **field**. Fields are sets together with operations $+, \times$ similar to addition and multiplication as we know them from the real or complex numbers. We'll study these latter.
 
-A vector $v$ is called a linear combination of other vectors $v_1,...,v_k$ when we have that $v=\alpha_1v_1 + ... + \alpha_kv_k$ for some $\alpha_1,...,\alpha_k$. This notion can be used to, say, describe colinearity: if for example $v=\alpha v'$ for some other $v'$, this means $v$ and $v'$ are in the same line. Similarly, if $v=\alpha_1v_1+\alpha_2v_2$, then $v$ is in the plane containing $v_1, v_2$ (try seeing this in $\mathbb{R}$^3).
+We can use these operations to do geometry on $\ro^n.$ For example, the **length**, also called **norm** of a vector $v$ is the size of the arrow representing it, written $\|v\|.$ Using Pythagora's theorem, we get that $\|v\|=\sqrt{v_1^2+...+v_n^2}.$ Then the length of the vector representing the difference $a-b$ that goes from $b$ to $a$ is the **Euclidean distance** between $a,b$ seen as points: $d(a,b)=\|a-b\|.$ This is the usual metric we intuitively use when calculating distances in the real world.
+
+If you have a vector $v$ and want to get another $v'$ pointing on the same direction, but with length equal to $1$, you can "**normalize**" it and let $v'=\frac{v}{\|v\|}.$
+
+IMG !!!
+
+A vector $v$ is called a **linear combination** of other vectors $v_1,...,v_k$ when we have that $v=\alpha_1v_1 + ... + \alpha_kv_k$ for some $\alpha_1,...,\alpha_k$. This notion can be used to, say, describe colinearity: if for example $v=\alpha v'$ for some other $v'$, this means $v$ and $v'$ are in the same line. Similarly, if $v=\alpha_1v_1+\alpha_2v_2$, then $v$ is in the plane containing $v_1, v_2$ (try seeing this in $\mathbb{R}$^3).
 
 For a finite set $S$ of vectors, its span $\text{span}(S)$ is the set of all possible linear combinations using elemnts from $S$.
 
@@ -136,13 +144,17 @@ A set of vectors $\{v_1,...,v_k\}$ is linearly independent (l.i.) if no $v_i$ is
 
 For a l.i. set $S=\{v_1,...,v_k\}$, every element of its span can be represented uniquely by elements of $S$. Otherwise, say we had $v=\alpha_1v_1+...+\alpha_kv_k=\beta_1v_1+...+\beta_kv_k$ for at least one $i$ such that $\alpha_i\neq \beta_i$. We can choose $i=1$ (just order $S$ differently), and then then $v_1=(\beta_2v_2+\dots+\beta_kv_k-\alpha_2v_2.-\dots-\beta_kv_k)/(\alpha_1-\beta_1)$, meaning $S$ isn't l.i.-- a contradiction.
 
-In particular, this means $\{v_1,...,v_k\}$ serve as coordinates for $\text{span}(S)$-- we say they are a basis for the span of $S$. For example, $e_1,...,e_n$ is a basis of $\text{span}(e_1,...,e_n)=\mathbb{R^n}$, called the **canonical basis** of $\mathbb{R}^n$-- it is the most natural, but certainly not the only one. In general, the count of vectors neccessary for getting a basis of a vector space $V$ is called its **dimension**, $\text{dim}(V)$.
+In particular, this means $\{v_1,...,v_k\}$ serve as coordinates for $\text{span}(S)$-- we say they are a basis for the span of $S$. For example, $e_1,...,e_n$ is a basis of $\text{span}(e_1,...,e_n)=\mathbb{R^n}$, called the **canonical basis** of $\mathbb{R}^n$-- it is the most natural, but certainly not the only one. In general, the amount of vectors neccessary for getting a basis of a vector space $V$ is constant and it's called its **dimension**, $\text{dim}(V)$. We'll only consider finite-dimensional spaces here. The study of infinite dimensional ones-- known as [functional analysis](https://en.wikipedia.org/wiki/Functional_analysis)-- uses a lot of (more point set) topology, but is out of the range of this post (although perhaps not of this series).
 
 In $\mathbb{R}^3$, whenever we have two vectors $a, b$, we can form a base by bringin in a vector $c$ perpendicular to the plane containing $a, b$ (their span). We could do this with the so-called **cross product** $a\times b$, defined as 
 
 $$(a_0,a_1,a_2)\times (b_0,b_1,b_2) = (a_1\cdot b_2 - b_1\cdot a_2, a_2\cdot b_0 - b_2\cdot a_0,a_0\cdot b_1-b_0\cdot a_1)$$
 
 You can check that this indeed generates a base whenever $a,b$ come from the canonical one. The formula might seem a bit daunting, but it has a fairly straightforward geometrical interpretation, which we'll skip here for length's sake.
+
+MAO DIREITA
+
+Another very important product is the **dot product**, which measures the similarity of two vectors. More properly, if $a,b$ are vectors in $\ro^n,$ then their dot product is defined as $a\cdot b=\|a\|\|b\| \cos(\theta),$ where $\theta$ is the angle between $a$ and $b$ in the plane containing them. Since we're using the cosine, $a\cdot b=0$ only when $a$ and $b$ are perpendicular to one another (or if one of them is $0$). It's a standard exercise to show that $a\cdot b = \sum _{i=0}^n a_ib_i,$ giving us a straightforward formula for the product (just prove it for the canonical basis and then for a general vector by decomposing it into the basis). It also shows us that $a\cdot a = \sum a_i^2=\|a\|^2.$
 
 Linear algebra considers not only these algebraic-geometric constructions, but also functions preserving them. More specifically, it also studies linear transformations, which are functions $f:\mathbb{R}^m\rightarrow \mathbb{R}^n$ such that $ f(a+b)=f(a)+f(b)$ (they "respect vector addition") and $f(\alpha a)=\alpha f(a), a\in\mathbb{R}$ (they "respect scalar multiplication").
 
@@ -153,6 +165,36 @@ Equivalently, a linear transformation is a function $f:\mathbb{R}^m\rightarrow \
 The two equivalent definitions above tell us two different ways of defining and considering mathematical objetcs. In the first one, we're explicit, or, rather, **extensional**, clearly constructing our objects of interesting. In the second one, we are **intensional**, defining and describing through properties and relations that should be satisfied. Extensive statements are very intuitive and in many cases the definitions we're actually thinking of. Intensive statements, in the other hand, are more generalizable and allow for cleaner reasoning.
 
 Topologically, all linear functions are continuous, since vector addition and multiplication themselves are so.
+
+Many common geometrical functions are linear, like
+
+- Linear scalings: scale vectors on each direction with $f(v)=\alpha_v v,$ where $\alpha_v$ depends on $v$ linearly;
+- Rotations;
+- Projection into an axis.
+
+However, note that translations are not linear: if we want translate a point $x$ by a fixed vector $v$, getting $f(x)=x+v,$ this isn't linear since, for example, $f(2x)=2x+v\neq f(x)+f(x)=2x+2v.$ We'll see on the post on projective spaces that there is, however, a way to include translations as linear transformations of some space-- using the so-called "homogenous coordinates".
+
+IMG!!!
+
+We can represent transformations using **matrices**: specifically, if $f:\ro^n\rightarrow \ro^m$ is linear, then it can be represented by the $m\times n$ matrix $M_f$ defined as
+
+$$\begin{pmatrix}
+f(e_1)_1&...& f(e_n)_1\\
+...& ...&...\\
+f(e_1)_m&...&f(e_n)_m
+\end{pmatrix} $$
+
+Conversely, every matrix $M$ represents a transformation $f$ by defining the values of $f$ as above.
+
+Remember that the element $M_{ij}$ of a matrix is the one on the $i$-th row and $j$-th column. We then define matrix multiplication $AB$ (of size $a\times c$) between two matrices $A$ (of size $a\times b$) and $B$ (of size $b\times c$) by $(AB)_{ij}=\sum A_{ik} B_{kj}$. Equivalently, $(AB)_{ij}=A_{i*}\cdot B_{*j},$ where $A_{i*}$ and $B_{*j}$ are the vectors representing the $i$-th row of $A$ and the $j$-th column of $B,$ respectively. This operations is defined exactly so that $M_fM_g=M_{f\circ g},$ for linear transformations $g:\ro^n\rightarrow \ro^m$ and $f:\ro^m\rightarrow \ro^k.$ It is also so that, if vectors $v\in \ro^n$ are seen as a column matrices of values $\begin{pmatrix}v_1\\...\\ v_n\end{pmatrix}$ and $f:\ro^n\rightarrow \ro^m$ is linear, then $f(v)$ is obtained by multiplying $M_f$ and $v$: $f(v)=M_fv.$ 
+
+Note that matrix multiplication isn't commutative, since linear transformation composition isn't. For example, $M_f=\begin{pmatrix}1&0\\0&0 \end{pmatrix}$ represents a transformation $f$ annihilating $e_2$ and leaving $e_1$ as it is; $M_g=\begin{pmatrix}1&1\\0&0\end{pmatrix}$ represents one $g$ taking $e_2$ to $e_1$ and, again, fixing $e_1.$ Doing $f\circ g$ has matrix $M_fM_g=\begin{pmatrix}1&1\\0&0\end{pmatrix}$ (since $f(g(e_2))=f(e_1)=e_1$) and $g\circ f$ has $M_gM_f=\begin{pmatrix}1&0\\0&0\end{pmatrix}$ (since $g(f(e_2))=g(0)=0$).
+
+The identity transformation on $\ro^n$ is represented by the $n\times n$ identity matrix $I$ with ones on the diagonal $m_{ii}$ and zeros elsewhere. It has the property that $MI=IM=M$ for all matrices $M$ of size $n\times n.$ A matrix $M$ is then called **invertible** if there's some matrix $\inv{M}$ such that $M\inv{M}=\inv{M}M=I,$ and these represent exactly the invertible transformations on $\ro^n.$ 
+
+A counter-clockwise rotation of $\theta$ radians, for example, is given by the matrix $\begin{pmatrix}\cos (\theta) & -\sin (\theta)\\ \sin (\theta) & \cos(\theta) \end{pmatrix}.$ A clockwise rotation with the same angle is given by $\begin{pmatrix}\cos (\theta) & \sin (\theta)\\ -\sin (\theta) & \cos(\theta) \end{pmatrix},$ and these are inverses since they represent inverse transformations.
+
+IMG!!!
 
 Linear transformations are very useful for dealing in a systematic way with the solutions of systems linear equations. If we have such a system 
 
@@ -950,7 +992,7 @@ $$\begin{array}{c|c c c c c c}
 \end{array}
 $$
 
-In particular, it isn't abelian and, letting $a=(0,1),$ $b=(1,1)$ and $c=(1,0),$ we get the presentation $\zmod{3}\rtimes_\phi \zmod{2}=\angled{a,b\mid a^2=b^2=c^3=e,abc=e}.$ This group will become important later as an example.
+In particular, it isn't abelian and, letting $a=(0,1)$ and $b=(1,1)$ we get the presentation $\zmod{3}\rtimes_\phi \zmod{2}=\angled{a,b\mid a^2=b^2=(ab)^3=e}.$ This group will become important later as an example.
 
 ## Example: rings and modules (H)
 
@@ -1080,15 +1122,19 @@ For example, the permutation $\sigma=\begin{pmatrix}
 7 & 3 & 2 & 8 & 5 & 1  & 6 & 4
 \end{pmatrix}$ in $S_8$ has cycle decomposition $\sigma=(1\, 7\, 6) (2\, 3) (4\, 8).$
 
-We can actually go further. Indeed, every permutation is a composition of single swaps between two numbers. Formally, we call these **transpositions**: a transposition $\tau\in S_n$ is a cycle of the form $\tau=(a_1\, a_2).$ If $(c_1...c_k)$ is a cycle, ... 
+We can actually go further. Indeed, every permutation is a composition of single swaps between two numbers. Formally, we call these **transpositions**: a transposition $\tau\in S_n$ is a cycle of the form $\tau=(a_1\; a_2).$ If $(c_1...c_k)$ is a cycle, then we can write it as the product of transpositions: begin swapping $(c_1\; c_2)$; now, $c_1$ is being correctly sent to $c_2,$ and $c_2$ to $c_1.$ Then send $c_1$ to $c_3$ with $(c_1\; c_3)$, so that, overall, $c_1$ is going to $c_2$ and $c_2$ to $c_3.$ Continue in this procedure, and you'll get
 
-Thus, we have that every permutation is a composition of transpositions. In particular, the $\sigma\in S_8$ above can be written as $(1\, 6)(1\, 7)(2\, 3)(4\, 8).$
+$$(c_1\;...\;c_k)=(c_1\;c_k)...(c_1\;c_3)(c_1\;c_2)$$
 
-INVARIANT
+Thus, we have that every permutation is a composition of transpositions. In particular, the $\sigma\in S_8$ above can be written as $(1\, 6)(1\, 7)(2\, 3)(4\, 8).$ This decomposition, however, is not unique. Luckily, though, the **parity** of the amount of transpositions in a decomposition of a permutation is constant. There are [many different proofs](https://math.stackexchange.com/questions/46403/alternative-proof-that-the-parity-of-permutation-is-well-defined), most quite understandable, but too wordy for this post. Thus, we can classify permutations as either being odd (being a product of an odd amount of transpositions) or even. The $\sigma$ above, for example, is even.
 
-Since parity is a defining property of permutations, we can define the subgroup $A_n\leq S_n$ of **even permutations** (a group since its closed under composition), called **the alternating group** of order $n.$ Since these are exactly half of all permutations, $|A_n|=\frac{n!}{2}.$
+Indeed, the transpositions $\tau_i=(i\;i+i)$ generate all other transpositions: if $j>i$, then we can move $i$ to $j$ one step at a time, and then bringing $j$ back to $i$, so that $(i\;j)=(i\;i+1)(i+1\;i+2)...(j-1\;j)(j-2\;j-1)...(i\;i+1).$ Thus, all of $S_n$ is generated by these transpositions. Taking into consideration the relations the $\tau_i$ satisfy, we get the presentation
 
-CAYLEY
+$$S_n=\angled{\tau_1,...,\tau_{n-1}\mid \tau_i^2=e,\;\;\; \tau_i\tau_j=\tau_j\tau_i \text{ for all }|i-j|>1,\;\;\; (\tau_i\tau_{i+1})^3=e}$$
+
+In particular, note that in the $S_3$ case, we get the same presentation as for the $\zmod{3}\rtimes_\phi \zmod{2}$ before, so that $S_3\cong \zmod{3}\rtimes_\phi \zmod{2}\cong D_3.$
+
+Since parity is a defining property of permutations, we can define the subgroup $A_n\leq S_n$ of even permutations (a group since its closed under composition), called **the alternating group** of order $n.$ Since these are exactly half of all permutations, $|A_n|=\frac{n!}{2}.$
 
 Symmetric groups are very important, since **each group** $G$ **can be seen as a subgroup of** $S_{G}.$ This is easy to see: each element $g\in G$ can be interpreted as the permutation taking elements $a$ to $ga.$ Since we have inverses, this does gives a bijective map. Formally, this gives us an injective homomorphism $f:G\rightarrow S_G,$ with $G\cong \im f\leq S_{G}$-- you can check it is indeed a homomorphism by applying associativity. This result is known as **Cayley's theorem**. For finite groups, you can label the elements of $G$ by numbers from $1$ to $n$, and then $G$ can be seen as isomorphic to a subgroup of $S_{|G|}.$
 

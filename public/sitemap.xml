@@ -26,6 +26,8 @@
     <loc>http://localhost:1313/blog/topology-for-artists/</loc>
     <lastmod>2025-01-14T12:33:23-03:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/</loc>
+  </url><url>
     <loc>http://localhost:1313/categories/</loc>
   </url>
 </urlset>
