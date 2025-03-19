@@ -6,16 +6,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="shortcut icon" href="http://localhost:1313/images/favicon.png" />
-<title>Algebraic topology and game dev: graphics, Rubik&#39;s cube and winning flows | Topophilic</title>
-<meta name="title" content="Algebraic topology and game dev: graphics, Rubik&#39;s cube and winning flows" />
+<title>Algebraic topology for game dev: 3D graphics and winning flows | Topophilic</title>
+<meta name="title" content="Algebraic topology for game dev: 3D graphics and winning flows" />
 <meta name="description" content="TL;DR
 In our search for topological invariants, we&rsquo;ll learn how holes can be defined and be used to study spaces. This will require studying &ldquo;model&rdquo; spaces, known as simplicial complexes, which are widely used in 3D rendering. We will be able to define general topological concepts like &ldquo;boundary&rdquo; and &ldquo;cycle&rdquo;. This will be formalized through a quick detour on group theory, the study of permutations and their algebras, which can be exemplified by the moves and configurations of a Rubik&rsquo;s cube. With this machinery, we&rsquo;ll define the homology groups of a topological space, in which holes live, and are one of the most important and studied topological invariants of spaces." />
 <meta name="keywords" content="Topology for Artists," />
 
 
-<meta property="og:url" content="http://localhost:1313/algebraic-topology-and-game-dev-graphics-rubiks-cube-and-winning-flows/">
+<meta property="og:url" content="http://localhost:1313/algebraic-topology-for-game-dev-3d-graphics-and-winning-flows/">
   <meta property="og:site_name" content="Topophilic">
-  <meta property="og:title" content="Algebraic topology and game dev: graphics, Rubik&#39;s cube and winning flows">
+  <meta property="og:title" content="Algebraic topology for game dev: 3D graphics and winning flows">
   <meta property="og:description" content="TL;DR In our search for topological invariants, we’ll learn how holes can be defined and be used to study spaces. This will require studying “model” spaces, known as simplicial complexes, which are widely used in 3D rendering. We will be able to define general topological concepts like “boundary” and “cycle”. This will be formalized through a quick detour on group theory, the study of permutations and their algebras, which can be exemplified by the moves and configurations of a Rubik’s cube. With this machinery, we’ll define the homology groups of a topological space, in which holes live, and are one of the most important and studied topological invariants of spaces.">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="article">
@@ -30,17 +30,17 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="http://localhost:1313/images/share.png">
-  <meta name="twitter:title" content="Algebraic topology and game dev: graphics, Rubik&#39;s cube and winning flows">
+  <meta name="twitter:title" content="Algebraic topology for game dev: 3D graphics and winning flows">
   <meta name="twitter:description" content="TL;DR In our search for topological invariants, we’ll learn how holes can be defined and be used to study spaces. This will require studying “model” spaces, known as simplicial complexes, which are widely used in 3D rendering. We will be able to define general topological concepts like “boundary” and “cycle”. This will be formalized through a quick detour on group theory, the study of permutations and their algebras, which can be exemplified by the moves and configurations of a Rubik’s cube. With this machinery, we’ll define the homology groups of a topological space, in which holes live, and are one of the most important and studied topological invariants of spaces.">
 
 
 
 
-  <meta itemprop="name" content="Algebraic topology and game dev: graphics, Rubik&#39;s cube and winning flows">
+  <meta itemprop="name" content="Algebraic topology for game dev: 3D graphics and winning flows">
   <meta itemprop="description" content="TL;DR In our search for topological invariants, we’ll learn how holes can be defined and be used to study spaces. This will require studying “model” spaces, known as simplicial complexes, which are widely used in 3D rendering. We will be able to define general topological concepts like “boundary” and “cycle”. This will be formalized through a quick detour on group theory, the study of permutations and their algebras, which can be exemplified by the moves and configurations of a Rubik’s cube. With this machinery, we’ll define the homology groups of a topological space, in which holes live, and are one of the most important and studied topological invariants of spaces.">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="24317">
+  <meta itemprop="wordCount" content="16202">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -221,7 +221,9 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
         zmod : ["\\mathbb{Z}/#1 \\mathbb{Z}", 1],
         inv : ["#1 ^{-1}", 1],
         cdn : ["C^\\Delta_#1", 1],
-        csn : ["C^s_#1", 1]
+        csn : ["C^s_#1", 1],
+        rank : ["\\text{rank}\\,\\,\\,"],
+        pard : ["\\frac{\\partial #1}{\\partial #2}", 2] 
       }
     }
   };
@@ -245,7 +247,7 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
   
   <main>
 
-<h1>Algebraic topology and game dev: graphics, Rubik&#39;s cube and winning flows</h1>
+<h1>Algebraic topology for game dev: 3D graphics and winning flows</h1>
 <p>
   <i>
     <time datetime='2025-01-14'>
@@ -263,7 +265,6 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
   <ol>
     <li><a href="#tldr">TL;DR</a></li>
     <li><a href="#introduction-and-intuition">Introduction and intuition</a></li>
-    <li><a href="#basic-linear-algebra">Basic linear algebra</a></li>
     <li><a href="#simplices-and-topology">Simplices and topology</a>
       <ol>
         <li><a href="#n-simplices-and-complexes">N-simplices and complexes</a></li>
@@ -291,46 +292,6 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
         <li><a href="#cycles-and-holes">Cycles and holes</a></li>
       </ol>
     </li>
-    <li><a href="#groups-permutations-and-their-games">Groups, permutations and their games</a>
-      <ol>
-        <li><a href="#definitions-and-basic-examples-h">Definitions and basic examples (H)</a></li>
-        <li><a href="#describing-groups">Describing groups</a>
-          <ol>
-            <li><a href="#tables">Tables</a></li>
-            <li><a href="#presentations-h">Presentations (H)</a></li>
-            <li><a href="#cayley-graphs">Cayley graphs</a></li>
-          </ol>
-        </li>
-        <li><a href="#generating-groups">Generating groups</a>
-          <ol>
-            <li><a href="#direct-products-h">Direct products (H)</a></li>
-            <li><a href="#semidirect-products">Semidirect products</a></li>
-          </ol>
-        </li>
-        <li><a href="#example-rings-and-modules-h">Example: rings and modules (H)</a></li>
-        <li><a href="#example-fields-finite-projective-spaces-and-spot-it-">Example: fields, finite projective spaces and &ldquo;Spot It!&rdquo; *</a></li>
-        <li><a href="#example-non-abelian-groups-and-permutation-games">Example: non-abelian groups and permutation games</a>
-          <ol>
-            <li><a href="#dihedral-groups">Dihedral groups</a></li>
-            <li><a href="#symmetric-groups">Symmetric groups</a></li>
-            <li><a href="#permutation-games">Permutation games</a></li>
-          </ol>
-        </li>
-        <li><a href="#example-topological-groups-quaternions-and-the-hopf-fibration-">Example: topological groups, quaternions and the Hopf fibration *</a></li>
-        <li><a href="#group-quotients-h">Group quotients (H)</a>
-          <ol>
-            <li><a href="#the-isomorphism-theorem-and-the-classification-of-finite-groups-optional">The isomorphism theorem and the classification of finite groups (optional)</a></li>
-          </ol>
-        </li>
-        <li><a href="#spaces-as-quotients">Spaces as quotients</a>
-          <ol>
-            <li><a href="#group-actions">Group actions</a></li>
-            <li><a href="#the-torus-as-a-quotient">The torus as a quotient</a></li>
-            <li><a href="#the-möbius-strip-as-a-quotient">The Möbius strip as a quotient</a></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
     <li><a href="#homology-theory">Homology theory</a>
       <ol>
         <li><a href="#homology-groups">Homology groups</a></li>
@@ -340,7 +301,9 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
         <li><a href="#the-torus-1">The torus</a></li>
         <li><a href="#the-klein-bottle-1">The Klein bottle</a></li>
         <li><a href="#the-projective-plane">The projective plane</a></li>
+        <li><a href="#the-euler-characteristic">The Euler characteristic</a></li>
         <li><a href="#holes-of-order-2-">Holes of order 2 *</a></li>
+        <li><a href="#homology-with-coefficients">Homology with coefficients</a></li>
       </ol>
     </li>
     <li><a href="#applications">Applications</a>
@@ -350,7 +313,14 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
         <li><a href="#nash-equilibria-">Nash equilibria **</a></li>
       </ol>
     </li>
-    <li><a href="#going-further">Going further</a></li>
+    <li><a href="#going-further">Going further</a>
+      <ol>
+        <li><a href="#homotopy-invariance-of-homology">Homotopy invariance of homology</a></li>
+        <li><a href="#long-exact-sequences">Long exact sequences</a></li>
+        <li><a href="#isomorphism-of-simplicial-delta-and-singular-homologies">Isomorphism of simplicial, delta and singular homologies</a></li>
+        <li><a href="#cw-complexes-and-cellular-homology">CW complexes and cellular homology</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
     </aside>
@@ -637,69 +607,6 @@ dot e exterior products (matrizes tbm?) OK</p>
 </ul>
 <p>IMGS!!! (cylinder?, torus)</p>
 <p>Most of this post will deal with the non-trivial, although highly enriching proccess of formalizing these inutitive notions.</p>
-<h1 id="basic-linear-algebra">Basic linear algebra</h1>
-<p>To actually be able to apply our considerations to topological spaces and compute holes, let&rsquo;s start by defining simpler, &ldquo;model&rdquo; spaces. First, a quick reminder on basic linear algebra.</p>
-<p>We can see elements $(a_0,...a_n)$ of $ \mathbb{R}^n$ in two ways: as points in a space (the $a_i$ being its coordinates), or as arrows going from the origin $ (0,...,0)$ (we will also usually write just $0$ for the origin from now on) to $(a_0,...a_n)$. In the second intepretation, we call them vectors. Points and vectors are really the same thing in $\mathbb{R}^n$, so we&rsquo;ll call them interchangeably.</p>
-<p>Bearing in mind the geometry-topology distinction, the fact that points in $ \mathbb{R}^n$ are also vectors&ndash; i.e., directions&ndash; is actually a geometric property, related directly to curvature. Indeed, if we curved the plane in order to get the upper hemisphere of a sphere, points wouldn&rsquo;t coincide if directions, as seen in the image below. Directions at a certain point $x$ in our base space $X$ in the so-called tangent space $T_xX$, which is a copy of $ \mathbb{R}^{dim(X)}$. With the reals, these spaces can be identified, but not for any curved space.</p>
-<p>IMG !!!</p>
-<p>Interestingly, this means that we could informally define $\mathbb{R}^n$ as the space of all directions. Thus, if arithmetic and calculus never lead us to the notion of real numbers (and their sequences), we could still find them through this definition, as a sort of configuration/state space of directed arrows. This method&ndash; defining a space as the &ldquo;state space&rdquo; of objects we&rsquo;re studying&ndash; is extremely fruitful, and we&rsquo;ll apply it in later posts.</p>
-<p>Vectors unite algebra and geometry very deeply. We can define an addition with vectors by adding all their components: $ a+b= (a_0,...,a_n)+(b_0,...,b_n)=(a_0+b_0,...,a_n+b_n)$. Geometrically, this corresponds as taking $b$ and setting its origin to the end of $a$, and taking the sum as the arrow from the origin to the end of this displaced $b$ vector. This forms a triangle, as seen in the image below.</p>
-<p>IMG!!! ADD VETORIAL</p>
-<p>We also define what&rsquo;s called <strong>scalar multiplication</strong> between a real number $ \alpha$ (called a &ldquo;scalar&rdquo;) and a vector $v=(a_0,...,a_1)$: $\alpha v = (\alpha \cdot a_0,...,\alpha \cdot a_1)$. Geometrically, we&rsquo;re stretching $v$ by a factor of $\alpha$ (negative numbers inverting the direction of the vector).</p>
-<p>We could do these operations with other sets instead of $\mathbb{R}^n$&ndash; like with $\mathbb{C}^n$, $\mathbb{Q}^k$ or subspaces of $\mathbb{R}^n$, as we will se below. Thus, we generally define a <strong>real vector space</strong> as a set $V$&ndash; whose members are called vectors&ndash; with an operation $+$ satisfying familiar properties: for all $a,b\in V$, we have</p>
-<ul>
-<li>$a+b = b+a$ (commutative property);</li>
-<li>$(a+b) +c=a+(b+c)$ (associative property);</li>
-<li>there is an element $0$ such that $a+0=0$;</li>
-<li>for all $a$ there is an element $-a$ such that $a+(-a)=a-a=0$.</li>
-</ul>
-<p>Similarly, we define scalar multiplication $\alpha \cdot a$ for all $\alpha\in \ro, a\in V$, satisfying the distributive propert $\lambda \cdot(a+b)=\lambda a + \lambda b$. We could also define scalars coming from other sets instead of the reals, like the complex numbers. For linear algebra to make sense, these sets also need some algebraic structure, forming what&rsquo;s called a <strong>field</strong>. Fields are sets together with operations $+, \times$ similar to addition and multiplication as we know them from the real or complex numbers. We&rsquo;ll study these latter.</p>
-<p>We can use these operations to do geometry on $\ro^n.$ For example, the <strong>length</strong>, also called <strong>norm</strong> of a vector $v$ is the size of the arrow representing it, written $\|v\|.$ Using Pythagora&rsquo;s theorem, we get that $\|v\|=\sqrt{v_1^2+...+v_n^2}.$ Then the length of the vector representing the difference $a-b$ that goes from $b$ to $a$ is the <strong>Euclidean distance</strong> between $a,b$ seen as points: $d(a,b)=\|a-b\|.$ This is the usual metric we intuitively use when calculating distances in the real world.</p>
-<p>If you have a vector $v$ and want to get another $v'$ pointing on the same direction, but with length equal to $1$, you can &ldquo;<strong>normalize</strong>&rdquo; it and let $v'=\frac{v}{\|v\|}.$</p>
-<p>IMG !!!</p>
-<p>A vector $v$ is called a <strong>linear combination</strong> of other vectors $v_1,...,v_k$ when we have that $v=\alpha_1v_1 + ... + \alpha_kv_k$ for some $\alpha_1,...,\alpha_k$. This notion can be used to, say, describe colinearity: if for example $v=\alpha v'$ for some other $v'$, this means $v$ and $v'$ are in the same line. Similarly, if $v=\alpha_1v_1+\alpha_2v_2$, then $v$ is in the plane containing $v_1, v_2$ (try seeing this in $\mathbb{R}$^3).</p>
-<p>For a finite set $S$ of vectors, its span $\text{span}(S)$ is the set of all possible linear combinations using elemnts from $S$.</p>
-<p>Particularly important is the set $e_1,...,e_n$ of vectors $e_i$ with an $1$ in the $i$-th position and zeros elsewhere. Every element of $\mathbb{R}^n$ can be written as a linear combination of these vectors: if $v=(v_1,...,v_n)$, then $v=v_1e_1+...+v_ne_n$.</p>
-<p>A set of vectors $\{v_1,...,v_k\}$ is linearly independent (l.i.) if no $v_i$ is a linear combination of some vectors contained in the set. Geometrically, this means we don&rsquo;t have co-linear/planar/etc. points in the set. Note that $e_1,...,e_n$ as defined above are l.i.</p>
-<p>For a l.i. set $S=\{v_1,...,v_k\}$, every element of its span can be represented uniquely by elements of $S$. Otherwise, say we had $v=\alpha_1v_1+...+\alpha_kv_k=\beta_1v_1+...+\beta_kv_k$ for at least one $i$ such that $\alpha_i\neq \beta_i$. We can choose $i=1$ (just order $S$ differently), and then then $v_1=(\beta_2v_2+\dots+\beta_kv_k-\alpha_2v_2.-\dots-\beta_kv_k)/(\alpha_1-\beta_1)$, meaning $S$ isn&rsquo;t l.i.&ndash; a contradiction.</p>
-<p>In particular, this means $\{v_1,...,v_k\}$ serve as coordinates for $\text{span}(S)$&ndash; we say they are a basis for the span of $S$. For example, $e_1,...,e_n$ is a basis of $\text{span}(e_1,...,e_n)=\mathbb{R^n}$, called the <strong>canonical basis</strong> of $\mathbb{R}^n$&ndash; it is the most natural, but certainly not the only one. In general, the amount of vectors neccessary for getting a basis of a vector space $V$ is constant and it&rsquo;s called its <strong>dimension</strong>, $\text{dim}(V)$. We&rsquo;ll only consider finite-dimensional spaces here. The study of infinite dimensional ones&ndash; known as <a href="https://en.wikipedia.org/wiki/Functional_analysis">functional analysis</a>&ndash; uses a lot of (more point set) topology, but is out of the range of this post (although perhaps not of this series).</p>
-<p>In $\mathbb{R}^3$, whenever we have two vectors $a, b$, we can form a base by bringin in a vector $c$ perpendicular to the plane containing $a, b$ (their span). We could do this with the so-called <strong>cross product</strong> $a\times b$, defined as</p>
-$$(a_0,a_1,a_2)\times (b_0,b_1,b_2) = (a_1\cdot b_2 - b_1\cdot a_2, a_2\cdot b_0 - b_2\cdot a_0,a_0\cdot b_1-b_0\cdot a_1)$$<p>You can check that this indeed generates a base whenever $a,b$ come from the canonical one. The formula might seem a bit daunting, but it has a fairly straightforward geometrical interpretation, which we&rsquo;ll skip here for length&rsquo;s sake.</p>
-<p>MAO DIREITA</p>
-<p>Another very important product is the <strong>dot product</strong>, which measures the similarity of two vectors. More properly, if $a,b$ are vectors in $\ro^n,$ then their dot product is defined as $a\cdot b=\|a\|\|b\| \cos(\theta),$ where $\theta$ is the angle between $a$ and $b$ in the plane containing them. Since we&rsquo;re using the cosine, $a\cdot b=0$ only when $a$ and $b$ are perpendicular to one another (or if one of them is $0$). It&rsquo;s a standard exercise to show that $a\cdot b = \sum _{i=0}^n a_ib_i,$ giving us a straightforward formula for the product (just prove it for the canonical basis and then for a general vector by decomposing it into the basis). It also shows us that $a\cdot a = \sum a_i^2=\|a\|^2.$</p>
-<p>Linear algebra considers not only these algebraic-geometric constructions, but also functions preserving them. More specifically, it also studies linear transformations, which are functions $f:\mathbb{R}^m\rightarrow \mathbb{R}^n$ such that $ f(a+b)=f(a)+f(b)$ (they &ldquo;respect vector addition&rdquo;) and $f(\alpha a)=\alpha f(a), a\in\mathbb{R}$ (they &ldquo;respect scalar multiplication&rdquo;).</p>
-<p>A linear transformation is a function of the kind $f:\mathbb{R}^m\rightarrow \mathbb{R}^n$, where its output is composed of linear combinations of the components of the input vector: i.e., if $v=(v_1,...,v_m)\in\mathbb{R}^m$, $ f(v)=f(v_1,...,v_m)=(\sum_i\alpha_{1i}v_1,...,\sum_i\alpha_{ni}v_i)\in\mathbb{R}^n$.</p>
-<p>Equivalently, a linear transformation is a function $f:\mathbb{R}^m\rightarrow \mathbb{R}^n$ such that $f(a+b)=f(a)+f(b)$ and $f(\alpha a)=\alpha f(a)$&ndash; we say that it respects sums and scalar products. Computations quickly show that the previous definition satisfies these properties. Conversely, if $f$ satisfies these formulas, then $f(v)=f(v_1,...,v_m)=v_1f(e_1)+...+v_mf(e_m)$, so that $f(v_1,...,v_m)=(\sum_i\alpha_{1i}v_1,...,\sum_i\alpha_{ni}v_i)$ for $\alpha_{ij}$ the $j$-th component of $f(e_i)$.</p>
-<p>The two equivalent definitions above tell us two different ways of defining and considering mathematical objetcs. In the first one, we&rsquo;re explicit, or, rather, <strong>extensional</strong>, clearly constructing our objects of interesting. In the second one, we are <strong>intensional</strong>, defining and describing through properties and relations that should be satisfied. Extensive statements are very intuitive and in many cases the definitions we&rsquo;re actually thinking of. Intensive statements, in the other hand, are more generalizable and allow for cleaner reasoning.</p>
-<p>Topologically, all linear functions are continuous, since vector addition and multiplication themselves are so.</p>
-<p>Many common geometrical functions are linear, like</p>
-<ul>
-<li>Linear scalings: scale vectors on each direction with $f(v)=\alpha_v v,$ where $\alpha_v$ depends on $v$ linearly;</li>
-<li>Rotations;</li>
-<li>Projection into an axis.</li>
-</ul>
-<p>However, note that translations are not linear: if we want translate a point $x$ by a fixed vector $v$, getting $f(x)=x+v,$ this isn&rsquo;t linear since, for example, $f(2x)=2x+v\neq f(x)+f(x)=2x+2v.$ We&rsquo;ll see on the post on projective spaces that there is, however, a way to include translations as linear transformations of some space&ndash; using the so-called &ldquo;homogenous coordinates&rdquo;.</p>
-<p>IMG!!!</p>
-<p>We can represent transformations using <strong>matrices</strong>: specifically, if $f:\ro^n\rightarrow \ro^m$ is linear, then it can be represented by the $m\times n$ matrix $M_f$ defined as</p>
-$$\begin{pmatrix}
-f(e_1)_1&...& f(e_n)_1\\
-...& ...&...\\
-f(e_1)_m&...&f(e_n)_m
-\end{pmatrix} $$<p>Conversely, every matrix $M$ represents a transformation $f$ by defining the values of $f$ as above.</p>
-<p>Remember that the element $M_{ij}$ of a matrix is the one on the $i$-th row and $j$-th column. We then define matrix multiplication $AB$ (of size $a\times c$) between two matrices $A$ (of size $a\times b$) and $B$ (of size $b\times c$) by $(AB)_{ij}=\sum A_{ik} B_{kj}$. Equivalently, $(AB)_{ij}=A_{i*}\cdot B_{*j},$ where $A_{i*}$ and $B_{*j}$ are the vectors representing the $i$-th row of $A$ and the $j$-th column of $B,$ respectively. This operations is defined exactly so that $M_fM_g=M_{f\circ g},$ for linear transformations $g:\ro^n\rightarrow \ro^m$ and $f:\ro^m\rightarrow \ro^k.$ It is also so that, if vectors $v\in \ro^n$ are seen as a column matrices of values $\begin{pmatrix}v_1\\...\\ v_n\end{pmatrix}$ and $f:\ro^n\rightarrow \ro^m$ is linear, then $f(v)$ is obtained by multiplying $M_f$ and $v$: $f(v)=M_fv.$</p>
-<p>Note that matrix multiplication isn&rsquo;t commutative, since linear transformation composition isn&rsquo;t. For example, $M_f=\begin{pmatrix}1&0\\0&0 \end{pmatrix}$ represents a transformation $f$ annihilating $e_2$ and leaving $e_1$ as it is; $M_g=\begin{pmatrix}1&1\\0&0\end{pmatrix}$ represents one $g$ taking $e_2$ to $e_1$ and, again, fixing $e_1.$ Doing $f\circ g$ has matrix $M_fM_g=\begin{pmatrix}1&1\\0&0\end{pmatrix}$ (since $f(g(e_2))=f(e_1)=e_1$) and $g\circ f$ has $M_gM_f=\begin{pmatrix}1&0\\0&0\end{pmatrix}$ (since $g(f(e_2))=g(0)=0$).</p>
-<p>The identity transformation on $\ro^n$ is represented by the $n\times n$ identity matrix $I$ with ones on the diagonal $m_{ii}$ and zeros elsewhere. It has the property that $MI=IM=M$ for all matrices $M$ of size $n\times n.$ A matrix $M$ is then called <strong>invertible</strong> if there&rsquo;s some matrix $\inv{M}$ such that $M\inv{M}=\inv{M}M=I,$ and these represent exactly the invertible transformations on $\ro^n.$</p>
-<p>A counter-clockwise rotation of $\theta$ radians, for example, is given by the matrix $\begin{pmatrix}\cos (\theta) & -\sin (\theta)\\ \sin (\theta) & \cos(\theta) \end{pmatrix}.$ A clockwise rotation with the same angle is given by $\begin{pmatrix}\cos (\theta) & \sin (\theta)\\ -\sin (\theta) & \cos(\theta) \end{pmatrix},$ and these are inverses since they represent inverse transformations.</p>
-<p>IMG!!!</p>
-<p>Linear transformations are very useful for dealing in a systematic way with the solutions of systems linear equations. If we have such a system</p>
-$$\begin{cases}
-\alpha_{11}x_1+...+\alpha_{1k}x_k=0 \\  \dots  \\ \alpha_{m1}x_1+...+\alpha_{mk}x_k=0
-\end{cases}
-$$<p>with $k$ variables and $m$ equations, we can consider a transformation $f:\ro ^k\rightarrow \ro ^m$ defined as above by considering the vectors $x=(x_1,...,x_k)$ and defining $f(x)=f(x_1,...,x_k)=(\alpha_{11}x_1+...+\alpha_{1k}x_k,...,\alpha_{m1}x_1+...+\alpha_{mk}x_k)$, and the solutions of the system are exactly the members of $\ker f = \{x\in\ro^k\mid f(x)=0\}$&ndash; a set known as the <strong>kernel</strong> of $f$.</p>
-<p>Members of $\ker f$ (i.e., solutions to linear systems of equations) satisfy a very important property, namely that for all $a,b\in \ker f$, $a+b\in \ker f$, since $f(a+b)=f(a)+f(b)=0$. Similarly $\lambda a\in \ker f$ for all $a\in\ker f$, $\lambda \in \ro$, since $f(\lambda a)=\lambda f(a) = \lambda 0 = 0$. I.e., summing and multiplying vectors of solutions also gives a solution! We can formalize this with the notion of a subspace: given a vector space $V$, a <strong>subspace</strong> $W\subset V$ is a subset where for all $a,b\in W$ and scalars $\lambda$, $a+b\in W$ and $\lambda a\in W$. Lines and planes going through the origin are examples of subspaces, since whenever you add two vectors inside a line/plane, you remain inside it. Indeed, lines are exactly the 1D subspaces of $\mathbb{R}^n$, and planes its 2D subspaces.</p>
-<p>Coming back, vectors also allow us to easily define geometrically interesting sets. For example, the line between two vectors $v_0, v_1$ can be written as the set $ \{tv_0+(1-t)v_1\mid  0 \leq t\leq 1\}$.</p>
-<p>Another class of geometrical sets that can be defined by vectors are convex hulls. Given a subset $S\subseteq \mathbb{R}^n$, its convex hull is the minimal convex space containing $S$. Remember that $A\subseteq \mathbb{R}^n$ is convex if it contains every line between points inside itself. If $S=\{v_1,...,v_k\}$ is a collection of vectors, then the convex hull $\overline{S}$ of $S$ can be given by all the linear combinations $\lambda_1v_1+...+\lambda_kv_k$ with $\lambda_1+...+\lambda_k=1$, with $\lambda_i\geq 0$ for all $i$.</p>
-<p>The proof that $ \overline{S}$ as defined is indeed the convex hull can be made quite constructive. First, to get the hull of $ \{v_1,...,v_k\}$, we add all the lines of the form $ \{tv_i+(1-t)v_j\mid  0 \leq t\leq 1\}$, then again add segments between original vertices to points in these lines, getting $ \{sv_l + (1-s)(tv_i +(1-t)v_j) = sv_l+(t-st)v_i + (1+st-s-t)v_j\mid  0 \leq s,t\leq 1\}$, and so on. This will give us $ \overline{S}$ as defined and, by our construction, it must be inside every convex set containing $ \{v_1,...,v_k\}$. Since $ \overline{S}$ as defined above itself is convex, it must be the convex hull we desired.</p>
 <h1 id="simplices-and-topology">Simplices and topology</h1>
 <h2 id="n-simplices-and-complexes">N-simplices and complexes</h2>
 <p>In order to compute holes, we&rsquo;ll first approximate our spaces using simpler ones&ndash; specifically, polygons&ndash; that will allow for concrete computations. The building blocks of these approximations are called <strong>n-simplices</strong>. Formally, a n-dimensional simplex is defined as the convex hull of $n+1$ points $v_0,...,v_n$ such that the vectors $v_i-v_j$ are all linearly independent, for all distinct pairs $i,j.$</p>
@@ -758,7 +665,7 @@ $$\partial \angled{v_0,...,v_k} = \bigcup_{i=0}^n \angled{v_0,...,\widehat{v_i},
 <p>IMG!!! (QUADRADO)</p>
 <p>Finally, glue the $c$ edges together, to get this indication of how to topologically get $S^2$ from a square:</p>
 <p>IMG!!! (FINAL)</p>
-<p>You can try this on a sheet of paper, and see that it forms a cone&ndash; which is homeomorphic to a sphere!</p>
+<p>You can try this on a sheet of paper, and see that it forms a closed cone&ndash; which is homeomorphic to a sphere!</p>
 <h3 id="the-möbius-strip">The Möbius strip</h3>
 <p>Another very interesting shape we can get this way is the <strong>Möbius strip</strong>. You leave the north and south edges alone, and joing the west and east ones&ndash; but with a twist, as we mentioned on the cylinder case:</p>
 <p>IMG!!! (SQUARE, TRIANG)</p>
@@ -806,6 +713,41 @@ $$\partial \angled{v_0,...,v_k} = \bigcup_{i=0}^n \angled{v_0,...,\widehat{v_i},
 <p>One very interesting way of getting $\rpt$ is through the Möbius strip. See, the latter has a boundary, which is a single loop. In the square representation, this loop is the non-glued horizontal edges. What if we glue them in opposite directions (i.e., again with a twist)? Well, the representation above just showed that we would get the projective plane! In particular, we also have that $\rpt$ isn&rsquo;t orientable.</p>
 <p>Another interesting property of $\ro \text{P}^2$ is  NON EMBED</p>
 <h3 id="connecting-surfaces-together">Connecting surfaces together</h3>
+<p>This way of representing surfaces is so powerful that it actually allows us to generate all possible surfaces! This is done as follows.</p>
+<p>Imagine you have two torii $T_1$ and $T_2$ and you want to join them in order to form a bitorus. One way to do so is to cut two disks on the surfaces of $T_1$ and $T_2,$ and then join them along the boundaries of these disks.</p>
+<p>IMG!!!</p>
+<p>Generally, if you have two surfaces $X$ and $Y$, you can do the same for them: take two disks $D^2$ (or, generally, subspaces homeomorphic to disks) inside $X$ and $Y$; then, join $X-D^2$ and $Y-D^2$ along their boundaries (both being homeomorphic to $S^1$). The obtained space is called the <strong>connected sum</strong> of $X$ and $Y$, denoted $X\# Y.$</p>
+<p>Proving that this is a well-behaved operation between surfaces (including non-orientable ones!) is actually highly non-trivial, so we&rsquo;ll just use without proof that:</p>
+<ul>
+<li>
+<p>$X\# Y$ is independent of the disks we choose;</p>
+</li>
+<li>
+<p>$X \# Y = Y \# X.$</p>
+</li>
+</ul>
+<p>You can use the square representations of surfaces to represent $X\# Y$ as well: just cut subspaces homeomorphic to disks inside each representation, and glue them according to the construction of $X\# Y.$</p>
+<p>For example, we just saw that $T^2\# T^2$ is the bitorus: indeed, doing $T^2\#...\# T^2$ $n$ times gives the $n$-torus. For the bitorus, &hellip;</p>
+<p>SHADER!!! bitorus</p>
+<p>What about $S^2\# S^2$? Intuitively, this corresponds to joining two !!!. Using squares, we can describe it as following: take the representation of $S^2$ and</p>
+<p>IMG!!!</p>
+<p>RP RP = K</p>
+<p>Now, $\rpt \# \rpt$ is a bit more complicated.</p>
+<p>RP T = RP K</p>
+<p>What about something like $\rpt \# T^2$? &hellip;since $K = \rpt \# \rpt,$</p>
+<p>CLASSIFICATION</p>
+<p><strong>Theorem (classification of surfaces)</strong>: a surface is either homeomorphic to</p>
+<ul>
+<li>
+<p>The sphere $S^2$;</p>
+</li>
+<li>
+<p>A connected sum of torii $T^2\#...\# T^2$;</p>
+</li>
+<li>
+<p>Or a connected sum of projective planes $\rpt \# ... \# \rpt.$</p>
+</li>
+</ul>
 <h2 id="delta-spaces">Delta spaces</h2>
 <p>Finding triangulations for topological spaces can be a great exercise to understand simplicial complexes, but it&rsquo;s also quite tedious. This is because we strictly require that our spaces be composed of simplices, which in particular aren&rsquo;t curved. This is a quite strong restriction. But what if we just asked for it to be composed of <strong>images of simplices</strong>? This way, we could stretch and manipulate simplices, and try to see our space as the union of these distorted polygons.</p>
 <p>For the circle, e.g., instead of making it with three 1-simplices, forming the boundary of a triangle, we could just take one 1-simplex and glue its ends together&ndash; thus forming a loop. This wouldn&rsquo;t be a simplicial complex, but would still be an image of one, with just one altered 1-simplex.</p>
@@ -1089,309 +1031,6 @@ $$U=[v_0,v_1,v_2]+[v_1, v_3, v_2]+[v_1,v_4,v_3]+[v_4,v_5,v_3]+[v_4,v_6,v_5]+[v_6
 <p>In the purely geometrical case, we would have $\partial U = c_1 \cup c_2$, but in the oriented case we must pay attention to the sign of the chains.</p>
 <p>In general, we will say that n-chains $c_1$ and $c_2$ in our space $X$ are members of the same &ldquo;hole class&rdquo; whenever there exists a $(n+1)$-chain $a$ such that $\partial a = c_1 - c_2$, or, equivalently, $c_1 = c_2 + \partial a$. We then say that these chains &ldquo;<strong>differ by a boundary</strong>&rdquo;.</p>
 <p>Mathematically, this fits perfectly with the notion of a <strong>quotient</strong> in group theory. Thus, we can&rsquo;t avoid it anymore: it&rsquo;s time to introduce group theory formally into our study.</p>
-<h1 id="groups-permutations-and-their-games">Groups, permutations and their games</h1>
-<p>Since most of the topological intuition for this post has already been described, we&rsquo;ll allow ourselves to be rather quick with definitions and properties in this section, assuming most of the work here is of formalizing and generalizing what we&rsquo;ve already seen.</p>
-<h2 id="definitions-and-basic-examples-h">Definitions and basic examples (H)</h2>
-<p>A <strong>group</strong> is a set $G$ with an <strong>binary operation</strong> $*:G\times G\rightarrow G$ taking two elements $a,b\in G$ and returning $a*b\in G$. We require this operation to be &ldquo;well-behaved&rdquo; and satisfy properties resembling integer addition (which also models our chain sums above), namely:</p>
-<ul>
-<li>
-<p>Associativity: $(a*b)*c=a*(b*c)$ for all $a,b,c\in G$;</p>
-</li>
-<li>
-<p>Neutral element: there is one element $e\in G$ such that, for all $a\in G$, $a*e=e*a=a$;</p>
-</li>
-<li>
-<p>Inverses: for all $a\in G$, there exists an element $\inv{a}$ such that $a*\inv{a}=\inv{a}*a=e$.</p>
-</li>
-</ul>
-<p>The integers $\zo$ with addition are the prototypical group, with neutral element $0$ and the inverse of $n$ being $-n$. We may denote groups in the form $(G, *)$ to make clear they&rsquo;re pairs of sets and operations.</p>
-<p>Note, however, that we <strong>didn&rsquo;t</strong> require the following property satisfied by $(\zo, +)$:</p>
-<ul>
-<li>Commutativity: $a*b=b*a$ for all $a,b\in G$.</li>
-</ul>
-<p>Groups satisfying this relation are called commutative, or also <strong>abelian</strong> (after <a href="https://en.wikipedia.org/wiki/Niels_Henrik_Abel">Abel</a>). Again $(\zo, +)$ is the primordial example of this class. $(\mathbb{Q}, +),$ $(\mathbb{R}, +)$ and $(\mathbb{C}, +)$ are all groups as well. $(\mathbb{N}, +),$ on the other hand, isn&rsquo;t one because it doesn&rsquo;t contain negative numbers.</p>
-<p>We&rsquo;ll write $|G|$ for the amount of elements of $G$, called its <strong>order</strong>.</p>
-<p>Following $(\zo, +)$, the second most classical example of a group are the modular groups $ \mathbb{Z}/n\mathbb{Z}$, for $ n\in \mathbb{Z}$ (the notation will be clearer when we study quotients). These have as base set $\{0, 1, ..., n-1\}$, with mod sum as operation. As a reminder, if $a,b\in \zo$, this is the mod sum $(a+b) \mod n$ is the rest of $a+b$ divided by $n$. I.e., it is &ldquo;clock addition&rdquo;: the result of a sum is equal to its excess relative to $n$. Programmers will also recognize it through the remainder operator <code>%</code>, although $\text{mod}$ and <code>%</code> aren&rsquo;t properly the same in most languages. Generally, $\zmod{n}$ has neutral element $0$ and the inverse of $k\in \zmod{n}$, $k\neq 0$, is exactly $n-k$.</p>
-<p>For example, $\zmod{2}$ has base set $\{0,1\}$, with mod 2 addition that satisfies $1+1=0$. Seconds and minutes are counted inside $\zmod{60}$, while hours in $\zmod{24}$. When $n$ is understood from the context, we&rsquo;ll write $\text{mod}\,\,\,\, n$ addition just using a plain $+$ sign.</p>
-<p>Another fundamental example of a group are the $(C_n(X),+)$ and $(C^\Delta _n(X),+)$ we defined previously, which are all abelian per definition. If $V$ is a vector space, then $(V,+)$ is also a classic example of an abelian group.</p>
-<p>We also have the <strong>trivial group</strong> $G=\{e\}$ which contains a single element $e$ with $e*e=e$. That is, $G$ has a neutral element and that&rsquo;s all. We&rsquo;ll often write this group just $0$, since it is composed of a single zero, neutral element.</p>
-<p>Invertible (real, complex) matrices of the same size $n\times n,$ together with matrix multiplication, form a group. It will be non-abelian as long as $n>1.$ This group is written as $\text{GL}(n, \ro)$ (or $\text{GL}(n, \mathbb{C})$ in the complex case).</p>
-<p>Finally, another familiar group is the set of strictly positive reals $\ro_{>0}$ with multiplication. Its neutral element is $1$ and the inverse of $x$ is $\frac{1}{x}.$</p>
-<p>Here are some simple, quick properties of groups due to the good behaviour of operations:</p>
-<p><strong>Proposition</strong>: if $a*c=b*c$, then $a=b$ (you can cancel common factors). Similarly, if $c*a=c*b,$ then $a=b$.</p>
-<p><strong>Proof</strong>: by associativity, $(a*c)*\inv{c}=a*(c*\inv{c})=a*e=a.$ Similarly, $(b*c)*\inv{c}=b.$ Since $a*c=b*c,$ $(a*c)*\inv{c}=(b*c)*\inv{c}$ and so $a=b.$ The proof of the other half of the proposition is basically identical.</p>
-<div style="text-align: right;">\(\blacksquare\)</div>
-<p><strong>Proposition</strong>: the neutral element $e$ of $G$ is unique (i.e., if there is another neutral element $e'\in G,$ $e=e'$).</p>
-<p><strong>Proof</strong>: if $e,e'$ are netural elemnts, then for all $a\in G$ we have $a*e=a=a*e'.$ By above, we cancel $a$ and get $e=e'.$</p>
-<div style="text-align: right;">\(\blacksquare\)</div>
-<p><strong>Propostion</strong>: the inverse of $a$ is unique (i.e., if both $b,c$ are inverses of $a$, then $b=c$).</p>
-<p><strong>Proof</strong>: if $b,c$ are inverses of $a,$ then $a*b=e=a*c.$ Canceling $a,$ $b=c.$</p>
-<div style="text-align: right;">\(\blacksquare\)</div>
-<p>Thus, we&rsquo;re justified when we talk about <strong>the</strong> neutral element of $G$ and <strong>the</strong> inverse of $a\in G$. Notice also that the neutral element is always its own inverse (in the integers, $0=-0$).</p>
-<p>We&rsquo;ll sometimes ommit the operation $*$ if it&rsquo;s clear from context, writing just $ab$ for $a*b.$ We&rsquo;ll also write $a^n$ for $a*...*a$ n times and $a^{-n}$ for the inverse of $a^n$, which is equal to $(\inv{a})^n.$</p>
-<p>Another basic result is that $\inv{(ab)}=\inv{b}\inv{a}$ since $(ab)\inv{b}\inv{a}=a\inv{a}=e$ and $\inv{b}\inv{a}(ab)=\inv{b}b=e.$</p>
-<p>As sets have subsets and spaces subspaces, groups also contain subgroups. Formally, $H$ is a subgroup of $G$ when $H\subset G$ and, for all $h_1,h_2\in H$, the product $h_1*h_2$ is also in $H$. I.e., when $H$ is a group of its own together with the operation $*$ of $G$ restricted to elements of $H$. We then write $H\leq G$.</p>
-<p>Every group $G$ has at least two subgroups: $G$ itself and $\{e\},$ the trivial subgroup.</p>
-<p>For example, even numbers form a subgroup of $(\zo, +)$ since whenever you add two of these you still end up with an even number. In general, if $n\in \zo$, the set $n\zo = \{n\cdot m \mid m\in\zo\}$ (i.e., the multiples of $n$) is a subgroup of the integers. Subspaces of vector spaces are also subgroups.</p>
-<p>The subgroups of $\text{GL}(n, \ro)$ are very interesting and usually bring geometric information, as matrices represent linear transformations. For example, rotations form a subgroup (written $\text{SO}(n)$), since they are invertible and the composition of two rotations is still a rotation. We&rsquo;ll study $\text{SO}(n)$ later, as a deep connection between it, algebra and projective spaces will be described.</p>
-<p>If $H\leq G$, then $H$ must contain the neutral element $e_G$ of $G$: if $e_H$ were to be a neutral element of $H$ and only $H$, then $he_H=h=e_G$ for any $h\in H$, thus $e_H=e_G$. Similarly, if $h\in H$, the inverse of $h$ in $H$ is identical to the inverse of $h$ in $G$.</p>
-<p>When dealing with groups, we are not interested in all functions $f:G\rightarrow H$, but only in those that bring and respect algebraic information, stabilishing a relation between the operations of the different groups. Examples of these are linear transformations, as well as the boundary operators $\partial_n$ we defined previously. In group theory, these maps are called <strong>homomorphisms</strong>. A homomorphism between groups $(G,*_G)$ and $(H,*_H)$ is a function $f:G\rightarrow H$ such that $f(a *_G b)=f(a)*_H f(b)$ for all $a,b\in G$.</p>
-<p>Note that if $f:G\rightarrow H$ is a homomorphism, $f(e_G)=e_H$ since $e_Hf(a)=f(a)=f(e_Ga)=f(e_G)f(a)$; canceling $f(a),$ $e_H=f(e_G).$ We also have that $f(\inv{a})=\inv{f(a)}$ since $f(a\inv{a})=f(e_G)=e_H=f(a)f(\inv{a}).$ That is, homomorphisms map neutral elements to neutral elements and inverses to inverses. This is, then, also the case for linear transformations and our boundary operators $\partial_n.$</p>
-<p>Bijective homomorphisms are also called <strong>isomorphims</strong>. If we have an isomorphism $f:G\rightarrow H$, it means $G$ and $H$ have operations with the exact same behaviour. They may give different names to their elements, but to group theory $G,H$ can be seen as the same object. We&rsquo;ll then write $G\cong H$ for isomorphic groups. This $\cong$ is an equivalence relation: i.e., it satisfies $G\cong G$, $G\cong H\implies H\cong G$ and $G\cong H\cong K \implies G\cong K$.</p>
-<p>Isomorphisms from $G$ to itself are called <strong>automorphisms</strong>, which form the set $\text{Aut}(G).$ Since their range and domains are the same, they can be composed&ndash; and, as they are all bijections, thus invertible, $(\text{Aut}(G), \circ)$ is a group. The identity $\text{id}$ sending elements to themselves is the neutral element.</p>
-<p>A familiar set of homomorphisms is, for some $x\in\ro$, $f_x:(\ro, +)\rightarrow (\ro_{>0}, \cdot)$ given by $f_x(a)=x^a$, since $f_x(a+b)=x^{a+b}=x^ax^b=f_x(a)f_x(b).$ Similarly, we have logarithms giving us a class of homomorphisms $g_x:(\ro_{>0}, \cdot)\rightarrow (\ro, +)$ defined as $g_x(a)=\log_x(a)$, since $g_x(ab)=\log_x(ab)=\log_x(a)+\log_x(b)=g_x(a)+g_x(b)$. Indeed, we have that $f_x$ is exactly the inverse of $g_x$ since, for all $a>0,$ $f_x(g_x(a))=f_x(\log_x(a))=x^{\log_x(a)}=a$. That is, exponentiation is a homomorphism between $(\ro, +)$ and $(\ro_{>0}, \cdot)$, and the logarithm is its inverse. Thus, we have an isomorphism $(\ro, +)\cong (\ro_{>0}, \cdot).$</p>
-<p>In analogy to linear algebra, every homomorphism $f:G\rightarrow H$ has its kernel $\ker f = \{g\in G\mid f(g)=e_H\},$ $e_H$ the neural element of $H.$ This is a subgroup of $G$ since, for any $a,b\in \ker f$, $f(ab)=f(a)f(b)=e_He_H=e_H.$ Similarly, the image $\im f = \{h\in H\mid f(g)=h\text{ for some }g\in G\}$ is a subgroup of $H$, since $h_1h_2=f(g_1)f(g_2)=f(g_1g_2)$ for any $h_1,h_2\in \im f.$</p>
-<p>In particular, since $\partial_n:C_n(X)\rightarrow C_{n-1}(X)$ is a homomorphism, the set of n-cycles $\ker \partial_n$ and n-boundaries $\im \partial_{n+1}$ are bouth subgroups of $C_n(X)$. We also saw previously that $\im \partial_{n+1}\leq \ker \partial_n.$</p>
-<p>The kernel is a useful subgroup because it tell you a lot about $f.$ In particular,</p>
-<p><strong>Proposition</strong>: $f$ is injective if and only if $\ker f$ is the trivial subgroup.</p>
-<p><strong>Proof</strong>: if $f$ is injective, by definition $\ker f$ must contain a single element&ndash; which must be the neutral element. If $\ker f$ is trivial, then if $f(a)=f(b),$ $f(a)\inv{f(b)}=f(a\inv{b})=e,$ and $a\inv{b} \in \ker f,$ implying $a\inv{b}=e,$ thus $a=b$ and so $f$ is injective.</p>
-<div style="text-align: right;">\(\blacksquare\)</div>
-<p>In many cases, we&rsquo;ll ommit the operation $*$ in $a*b$ and just write $ab,$ the actual operation being deduced from context. For example, we&rsquo;ll write $f(ab)=f(a)f(b)$ for homomorphisms, even if $ab$ and $f(a)f(b)$ actually involve two different operations in two distinct groups.</p>
-<h2 id="describing-groups">Describing groups</h2>
-<h3 id="tables">Tables</h3>
-<p>The simplest way to visualize a group is by a table representing its operation.</p>
-<p>Here is, for example, the table for $\zmod{2}$:</p>
-$$\begin{array}{c|c c}
-  & 0 & 1  \\
-\hline
-0 & 0 & 1 \\
-1 & 1 & 0 \\
-\end{array}
-$$<p>And for $\zmod{4}$:</p>
-$$\begin{array}{c|c c c c}
-  & 0 & 1 & 2 & 3  \\
-\hline
-0 & 0 & 1 & 2 & 3 \\
-1 & 1 & 2 & 3 & 0 \\
-2 & 2 & 3 & 0 & 1 \\
-3 & 3 & 0 & 1 & 2 \\
-\end{array}
-$$<p>Tables can help us quickly identify some properties of groups: for example, a group is abelian if, and only if its table is symmetric along the (negative) diagonal. However, tables aren&rsquo;t that helpful for larger, let alone infinite, groups.</p>
-<h3 id="presentations-h">Presentations (H)</h3>
-<p>A more powerful way to represent groups is through <strong>presentations</strong>, which provide compact descriptions we&rsquo;ll use a lot. A presentation of a group $G$ is written as $G=\langle a_0,..., a_n \mid   R\rangle $, where $R$ is a set of algebraic relations using our group operations (things like $a_3 * a_2 = a_6^{-1}$, $a_1^2=a_0*a_3$ etc.). We interpret this as saying that $G$ is formally generated by elements $a_0,...,a_n$, a neutral element, their inverses, and all their possible (finite) products, and that they satisfy the relations $R$ (the identity being assumed and thus omited). That is, elements of $G$ are arbitrary products of $a_0,...,a_n$, including their inverses, subject to the relations $R$.</p>
-<p>For example, $\zo \cong \angled{a}$. I.e., $\zo$ can be seen as the group generated by a single element $a$ (representing $1$) without any relations, its distinct elements thus being $a,\inv{a},a^2,a^{-2},...,$ with the isomorphism $\zo\rightarrow \angled{a}$ sending $n$ to $a^n.$ For $\zmod{n}$, these have the presentation $\angled{a\mid a^n=e},$ $e$ being the neutral element. The isomorphism is again given by sending $n$ to $a^n$.</p>
-<p>Presentations are not unique, with it being possible to a group to be described by many of these. In particular, presentations can sometimes be simplified by disconsidering redundant elements. For example, $\angled{a}$ could be presented as $\angled{a, a^2}$, but $a^2$ is redundant since its already included in $\angled{a}$. We&rsquo;ll often strive for the simplest presentation.</p>
-<p>Another example is if instead of presenting $\zo = \angled{a}$ generated by $1$, we present it as generated by $2$ and $3$: $\zo = \angled{b, c \mid b^3=c^2}$ ($b$ is $2$ and $c$ represents $3$). These presentations are isomorphic via $f:\angled{b, c \mid b^3=c^2}\rightarrow \angled{a}$ sending $b\mapsto a^2$ and $c\mapsto a^3.$</p>
-<p>The trivial group has as a possible presentation $\angled{a\mid a^2=a}.$ Again, there are many other possibilities, some not obvious: for example, $G=\angled{a,b\mid ab\inv{a}b^{-2}=e, a^{-2}\inv{b}ab=e}$ is trivial. To see this, note that $ab=b^2a$ (by the first relation) and $ab=ba^2$ (by the second relation), so that $b^2a=ba^2.$ Canceling $b$ on the left and $a$ on the right, we get $b=a.$ Thus, the first relation is $aa\inv{a}a^{-2}=\inv{a}=e,$ and thus $a=e,$ $b=e$ and the group is trivial!</p>
-<p>Generally, determining when two presentations generate the same group is a non-decidable problem: i.e., there&rsquo;s no algorithm that can determine it. This is because of the <a href="https://en.wikipedia.org/wiki/Word_problem_(mathematics)">word problem</a>, the problem of knowing if a certain product $a_i...a_j$ of generators (a &ldquo;word&rdquo;) is equal to the identity&ndash; which is also undecidable for many groups. However, deep results by <a href="https://en.wikipedia.org/wiki/Mikhael_Gromov_(mathematician)">Gromov</a> show that, in a quite precise way, &ldquo;most&rdquo; finite groups have decidable word problem.</p>
-<p>Groups that can be described by finite presentations are called <strong>finitely generated</strong>.</p>
-<p>The groups with presentation $F_n=\angled{a_1,...,a_n}$ are called the <strong>free groups</strong> generated by $n$ elements. They contain no relations at all. This is actually somewhat circular: the proper, formal way to define presentations is actually by using the free groups and then quotients. But we&rsquo;re doing a more informal definition here.</p>
-<p>Presentations are also useful for getting homomorphisms. Indeed, if $G=\langle a_0,..., a_n \mid   R\rangle$ and you want to define a homomorphism $f:G\rightarrow H,$ all you have to do is to define the $f(a_i)$ and be sure they also satisfy the relations $R,$ but now in $H.$ Then, for any other generated element $a_i...a_k,$ all you have to do is to define $f(a_i...a_k)=f(a_i)...f(a_k)$&ndash; the condition that the $f(a_i)$ satisfy $R$ guaranteeing there will be no ambiguity. This is similar to how, in linear algebra, you can define a transformation by just setting its values on a basis.</p>
-<h3 id="cayley-graphs">Cayley graphs</h3>
-<p>If you have a presentation for some group $G,$ you can visualize it by its Cayley graph. Each element of $G$ is a vertex; two vertices $g_1,g_2$ are connected by an edge if $g_1=ag_2$ for some generator $a$ in the specific presentation. I.e., we connect vertices whenever you can get one from another via a generator. We may also mark edges by the generator they represent.</p>
-<p>For example, the Cayley graph of $\zmod{3}=\angled{a\mid a^3=e}$ is a triangle:</p>
-<p>IMG!!!</p>
-<p>The Cayley graph of $\zo$ with the presentation $\angled{a}$ is a line:</p>
-<p>IMG!!!</p>
-<p>Note that these graphs do depend heavily on the presentation. Using the presentation $\angled{b, c \mid b^3=c^2},$ for example, we get the following Cayley graph for $\zo$ (a sort of &ldquo;infinite braid&rdquo;):</p>
-<p>IMG!!!</p>
-<p>The Cayley graph of $F_2=\angled{a,b}$ is an infinite binary tree. In general, $F_n=\angled{a_1,...,a_n}$ has as its graph an infinite n-ary tree. This is because any cycle going through edges $a_i...a_j$ from elements $g_1$ to $g_2$ in the graph would imply a relation $g_1=a_i...a_jg_2$ (equivalently, $\inv{g_1}a_i...a_jg_2=e$), which, by definition, doesn&rsquo;t exist.</p>
-<p>IMG!!!</p>
-<p>The geometry of Cayley graphs can tell a lot about your group, their study being the cornerstone of <strong>geometric group theory</strong>. One of its great successes, for example, is that <a href="https://en.wikipedia.org/wiki/Hyperbolic_group">some finite groups satisfying certain geometrical properties</a> have decidable word problem.</p>
-<h2 id="generating-groups">Generating groups</h2>
-<p>Now that we have some basic group examples, let&rsquo;s see how to combine them and how to generate even more groups.</p>
-<h3 id="direct-products-h">Direct products (H)</h3>
-<p>Similarly to sets with their binary operations $\cup, \cap, \times,$ etc., groups can also be joined together. There are three common ways to take two groups in order to get another one: <strong>direct products</strong>, <strong>semidirect products</strong> and <strong>quotients</strong>. The first is a simple &ldquo;groupification&rdquo; of the cartesian product $\times.$</p>
-<p>If we have two groups $(G, *_G)$ and $(H, *_H)$, then the set $G\times H$ has a very natural way to become a group, by taking the operation $*$ on it such that $(g_1, h_1) * (g_2, h_2)=(g_1*_G g_1, h_1 *_H h_1).$ I.e., we apply operations component-wise. This is known as the direct product of $G$ and $H$, written just as $G\times H$ (operations being implicit, as we&rsquo;ll often do). Similarly to sets, we&rsquo;ll write $G^n$ for the (direct) product of $G$ with itself $n$ times.</p>
-<p>The neutral element of $G\times H$ is $(e_G, e_H)$ and the inverse of $(g,h)$ is $(\inv{g}, \inv{h}).$ Note that $|G\times H|=|G|\cdot |H|,$ since that&rsquo;s the size of the set $G\times H.$</p>
-<p>Here&rsquo;s a very important classification theorem, whose proof we&rsquo;ll ommit:</p>
-<p><strong>Theorem</strong>: all finitely generated abelian groups are isomorphic to a group of the form</p>
-$$\zo^r\times\zmod{a_1}\times...\times\zmod{a_k}$$<p>Below is the table for the group $\zmod{2}\times \zmod{2}.$ You can check it is non-isomorphic to that of $\zmod{4}$ so that these are two non-isomorphic groups of four elements:</p>
-$$\begin{array}{c|c c c c}
-  & (0,0) & (1, 0) & (0, 1) & (1, 1)  \\
-\hline
-(0,0) & (0,0) & (1,0) & (0,1) & (1,1) \\
-(1,0) & (1,0) & (0,0) & (1,1) & (0,1) \\
-(0,1) & (0,1) & (1,1) & (0,0) & (1,0) \\
-(1,1) & (1,1) & (0,1) & (1,0) & (0,0) \\
-\end{array}
-$$<p>If you have two presentations $G=\angled{S_G\mid R_G}$ and $H=\angled{S_H\mid R_H},$ you can also get a presentation fro $G\times H$: it is given by $\angled{S_G\cup S_H\mid R_G\cup R_H \cup R_C},$ where $R_C$ is the set of relations $s_gs_h=s_hs_g$ for all $s_g\in S_G$ and $s_h\in S_H.$ Each $s_g\in G$ should be associated to the pair $(s_g, e_H)\in G\times H,$ and similar for $s_h$. For example, $\zmod{n}\times\zmod{m}$ has the presentation $\angled{a,b\mid a^n=b^m=e, ab=ba}$ (note that we simplified the commuting relations $R_C$).</p>
-<h3 id="semidirect-products">Semidirect products</h3>
-<p>The operation we defined on $G\times H$ doesn&rsquo;t have any sort of &ldquo;interference&rdquo; between the operations of $G$ and $H.$ I.e., the first component only cares about $G$, being completely independent of whatever happens on the second one corresponding to $H.$</p>
-<p>We can add some interplay between the two groups as follows. Choose and fix some homomorphism $\phi : H\rightarrow \text{Aut}(G).$ This means that, for each $h\in H$, $\phi (h)$ is some sort of permutation, an action over $G.$ Instead of multiplying elements $g_1,g_2\in G$ to get $g_1g_2$ in the first component, we could add some interdependence on $H$ by multiplying $g_1$ with $\phi(h_1)(g_2)$&ndash; so to speak, a multiplication &ldquo;twisted&rdquo; by $\phi(h).$ I.e., we get the operation</p>
-$$(g_1, h_1)*(g_2,h_2)=(g_1\phi(h_1)(g_2),h_1h_2).$$<p>The set $G\times H$ together with this new operation (dependant on $\phi$) is called the semidirect product of $G$ and $H,$ denoted $G\rtimes_\phi H.$ These products are very powerful and can genrate a wide class of groups- as we&rsquo;ll see later with the Rubik&rsquo;s cube group.</p>
-<p>If $\phi(h) = \text{id}$ for all $h\in H,$ then $G\rtimes_\phi H$ is the same thing as $G\times H$&ndash; i.e., direct products are the &ldquo;trivial example&rdquo; of the semi-direct ones.</p>
-<p>Similarly to the direct product, $|G\rtimes_\phi H|=|G|\cdot |H|.$</p>
-<p>Let&rsquo;s, for example, construct a product $\zmod{3}\rtimes_\phi \zmod{2}.$ The automorphism group $\text{Aut}(\zmod{3})$ is composed of the identity $\text{id}$ and the isomorphism $f:\zmod{3}\rightarrow \zmod{3}$ sending the generator $1$ to $2.$ Thus, we let $\phi:\zmod{2}\rightarrow \text{Aut}(\zmod{3})$ send $0$ to $\text{id}$ and $1$ to $f$; $\zmod{3}\rtimes_\phi \zmod{2}$ then has the following table:</p>
-$$\begin{array}{c|c c c c c c}
-  & (0,0) & (1, 0) & (2, 0) & (0, 1) & (1, 1) & (2, 1) \\
-\hline
-(0, 0) & (0, 0) & (1, 0) & (2, 0) & (0, 1) & (1, 1) & (2, 1) \\ 
-(1, 0) & (1, 0) & (2, 0) & (0, 0) & (1, 1) & (2, 1) & (0, 1) \\ 
-(2, 0) & (2, 0) & (0, 0) & (1, 0) & (2, 1) & (0, 1) & (1, 1) \\ 
-(0, 1) & (0, 1) & (2, 1) & (1, 1) & (0, 0) & (2, 0) & (1, 0) \\ 
-(1, 1) & (1, 1) & (0, 1) & (2, 1) & (1, 0) & (0, 0) & (2, 0) \\ 
-(2, 1) & (2, 1) & (1, 1) & (0, 1) & (2, 0) & (1, 0) & (0, 0) \\ 
-\end{array}
-$$<p>In particular, it isn&rsquo;t abelian and, letting $a=(0,1)$ and $b=(1,1)$ we get the presentation $\zmod{3}\rtimes_\phi \zmod{2}=\angled{a,b\mid a^2=b^2=(ab)^3=e}.$ This group will become important later as an example.</p>
-<h2 id="example-rings-and-modules-h">Example: rings and modules (H)</h2>
-<p>If groups generalize integers with addition, it is very natural to try to generalize integers with the operations of addition and multiplication. In this case, we get structures called <strong>rings</strong>. Formally, a ring $(R,+,\cdot)$ is a set $R$ with two operations $+$ and $\cdot$ satisfying:</p>
-<ul>
-<li>
-<p>(R, +) is an <strong>abelian group</strong>;</p>
-</li>
-<li>
-<p>Distributivity: $(a + b) \cdot c = ac + bc$ and $a(b+c)=ab+ac$ for all $a,b,c\in R$;</p>
-</li>
-<li>
-<p>Associativity of the product: $a(bc)=(ab)c$ for all $a,b,c\in R$;</p>
-</li>
-<li>
-<p>Identity: there is an element $1\in R$ such that $1a=a1=a$ for all $a\in R$.</p>
-</li>
-</ul>
-<p>The prototypical example is, again, $(\zo, +, \cdot)$, others being $(\mathbb{Q}, +, \cdot),$ $(\ro, +, \cdot)$ and $(\mathbb{C}, +, \cdot).$ Note that we didn&rsquo;t require for the product to be commutative.</p>
-<p>A homomorphism $f:R\rightarrow S$ between rings is a map such that $f(a+b)=f(a)+f(b)$ and $f(ab)=f(a)f(b),$ in analogy with the group case.</p>
-<p>Coming back to spaces and their holes, we saw that the $(C_n(X), +)$ and $(C_n^\Delta(X), +)$ we defined are both abelian groups. However, we also saw they bring more structure than that: they also have scalar multiplication by an integer. This is neatly described by the concept of <strong>modules</strong>. Concretely, if $(R, +, \cdot)$ is a ring, then an $R$-module is an abelian group $(M, +)$ such that, for all $a\in R$ and $m\in M$, there exists an element $a\cdot m\in M$ for some notion of a scalar product $\cdot.$ These must satisfy the following relations:</p>
-<ul>
-<li>
-<p>Distributivity: $a\cdot(m+n)=a\cdot m+a\cdot n$;</p>
-</li>
-<li>
-<p>Scalar distributivity: $(a+b)\cdot m=a\cdot m + b\cdot m$;</p>
-</li>
-<li>
-<p>Scalar associativity: $a\cdot(b\cdot m)=(ab)\cdot m$;</p>
-</li>
-<li>
-<p>Product by the identity: $1\cdot a=a$.</p>
-</li>
-</ul>
-<p>We then see that our chain groups are all $\zo$-modules, with a proper definition of integer scalar multiplication. It is also, per definition, clear that all real vector spaces are $\ro$-modules.</p>
-<p>As vector spaces have bases, so do modules. For $C_n(X)$, the set of simplices $a_1,...,a_k$ in our complex gives us a basis. More than that, for each $n\in \zo$, $na_i$ is a distinct chain, so that we say that $C_n(X)$ is &ldquo;<strong>freely generated</strong>&rdquo; by the elements $a_1,...,a_k.$ In general, we say an $R$-module $M$ is freely generated by elements $e_1,...e_k$ if any element $m\in M$ can be <strong>uniquely</strong> written as a linear combination $r_1\cdot e_1+...+r_k \cdot e_k,$ and we write</p>
-$$M=\zo e_1\times ...\times \zo e_k,$$<p>each $\zo e_i$ being the set (and group) spanned (with scalar multiplication) by $e_i$. This applies to both $C_n(X)$ and to $C^\Delta_n(X)$ with a delta structure over $X.$ The $e_i$ then form a basis of the module, all in analogy to linear algebra.</p>
-<p>A homomorphism $f:M\rightarrow N$ between $R$-modules is a map such that $f(a+b)=f(a)+f(b)$ and $f(r\cdot a)=r\cdot f(b).$ In particular, linear transformations are $\ro$-module homomorphisms.</p>
-<p>Whenever you have a freely generated $R$-module $M$, you can define an $R$-module homomorphism $f:M\rightarrow N$ by just setting its values on the generators $a_1,...,a_k$ and setting $f(r_1a_1+...+r_ka_k)=r_1f(a_1)+...+r_kf(a_k).$</p>
-<h2 id="example-fields-finite-projective-spaces-and-spot-it-">Example: fields, finite projective spaces and &ldquo;Spot It!&rdquo; *</h2>
-<p>FIELDS e VECTOR SPACES</p>
-<p>Finite fields</p>
-$$P( \mathbb{Z}^3_2)$$<p>Spot it e project</p>
-<h2 id="example-non-abelian-groups-and-permutation-games">Example: non-abelian groups and permutation games</h2>
-<p>So far, the only non-abelian groups we&rsquo;ve seen so far are matrix groups, $F_n$ and $\zmod{3}\rtimes_\phi \zmod{2}.$ Most other non-abelian groups arise when you consider <strong>permutations</strong> and <strong>symmetries</strong> of objects.</p>
-<h3 id="dihedral-groups">Dihedral groups</h3>
-<p>For example, take a square with labeled vertices. It has two kinds of symmetries: rotations and reflections around an axis going from the origin to a vertex. You can compose these to form all symmetries, which then form a group, since the identity is a symmetry, these transformations are inversible and compose to give further symmetries. We call this group $D_4.$</p>
-<p>IMG!!!</p>
-<p>Let $r_i$ be the counter-clockwise 90-degree rotation applied $i$ times to the square, and $s_i$ the reflection around the axis groing from the origin to the $i$-th vertex. Elements of $D_4$ are exactly all the compositions $r_is_j$ and $s_jr_i.$ Each of these is a function from the vertex label set $\{1, 2, 3, 4\}$ to itself: for example, $r_i$ send $i$ to $i+1\mod 4,$ and $s_1$ swaps $2$ and $4,$ leaving the other vertices unaltered. What algebraic relations do these elements satisfy? First, note that all the $r_i$ can be described as $r_1^i,$ and $r^4=r^0=e.$ Then, see that doing reflection around an axis and then a rotation is equivalent to a reflection around the rotated axis. This gives the relations $r_is_j=s_{i+j}.$ Thus, all reflections can be generated as $r_is_1.$ Concluding, every element of $D_4$ can be generated by composing $r_1$ and $s_1$ together in some form. Between them, we have the relation $r_1s_1=\inv{s_1}\inv{r_1},$ or, equivalently since $\inv{s_1}=s_1,$ $r_1s_1=s_1\inv{r_1}$  we derive the presentation</p>
-$$D_4=\angled{r, s \mid r^4=s^2=e, rs=s\inv{r}}$$<p>In particular, we can see $D_4$ has only $8$ distinct elements, represented as $r^is^j$.</p>
-<p>All these simmetries are also linear transformations. Indeed, $r_1=\begin{pmatrix}
-0 & -1 \\
-1 & 0
-\end{pmatrix}
-$ and $s_1=\begin{pmatrix}
--1 & 0 \\
-0 & -1
-\end{pmatrix}
-,$ so that we get an isomorphism of $D_4$ with a matrix subgroup</p>
-$$D_4\cong \angled{\begin{pmatrix}
-0 & -1 \\
-1 & 0
-\end{pmatrix}, 
-\begin{pmatrix}
--1 & 0 \\
-0 & -1
-\end{pmatrix}}\leq \text{GL}(2, \ro)$$<p>In general, if we have a regular $n$-polygon (equilateral triangle, square, &hellip;), we get its symmetry group $D_n,$ called the <strong>n-th dihedral group</strong>. These are also generated by all rotations $r_i$ and reflections $s_i,$ with $0\leq i\leq 4.$ All $r_i$ can be derived from $r_1$ and all $s_i$ from the product $r_js_1,$ and the presentation generalizes:</p>
-$$D_n=\angled{r, s \mid r^n=s^2=e, rs=s\inv{r}}$$<p>In particular, this shows that $D_n$ has order $2n.$</p>
-<p>Similarly, all the symmetries are linear representations, with $r_1=\begin{pmatrix}
-\cos(\frac{2\pi}{n}) & -\sin(\frac{2\pi}{n}) \\
-\sin(\frac{2\pi}{n}) & \cos(\frac{2\pi}{n})
-\end{pmatrix}$
-and $s_1=\begin{pmatrix}
-\cos(\frac{2\pi}{n}) & \sin(\frac{2\pi}{n}) \\
-\sin(\frac{2\pi}{n}) & -\cos(\frac{2\pi}{n})
-\end{pmatrix},$ and we thus have an isomorphism with $D_n$ and the subgroup of $\text{GL}(2,\ro)$ generated by these transformations.</p>
-<p>In group theory, representing groups through matrices is actually an extremely important and powerful technique. In general, if we have a homomorphism $\phi : G\rightarrow \text{GL}(n,\ro)$, we call this $\phi$ a <strong>(real) representation</strong> of $G.$ Representation theory is unavoidable in more advanced group theory.</p>
-<p>Finally, note something in the presentation of $D_n$: it contains two subgroups $\angled{r}$ (with $n$ elements) and $\angled{s}$ (with just two elements), and they together generate all of $D_n.$ Between $r$ and $s,$ we have an &ldquo;interference&rdquo; relation $rs=s\inv{r},$ as if $s$ was inverting $r.$ This fits perfectly into the description of a semidirect product: namely, if you define the homomorphism $\phi:\zmod{2}\rightarrow \text{Aut}(\zmod{n})$ by sending $1$ to $x \mapsto \inv{x},$ then we have an isomorphism</p>
-$$D_n\cong \zmod{n}\rtimes_\phi \zmod{2}$$<p>by sending $r^is^j$ to $(i,j).$</p>
-<p>In particular, we&rsquo;ve seen the example of $D_3\cong \zmod{3}\rtimes_\phi \zmod{2}$ before, the group of symmetries of an equilateral triangle. Each pair $(m, n)$ represented doing $m$ rotations $r_1$ and then $n$ reflections $s_1.$</p>
-<h3 id="symmetric-groups">Symmetric groups</h3>
-<p>The example above showed us that if you take some set $A$ and permutate its elements you can get a group. More formally, a <strong>permutation</strong> on $A$ is a bijective function $A\rightarrow A.$ These form a set $S_A,$ which, together with function composition, forms a group, called the <strong>symmetric group</strong> on $A.$ When $A=\{1,...,n\},$ we write $S_n$ for $S_A,$ getting the <strong>symmetric group on n elements</strong>. We write the product $\sigma \tau= \sigma \circ \tau$ in the same order as composition.</p>
-<p>We&rsquo;ll only study $S_n$ here. Note that it is a group of order $n!=n\cdot(n-1)\cdot...\cdot 1,$ since that&rsquo;s the number of possible sequences of distinct numbers from $1$ to $n$ of size $n.$</p>
-<p>We can write a permutation $\sigma$ in many different ways. The most explicit one is just listing the elements $1,...,n$ and, one row below, $\sigma(1),...,\sigma(n).$ For example, the rotation $r_1$ of labeled edges in the square can be written as $\begin{pmatrix}
-1 & 2 & 3 & 4 \\
-2 & 3 & 4 & 1
-\end{pmatrix}.$ Note that it forms a single &ldquo;cycle&rdquo;. Formally, we defined a <strong>cycle</strong> of a permutation $\sigma$ as a sequence of numbers $c_1,...,c_k$ such that $\sigma(c_i)=c_{i+1}$ until $k$ and $\sigma(c_k)=c_1.$ A permutation $\sigma$ is cyclic if it has a single cycle $c_1,...,c_k,$ with all other numbers being fixed: in that case, we use the notation $\sigma=(c_1...c_k)$ (note that all numbers outside the decomposition are fixed by $\sigma$).</p>
-<p>Every $\sigma\in S_n$ can be written as the product of cyclic permutations: get the first number $x$ such that $\sigma(x)\neq x,$ and let $c_{1i}=\sigma^{i-1}(x).$ These $c_{1i}$ will form a cycle (if $i-1>n!,$ then we must find a repetition in them, since $S_n$ just has $n!$ elements). If they cover all the numbers $1,...,n,$ then $\sigma = (c_{11}...c_{1n}).$ If not, then look for the next number not contained in this cycle and that isn&rsquo;t fixed by $\sigma,$ and then let $c_{21},...,c_{2l}$ be the cycle containing it. Repeat this proccess, and in the end you&rsquo;ll find the decomposition of $\sigma$ in respect to its cycles:</p>
-$$\sigma = (c_{11}...c_{1k})(c_{21}...c_{2l})...(c_{m1}...c_{mr})$$<p>For example, the permutation $\sigma=\begin{pmatrix}
-1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
-7 & 3 & 2 & 8 & 5 & 1  & 6 & 4
-\end{pmatrix}$ in $S_8$ has cycle decomposition $\sigma=(1\, 7\, 6) (2\, 3) (4\, 8).$</p>
-<p>We can actually go further. Indeed, every permutation is a composition of single swaps between two numbers. Formally, we call these <strong>transpositions</strong>: a transposition $\tau\in S_n$ is a cycle of the form $\tau=(a_1\; a_2).$ If $(c_1...c_k)$ is a cycle, then we can write it as the product of transpositions: begin swapping $(c_1\; c_2)$; now, $c_1$ is being correctly sent to $c_2,$ and $c_2$ to $c_1.$ Then send $c_1$ to $c_3$ with $(c_1\; c_3)$, so that, overall, $c_1$ is going to $c_2$ and $c_2$ to $c_3.$ Continue in this procedure, and you&rsquo;ll get</p>
-$$(c_1\;...\;c_k)=(c_1\;c_k)...(c_1\;c_3)(c_1\;c_2)$$<p>Thus, we have that every permutation is a composition of transpositions. In particular, the $\sigma\in S_8$ above can be written as $(1\, 6)(1\, 7)(2\, 3)(4\, 8).$ This decomposition, however, is not unique. Luckily, though, the <strong>parity</strong> of the amount of transpositions in a decomposition of a permutation is constant. There are <a href="https://math.stackexchange.com/questions/46403/alternative-proof-that-the-parity-of-permutation-is-well-defined">many different proofs</a>, most quite understandable, but too wordy for this post. Thus, we can classify permutations as either being odd (being a product of an odd amount of transpositions) or even. The $\sigma$ above, for example, is even.</p>
-<p>Indeed, the transpositions $\tau_i=(i\;i+i)$ generate all other transpositions: if $j>i$, then we can move $i$ to $j$ one step at a time, and then bringing $j$ back to $i$, so that $(i\;j)=(i\;i+1)(i+1\;i+2)...(j-1\;j)(j-2\;j-1)...(i\;i+1).$ Thus, all of $S_n$ is generated by these transpositions. Taking into consideration the relations the $\tau_i$ satisfy, we get the presentation</p>
-$$S_n=\angled{\tau_1,...,\tau_{n-1}\mid \tau_i^2=e,\;\;\; \tau_i\tau_j=\tau_j\tau_i \text{ for all }|i-j|>1,\;\;\; (\tau_i\tau_{i+1})^3=e}$$<p>In particular, note that in the $S_3$ case, we get the same presentation as for the $\zmod{3}\rtimes_\phi \zmod{2}$ before, so that $S_3\cong \zmod{3}\rtimes_\phi \zmod{2}\cong D_3.$</p>
-<p>Since parity is a defining property of permutations, we can define the subgroup $A_n\leq S_n$ of even permutations (a group since its closed under composition), called <strong>the alternating group</strong> of order $n.$ Since these are exactly half of all permutations, $|A_n|=\frac{n!}{2}.$</p>
-<p>Symmetric groups are very important, since <strong>each group</strong> $G$ <strong>can be seen as a subgroup of</strong> $S_{G}.$ This is easy to see: each element $g\in G$ can be interpreted as the permutation taking elements $a$ to $ga.$ Since we have inverses, this does gives a bijective map. Formally, this gives us an injective homomorphism $f:G\rightarrow S_G,$ with $G\cong \im f\leq S_{G}$&ndash; you can check it is indeed a homomorphism by applying associativity. This result is known as <strong>Cayley&rsquo;s theorem</strong>. For finite groups, you can label the elements of $G$ by numbers from $1$ to $n$, and then $G$ can be seen as isomorphic to a subgroup of $S_{|G|}.$</p>
-<p>For example, every element $m\in \zmod{n}$ can be interpreted as the permutation $k\rightarrow m+k\mod n$ in $S_n.$ In particular, $1\in\zmod{n}$ is the cycle $(1\; ...\; n),$ with $m$ generally being the cycle $(1\;...\;n)^m=(m\;m+1\;...\;n\; 1\;...\; m-1)$ (i.e., &ldquo;pushing&rdquo; through the cycle $(1\;...\;n)$ $m$ times).</p>
-<p>CONJUGATES</p>
-<h3 id="permutation-games">Permutation games</h3>
-<p>Rubik</p>
-<p>Jogos de permutac</p>
-<h2 id="example-topological-groups-quaternions-and-the-hopf-fibration-">Example: topological groups, quaternions and the Hopf fibration *</h2>
-<p>O(n), SO(n)</p>
-<p>SO(2) e S1</p>
-<p>C e SO(2)</p>
-<p>H e SO(3)</p>
-<p>Fibrac de Hopf</p>
-<p>RP3 = SO(3)</p>
-<h2 id="group-quotients-h">Group quotients (H)</h2>
-<p>We&rsquo;re finally ready to study quotients. Remember that we found out that two n-cycles $c_1,c_2$ should be seen as representing the same hole in $X$ if they &ldquo;differ by a boundary&rdquo;: $c_1-c_2=\partial_{n+1} a$ for some $a\in C_{n+1}(X)$. Translating to group theory, the situation is that we have a group $Z_n(X)$ of cycles and a subgroup $B_n(X)$ of boundaries. We want to take two elements $c_1, c_2\in Z_n(X)$ to be <strong>equivalent</strong> whenever there&rsquo;s some $b\in B_n(X)$ with $\partial b = c_1-c_2$&ndash; or, equivalently, if $c_1-c_2\in B_n(X).$ We&rsquo;ll then write $c_1\sim c_2.$</p>
-<p>In particular, since $\partial_{n+1} a = \partial_{n+1} a - 0 \in B_n(X)$, $\partial_{n+1}a\sim 0$ and every element of $B_n(X)$ (i.e., bounded chains) should be seen as not representing a hole&ndash; or, rather, as a &ldquo;null hole&rdquo;.</p>
-<p>This is actually surprisingly similar to how we get modular numbers. If $\angled{n}\leq \zo$ is the subgroup of multiples of an integer $n$, then, for integers $a,b$, $a\mod n=b\mod n$ exactly when $a-b$ is a multiple of $n$&ndash; i.e., it is contained in $\angled{n}.$ We also have that, if $a$ is a multiple of $n,$ $a \mod n = 0$&ndash; i.e., elements of $\angled{n}$ are &ldquo;killed&rdquo; by the mod operator. This prompts us to a generalization!</p>
-<p>Generally, if we have a group $G$ and a subgroup $H$, we can define the relation $\sim$ in $G$ having $a\sim b$ whenever there&rsquo;s some $h\in H$ and $h=a\inv{b}$&ndash; i.e., whenever $a\inv{b}\in H$. This is an <a href="https://en.wikipedia.org/wiki/Equivalence_relation">equivalence relation</a>: i.e., we always have a relation similar to equality $=$, satisfying</p>
-<ul>
-<li>
-<p>Reflexivity: $g\sim g$ ($e=g\inv{g}$ and $e\in H$);</p>
-</li>
-<li>
-<p>Symmetry: $a\sim b$ implies $b\sim a$ (if $h = a\inv{b}$, then $ \inv{h}= b\inv{a}$);</p>
-</li>
-<li>
-<p>Transitivity: $a\sim b$ and $b\sim c$ imply $a \sim c$ ($h_1 = a\inv{b}$ and $h_2=b\inv{c}$ multiply to give $h_1h_2=a\inv{c}$, $h_1h_2\in H$ since $H$ is a subgroup).</p>
-</li>
-</ul>
-<p>With this relation, we can form <strong>equivalence classes</strong>, which are the maximal sets containing equivalent elements. We&rsquo;ll denote the class of an element $g\in G$ as $[g].$ Note that $H$ is itself a class, all $h_1,h_2\in H$ being equivalent since $h_1\inv{h_2}\in H$ as $H$ is a subgroup.</p>
-<p>We can thus say that holes are equivalence classes of cycles.</p>
-<p>Let&rsquo;s denote the set of equivalence classes of this relation by $G/H.$ This can become a group, called the <strong>quotient group</strong> $G/H$, if we define the operation $[a][b]=[ab].$ The neutral element is given by the class $H$ since $h\inv{e}=h\in H$, so that $[h]=[e]$ and thus $[a][h]=[a][e]=[ae]=[a]$ for all $a\in G.$  The inverse of $[a]$ is $[\inv{a}]$ since $[a][\inv{a}]=[a\inv{a}]=[e]=H,$ as $e\in H.$ That is, the whole subgroup $H$ is condensed into a single element, which is the neutral element. It is as if we were <strong>canceling, annihilating</strong> $H$, sending all its elements to $0$. In the case of chains, this means we&rsquo;re &ldquo;killing&rdquo; all bounded cycles, which indeed shouldn&rsquo;t represent holes.</p>
-<p>In the mod example, we take as subgroup $\angled{n}$ and define $a\cong b$ whenever $a-b\in \angled{n}.$ Equivalence classes are also called mod classes. The quotient $\zo / \angled{n}$ is then the set of these classes with the operation $[a]+[b]=[a+b]$. This is isomoprhic to $\zmod{n}$ (thus our notation), with each class $[a]$ being sent to $a\mod n.$ Indeed, modular groups are prototypical quotients.</p>
-<p>There is, however, a small problem here! The quotient operation may not be well-defined: i.e., if $[x]=[x']$ and $[y]=[y']$, it may not be necessarily the case that $[x][y]=[xy]$ and $[x'][y']=[x'y']$. That is, the operation may depend on the specific representant we choose for our equivalence classes. If this is the case, then doing algebra in $G/H$ is basically impossible&ndash; imagine how chaotic that would be!</p>
-<p>Whar are, the, some possible conditions that may force $[xy]=[x'y']$ for $x\sim x'$ and $y\sim y'$? Well, we want $xy\sim x'y',$ which, by definition, is equivalent to $xy\inv{(x'y')}=x(y\inv{y'})\inv{x'}\in H.$ Since $x\sim x'$ and $y\sim y',$ there are $h_1,h_2\in H$ such that $x'=h_1x$ and $y'=yh_2.$ In particular, $\inv{x'}=\inv{x}h_1$ and $.$ Thus, we want to have</p>
-$$
-\begin{align}
-xy\inv{(x'y')}&=x(y\inv{y'})\inv{x'}=x (y\inv{y}\inv{h_2}) \inv{x}\inv{h_1}
-          \\&= (x\inv{h_2}\inv{x})\inv{h_1}\in H
-\end{align}
-$$<p>This last formula shows us that if we require $xh\inv{x}\in H$ for all $x\in G, h\in H,$ then the quotient operation will be well-defined! Subgroups satisfying this property are called <strong>normal</strong>, and thus we have that, if $H\leq G$ is normal, $G/H$ is a well-defined group. The condition is actually neccesary as well: multiplying the formula above by $h_1$ in the right, we still get an element of $H$ equal to $(x\inv{h_2}\inv{x}).$ Since $x$ and $h_2$ are arbitrary, this forces $H$ to be normal. This proves</p>
-<p><strong>Theorem</strong>: The quotient $G/H$ is a well-defined group if and only if $H\leq G$ is normal.</p>
-<p>Luckilly, every subgroup of an abelian group is normal, since $xh\inv{x}=x\inv{x}h=h\in H$! In particular, this shows that the construction of $\zmod{n}$ as a quotient is correct, and that we don&rsquo;t have to worry about normality in our $C_n(X).$</p>
-<p>Another more trivial examples of normal subgroups, for all $G$, are $\{e\}\leq G$ and $G$ itself. In the first case $G/\{ e\}$&ndash; which we&rsquo;ll also write $G/0$ since $\{e\}$ is isomorphic to the trivial group&ndash; is isomorphic to $G$, since in this case $a\sim b$ if and only if $a\inv{b}=e$ and $b=a,$ so that the equivalence classes are all the sets $\{g\}$ for $g\in G$, and the quotient operation is identical with the one of $G.$ I.e., $G/0\cong G.$ On the other hand, $G/G$ has a single element, since we have $a\sim b$ for all $a,b \in G$ ($a\inv{b}\in G$ always), so that $G/G \cong 0.$</p>
-<p>One important thing about quotients is how they interact with presentations. Namely, if $G=\angled{S_G\mid R_G}$ and $H\leq G$ is normal, then $G/H = \angled{S_G\mid R_G \cup H_0},$ with $H_0$ being the set of relations $h=0$ for $h=0.$ In particular, if $H=\angled{S_H},$ we can further simplify to get $G/H = \angled{S_G\mid R_G \cup S_H}.$ For example, since $\zo=\angled{a}$, then $\zo/\angled{n}=\angled{a \mid a^n=0, a^{2n}=0,...},$ which simplifies to $\angled{a\mid a^n=0}$ (all the $a^{2n}=0,a^{3n}=0,...$ are reduntant since we already have $a^n=0$), as we had before. This makes clear how doing quotients is somehow a process of annihilating normal subgroups.</p>
-<p>That&rsquo;s pretty much what you need to know about quotients to understand homology. The rest of this section is optional.</p>
-<h3 id="the-isomorphism-theorem-and-the-classification-of-finite-groups-optional">The isomorphism theorem and the classification of finite groups (optional)</h3>
-<p>A guaranted type of normal subgroups are the kernels $\ker f$ of homomorphisms: if $x\in G$ and $h\in \ker f,$ then $f(xh\inv{x})=f(x)f(h)f(\inv{x})=f(x)f(\inv{x})=f(x\inv{x})=f(e_G)=e_H,$ so that $xh\inv{x}\in \ker f.$ Now, if $H\leq G$ is normal, then the map $f: G\rightarrow G/H$ is a homomorphism (basically by definition), and its kernel is exactly $H,$ as we discussed above. Thus, every kernel is normal, and every normal subgroup is a kernel: <strong>homomorphism kernels and normal subgroups are the same</strong>!</p>
-<p>Important in the quotient construction is the &ldquo;projection homomorphism&rdquo; $\pi : G\rightarrow G/H$ sending $a$ to its class $[a].$ Its kernel is exactly $H$.</p>
-<p>All of this allows us to prove the following, highly useful theorem:</p>
-<p><strong>Theorem (Isomorphism Theorem)</strong>: for every homomorphism $f:G\rightarrow H$, $\phi:G/\ker f\rightarrow \im f$ defined as $\phi([a])=f(a)$ is an isomorphism</p>
-$$G/\ker f \cong \im f$$<p><strong>Proof</strong>:</p>
-<p>$\phi$ is well-defined: if $[a]=[b],$ then $a=kb,$ with $k\in \ker f.$ Thus, if $\phi([a])=f(a)=f(kb)=f(k)f(b)=f(b)=\phi([b]).$ It is a homomorphism because $f$ is one and by the definition of the quotient product (well-defined since $\ker f$ is normal): $\phi([a][b])=\phi([ab])=f(ab)=f(a)f(b)=\phi([a])\phi([b]).$</p>
-<p>$\phi$ is, by definition, surjective. It is injective since $\ker \phi$ is trivial: $\phi([a])=e$ implies $f(a)=e,$ $a\in \ker f,$ and so $[a]$ is the trivial class $\ker f$ in the quotient.</p>
-<p>Note in particular that $\phi \circ \pi=f.$ The whole situation is described on the diagram below (you can&rsquo;t escape from diagrams in algebra!):</p>
-<figure style="display: flex; flex-direction: column; align-items: center; text-align: center; margin: 0 auto;">
-    <img 
-        src="firstiso.png" 
-        alt="First Isomorphism Theorem diagram" 
-        style="max-width: 25%; height: auto;"
-    >
-    
-</figure>
-
-<div style="text-align: right;">\(\blacksquare\)</div>
-<p>The isomorphism theorem tells us that normal groups can actually be used</p>
-<p>Normal groups are very important, since in some precise way they are responsible for &ldquo;constructing&rdquo; our groups. These means groups without normal subgrouos&ndash; which are called <strong>simple</strong>&ndash; are specially important, as they can be interpreted as the &ldquo;building blocks&rdquo; of groups. They&rsquo;re to groups what primes are to integers. !!!</p>
-<p>IMG!!! Tabela periodica</p>
-<h2 id="spaces-as-quotients">Spaces as quotients</h2>
-<h3 id="group-actions">Group actions</h3>
-<h3 id="the-torus-as-a-quotient">The torus as a quotient</h3>
-<h3 id="the-möbius-strip-as-a-quotient">The Möbius strip as a quotient</h3>
 <h1 id="homology-theory">Homology theory</h1>
 <h2 id="homology-groups">Homology groups</h2>
 <p>With all this group theory machinery, we can finally define our <strong>homology groups</strong> where holes live.</p>
@@ -1530,7 +1169,16 @@ H_n(\rpt)=
 \zo, & n=0 \\
 0, & \text{else}
 \end{cases}
-$$<h2 id="holes-of-order-2-">Holes of order 2 *</h2>
+$$<h2 id="the-euler-characteristic">The Euler characteristic</h2>
+<p>As we previously saw, we could define the Euler characteristic of a complex/delta structure as the alternating sum of the number $k$ of its n-dimensional chains $a_1,...,a_k.$ By definition, the rank $\rank C_n(M)$ of $C_n(M)$ is exaclty equal to this $k.$ Thus, we migh as well define the characteristic as $\chi(M)=\sum_n (-1)^n\rank C_n(M).$ Since the $C_n(M)$ change depending on the exact complex/delta structure being used, it&rsquo;s not clear that $\chi(M)$ is a topological invariant.</p>
+<p>Here we&rsquo;ll need a simple algebraic fact: if $0\rightarrow A\xrightarrow{i} B\xrightarrow{j} C \rightarrow 0$ is a short exact sequence of freely generated abelian groups, then $\rank B = \rank A + \rank C.$ This is because the map $i$ is injective, so its image contains exactly $\rank A$ copies of $\zo$ in $B.$ Since $\ker i = \im j,$ these copies are all maped to $0$ on $C.$ Since $j$ is surjective, all copies of $\zo$ in $C$ must then come from those remaining ones in $B,$ which forces $\rank B = \rank A + \rank C.$ SEI NNNNNNNNNNNNNNNNNNNNNNNNN</p>
+<p>Since we have exact sequences $0\rightarrow Z_n \rightarrow C_n \xrightarrow{\partial} B_{n-1} \rightarrow 0$ and $0\rightarrow B_n \rightarrow Z_n \rightarrow H_n \rightarrow 0,$ this shows us that</p>
+$$\rank C_n = \rank Z_n + \rank B_{n-1}$$$$\rank H_n = \rank Z_n - \rank B_{n}$$<p>Substituting, we have $\rank C_n = \rank H_n + \rank B_n + \rank B_{n+1}.$ This means we can sum the $\rank C_n$ alternating signs to get</p>
+$$\begin{align}
+\sum_n (-1)^n\rank C_n&=\sum_n (-1)^n (\rank H_n + \rank B_n + \rank {n+1})\\&=\sum_n (-1)^n\rank H_n,
+\end{align}$$<p>since the ranks of the boundary groups cancel each other. Thus, the Euler characteristic has the formula $\chi(M)=\sum_n (-1)^n\rank H_n(M),$ which we might as well use as its &ldquo;new&rdquo; definition. Since $H_n(M)$ are topological invariants, so is $\chi(M).$ We&rsquo;ll use the characteristic later on when we classify patterns and tilings by their symmetries using algebraic topology.</p>
+<h2 id="holes-of-order-2-">Holes of order 2 *</h2>
+<h2 id="homology-with-coefficients">Homology with coefficients</h2>
 <h1 id="applications">Applications</h1>
 <h2 id="functors-retractions-and-fixed-points">Functors, retractions and fixed points</h2>
 <p>Not only spaces can be studied using homology, but also continuous maps between them! If we have a continuous function $f:X\rightarrow Y$, then, for each $n$, we have the <strong>induced homomorphism</strong> $f_\#:\cdn{n}(X)\rightarrow \cdn{n}(Y)$ given by sending $\sigma:\Delta^n\rightarrow X$ to the composition $f\circ \sigma.$</p>
@@ -1601,10 +1249,12 @@ $$\begin{align}
 <p>NASH EQUILIBRIA
 EXS PUROS (prisionners, eleic)
 EXS MISTOS (bach, pennies)</p>
+<p>Formally, define a function $\text{Gain} (\sigma): A \rightarrow \ro^i$ that, for each action $a$, returns the expected gain to player $i$ given the action:</p>
+$$\text{Gain}_i(\sigma)(a) = \max (0, u_i(a, \sigma_{-i}) - u_i(\sigma))$$<p>Then a <strong>Nash equilibirum</strong> of a game is a mixed strategy such that $\text{Gain}_i(\sigma)(a)=0$ for all $i$&ndash; i.e., no players can improve their position.</p>
 <p><strong>Theorem</strong>: Every game with finite players and actions has at least one Nash equilibrium.</p>
 <p><strong>Proof</strong>:
-Let $\sigma \in \Delta^{i_1}\times...\times\Delta^{i_k}$ be a mixed strategy. Let&rsquo;s try to define a &ldquo;winning flow&rdquo; which, for each $\sigma$, points in the direction of the direction of a strategy with better expected gains. The idea is that fixed points of this flow will exactly be the strategies that can&rsquo;t be improved for any player&ndash; i.e., Nash equilibria. For this, define for each $\sigma$ a function $\text{Gain} (\sigma): A \rightarrow \ro^i$ that, for each action $a$, returns the expected gain to player $i$ given the action:</p>
-$$\text{Gain}_i(\sigma)(a) = \max (0, u_i(a, \sigma_{-i}) - u_i(\sigma))$$<p>Then we can try to define the flow by pushing $\sigma$ by its gain: $g(\sigma)(a) = \sigma(a) + \text{Gain}(\sigma)(a)$. This, however, doesn&rsquo;t necessarily gives an element inside $\Delta = \Delta^{i_1}\times...\times\Delta^{i_k}$, because its components might not sum to one. What we need is a flow definition $f$ such that $\sum_{b\in A_i}f(\sigma)_i(a_j)=1$. To get this $f$, note that, since $\sigma_i$ is an element of a simplex,</p>
+Let $\sigma \in \Delta^{i_1}\times...\times\Delta^{i_k}$ be a mixed strategy. Let&rsquo;s try to define a &ldquo;winning flow&rdquo; which, for each $\sigma$, points in the direction of the direction of a strategy with better expected gains. The idea is that fixed points of this flow will exactly be the strategies that can&rsquo;t be improved for any player&ndash; i.e., Nash equilibria.</p>
+<p>We can try to define the flow by pushing $\sigma$ by its gain: $g(\sigma)(a) = \sigma(a) + \text{Gain}(\sigma)(a)$. This, however, doesn&rsquo;t necessarily gives an element inside $\Delta = \Delta^{i_1}\times...\times\Delta^{i_k}$, because its components might not sum to one. What we need is a flow definition $f$ such that $\sum_{b\in A_i}f(\sigma)_i(a_j)=1$. To get this $f$, note that, since $\sigma_i$ is an element of a simplex,</p>
 $$\sum_{a\in A_i} g(\sigma)_i(a) = \sum_{a\in A_i} \big( \sigma_i(a) + \text{Gain}_i(\sigma)(a) \big)=1 + \sum_{a\in A_i} \text{Gain}_i(\sigma)(a).$$<p>This means we can define a flow $f:\Delta\rightarrow\Delta$ normalizing $g$ by this value:</p>
 $$f(\sigma)_i(a) = \frac{\sigma_i(a) + \text{Gain}_i(\sigma)(a)} 
                       {1 + \sum_{b\in A_i} \text{Gain}_i(\sigma)(b)},$$<p>which indeed satisfies the property of returning mixed strategies.</p>
@@ -1613,17 +1263,28 @@ $$f(\sigma)_i(a) = \frac{\sigma_i(a) + \text{Gain}_i(\sigma)(a)}
 <p>Now, note that the expected value of gains for the player $i$ according to the strategy $\sigma^*$ is zero:</p>
 $$
 \begin{align}
-    \sum_{a\in A_i}\sigma^*_i(a)\text{Gain}_i(\sigma^*, a) &=\sum_{a\in A_i}\sigma^*_i(a)(u_i(a, \sigma_{-i}^*) - u_i(\sigma_i^*))
-    \\&= \left(\sum_{a\in A_i}\sigma^*_i(a)u_i(a, \sigma_{-i}^*)\right) - u_i(\sigma_i^*)
+    \sum_{a\in A_i}\sigma^*_i(a)\text{Gain}_i(\sigma^*, a) &=\sum_{a\in A_i'}\sigma^*_i(a)(u_i(a, \sigma_{-i}^*) - u_i(\sigma_i^*))
+    \\&= \left(\sum_{a\in A_i'}\sigma^*_i(a)u_i(a, \sigma_{-i}^*)\right) - u_i(\sigma_i^*)
     \\& = u_i(\sigma_i^*) - u_i(\sigma_i^*)=0
 \end{align}
-$$<p>where the penultimate equality comes from $\sigma^*_i$ being a simplex and $u_i(\sigma_i^*)$ constand, and the last one by the very definition of $u_i(\sigma_i^*)$.</p>
+$$<p>where $A'_i$ is the set of actions such that $\text{Gain}_i(\sigma^*, a)\neq 0.$ FALSE!!!!!!!! DAÍ O RESTO DAS IGUALDADES N ROLA The penultimate equality comes from $\sigma^*_i$ being a simplex and $u_i(\sigma_i^*)$ constand, and the last one by the very definition of $u_i(\sigma_i^*)$.</p>
 <p>However, we also have that $\sum_{a\in A_i}\sigma^*_i(a)\text{Gain}_i(\sigma^*, a)=\sum_{a\in A_i}(S-1)\sigma^*_i(a)^2$, and, since there&rsquo;s at least one $a$ such that $\sigma^*_i(a)>0$ (otherwise mixed strategies wouldn&rsquo;t sum to one), $S=1$ in order for the expected value of the gains to be null. Thus we have $\sigma^*_i(a)=\sigma^*_i(a) + \text{Gain}_i(\sigma^*, a)$, and $\text{Gain}_i(\sigma, a)=0$ for any player $i$ and action $a\in A_i$&ndash; proving that $\sigma^*$ is indeed a Nash equilibrium.</p>
 <div style="text-align: right;">\(\blacksquare\)</div>
 <p>Conversely, every possible Nash equilibrium gives a fixed point of the flow above&ndash; i.e., <strong>equilibria are exactly the fixed points of the &ldquo;winning flow&rdquo;</strong> $f$.</p>
 <p>ARROWS!!!!</p>
 <h1 id="going-further">Going further</h1>
-<p>oi</p>
+<h2 id="homotopy-invariance-of-homology">Homotopy invariance of homology</h2>
+<p>To prove that <em>singular</em> homology is a topological invariant, it&rsquo;s actually easier to prove that two spaces $X,Y$ with the same <em>homotopy</em> type (which includes homeomorphic spaces) have the same homology groups.</p>
+<p>We can actually prove even more: if $f$ and $g$ are homotopic maps, then they have exactly the same induced homomorphisms on homology: $f_*=g_*.$ This includes the previous claim, since if $f:X\rightarrow Y$ and $g:Y\rightarrow X$ provide a homotopy equivalence $X\simeq Y,$ then $f\circ g\simeq \text{id}$ and thus $f_*\circ g_*=\text{id},$ so that $f_*$ and $g_*$ are inverses, giving an isomorphism $H_*(X)\cong H_*(Y).$</p>
+<p>Thus, let $F:X\rightarrow I\rightarrow Y$ be a homotopy between maps $f$ and $g$ as above. Now, the essential (and actually quite simple, <strong>check Hatcher</strong>) part of the proof is to provide a triangulation of $\Delta^n\times I$ for all standard simplices&ndash; with $\Delta^2$, for example, this is just a triangulation of a square, especifically using a quad.</p>
+<h2 id="long-exact-sequences">Long exact sequences</h2>
+<h2 id="isomorphism-of-simplicial-delta-and-singular-homologies">Isomorphism of simplicial, delta and singular homologies</h2>
+<h2 id="cw-complexes-and-cellular-homology">CW complexes and cellular homology</h2>
+<p>CW COMPLEXOS</p>
+<p>RPN, CPN</p>
+<p>H_*(X_N,X_N-1)</p>
+<p>DESCRIÇÃO DO BOUNDARY</p>
+<p>CPN, RPN (COEFICS TBM)</p>
 
 
 <p>

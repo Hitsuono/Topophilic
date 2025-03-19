@@ -8,14 +8,45 @@
 <link rel="shortcut icon" href="http://localhost:1313/images/favicon.png" />
 <title>Topology for Artists: introduction | Topophilic</title>
 <meta name="title" content="Topology for Artists: introduction" />
-<meta name="description" content="" />
+<meta name="description" content="TL;DR
+Bla
+
+    
+        
+  
+    TL;DR
+    A preview
+    The necessity of spaces
+    Metric and topological spaces
+      
+        Metric and topology
+        Some important spaces
+        Continuity, homeomorphisms
+        Homotopy
+        Connectivity
+        Compactness
+      
+    
+  
+
+    
+
+A preview
+ORDER
+this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;
+The necessity of spaces
+Metric and topological spaces
+Metric and topology
+Definition: a metric space is a set $X$ with a function $d:X\times X\rightarrow \ro_{\geq 0}$ that takes two elements $x,y$ of $X$ and returns a positive real number $d(x,y)$ representing their distance. This $d$ must the following properties to be a sensible representation of distance:" />
 <meta name="keywords" content="Topology for Artists," />
 
 
 <meta property="og:url" content="http://localhost:1313/topology-for-artists-introduction/">
   <meta property="og:site_name" content="Topophilic">
   <meta property="og:title" content="Topology for Artists: introduction">
-  <meta property="og:description" content="Hugo &#43; Bear = :heart:">
+  <meta property="og:description" content="TL;DR Bla
+TL;DR A preview The necessity of spaces Metric and topological spaces Metric and topology Some important spaces Continuity, homeomorphisms Homotopy Connectivity Compactness A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;
+The necessity of spaces Metric and topological spaces Metric and topology Definition: a metric space is a set $X$ with a function $d:X\times X\rightarrow \ro_{\geq 0}$ that takes two elements $x,y$ of $X$ and returns a positive real number $d(x,y)$ representing their distance. This $d$ must the following properties to be a sensible representation of distance:">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -30,15 +61,20 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="http://localhost:1313/images/share.png">
   <meta name="twitter:title" content="Topology for Artists: introduction">
-  <meta name="twitter:description" content="Hugo &#43; Bear = :heart:">
+  <meta name="twitter:description" content="TL;DR Bla
+TL;DR A preview The necessity of spaces Metric and topological spaces Metric and topology Some important spaces Continuity, homeomorphisms Homotopy Connectivity Compactness A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;
+The necessity of spaces Metric and topological spaces Metric and topology Definition: a metric space is a set $X$ with a function $d:X\times X\rightarrow \ro_{\geq 0}$ that takes two elements $x,y$ of $X$ and returns a positive real number $d(x,y)$ representing their distance. This $d$ must the following properties to be a sensible representation of distance:">
 
 
 
 
   <meta itemprop="name" content="Topology for Artists: introduction">
-  <meta itemprop="description" content="Hugo &#43; Bear = :heart:">
+  <meta itemprop="description" content="TL;DR Bla
+TL;DR A preview The necessity of spaces Metric and topological spaces Metric and topology Some important spaces Continuity, homeomorphisms Homotopy Connectivity Compactness A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;
+The necessity of spaces Metric and topological spaces Metric and topology Definition: a metric space is a set $X$ with a function $d:X\times X\rightarrow \ro_{\geq 0}$ that takes two elements $x,y$ of $X$ and returns a positive real number $d(x,y)$ representing their distance. This $d$ must the following properties to be a sensible representation of distance:">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
+  <meta itemprop="wordCount" content="505">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -219,7 +255,9 @@
         zmod : ["\\mathbb{Z}/#1 \\mathbb{Z}", 1],
         inv : ["#1 ^{-1}", 1],
         cdn : ["C^\\Delta_#1", 1],
-        csn : ["C^s_#1", 1]
+        csn : ["C^s_#1", 1],
+        rank : ["\\text{rank}\\,\\,\\,"],
+        pard : ["\\frac{\\partial #1}{\\partial #2}", 2] 
       }
     }
   };
@@ -253,6 +291,74 @@
 </p>
 
 
+<h1 id="tldr">TL;DR</h1>
+<p>Bla</p>
+
+    <aside id="TableOfContents">
+        <nav id="TableOfContents">
+  <ol>
+    <li><a href="#tldr">TL;DR</a></li>
+    <li><a href="#a-preview">A preview</a></li>
+    <li><a href="#the-necessity-of-spaces">The necessity of spaces</a></li>
+    <li><a href="#metric-and-topological-spaces">Metric and topological spaces</a>
+      <ol>
+        <li><a href="#metric-and-topology">Metric and topology</a></li>
+        <li><a href="#some-important-spaces">Some important spaces</a></li>
+        <li><a href="#continuity-homeomorphisms">Continuity, homeomorphisms</a></li>
+        <li><a href="#homotopy">Homotopy</a></li>
+        <li><a href="#connectivity">Connectivity</a></li>
+        <li><a href="#compactness">Compactness</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+    </aside>
+
+<h1 id="a-preview">A preview</h1>
+<p>ORDER
+this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;</p>
+<h1 id="the-necessity-of-spaces">The necessity of spaces</h1>
+<h1 id="metric-and-topological-spaces">Metric and topological spaces</h1>
+<h2 id="metric-and-topology">Metric and topology</h2>
+<p><strong>Definition</strong>: a <strong>metric space</strong> is a set $X$ with a function $d:X\times X\rightarrow \ro_{\geq 0}$ that takes two elements $x,y$ of $X$ and returns a positive real number $d(x,y)$ representing their distance. This $d$ must the following properties to be a sensible representation of distance:</p>
+<ul>
+<li>
+<p>The distance of $x$ to itself must be zero: $d(x,x)=0$ for all $x$;</p>
+</li>
+<li>
+<p>It mus be symmetrical: $d(x,y)=d(y,x)$ for all $x,y$;</p>
+</li>
+<li>
+<p>It must satisfy the <em>triangular inequality</em>: $d(x,y)+d(x,z)\leq d(y,z)$ for all $x,y,z.$ Imagine $x,y,z$ forming a triangle and the hypothenuse being smaller than the sum of the other two sides, how absurd that would be!</p>
+</li>
+</ul>
+<p>The function $d$ above is commonly called a <strong>metric</strong> on $X.$</p>
+<p><strong>Definition</strong>: a <strong>topological space</strong> is a set $X$ with a collection $\tau$ of subsets of $X$ (called <strong>open sets</strong>) such that</p>
+<ul>
+<li>
+<p>$X$ and the empty set $\emptyset$ are in $\tau$;</p>
+</li>
+<li>
+<p>Unions (possibily infinite) of open sets are open: $\bigcup_i U_i\in \tau$ for $U_i\in \tau$;</p>
+</li>
+<li>
+<p>Finite intersections of open sets are open: $\bigcap_i^n U_i \in \tau$ for $U_i\in \tau.$</p>
+</li>
+</ul>
+<h2 id="some-important-spaces">Some important spaces</h2>
+<h2 id="continuity-homeomorphisms">Continuity, homeomorphisms</h2>
+<p><strong>Definition</strong>: a <strong>continuous function</strong> between topological spaces $(X,\tau_X)$ and $(Y,\tau_Y)$ is a function $f:X\rightarrow Y$ such that, for all $V\subseteq Y$ open in $Y$, $\inv{f}(V)$ is open in $X.$</p>
+<p><strong>Definition</strong>: a <strong>homeomorhpism</strong> between topological spaces $(X,\tau_X)$ and $(Y,\tau_Y)$ is an inversible continuous function $f:X\rightarrow Y$ such that $\inv{f}:Y\rightarrow X$ is also continuous.</p>
+<h2 id="homotopy">Homotopy</h2>
+<h2 id="connectivity">Connectivity</h2>
+<p><strong>Definition</strong>: a topological space $(X,\tau)$ is called <strong>connected</strong> if there are no disjont open sets $U,V$ such that $U\cup V = X.$</p>
+<p>It&rsquo;s easy to see that connectivity is a topological property. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ connected, then $\im f$ is also connected; otherwise, if it could be divided into two disjoint open sets $U,V$ in $\im f,$ then $\inv{f}(U)$ and $\inv{f}(V)$ would be open and disjoint (there can be no $x\in \inv{f}(U)\cap \inv{f}(V)$ since it would imply $f(x)\in U\cap V$), a contradiction.</p>
+<p><strong>Definition</strong>: a topological space $(X,\tau)$ is called <strong>path-connected</strong> if, for every two points $x,y\in X,$ theres a path $p:I\rightarrow X$ starting in $x$ and ending in $y$ (i.e., $p(0)=x$ and $p(1)=y$).</p>
+<p>Path-connectedness is also a topological property. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ path-connected, so is $\im y$: if $f(x),f(y)$ are in $\im f,$ $x$ and $y$ can be connected by a path $p$ in $X,$ and so $f\circ p:I\rightarrow \im f$ connects $f(x)$ to $f(y).$</p>
+<p>Path-connectedness implies connectedness:</p>
+<p>One of the classic counter-examples in topology is that not all connected spaces are path-connected. For example, take the subset of $\ro^2$ that&rsquo;s composed of the graph of $\sin (\frac{1}{x})$ (with $x>0$) together with the origin.</p>
+<h2 id="compactness">Compactness</h2>
+<p><strong>Definition</strong>: a topological space $(X, \tau)$ is called <strong>compact</strong> if for all open covers $\{U_i\}_{i\in J},$ there exists a finite subcollection $\{U_i\}_{i\leq n}$ that also covers $X.$</p>
 
 
 <p>
