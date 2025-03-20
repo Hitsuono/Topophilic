@@ -16,10 +16,12 @@ Bla
   
     TL;DR
     A preview
+    What you&rsquo;ll need
     The necessity of spaces
     Metric and topological spaces
       
         Metric and topology
+        Some common topologies
         Some important spaces
         Continuity, homeomorphisms
         Homotopy
@@ -27,17 +29,21 @@ Bla
         Compactness
       
     
+    More point-set topology
+      
+        Separation axioms
+      
+    
   
 
     
 
+TGT AUDIENCE
 A preview
 ORDER
 this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;
-The necessity of spaces
-Metric and topological spaces
-Metric and topology
-Definition: a metric space is a set $X$ with a function $d:X\times X\rightarrow \ro_{\geq 0}$ that takes two elements $x,y$ of $X$ and returns a positive real number $d(x,y)$ representing their distance. This $d$ must the following properties to be a sensible representation of distance:" />
+What you&rsquo;ll need
+Short answer: linear algebra (you can find a quick reminder on the post concerning algebra) and basic set theory (cartesian product, injective, surjective and bijective functions)." />
 <meta name="keywords" content="Topology for Artists," />
 
 
@@ -45,8 +51,9 @@ Definition: a metric space is a set $X$ with a function $d:X\times X\rightarrow 
   <meta property="og:site_name" content="Topophilic">
   <meta property="og:title" content="Topology for Artists: introduction">
   <meta property="og:description" content="TL;DR Bla
-TL;DR A preview The necessity of spaces Metric and topological spaces Metric and topology Some important spaces Continuity, homeomorphisms Homotopy Connectivity Compactness A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;
-The necessity of spaces Metric and topological spaces Metric and topology Definition: a metric space is a set $X$ with a function $d:X\times X\rightarrow \ro_{\geq 0}$ that takes two elements $x,y$ of $X$ and returns a positive real number $d(x,y)$ representing their distance. This $d$ must the following properties to be a sensible representation of distance:">
+TL;DR A preview What you’ll need The necessity of spaces Metric and topological spaces Metric and topology Some common topologies Some important spaces Continuity, homeomorphisms Homotopy Connectivity Compactness More point-set topology Separation axioms TGT AUDIENCE
+A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;
+What you’ll need Short answer: linear algebra (you can find a quick reminder on the post concerning algebra) and basic set theory (cartesian product, injective, surjective and bijective functions).">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -62,19 +69,21 @@ The necessity of spaces Metric and topological spaces Metric and topology Defini
   <meta name="twitter:image" content="http://localhost:1313/images/share.png">
   <meta name="twitter:title" content="Topology for Artists: introduction">
   <meta name="twitter:description" content="TL;DR Bla
-TL;DR A preview The necessity of spaces Metric and topological spaces Metric and topology Some important spaces Continuity, homeomorphisms Homotopy Connectivity Compactness A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;
-The necessity of spaces Metric and topological spaces Metric and topology Definition: a metric space is a set $X$ with a function $d:X\times X\rightarrow \ro_{\geq 0}$ that takes two elements $x,y$ of $X$ and returns a positive real number $d(x,y)$ representing their distance. This $d$ must the following properties to be a sensible representation of distance:">
+TL;DR A preview What you’ll need The necessity of spaces Metric and topological spaces Metric and topology Some common topologies Some important spaces Continuity, homeomorphisms Homotopy Connectivity Compactness More point-set topology Separation axioms TGT AUDIENCE
+A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;
+What you’ll need Short answer: linear algebra (you can find a quick reminder on the post concerning algebra) and basic set theory (cartesian product, injective, surjective and bijective functions).">
 
 
 
 
   <meta itemprop="name" content="Topology for Artists: introduction">
   <meta itemprop="description" content="TL;DR Bla
-TL;DR A preview The necessity of spaces Metric and topological spaces Metric and topology Some important spaces Continuity, homeomorphisms Homotopy Connectivity Compactness A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;
-The necessity of spaces Metric and topological spaces Metric and topology Definition: a metric space is a set $X$ with a function $d:X\times X\rightarrow \ro_{\geq 0}$ that takes two elements $x,y$ of $X$ and returns a positive real number $d(x,y)$ representing their distance. This $d$ must the following properties to be a sensible representation of distance:">
+TL;DR A preview What you’ll need The necessity of spaces Metric and topological spaces Metric and topology Some common topologies Some important spaces Continuity, homeomorphisms Homotopy Connectivity Compactness More point-set topology Separation axioms TGT AUDIENCE
+A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;
+What you’ll need Short answer: linear algebra (you can find a quick reminder on the post concerning algebra) and basic set theory (cartesian product, injective, surjective and bijective functions).">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="505">
+  <meta itemprop="wordCount" content="561">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -299,10 +308,12 @@ The necessity of spaces Metric and topological spaces Metric and topology Defini
   <ol>
     <li><a href="#tldr">TL;DR</a></li>
     <li><a href="#a-preview">A preview</a></li>
+    <li><a href="#what-youll-need">What you&rsquo;ll need</a></li>
     <li><a href="#the-necessity-of-spaces">The necessity of spaces</a></li>
     <li><a href="#metric-and-topological-spaces">Metric and topological spaces</a>
       <ol>
         <li><a href="#metric-and-topology">Metric and topology</a></li>
+        <li><a href="#some-common-topologies">Some common topologies</a></li>
         <li><a href="#some-important-spaces">Some important spaces</a></li>
         <li><a href="#continuity-homeomorphisms">Continuity, homeomorphisms</a></li>
         <li><a href="#homotopy">Homotopy</a></li>
@@ -310,16 +321,28 @@ The necessity of spaces Metric and topological spaces Metric and topology Defini
         <li><a href="#compactness">Compactness</a></li>
       </ol>
     </li>
+    <li><a href="#more-point-set-topology">More point-set topology</a>
+      <ol>
+        <li><a href="#separation-axioms">Separation axioms</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
     </aside>
 
+<p>TGT AUDIENCE</p>
 <h1 id="a-preview">A preview</h1>
 <p>ORDER
 this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;</p>
+<h1 id="what-youll-need">What you&rsquo;ll need</h1>
+<p>Short answer: <strong>linear algebra</strong> (you can find a quick reminder on the post concerning algebra) and <strong>basic set theory</strong> (cartesian product, injective, surjective and bijective functions).</p>
+<p>I tried to write these posts as accessible as possible, but without losing much of the mathematical rigour. That is, mathematics is a human endeavour of unlimited aesthetic capacity, but this comes with a cost&ndash; namely, rigour and precision. It is beautiful because so much formality can&rsquo;t be in vain. Without this limitation, there can ultimately be no beauty; the first is simultaneously the latter&rsquo;s restriction and its progenitor. Or, rather, rigour and aesthetical creativity are <em>consubstantial</em> in mathematics. The other member of this trinity is the insatiable human desire to further mathematicize the world and recognize itself in this construction&ndash; to spread the Word and be in a Body, so to speak. But let&rsquo;s leave the logical-christian analogies for another place for now.</p>
+<p>Fact is, leaving out the more difficult and rigorous parts <strong>is</strong> necessary when writing to a larger audience, but I tried to keep some balance&ndash; particularly without insulting the intelligence and interest of the reader. You can always skip the more technical sections, and I hope they can spark out your curiosity and be more accessible when you come back to them.</p>
 <h1 id="the-necessity-of-spaces">The necessity of spaces</h1>
 <h1 id="metric-and-topological-spaces">Metric and topological spaces</h1>
 <h2 id="metric-and-topology">Metric and topology</h2>
+<p>The most natural notion of an abstract space is that of a set together with some kind of &ldquo;distance&rdquo; between its points. For example, $\ro^n$ always comes with the Euclidean distance $d(x,y)=\sqrt{(x_1-y_1)^2+...+(x_n-y_n)^2}$ between points $x=(x_1,...,x_n)$ and $y=(y_1,...,y_n)$&ndash; you can read more on it in the first section of the post concerning algebra, dedicated to linear algebra. This is the normal distance we use in the real-world, but it isn&rsquo;t the only mathematical option available. We could, say,</p>
+<p>IMG!!! Manhattan</p>
 <p><strong>Definition</strong>: a <strong>metric space</strong> is a set $X$ with a function $d:X\times X\rightarrow \ro_{\geq 0}$ that takes two elements $x,y$ of $X$ and returns a positive real number $d(x,y)$ representing their distance. This $d$ must the following properties to be a sensible representation of distance:</p>
 <ul>
 <li>
@@ -333,6 +356,7 @@ this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;</p>
 </li>
 </ul>
 <p>The function $d$ above is commonly called a <strong>metric</strong> on $X.$</p>
+<p>Now, we can see</p>
 <p><strong>Definition</strong>: a <strong>topological space</strong> is a set $X$ with a collection $\tau$ of subsets of $X$ (called <strong>open sets</strong>) such that</p>
 <ul>
 <li>
@@ -345,11 +369,32 @@ this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;</p>
 <p>Finite intersections of open sets are open: $\bigcap_i^n U_i \in \tau$ for $U_i\in \tau.$</p>
 </li>
 </ul>
+<p>BASIS</p>
+<p>NEIGHBORHOODS</p>
+<h2 id="some-common-topologies">Some common topologies</h2>
+<p>MÉTRICA, ORDEM</p>
+<p>As this was one of the main motivations we have for topological spaces, of course metric spaces are also topological: namely, the open sets $B(p, r)=\{x\in X\mid d(x, p)<r\}$ form a basis. In the case of $\ro,$ $B(a, r)$ is just the open interval $(a-r, a+r).$ Indeed, the open intervals $(a,b)$ form a basis for this topology on $\ro.$</p>
+<p>What about the plane $\ro^2$ and all the other $\ro^n$? These are also metric spaces alongside the Euclidean metric $d(x,y)=\sqrt{(x_1-y_1)^2+...+(x_n-y_n)^2}$ Thus, have a basis made of the n-dimensional balls $B(p,r)$ as above. In $\ro^2,$ these are open disks; in $\ro^3,$ open solid balls.</p>
+<p>PRODUCT</p>
+<p>SUB</p>
+<p>QUOTIENTS</p>
 <h2 id="some-important-spaces">Some important spaces</h2>
+<p>RN, S1, SN, DN, T2, TN, CILINDRO</p>
+<p>MANIFOLDS, NON-MANIFOLDS</p>
 <h2 id="continuity-homeomorphisms">Continuity, homeomorphisms</h2>
+<p><strong>Definition</strong>: a continuous function between metric spaces $(X,d_X)$ and $(Y, d_Y)$ is a function $f:X\rightarrow Y$ such that, for every real number $\epsilon>0,$ there exists some $\delta>0$ such that $y\in B(x, \delta)$ implies $f(y)\in B(f(x), \epsilon).$</p>
+<p>How to translate this to topology? Well, the definition above is equivalent to having $B(x, \delta)\subseteq \inv{f}(B(f(x), \epsilon)).$ That is, every point in $\inv{f}(B(f(x), \epsilon))$ is in an open ball inside the $\inv{f}(B(f(x), \epsilon))$ itself. Thus, $\inv{f}(B(f(x), \epsilon))$ is open. So what we have is an open set $V\subseteq Y$ and continuity of $f$ is equivalent to $\inv{f}(V)$ being open. The following topological definition ensues:</p>
 <p><strong>Definition</strong>: a <strong>continuous function</strong> between topological spaces $(X,\tau_X)$ and $(Y,\tau_Y)$ is a function $f:X\rightarrow Y$ such that, for all $V\subseteq Y$ open in $Y$, $\inv{f}(V)$ is open in $X.$</p>
+<p>EXS &hellip;</p>
+<p>We&rsquo;re now finally able to define what we actually mean by topology as rubber geometry. Indeed, what we meant by &ldquo;a continuous deformation without gluing or cutting&rdquo; in the introduction can be formally described as a <strong>bijective continuous function</strong> $f$! The property of &ldquo;being able to go back by a deformation of the same kind&rdquo; means that $\inv{f}$ should also be continuous. Thus, we have the following fundamental definition:</p>
 <p><strong>Definition</strong>: a <strong>homeomorhpism</strong> between topological spaces $(X,\tau_X)$ and $(Y,\tau_Y)$ is an inversible continuous function $f:X\rightarrow Y$ such that $\inv{f}:Y\rightarrow X$ is also continuous.</p>
+<p>If two spaces are homeomorphic, they&rsquo;re seen as equivalent by topology.</p>
+<p>EXS (ALGNS OBVIOS, BURACOS)</p>
 <h2 id="homotopy">Homotopy</h2>
+<p><strong>Definition</strong>: a <strong>homotopy</strong> between two paths $f:I\rightarrow X$ and $g:I\rightarrow X$ is a continuous association of paths $p_t$ for every $t\in I$ such that $p_0=f$ and $p_1=g.$ More formally, it is a continuous function $H:I\times I\rightarrow X$ such that $H(s,0)=f(s)$ and $H(s,1)=g(s).$</p>
+<p><strong>Definition</strong>: a <strong>homotopy</strong> between two continuous maps $f:X\rightarrow Y$ and $g:X\rightarrow Y$ is a continuous deformation from the function $H:X\times I\rightarrow Y$ with $H(x, 0)=f(x)$ and $H(x,1)=g(1)$.</p>
+<p><strong>Definition</strong>: two spaces $X,Y$ are <strong>homotopically equivalent</strong> if there are continuous functions $f:X\rightarrow Y$ and $g:Y\rightarrow X$ such that $f\circ g \simeq \text{id}_Y$ and $g\circ f \simeq \text{id}_X.$ We may also say that $X$ and $Y$ have the same <strong>homotopy type</strong>.</p>
+<p>HOMOTOPIA COM QUOCIENTES E OUTRAS DEFORMAÇÕES</p>
 <h2 id="connectivity">Connectivity</h2>
 <p><strong>Definition</strong>: a topological space $(X,\tau)$ is called <strong>connected</strong> if there are no disjont open sets $U,V$ such that $U\cup V = X.$</p>
 <p>It&rsquo;s easy to see that connectivity is a topological property. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ connected, then $\im f$ is also connected; otherwise, if it could be divided into two disjoint open sets $U,V$ in $\im f,$ then $\inv{f}(U)$ and $\inv{f}(V)$ would be open and disjoint (there can be no $x\in \inv{f}(U)\cap \inv{f}(V)$ since it would imply $f(x)\in U\cap V$), a contradiction.</p>
@@ -359,6 +404,9 @@ this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;</p>
 <p>One of the classic counter-examples in topology is that not all connected spaces are path-connected. For example, take the subset of $\ro^2$ that&rsquo;s composed of the graph of $\sin (\frac{1}{x})$ (with $x>0$) together with the origin.</p>
 <h2 id="compactness">Compactness</h2>
 <p><strong>Definition</strong>: a topological space $(X, \tau)$ is called <strong>compact</strong> if for all open covers $\{U_i\}_{i\in J},$ there exists a finite subcollection $\{U_i\}_{i\leq n}$ that also covers $X.$</p>
+<h1 id="more-point-set-topology">More point-set topology</h1>
+<p>There are many other topological properties that point-set studies, but I&rsquo;ve mentioned all that we&rsquo;ll actually use. There are some others, however, that are still pretty used in algebraic topology, even though we&rsquo;ll ommit their applications. Here&rsquo;s a taste of these, although <strong>you won&rsquo;t need to read this section</strong> to understand what&rsquo;s coming.</p>
+<h2 id="separation-axioms">Separation axioms</h2>
 
 
 <p>

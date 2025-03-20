@@ -19,8 +19,6 @@ ALGEBRA DOS QUOCIENTES
 
 # Basic linear algebra
 
-To actually be able to apply our considerations to topological spaces and compute holes, let's start by defining simpler, "model" spaces. First, a quick reminder on basic linear algebra.
-
 We can see elements $(a_0,...a_n)$ of $ \mathbb{R}^n$ in two ways: as points in a space (the $a_i$ being its coordinates), or as arrows going from the origin $ (0,...,0)$ (we will also usually write just $0$ for the origin from now on) to $(a_0,...a_n)$. In the second intepretation, we call them vectors. Points and vectors are really the same thing in $\mathbb{R}^n$, so we'll call them interchangeably.
 
 Bearing in mind the geometry-topology distinction, the fact that points in $ \mathbb{R}^n$ are also vectors-- i.e., directions-- is actually a geometric property, related directly to curvature. Indeed, if we curved the plane in order to get the upper hemisphere of a sphere, points wouldn't coincide if directions, as seen in the image below. Directions at a certain point $x$ in our base space $X$ in the so-called tangent space $T_xX$, which is a copy of $ \mathbb{R}^{dim(X)}$. With the reals, these spaces can be identified, but not for any curved space.

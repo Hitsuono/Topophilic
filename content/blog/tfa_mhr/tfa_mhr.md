@@ -207,6 +207,8 @@ Similarly to the cylinder, this means we can get the torus as given by the figur
 
 IMG!!!
 
+By the vertex labels, we can clearly see that $a$ and $b$ correspond to two loops on $T^2$-- one longidutinal and one transversal, as we'd expect.
+
 ### The sphere
 
 As we've seen, $\Delta^3$ is a triangulation of $S^2$-- and so is any pyramid. To get something similar as we got for the cylinder and the torus, take a pyramid and cut the edges connecting triangles above the base, getting this figure:
@@ -367,11 +369,11 @@ ROUSSEAU (EX DO LIVRO + EX DO MAL AMIGO DAS CONFISSOES)
     ex mistos?
 BACH X SCHOENBERG (COM MÚSICAS EMBEDDADAS)
 
-I am less tempted by money than by other objects, because between the moment of possessing the money and that of using it to obtain the desired object there is always an interval, however short; whereas to possess the thing is to enjoy it. I see a thing and it tempts me; but if I see not the thing itself but only the means of acquiring it, I am not tempted. Therefore it is that I have been a pilferer, and am so even now, in the way of mere trifles to which I take a fancy, and which I find it easier to take than to ask for; but I never in my life recollect having taken a farthing from any one, except about fifteen years ago, when I stole seven francs and ten sous. The story is worth recounting, as it exhibits a concurrence of ignorance and stupidity I should scarcely credit, did it relate to any but myself.
+*I am less tempted by money than by other objects, because between the moment of possessing the money and that of using it to obtain the desired object there is always an interval, however short; whereas to possess the thing is to enjoy it. I see a thing and it tempts me; but if I see not the thing itself but only the means of acquiring it, I am not tempted. Therefore it is that I have been a pilferer, and am so even now, in the way of mere trifles to which I take a fancy, and which I find it easier to take than to ask for; but I never in my life recollect having taken a farthing from any one, except about fifteen years ago, when I stole seven francs and ten sous. The story is worth recounting, as it exhibits a concurrence of ignorance and stupidity I should scarcely credit, did it relate to any but myself.*
 
-It was in Paris: I was walking with M. de Franceul at the Palais Royal; he pulled out his watch, he looked at it, and said to me, “Suppose we go to the opera?”—“With all my heart.” We go: he takes two box tickets, gives me one, and enters himself with the other; I follow, find the door crowded; and, looking in, see every one standing; judging, therefore, that M. de Franceul might suppose me concealed by the company, I go out, ask for my ticket, and, getting the money returned, leave the house, without considering, that by then I had reached the door every one would be seated, and M. de Franceul might readily perceive I was not there.
+*It was in Paris: I was walking with M. de Franceul at the Palais Royal; he pulled out his watch, he looked at it, and said to me, “Suppose we go to the opera?”—“With all my heart.” We go: he takes two box tickets, gives me one, and enters himself with the other; I follow, find the door crowded; and, looking in, see every one standing; judging, therefore, that M. de Franceul might suppose me concealed by the company, I go out, ask for my ticket, and, getting the money returned, leave the house, without considering, that by then I had reached the door every one would be seated, and M. de Franceul might readily perceive I was not there.*
 
-As nothing could be more opposite to my natural inclination than this abominable meanness, I note it, to show there are moments of delirium when men ought not to be judged by their actions: this was not stealing the money, it was only stealing the use of it, and was the more infamous for wanting the excuse of a temptation.
+*As nothing could be more opposite to my natural inclination than this abominable meanness, I note it, to show there are moments of delirium when men ought not to be judged by their actions: this was not stealing the money, it was only stealing the use of it, and was the more infamous for wanting the excuse of a temptation.*
 
 (absurd convertions by me give it equal to about 80 us dolars)
 
@@ -904,13 +906,13 @@ H_n(\rpt)=
 \end{cases}
 $$
 
-## The Euler characteristic
+## Invariance of the Euler characteristic
 
 As we previously saw, we could define the Euler characteristic of a complex/delta structure as the alternating sum of the number $k$ of its n-dimensional chains $a_1,...,a_k.$ By definition, the rank $\rank C_n(M)$ of $C_n(M)$ is exaclty equal to this $k.$ Thus, we migh as well define the characteristic as $\chi(M)=\sum_n (-1)^n\rank C_n(M).$ Since the $C_n(M)$ change depending on the exact complex/delta structure being used, it's not clear that $\chi(M)$ is a topological invariant. 
 
-Here we'll need a simple algebraic fact: if $0\rightarrow A\xrightarrow{i} B\xrightarrow{j} C \rightarrow 0$ is a short exact sequence of freely generated abelian groups, then $\rank B = \rank A + \rank C.$ This is because the map $i$ is injective, so its image contains exactly $\rank A$ copies of $\zo$ in $B.$ Since $\ker i = \im j,$ these copies are all maped to $0$ on $C.$ Since $j$ is surjective, all copies of $\zo$ in $C$ must then come from those remaining ones in $B,$ which forces $\rank B = \rank A + \rank C.$ SEI NNNNNNNNNNNNNNNNNNNNNNNNN
+Here we'll need a simple algebraic fact: if $0\rightarrow A\xrightarrow{i} B\xrightarrow{j} C \rightarrow 0$ is a short exact sequence of finitely generated abelian groups, then $\rank B = \rank A + \rank C.$ You can find proofs on the internet (it's too wordy and dry for this text), but some examples should make this more intuitive-- think of, say, direct products of $\zo.$
 
-Since we have exact sequences $0\rightarrow Z_n \rightarrow C_n \xrightarrow{\partial} B_{n-1} \rightarrow 0$ and $0\rightarrow B_n \rightarrow Z_n \rightarrow H_n \rightarrow 0,$ this shows us that
+Since we have exact sequences $0\rightarrow Z_n \rightarrow C_n \xrightarrow{\partial} B_{n-1} \rightarrow 0$ and $0\rightarrow B_n \rightarrow Z_n \rightarrow H_n \rightarrow 0$ involving chain, cycle, boundary and homology groups of a space $M$, we have
 
 $$\rank C_n = \rank Z_n + \rank B_{n-1}$$
 
@@ -933,7 +935,7 @@ since the ranks of the boundary groups cancel each other. Thus, the Euler charac
 
 Not only spaces can be studied using homology, but also continuous maps between them! If we have a continuous function $f:X\rightarrow Y$, then, for each $n$, we have the **induced homomorphism** $f_\#:\cdn{n}(X)\rightarrow \cdn{n}(Y)$ given by sending $\sigma:\Delta^n\rightarrow X$ to the composition $f\circ \sigma.$ 
 
-This definition has a problem, however: nothing guarantees $f\circ \sigma$ is in the delta structure of $Y.$ To solve this, we define the **singular n-chain groups** $C^s_n(X)$, which is freely generated by **all** continuous maps $\sigma:\Delta^n\rightarrow X.$ These groups are huge, since usually are infinitely many such functions. However, they make the theory much cleaner without actually losing anything: with the same formulas as with delta spaces, you can define the singular homology groups $H^s_n(X)$ using $\csn{n},$ and we have an isomorphism $H^s_n(X)\cong H_n(X).$ Actually, you prove that complex and delta space homologies are the same by proving that both are isomorphic singular homology. We won't do that here, though.
+This definition has a problem, however: nothing guarantees $f\circ \sigma$ is in the delta structure of $Y.$ To solve this, we define the **singular n-chain groups** $C^s_n(X)$, which is freely generated by **all** continuous maps $\sigma:\Delta^n\rightarrow X.$ These groups are huge, since usually there are infinitely many such functions. However, they make the theory much cleaner without actually losing anything: with the same formulas as with delta spaces, you can define the singular homology groups $H^s_n(X)$ using $\csn{n},$ and an isomorphism $H^s_n(X)\cong H_n(X)$ can be proven. Actually, you prove that complex and delta space homologies are the same by shwoing that both are isomorphic to singular homology. We'll sketch that later on the "Going further" section.
 
 Now, we have no problem defining $f_\#:\csn{n}(X)\rightarrow \csn{n}Y$ for each $n$ as $f_\#(\sigma)=f\circ \sigma.$
 
@@ -1112,6 +1114,13 @@ We can actually prove even more: if $f$ and $g$ are homotopic maps, then they ha
 Thus, let $F:X\rightarrow I\rightarrow Y$ be a homotopy between maps $f$ and $g$ as above. Now, the essential (and actually quite simple, **check Hatcher**) part of the proof is to provide a triangulation of $\Delta^n\times I$ for all standard simplices-- with $\Delta^2$, for example, this is just a triangulation of a square, especifically using a quad. 
 
 ## Long exact sequences
+
+$$0\rightarrow Z_n \xrightarrow{i} C_n \xrightarrow{\partial} B_{n-1}  \rightarrow 0$$
+
+$$0\rightarrow C_n(A) \xrightarrow{i} C_n(X) \xrightarrow{p} C_n(X/A) \rightarrow 0$$
+
+$$0\rightarrow C_n(A\cap B) \xrightarrow{x\mapsto(x, -x)} C_n(A)\times C_n(B) \xrightarrow{(x,y)\mapsto x+y} C_n(A\cup B)  \rightarrow 0$$
+
 
 ## Isomorphism of simplicial, delta and singular homologies
 
