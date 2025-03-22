@@ -361,7 +361,9 @@ IMGS!!!
 ## Simplices, probabilities and decision games **
 PROB
 
-GAMES- DEFS
+The fact that the standard simplex $\Delta^n$ can be simply described as $\{(\lambda_1,...,\lambda_n)\mid  \sum_{i=1}^n \lambda_i=1, \,\lambda_i\geq 0\}$ make it so that points $p\in \Delta^n$ can be intepreted as **probabilities** associated to $n$ possible events-- with each $\lambda_i$ of $p$ being the probability of the $i$-th event to occur. This opens up a bridge between topology and probability, that has been particularly useful in one area of mathematics: **game theory**.
+
+Game theory is concerned with what one might call "decision games". These are problems when $n$ distinct players $P_1,...,P_n$ are confronted with different options. Each player $P_i$ takes moves from a set $A_i.$ Players simultaneously decide a move $a_i\in A_i$, ending in a final state $(a_1, ..., a_n)$ associated to some reward $r_i$ for each player. The goal of $P_i$ is to maximize $r_i$ taking into consideration other players' moves.
 
 EXS
 PRISIONERS
@@ -369,13 +371,13 @@ ROUSSEAU (EX DO LIVRO + EX DO MAL AMIGO DAS CONFISSOES)
     ex mistos?
 BACH X SCHOENBERG (COM MÚSICAS EMBEDDADAS)
 
-*I am less tempted by money than by other objects, because between the moment of possessing the money and that of using it to obtain the desired object there is always an interval, however short; whereas to possess the thing is to enjoy it. I see a thing and it tempts me; but if I see not the thing itself but only the means of acquiring it, I am not tempted. Therefore it is that I have been a pilferer, and am so even now, in the way of mere trifles to which I take a fancy, and which I find it easier to take than to ask for; but I never in my life recollect having taken a farthing from any one, except about fifteen years ago, when I stole seven francs and ten sous. The story is worth recounting, as it exhibits a concurrence of ignorance and stupidity I should scarcely credit, did it relate to any but myself.*
-
-*It was in Paris: I was walking with M. de Franceul at the Palais Royal; he pulled out his watch, he looked at it, and said to me, “Suppose we go to the opera?”—“With all my heart.” We go: he takes two box tickets, gives me one, and enters himself with the other; I follow, find the door crowded; and, looking in, see every one standing; judging, therefore, that M. de Franceul might suppose me concealed by the company, I go out, ask for my ticket, and, getting the money returned, leave the house, without considering, that by then I had reached the door every one would be seated, and M. de Franceul might readily perceive I was not there.*
-
-*As nothing could be more opposite to my natural inclination than this abominable meanness, I note it, to show there are moments of delirium when men ought not to be judged by their actions: this was not stealing the money, it was only stealing the use of it, and was the more infamous for wanting the excuse of a temptation.*
-
-(absurd convertions by me give it equal to about 80 us dolars)
+$$\begin{array}{c|c c }
+  & \text{Prisioner A} & \text{Prisioner B}  \\
+\hline
+\text{Prisioner A} & 1,1 & -1,2  \\
+\text{Prisioner B} & 2,-1 & 0,0 \\
+\end{array}
+$$
 
 $$\begin{array}{c|c c }
   & \text{Bach} & \text{Schoenberg}  \\
@@ -385,6 +387,30 @@ $$\begin{array}{c|c c }
 \end{array}
 $$
 
+{{< youtube RDADGE44i_o >}}
+
+
+*In this manner, men may have insensibly acquired some gross ideas of mutual undertakings, and of the advantages of fulfilling them: that is, just so far as their present and apparent interest was concerned: for they were perfect strangers to foresight, and were so far from troubling themselves about the distant future, that they hardly thought of the morrow. If a deer was to be taken, every one saw that, in order to succeed, he must abide faithfully by his post: but if a hare happened to come within the reach of any one of them, it is not to be doubted that he pursued it without scruple, and, having seized his prey, cared very little, if by so doing he caused his companions to miss theirs.*
+
+$$\begin{array}{c|c c }
+  & \text{Stag} & \text{Rabbit}  \\
+\hline
+\text{Stag} & 5, 5 & 0, 3  \\
+\text{Rabbit} & 3,0 & 3, 3 \\
+\end{array}
+$$
+
+Philosophical justice, however, forces me to also present another game we might relate to Rousseau. From his *Confessions*:
+
+*I am less tempted by money than by other objects, because between the moment of possessing the money and that of using it to obtain the desired object there is always an interval, however short; whereas to possess the thing is to enjoy it. I see a thing and it tempts me; but if I see not the thing itself but only the means of acquiring it, I am not tempted. Therefore it is that I have been a pilferer, and am so even now, in the way of mere trifles to which I take a fancy, and which I find it easier to take than to ask for; but I never in my life recollect having taken a farthing from any one, except about fifteen years ago, when I stole seven francs and ten sous. The story is worth recounting, as it exhibits a concurrence of ignorance and stupidity I should scarcely credit, did it relate to any but myself.*
+
+*It was in Paris: I was walking with M. de Franceul at the Palais Royal; he pulled out his watch, he looked at it, and said to me, “Suppose we go to the opera?”—“With all my heart.” We go: he takes two box tickets, gives me one, and enters himself with the other; I follow, find the door crowded; and, looking in, see every one standing; judging, therefore, that M. de Franceul might suppose me concealed by the company, I go out, ask for my ticket, and, getting the money returned, leave the house, without considering, that by then I had reached the door every one would be seated, and M. de Franceul might readily perceive I was not there.*
+
+*As nothing could be more opposite to my natural inclination than this abominable meanness, I note it, to show there are moments of delirium when men ought not to be judged by their actions: this was not stealing the money, it was only stealing the use of it, and was the more infamous for wanting the excuse of a temptation.*
+
+(absurd convertions by me give it equal to about 80 us dolars)
+
+
 $$\begin{array}{c|c c }
   & \text{Franceul} & \text{Rousseau}  \\
 \hline
@@ -393,7 +419,6 @@ $$\begin{array}{c|c c }
 \end{array}
 $$
 
-{{< youtube RDADGE44i_o >}}
     EX MISTOS
 ELEIC?
 
@@ -1113,14 +1138,57 @@ We can actually prove even more: if $f$ and $g$ are homotopic maps, then they ha
 
 Thus, let $F:X\rightarrow I\rightarrow Y$ be a homotopy between maps $f$ and $g$ as above. Now, the essential (and actually quite simple, **check Hatcher**) part of the proof is to provide a triangulation of $\Delta^n\times I$ for all standard simplices-- with $\Delta^2$, for example, this is just a triangulation of a square, especifically using a quad. 
 
-## Long exact sequences
+## Long exact sequences, excision
 
-$$0\rightarrow Z_n \xrightarrow{i} C_n \xrightarrow{\partial} B_{n-1}  \rightarrow 0$$
+What is the relation between the homology of a space $X$ and of a subspace $A\subseteq X$-- or, more generally, of subspaces $A_i\subseteq X$? If we can cover $X$ by open subsets $A_i,$ can the homology of $X$ be deduced by that of $A_i$? If we know the homologies of $A$ and $X$ can we find that of the quotient $X/A$? 
 
-$$0\rightarrow C_n(A) \xrightarrow{i} C_n(X) \xrightarrow{p} C_n(X/A) \rightarrow 0$$
+Surprisingly, even though these are quite general questions, they have positive answers-- actually, even a single answer!
+
+Take first the example of a quotient $X/A,$ with $A\subset X$ initially any subspace of $X.$ Define the **relative chain group** $C_n(X, A)$ as the group quotient $C_n(X)/C_n(A).$ Basically, this represents classes of chains in $X,$ seen as equivalent if they only differ inside $A.$ Every such class $[c]\in C_n(X,A)$ induces a single one in $C_n(X/A)$ as $p\circ c,$ with $p:X\rightarrow X/A$ the quotient projection, exactly because all elements of $[c]$ have the same behaviour on $X.$ The homology of the chain $C_n(X,A)$ is called the **relative homology** $H_n(X,A)$ and is deeply related to $H_n(X/A),$ as we'll see.
+
+Now, for all $n,$ we have an exact sequence (as we do in every group quotient)
+
+$$0\rightarrow C_n(A) \xrightarrow{i_*} C_n(X) \xrightarrow{p_*} C_n(X, A) \rightarrow 0$$
+
+where $i:A\rightarrow X$ is the inclusion and $p:X\rightarrow X/A$ the projection.
+
+How do we go from that to homology groups? Take the prototypical example of the pair $(D^2, S^1),$ with the quotient $D^2/S^1=S^2.$ Here is the relative chain complex $C_n(D^2, S^1)$ (beginning with $C_2(D^2,S^1)$) using simplicial chains:
+
+$$...\rightarrow \zo \rightarrow \zo^3/\zo^3=0 \rightarrow \zo^3/\zo^3=0\rightarrow 0$$
+
+The homology of this complex has $H_n(X,A)=\zo$ for $n=2$ and is trivial elsewhere. That is, $H_n(X,A)\cong \widetilde{H}_n(X/A)$ in this case, with the generator of the relative homology $H_2(X,A)$ being collapsed to the generator of $H_2(X/A)$ by the quotient-- that is, to the whole surface $[S^2]$ of the sphere.
+
+We then see that, in this case, the generator $[S^2]$ of $H_2(X/A)$ is obtained when you collapse $A$ to a single point. But this $A$ is a cycle in $X.$ It is bounded in $X,$ but clearly not in $A$ itself. Thus, if we associate $[S^2]$ to $A,$ and restrict to chains inside $A$, we get a map $H_2(X/A)\rightarrow H_1(A).$ This is our motto: **return, boundary and restriction**.
+
+Now, consider $X$ being covered by two open sets $A,B.$ We then have the exact sequence
 
 $$0\rightarrow C_n(A\cap B) \xrightarrow{x\mapsto(x, -x)} C_n(A)\times C_n(B) \xrightarrow{(x,y)\mapsto x+y} C_n(A\cup B)  \rightarrow 0$$
 
+That is,...
+
+Here, the prototypical example is $S^2$ covered by two hemisphere $A,B$ intersecting in a neighborhood of the equator. This neighborhood, thus, is homotopy equivalent to $S^1$ (the equator itself). Now, every chain $c$ in $C_n(A\cup B)$ can be expressed as a sum $c=x+y$ of (potentially null) chains $x$ in $A$ and $y$ in $B.$ In the example, the whole surface of $S^2$ can be expressed as the sum of the singular chains $\bar{A}$ and $\bar{B}.$ If this chain $c$ is a cycle, then $\partial c = \partial x + \partial y =0,$ and thus $\partial x = - \partial y.$ Thus, $(\partial x, \partial y)$ is in the image of the $C_{n-1}(A\cap B) \rightarrow C_{n-1}(A)\times C_{n-1}(B)$ as above, so that $\partial x=\alpha$, for some $\alpha \in C_{n-1}(A\cap B)$-- which, since $\partial^2=0,$ must be a cycle. That whole process then associates a cycle $c\in Z_n(A\cup B)$ to one $\alpha$ in $Z_{n-1}(A\cap B)$-- again, by the process of returning, doing the boundary and restricting. We then pass to homology classes and get a map $H_n(A\cup B)\rightarrow H_{n-1}(A\cap B).$
+
+
+$$0\rightarrow Z_n \xrightarrow{i} C_n \xrightarrow{\partial} B_{n-1}  \rightarrow 0$$
+
+$$...\rightarrow H_n(A)\rightarrow H_n(X) \rightarrow H_n(X,A)\rightarrow H_{n-1}(A)\rightarrow ...$$
+
+$$...\rightarrow \widetilde{H}_n(A)\rightarrow \widetilde{H}_n(X) \rightarrow \widetilde{H}_n(X/A)\rightarrow \widetilde{H}_{n-1}(A)\rightarrow ...$$
+
+
+The long exact sequence for the short exact sequence of an open covering $X=A\cup B$ as we did above is also known as the **Mayer-Vietoris sequence**, and has the form
+
+$$...\rightarrow H_n(A\cap B)\rightarrow H_n(A)\oplus H_n(B)\rightarrow H_n(A\cup B)\rightarrow H_{n-1}(A\cap B)\rightarrow ...$$
+
+For example, covering the torus $T^2$ with two open cylinders $A,B$ such that they meet at another two open and disjoint cylinders, we get that $A,B\simeq S^1,$ $A\cap B \simeq S^1 \amalg S^1$ and so the Mayer-Vietoris sequence reads as
+
+$$...\rightarrow 0 \rightarrow H_2(T^2)\rightarrow H_1(S^1)\oplus H_1(S^1)=\zo \oplus \zo \rightarrow H_1(S^1\amalg S^1)=\zo \oplus\zo  
+\rightarrow H_1(T)$$
+
+$$\rightarrow H_0(S^1)\oplus H_0(S^1)=\zo \oplus \zo \rightarrow  H_0(S^1\amalg S^1)=\zo \oplus \zo
+\rightarrow H_0(T)\rightarrow 0$$
+
+The map $H_2(T^2)\rightarrow H_1(S^1\amalg S^1)$
 
 ## Isomorphism of simplicial, delta and singular homologies
 

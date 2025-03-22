@@ -82,6 +82,8 @@ QUOTIENTS
 
 RN, S1, SN, DN, T2, TN, CILINDRO
 
+SN VIA DN, SN-1
+
 MANIFOLDS, NON-MANIFOLDS
 
 ## Continuity, homeomorphisms
