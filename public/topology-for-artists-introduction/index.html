@@ -20,18 +20,31 @@ Bla
     The necessity of spaces
     Metric and topological spaces
       
-        Metric and topology
+        Abstract distances
+        Metric spaces
+        Metric sets
+        Topological spaces
         Some common topologies
-        Some important spaces
         Continuity, homeomorphisms
         Homotopy
         Connectivity
         Compactness
+        Separation axioms
       
     
-    More point-set topology
+    The topology of cellular automata
       
-        Separation axioms
+        Cellular automata
+        A topological space for cell worlds
+          
+            Definition
+            Metric
+            Symmetries: the shift
+            Continuity
+            Compactness
+          
+        
+        The topological definition of cellular automata
       
     
   
@@ -41,9 +54,7 @@ Bla
 TGT AUDIENCE
 A preview
 ORDER
-this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;
-What you&rsquo;ll need
-Short answer: linear algebra (you can find a quick reminder on the post concerning algebra) and basic set theory (cartesian product, injective, surjective and bijective functions)." />
+this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;" />
 <meta name="keywords" content="Topology for Artists," />
 
 
@@ -51,9 +62,8 @@ Short answer: linear algebra (you can find a quick reminder on the post concerni
   <meta property="og:site_name" content="Topophilic">
   <meta property="og:title" content="Topology for Artists: introduction">
   <meta property="og:description" content="TL;DR Bla
-TL;DR A preview What you’ll need The necessity of spaces Metric and topological spaces Metric and topology Some common topologies Some important spaces Continuity, homeomorphisms Homotopy Connectivity Compactness More point-set topology Separation axioms TGT AUDIENCE
-A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;
-What you’ll need Short answer: linear algebra (you can find a quick reminder on the post concerning algebra) and basic set theory (cartesian product, injective, surjective and bijective functions).">
+TL;DR A preview What you’ll need The necessity of spaces Metric and topological spaces Abstract distances Metric spaces Metric sets Topological spaces Some common topologies Continuity, homeomorphisms Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE
+A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -69,21 +79,19 @@ What you’ll need Short answer: linear algebra (you can find a quick reminder o
   <meta name="twitter:image" content="http://localhost:1313/images/share.png">
   <meta name="twitter:title" content="Topology for Artists: introduction">
   <meta name="twitter:description" content="TL;DR Bla
-TL;DR A preview What you’ll need The necessity of spaces Metric and topological spaces Metric and topology Some common topologies Some important spaces Continuity, homeomorphisms Homotopy Connectivity Compactness More point-set topology Separation axioms TGT AUDIENCE
-A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;
-What you’ll need Short answer: linear algebra (you can find a quick reminder on the post concerning algebra) and basic set theory (cartesian product, injective, surjective and bijective functions).">
+TL;DR A preview What you’ll need The necessity of spaces Metric and topological spaces Abstract distances Metric spaces Metric sets Topological spaces Some common topologies Continuity, homeomorphisms Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE
+A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;">
 
 
 
 
   <meta itemprop="name" content="Topology for Artists: introduction">
   <meta itemprop="description" content="TL;DR Bla
-TL;DR A preview What you’ll need The necessity of spaces Metric and topological spaces Metric and topology Some common topologies Some important spaces Continuity, homeomorphisms Homotopy Connectivity Compactness More point-set topology Separation axioms TGT AUDIENCE
-A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;
-What you’ll need Short answer: linear algebra (you can find a quick reminder on the post concerning algebra) and basic set theory (cartesian product, injective, surjective and bijective functions).">
+TL;DR A preview What you’ll need The necessity of spaces Metric and topological spaces Abstract distances Metric spaces Metric sets Topological spaces Some common topologies Continuity, homeomorphisms Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE
+A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="561">
+  <meta itemprop="wordCount" content="4216">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -312,18 +320,31 @@ What you’ll need Short answer: linear algebra (you can find a quick reminder o
     <li><a href="#the-necessity-of-spaces">The necessity of spaces</a></li>
     <li><a href="#metric-and-topological-spaces">Metric and topological spaces</a>
       <ol>
-        <li><a href="#metric-and-topology">Metric and topology</a></li>
+        <li><a href="#abstract-distances">Abstract distances</a></li>
+        <li><a href="#metric-spaces">Metric spaces</a></li>
+        <li><a href="#metric-sets">Metric sets</a></li>
+        <li><a href="#topological-spaces">Topological spaces</a></li>
         <li><a href="#some-common-topologies">Some common topologies</a></li>
-        <li><a href="#some-important-spaces">Some important spaces</a></li>
         <li><a href="#continuity-homeomorphisms">Continuity, homeomorphisms</a></li>
         <li><a href="#homotopy">Homotopy</a></li>
         <li><a href="#connectivity">Connectivity</a></li>
         <li><a href="#compactness">Compactness</a></li>
+        <li><a href="#separation-axioms">Separation axioms</a></li>
       </ol>
     </li>
-    <li><a href="#more-point-set-topology">More point-set topology</a>
+    <li><a href="#the-topology-of-cellular-automata">The topology of cellular automata</a>
       <ol>
-        <li><a href="#separation-axioms">Separation axioms</a></li>
+        <li><a href="#cellular-automata">Cellular automata</a></li>
+        <li><a href="#a-topological-space-for-cell-worlds">A topological space for cell worlds</a>
+          <ol>
+            <li><a href="#definition">Definition</a></li>
+            <li><a href="#metric">Metric</a></li>
+            <li><a href="#symmetries-the-shift">Symmetries: the shift</a></li>
+            <li><a href="#continuity">Continuity</a></li>
+            <li><a href="#compactness-1">Compactness</a></li>
+          </ol>
+        </li>
+        <li><a href="#the-topological-definition-of-cellular-automata">The topological definition of cellular automata</a></li>
       </ol>
     </li>
   </ol>
@@ -335,16 +356,37 @@ What you’ll need Short answer: linear algebra (you can find a quick reminder o
 <p>ORDER
 this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;</p>
 <h1 id="what-youll-need">What you&rsquo;ll need</h1>
-<p>Short answer: <strong>linear algebra</strong> (you can find a quick reminder on the post concerning algebra) and <strong>basic set theory</strong> (cartesian product, injective, surjective and bijective functions).</p>
-<p>I tried to write these posts as accessible as possible, but without losing much of the mathematical rigour. That is, mathematics is a human endeavour of unlimited aesthetic capacity, but this comes with a cost&ndash; namely, rigour and precision. It is beautiful because so much formality can&rsquo;t be in vain. Without this limitation, there can ultimately be no beauty; the first is simultaneously the latter&rsquo;s restriction and its progenitor. Or, rather, rigour and aesthetical creativity are <em>consubstantial</em> in mathematics. The other member of this trinity is the insatiable human desire to further mathematicize the world and recognize itself in this construction&ndash; to spread the Word and be in a Body, so to speak. But let&rsquo;s leave the logical-christian analogies for another place for now.</p>
+<p>Short answer: <strong>basic set theory</strong> (cartesian product, injective, surjective and bijective functions) and <strong>introductory linear algebra</strong> (you can find a quick reminder on the post concerning algebra).</p>
+<p>I tried to write these posts as accessible as possible, but without losing much of the mathematical rigour. That is, mathematics is a human endeavour of unlimited aesthetic capacity, but this comes with a cost&ndash; namely, rigour and precision. It is beautiful because so much formality can&rsquo;t be in vain. Without this limitation, there can ultimately be no beauty; the first is simultaneously the latter&rsquo;s restriction and its progenitor. Or, rather, rigour and aesthetical creativity are <em>consubstantial</em> in mathematics. The other member of this trinity is the insatiable human desire to further mathematicize the world and recognize itself in this construction&ndash; to spread the Word and be in a Body, so to speak. But let&rsquo;s leave the formal-hegelian-christian analogies for another place for now.</p>
 <p>Fact is, leaving out the more difficult and rigorous parts <strong>is</strong> necessary when writing to a larger audience, but I tried to keep some balance&ndash; particularly without insulting the intelligence and interest of the reader. You can always skip the more technical sections, and I hope they can spark out your curiosity and be more accessible when you come back to them.</p>
 <h1 id="the-necessity-of-spaces">The necessity of spaces</h1>
+<p>Riemann, Poincaré, Einstein &amp; Hilbert</p>
+<p>Sols restritas a subespaços</p>
+<p>Manifold hypothesis</p>
+<p>State spaces</p>
 <h1 id="metric-and-topological-spaces">Metric and topological spaces</h1>
-<h2 id="metric-and-topology">Metric and topology</h2>
-<p>The most natural notion of an abstract space is that of a set together with some kind of &ldquo;distance&rdquo; between its points. For example, $\ro^n$ always comes with the Euclidean distance $d(x,y)=\sqrt{(x_1-y_1)^2+...+(x_n-y_n)^2}$ between points $x=(x_1,...,x_n)$ and $y=(y_1,...,y_n)$&ndash; you can read more on it in the first section of the post concerning algebra, dedicated to linear algebra. This is the normal distance we use in the real-world, but it isn&rsquo;t the only mathematical option available. We could, say,</p>
+<h2 id="abstract-distances">Abstract distances</h2>
+<p>The most natural notion of an abstract space is that of a set together with some kind of &ldquo;distance&rdquo; between its points. For example, in $\ro^n$ we can always define the <strong>Euclidean distance</strong> $d(x,y)=\sqrt{(x_1-y_1)^2+...+(x_n-y_n)^2}$ between points $x=(x_1,...,x_n)$ and $y=(y_1,...,y_n)$&ndash; you can read more on it in the first section of the post concerning algebra, dedicated to linear algebra. This is the normal, flat distance we use in the real-world, but it isn&rsquo;t the only mathematical option available. Another option we implicitly use day-tod-day is the <strong>Manhattan distance</strong>, in which we consider only the difference between coordinate components and sum them up: $d(x,y)=|x_1-y_1|+...+ |x_n-y_n|.$ The name is illustrative: if you&rsquo;re walking in a rectangular grid of streets (like in Manhattan), the physical distance between you and your destination is irrelevant, since you can&rsquo;t walk through the buildings; the real distance you&rsquo;re going to travel only takes in account the straight line distances in the grid, and for that you use the Manhattan distance.</p>
 <p>IMG!!! Manhattan</p>
-<p><strong>Definition</strong>: a <strong>metric space</strong> is a set $X$ with a function $d:X\times X\rightarrow \ro_{\geq 0}$ that takes two elements $x,y$ of $X$ and returns a positive real number $d(x,y)$ representing their distance. This $d$ must the following properties to be a sensible representation of distance:</p>
+<p>The Manhattan distance is widely used in any application where you work with a rectangular grid, for example when programming board games.</p>
+<p>The Manhattan distance shares a similarity with the Euclidean one: both involve sums over differences of coordinates. This motivates us to define the so-called $\mathcal{l}^p$ distances in $\ro^n,$ defined as</p>
+$$d(x,y)=\left(|x_1-y_1|^p+...+|x_n-y_n|^p\right)^{1/p}.$$<p>As you can see, setting $p=1$ gives us the Manhattan distance, and $p=2$ the Euclidean one. The cases $p>2$ are mathematically interesting, but we won&rsquo;t really consider them in this series.</p>
+<p>Graphs
+Another context where applying a notion of distance to a set is quite natural comes when dealing with <strong>graphs</strong>. A graph is a pair $G=(V,E)$ of a generic set $V$&ndash; called the set of vertices, even though the elements of $V$ don&rsquo;t need to be points in space but anything you want&ndash; and $E$ is a set of pairs $(v_1,v_2)$ of elements of $V.$ We usually think of the $v$ inside of $V$ as points in space and the $e=(v_1,v_2)$ in $E$ as straight edges connecting points $v_1$ and $v_2$. These edges may or may not be directed: we&rsquo;ll think of them as undirected here.</p>
+<p>IMG!!! GRAFOS</p>
+<p>Ignoring any possible geometry behind our set $V$, we can define a distancee between vertices considering only the edge structure on the graph: just define $d(v_1,v_2)$ to be the minimal amount of edges you need to transverse to go from $v_1$ to $v_2.$ This amounts to interpreting all edges to correspond to a path of distance 1. This distance is implicilty used in basically any practical problem involving graphs.</p>
+<p>Another distance that may be so obvious to us day-to-day that we even forget to mention it is the so-called <strong>Hamming distance</strong>. If you have two strings of symbols of the same length, this is the distance you naturally use to measure how different they are: you just count the amount of times these strings differ per-position. For example, the strings &ldquo;Topophilic&rdquo; and &ldquo;臻9opophilic&rdquo; have distance two because they differ in two positions. More formally, if we have an alphabet set $\mathcal{A}$ of symbols, then a string of length $n$ is the same as an element of $\mathcal{A}^n.$ These strings may be represented as $x=x_0x_1...x_n,$ each $x_i$ a symbol in $\mathcal{A},$ so that the Hamming distance in $\mathcal{A}^n$ is</p>
+$$d(x,y)=\text{amount of positions } i \text{ where }x_i\neq y_i.$$<p>We&rsquo;ll later on extend the Hamming distance to infinite strings and apply it to the set of possible configurations of cells in a cellular automata grid, paving the way for a fascinating application of topology.</p>
+<p>Finally, we can also define <strong>distances between functions</strong>. Specifically, call $C([0,1])$ the set of all continuous functions between $[0,1]$ and $\ro.$ We&rsquo;ll explain later exactly what a continuous function is: for the momment, just take these as all the graphs that can be drawn without taking up your pencil from the paper, forming a continuous line. Then we can define the are between functions $f$ and $g$ as their distance&ndash; using calculus,</p>
+$$d(f,g)=\int_0^1 |f(x)-g(x)|dx$$<p>IMG!!! L1</p>
+<p>You can see this is somewhat similar to the $\mathcal{l}^1$ (Manhattan) distance defined above; because of this, it is also called the $L^1$ distance between functions $f$ and $g$. Similarly, one might define the general $L^p$ distance of functions as</p>
+$$d(f,g)=\left(\int_0^1 |f(x)-g(x)|^p dx\right)^{1/p}$$<h2 id="metric-spaces">Metric spaces</h2>
+<p>After all these examples of &ldquo;distances&rdquo; on sets, it&rsquo;s natural to look for similarities between these examples to get a general definition. It isn&rsquo;t too far-fetched to propose one like this:</p>
+<p><strong>Definition</strong>: a <strong>metric space</strong> is a set $X$ with a function $d:X\times X\rightarrow \ro$ that takes two elements $x,y$ of $X$ and returns a real number $d(x,y)$ representing their distance. This $d$ must the following properties to be a sensible representation of distance:</p>
 <ul>
+<li>
+<p>Non-negative: $d(x,y)\geq 0$ for all $x,y$ in $X$;</p>
+</li>
 <li>
 <p>The distance of $x$ to itself must be zero: $d(x,x)=0$ for all $x$;</p>
 </li>
@@ -352,12 +394,29 @@ this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;</p>
 <p>It mus be symmetrical: $d(x,y)=d(y,x)$ for all $x,y$;</p>
 </li>
 <li>
-<p>It must satisfy the <em>triangular inequality</em>: $d(x,y)+d(x,z)\leq d(y,z)$ for all $x,y,z.$ Imagine $x,y,z$ forming a triangle and the hypothenuse being smaller than the sum of the other two sides, how absurd that would be!</p>
+<p>It must satisfy the <em>triangular inequality</em>: $d(x,y)+d(x,z)\leq d(y,z)$ for all $x,y,z.$</p>
 </li>
 </ul>
-<p>The function $d$ above is commonly called a <strong>metric</strong> on $X.$</p>
-<p>Now, we can see</p>
-<p><strong>Definition</strong>: a <strong>topological space</strong> is a set $X$ with a collection $\tau$ of subsets of $X$ (called <strong>open sets</strong>) such that</p>
+<p>I think the only property that deserves further comment is the last one. Imagine $x,y,z$ are points in the plane forming a triangle. Breaking the triangular inequality would mean that there is one edge larger than the sum of the two other ones. This seems quite absurd and would render the theory quite uninteresting and un-geometric later on.</p>
+<p>IMG!!! TRIANGULAR INEQ</p>
+<p>The function $d$ above is commonly called a <strong>metric</strong> on $X.$ You can check all the examples we gave in the previous sections are indeed valid metrics.</p>
+<h2 id="metric-sets">Metric sets</h2>
+<p>So far, we&rsquo;ve been strictly in the world of geometry: we do care about distance so far. <strong>This section is the heart of the transition from metric to topological spaces.</strong></p>
+<p>One interesting way to study metric spaces is by sets naturally defined using the metric. For example, if we have a point $x\in X,$ we can always consider the set of points within a certain radius $r$ of $x$&ndash; mathematically, the set</p>
+$$B(x,r)=\{y\in X\mid d(x,y)< r\},$$<p>called the <strong>open ball</strong> of radius $r$ centered on $x$ (even though it might not look like a ball or a disk at all). Notice that points $y$ at distance exactly $r$ are not inside this; to add them, we consider the <strong>closed ball</strong></p>
+$$\bar{B}(x,r)=\{y\in X\mid d(x,y)\leq r\}.$$<p>It&rsquo;s also natural to consider those points only at distance $r$ from $x$ (like a circle), getting the <strong>boundary of the ball</strong>, denoted $\partial B(x,r),$ which is simply $\bar{B}(x,r)\setminus B(x,r)$&ndash; or, equivalently,</p>
+$$\partial B(x,r)=\{y\in X\mid d(x,y)=r\}.$$<p>Note that a closed ball is exactly the open one plus a boundary, a frontier set.</p>
+<p>Here is a collection of balls in different metrics for $\rt$:</p>
+<p>IMGS!!! BALLS</p>
+<p>Open balls have some interesting set-theoretic properties. First, note that $X$ is <strong>covered</strong> by them: i.e., for all $x\in X,$ there is an open ball containing it ($B(x,1)$, for example). They also have the property that their interesctions are &ldquo;fat&rdquo; and contain balls themselves: i.e., if $z\in X$ is in the intersection of balls $B(x,r_1)$ and $B(y,r_2),$ then there&rsquo;s some radius $r$ such that the ball $B(z,r)$ is inside the intersection:</p>
+$$B(z,r)\subseteq B(x,r_1)\cap B(y,r_2).$$<p>For that, just take any $r$ smaller than $d(x,y)-\max\{d(x,z), d(y,z)\}$ (this is posivite by the triangular inequality), as in the image below.</p>
+<p>IMG!!! FAT BALLS</p>
+<p>This &ldquo;fat&rdquo; property is very important: it tells you that no point in the intersection is a boundary point, since they always have a ball around them inside the intersection. This &ldquo;fatness&rdquo; property is more formally called <strong>openness</strong>, and we say a subset $S\subseteq X$ is open if for all $x\in S,$ there&rsquo;s some $r$ such that $B(x,r)\subseteq X.$ Visually, these are fat set with no boundary/frontier points.</p>
+<p>Set-theoretically, open sets are somewhat well-behaved in respect to unions and intersections. Indeed, any union (including infinite ones) of open sets will still be open, since the open balls containing elements will still be inside the union. With respect to intersection, finite intersections of open sets are open as well: for if $U$ and $V$ are open and $x\in U\cap V,$ then, by the definition of openess, there are $r_1,r_2$ such that $B(x,r_1)\subseteq U$ and $B(x,r_2)\subseteq V,$ so that $B(x,\min \{r_1,r_2\})\subseteq U\cap V$ and the intersection is open. This is valid only for finite intersections: for example, if you do the infinite intersection $\bigcap_{n=1}^\infty B(x,1/n)$ of smaller and smaller open balls around $x$ is exactly the set $\{x\}$ containing only the point $x$ itself, which certainly isn&rsquo;t open.</p>
+<p>IMG!!!</p>
+<h2 id="topological-spaces">Topological spaces</h2>
+<p>The idea of topological spaces comes from trying to focus on the set-theoretic aspect of metric spaces: i.e., what if, instead of taking metrics as the primary concept defining our abstract spaces, we take open sets to be our focus? These would then give us <strong>a notion of proximity based only on sets</strong>, skipping the necessity of a distance function. There are many equivalent definitions, but here&rsquo;s one based on open sets:</p>
+<p><strong>Definition</strong>: a <strong>topological space</strong> is a set $X$ with a set $\tau$ of subsets of $X$ (called <strong>open sets</strong>) such that</p>
 <ul>
 <li>
 <p>$X$ and the empty set $\emptyset$ are in $\tau$;</p>
@@ -369,19 +428,43 @@ this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;</p>
 <p>Finite intersections of open sets are open: $\bigcap_i^n U_i \in \tau$ for $U_i\in \tau.$</p>
 </li>
 </ul>
-<p>BASIS</p>
-<p>NEIGHBORHOODS</p>
+<p>We&rsquo;ll often omit $\tau$ and, when the topology is understood from context, call just $X$ a topological space.</p>
+<p>How does this fit with the previous section? Well, if $(X,d)$ is a metric space, then we can <strong>topologize</strong> $X$ by taking as topology $\tau$ all the open sets of $(X,d).$</p>
+<p>We can&rsquo;t, however, do the opposite: i.e., we can&rsquo;t define a metric $d$ from a general topological space $(X,\tau)$ such that $\tau$ is obtained as the open sets of $d.$ Those spaces that allow this are called <strong>metrizable</strong>, and the obtained topology $\tau$ is called a <strong>metric topology</strong>. These spaces include basically all the ones we&rsquo;ll study in this series.</p>
+<p>In the context of metric spaces, we started with a metric and then got to defining open sets as those subsets $U$ that, for all points $x\in U,$ there was an open ball $B(x,r)\subseteq U$ containing $x$ and inside $U.$ This is generalized by the following theorem:</p>
+<p><strong>Proposition</strong>: if $(X,\tau)$ is a topological space and $U\subseteq X$ is a subset such that, for all $x\in U,$ there&rsquo;s an open set $V(x)\subseteq U$ containing $x$ and inside $U,$ then $U$ is open.</p>
+<p><strong>Proof</strong>: taking all such $V(x)$ for $x$ in $U,$ $\bigcup_x V(x)$ is open by definition. Since all $V(x)$ are subsets of $U,$ $\bigcup_x V(x)\subseteq U$; since all $x\in U$ are at least inside its $V(x),$ $U\subseteq\bigcup_x V(x),$ implying $\bigcup_x V(x)=U$ and so $U$ is open.</p>
+<div style="text-align: right;">\(\blacksquare\)</div>
+<p>To get a topology from metric spaces, what we did is begin with open balls $B(x,r)$ and then define open sets as exactly those that can be gotten through unions and finite intersections from these balls. This can be generalized as follows:</p>
+<p><strong>Definition</strong>: a <strong>basis</strong> for a topological space $(X,\tau)$ is a collection $\mathcal{B}\subseteq \tau$ of open subsets of $X$ such that all open sets of $X$ can be represented as the union of sets inside $\mathcal{B}.$</p>
+<p>We often define a topology through a basis, just as we did in the metric case. I.e., we define a basis collection $\mathcal{B}$ of subsets of $X$ and define $\tau$ as all the sets obtained by unions and finite intersections of sets in $\mathcal{B}.$ To this actually work, we need the following two simple conditions (check any standard textbook for a proof):</p>
+<ul>
+<li>
+<p>For all $x\in X,$ there&rsquo;s a $B$ in $\mathcal{B}$ such that $x\in B$: i.e., $\mathcal{B}$ <strong>covers</strong> $X$;</p>
+</li>
+<li>
+<p>For all sets $B_1,B_2\in \mathcal{B}$ and all $x\in B_1\cap B_2,$ there&rsquo;s a $B_3\in \mathcal{B}$ such that $x\in B_3$ and $B_3\subseteq B_1\cap B_2$ (just remember how we showed this for open ball previously).</p>
+</li>
+</ul>
 <h2 id="some-common-topologies">Some common topologies</h2>
+<p>That should be it for definitions and constructions so far. Let&rsquo;s get into some examples.</p>
+<p>First, every set $X$ can be given a topology: just take as basis $\mathcal{B}$ all the one-point subsets $\{x\}$ for $x\in X.$ The resulting topology is the set of all subsets of $X$, and is called the <strong>discrete topology</strong>. It is metrizable by the metric</p>
+$$d(x,y)=
+\begin{cases}
+1, & \text{if } x\neq y\\
+0, & \text{else}
+\end{cases}
+$$<p>called the discrete metric (note that the ball $B(x,r)$ is just $\{x\}$ for any $r<1$, giving the discrete basis).</p>
+<p>OTHER TOPOLOGIES FOR SMALL SETS</p>
+<p>That&rsquo;s all educative and even intersting per se, but where are our cool figures of mind-blowing shapes, our familiar friends the sphere and the torus&ndash; <strong>where are our donuts?!</strong> Indeed, most introductory courses on topology don&rsquo;t really get to these and focus on the more set-theoretical aspects of topology&ndash; the so-called <strong>point-set topology</strong>. This can be frustrating for many beginners, so let me turn to more familiar shapes and spaces.</p>
 <p>MÉTRICA, ORDEM</p>
-<p>As this was one of the main motivations we have for topological spaces, of course metric spaces are also topological: namely, the open sets $B(p, r)=\{x\in X\mid d(x, p)<r\}$ form a basis. In the case of $\ro,$ $B(a, r)$ is just the open interval $(a-r, a+r).$ Indeed, the open intervals $(a,b)$ form a basis for this topology on $\ro.$</p>
-<p>What about the plane $\ro^2$ and all the other $\ro^n$? These are also metric spaces alongside the Euclidean metric $d(x,y)=\sqrt{(x_1-y_1)^2+...+(x_n-y_n)^2}$ Thus, have a basis made of the n-dimensional balls $B(p,r)$ as above. In $\ro^2,$ these are open disks; in $\ro^3,$ open solid balls.</p>
-<p>PRODUCT</p>
-<p>SUB</p>
-<p>QUOTIENTS</p>
-<h2 id="some-important-spaces">Some important spaces</h2>
+<p>RN MÉTRICO (equiv metrics, n em caso infinito)</p>
+<p>SUBSPACE:</p>
 <p>RN, S1, SN, DN, T2, TN, CILINDRO</p>
 <p>SN VIA DN, SN-1</p>
 <p>MANIFOLDS, NON-MANIFOLDS</p>
+<p>PRODUCT</p>
+<p>QUOTIENTS</p>
 <h2 id="continuity-homeomorphisms">Continuity, homeomorphisms</h2>
 <p><strong>Definition</strong>: a continuous function between metric spaces $(X,d_X)$ and $(Y, d_Y)$ is a function $f:X\rightarrow Y$ such that, for every real number $\epsilon>0,$ there exists some $\delta>0$ such that $y\in B(x, \delta)$ implies $f(y)\in B(f(x), \epsilon).$</p>
 <p>How to translate this to topology? Well, the definition above is equivalent to having $B(x, \delta)\subseteq \inv{f}(B(f(x), \epsilon)).$ That is, every point in $\inv{f}(B(f(x), \epsilon))$ is in an open ball inside the $\inv{f}(B(f(x), \epsilon))$ itself. Thus, $\inv{f}(B(f(x), \epsilon))$ is open. So what we have is an open set $V\subseteq Y$ and continuity of $f$ is equivalent to $\inv{f}(V)$ being open. The following topological definition ensues:</p>
@@ -404,10 +487,69 @@ this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;</p>
 <p>Path-connectedness implies connectedness:</p>
 <p>One of the classic counter-examples in topology is that not all connected spaces are path-connected. For example, take the subset of $\ro^2$ that&rsquo;s composed of the graph of $\sin (\frac{1}{x})$ (with $x>0$) together with the origin.</p>
 <h2 id="compactness">Compactness</h2>
+<p>Another topological notion is that of <strong>compact subspaces</strong>. This is an idea involving finitude. Take the plane $\rt$ as an example. Both open as closed balls in it are sets with ininitely many points. But, in the open one, you can get a sequence of points in the ball that get infinitely closed to the frontier, without ever actually getting to it. This isn&rsquo;t possible in the closed one: every converging sequence actually converges to a point inside the closed ball. The exact same is valid for general open/closed sets. It is as if the closed ball is &ldquo;less finite&rdquo; as the open one, &ldquo;more bounded&rdquo;&ndash; or, rather, it&rsquo;s more <em>compact</em>.</p>
+<p>IMG!!! OPEN BALL SEQ</p>
+<p>In metric language,</p>
+<p>In purely topological language, we can get this definition:</p>
 <p><strong>Definition</strong>: a topological space $(X, \tau)$ is called <strong>compact</strong> if for all open covers $\{U_i\}_{i\in J},$ there exists a finite subcollection $\{U_i\}_{i\leq n}$ that also covers $X.$</p>
-<h1 id="more-point-set-topology">More point-set topology</h1>
-<p>There are many other topological properties that point-set studies, but I&rsquo;ve mentioned all that we&rsquo;ll actually use. There are some others, however, that are still pretty used in algebraic topology, even though we&rsquo;ll ommit their applications. Here&rsquo;s a taste of these, although <strong>you won&rsquo;t need to read this section</strong> to understand what&rsquo;s coming.</p>
+<p>IMG!!!</p>
+<p><strong>Tychonoff&rsquo;s theorem</strong>:</p>
 <h2 id="separation-axioms">Separation axioms</h2>
+<h1 id="the-topology-of-cellular-automata">The topology of cellular automata</h1>
+<h2 id="cellular-automata">Cellular automata</h2>
+<p>Some readers might have heard of <strong>Conway&rsquo;s Game of Life</strong> (CGOL). It was invented by the mathematician <a href="https://en.wikipedia.org/wiki/John_Horton_Conway">John H. Conway</a>, who&ndash; due his abundant creativity and prolificity throughout his career&ndash; we will meet again later on in this series. This is a game played on an infinite square grid, which each cell in the grid having one of two states: dead (painted white) and alive (painted black). At each turn, states are updated according to the following rule:</p>
+<ul>
+<li>
+<p>Live cells survive only if they have 3 or 2 alive neighbors;</p>
+</li>
+<li>
+<p>Dead cells become alive if they have exactly 3 neighbors. Else, they stay dead.</p>
+</li>
+</ul>
+<p>The fascinating thing about CGOL is that it allows for an extremely rich set of phenomena and interesting patterns. Here are some examples:</p>
+<ul>
+<li>Still life: patterns that never change, if not hit by something else;</li>
+</ul>
+<p>EXS</p>
+<ul>
+<li>Oscilators: patterns that keep repeating after some period;</li>
+</ul>
+<p>EXS</p>
+<ul>
+<li>Spaceships: patterns that repeat, but after displacing themselves in some direction, thus moving in the grid.</li>
+</ul>
+<p>EXS</p>
+<p>CGOL has been an object of much research since it has been invented. By research, I do mean &ldquo;scientific&rdquo;, &ldquo;serious&rdquo; research by &ldquo;real&rdquo; mathematicians, but also by many other people who were enthralled by this cell-world, and who contributed to our understanding of it. Many people may contest CGOL&rsquo;s classification as a &ldquo;game&rdquo;, but I strongly disagree: it is a game of study, a botanical sort of game, a theory-building game collectively played. In that sense, it is an absolutely exceptional piece of rule/system-design. I can&rsquo;t refrain from being fascinated by all the</p>
+<p>One of the reasons in particular I became so enamored with this world is due to the book <em>Conway&rsquo;s Game of Life&ndash; Mathematics and Construction</em>, by Nathaniel Johnson (<a href="https://njohnston.ca/">blog</a>, <a href="https://www.youtube.com/@NathanielMath">Youtube channel</a>, <a href="https://conwaylife.com/wiki/Nathaniel_Johnston">LifeWiki page</a>) and Dave Greene (<a href="https://conwaylife.com/wiki/Dave_Greene">LifeWiki page</a>). It&rsquo;s written like a textbook, with plenty of examples and exercises, so that you can actively participate in the &ldquo;research game&rdquo;. I read it shortly before taking (quite lately) my first physics course on college. Solving exercises from the course&rsquo;s textbook obviously reminded me of those I hade made before, those involving cells and their survival: the simple but descriptive worlds these two books described seemed so alike, both in truth and in dignity. Please do <a href="https://conwaylife.com/book/">check out the book</a> if you&rsquo;re interested, as it&rsquo;s available for free on the internet.</p>
+<p>Many variants of CGOL have been derived, each with its own properties and particular phenomena. There are those with more intricate, &ldquo;fine-tuned&rdquo; rules, others with different notions of neighborhood, with more states etc. Some try to be more natural, some focus on artificial, circuit-like processes. Together, they form a part of the world of <strong>cellular automata</strong>. According to Wolfram MathWorld, we have</p>
+<p><strong>Definition</strong>: &ldquo;a cellular automaton (CA) is a collection of &lsquo;colored&rsquo; cells on a grid of specified shape that evolves through a number of discrete time steps according to a set of rules based on the states of neighboring cells&rdquo;.</p>
+<p>The main part of this definition is that the evolution of a cell in our cell-world depends <strong>only</strong> on its neighbors. Note too that grid shapes can be basically arbitrary, but we&rsquo;ll mostly focus on the square 2D grid and the 1D grid with edges of the same length. We may also have different definitions of a &ldquo;neighborhood&rdquo;&ndash; the most common ones in the 2D square case being the Moore and von Neumann neighborhoods, as seen below.</p>
+<p>IMG!!! NEIGHBORHOODS</p>
+<p>More formally, a grid state is a function $s:G\rightarrow S,$ where $G$ is the set of our grid cells and $S$ that of possible cell states. In the 2D square grid, we have $G=\zo^2$; in the 1D one, $G=\zo.$ The set $S$ may be finite, infinite or even have continuously many states. A CA update rule is some function that brings state $s$ to $s',$ at each cell $c\in G,$ <strong>depending only on the neighbors of</strong> $c.$ We&rsquo;ll later on describe this function using topology.</p>
+<p>NEUMANN</p>
+<p>CGOL</p>
+<p>WOLFRAM</p>
+<p>SIMULACS</p>
+<h2 id="a-topological-space-for-cell-worlds">A topological space for cell worlds</h2>
+<h3 id="definition">Definition</h3>
+<p>CA
+Let $S$ be our set of cell states. We&rsquo;ll consider the bi-infinite (that is, infinite on both sides) sequences</p>
+<p>$x=... x_{-2}x_{-1}x_{0}x_{1}x_2...$</p>
+<p>That is, $x$ is a sequence of cell-values that extends infinitely on both sides, with the value on position $m$ being denoted $x_m.$ The subsequence of $x$ with positions in an integer interval $[a,b]$ from $a$ to $b$ is denoted $x_{[a,b]}$&ndash; i.e., $x_{[a,b]}=x_ax_{a+1}...x_{b-1}x_b.$</p>
+<p>The set of these sequences, denoted $S^\zo,$ can be given the product topology. Thus, by definition, it has as basis the subsets $B\subseteq S^\zo$ such that only finite components $B_i$ of $B$ are not $S^\zo$. Since $S$ is finite, this topology is equivalent to the one generated by the $B_i$ which</p>
+$$d(x,y)=\sum_{m\geq 0}\frac{D(x_{[-m,m]},y_{[-m,m]})}{2^m}$$<p>Note that this space is &ldquo;bounded&rdquo; and does not allow for arbitrarily large distances: for if $x$ and $y$ are different in all positions, then $d(x,y)=\sum_{m\geq 0}\frac{2m}{2^m},$ and this infinite series can be somewhat unproblematically calculated: it is equal to $4.$ Thus, the greatest distance two points in $S^\zo$ may take is $4$&ndash; and we may as well say that the <strong>diameter</strong> of $S^\zo$ is equal to $4.$</p>
+<h3 id="metric">Metric</h3>
+<p>In general, distances in this space are hard to find exactly. However, if $x,y\in S^\zo$ differ only inside an interval $[-L,L]$ and have exactly $k$ different values, then $d(x,y)&=\sum_{m\geq 0} \frac{D(x,y)}{2^m}\leq k\sum_{m\geq 0} \frac{1}{2^m}=2k.$</p>
+<h3 id="symmetries-the-shift">Symmetries: the shift</h3>
+<p>The space $S^\zo$ is quite interesting because it comes along a continuous symmetry, the <strong>shift</strong> $s:S^\zo\rightarrow S^\zo,$ which shifts sequences one step to the right: $s(x)_i=x_{i-1}.$ Note also that $s$ is invertible, with $\inv{s}$ being a shift one step to the left: $\inv{s}(x)_i=x_{i+1}.$ We&rsquo;ll denote this left shift $l.$</p>
+<p>IMG!!!</p>
+<p>To verify the continuity of $s,$ let $B_p$ be the basis neighborghood of a pattern $p.$ Then $\inv{s}(B_p)$ is exactly $B_{l(p)}$ BLA. Similarly, $\inv{l}(B_p)=B_{s(p)}.$</p>
+<p>Using basically the same argument as for $s,$ we can see $\inv{s}$ is continuous. That is, <strong>the shift</strong> $s$ <strong>is a homeomorphism from</strong> $S^\zo$ <strong>to itself!</strong> In that sense, the term &ldquo;symmetry&rdquo; is quite appropriate for it. More than that, it is also an isometry: $d(s(x), s(y))=d(x,y)$ for all $x,y\in S^\zo.$</p>
+<p>EQUIVARIANT</p>
+<h3 id="continuity">Continuity</h3>
+<h3 id="compactness-1">Compactness</h3>
+<p>By Tychonoff&rsquo;s theorem, $S^\zo$&ndash; as an infinite product of compact spaces&ndash; is compact.</p>
+<h2 id="the-topological-definition-of-cellular-automata">The topological definition of cellular automata</h2>
 
 
 <p>

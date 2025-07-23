@@ -601,13 +601,5 @@ Normal groups are very important, since in some precise way they are responsible
 
 IMG!!! Tabela periodica
 
-## Spaces as quotients
-
-### Group actions
-
-### The torus as a quotient
-
-### The Möbius strip as a quotient
-
 # Going further
 oi

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://localhost:1313/images/favicon.png" />
+<title>The topology of decision games | Topophilic</title>
+<meta name="title" content="The topology of decision games" />
+<meta name="description" content="TL;DR
+Bla
+
+    
+        
+  
+    TL;DR
+    Simplices, probabilities and decision games
+    Nash equilibria
+    2x2 games and their topology
+  
+
+    
+
+Simplices, probabilities and decision games
+PROB
+The fact that the standard simplex $\Delta^n$ can be simply described as $\{(\lambda_1,...,\lambda_n)\mid  \sum_{i=1}^n \lambda_i=1, \,\lambda_i\geq 0\}$ make it so that points $p\in \Delta^n$ can be intepreted as probabilities associated to $n$ possible events&ndash; with each $\lambda_i$ of $p$ being the probability of the $i$-th event to occur. This opens up a bridge between topology and probability, that has been particularly useful in one area of mathematics: game theory." />
+<meta name="keywords" content="Topology for Artists," />
+
+
+<meta property="og:url" content="http://localhost:1313/the-topology-of-decision-games/">
+  <meta property="og:site_name" content="Topophilic">
+  <meta property="og:title" content="The topology of decision games">
+  <meta property="og:description" content="TL;DR Bla
+TL;DR Simplices, probabilities and decision games Nash equilibria 2x2 games and their topology Simplices, probabilities and decision games PROB
+The fact that the standard simplex $\Delta^n$ can be simply described as $\{(\lambda_1,...,\lambda_n)\mid \sum_{i=1}^n \lambda_i=1, \,\lambda_i\geq 0\}$ make it so that points $p\in \Delta^n$ can be intepreted as probabilities associated to $n$ possible events– with each $\lambda_i$ of $p$ being the probability of the $i$-th event to occur. This opens up a bridge between topology and probability, that has been particularly useful in one area of mathematics: game theory.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-01-14T12:33:23-03:00">
+    <meta property="article:modified_time" content="2025-01-14T12:33:23-03:00">
+    <meta property="article:tag" content="Topology for Artists">
+    <meta property="og:image" content="http://localhost:1313/images/share.png">
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/images/share.png">
+  <meta name="twitter:title" content="The topology of decision games">
+  <meta name="twitter:description" content="TL;DR Bla
+TL;DR Simplices, probabilities and decision games Nash equilibria 2x2 games and their topology Simplices, probabilities and decision games PROB
+The fact that the standard simplex $\Delta^n$ can be simply described as $\{(\lambda_1,...,\lambda_n)\mid \sum_{i=1}^n \lambda_i=1, \,\lambda_i\geq 0\}$ make it so that points $p\in \Delta^n$ can be intepreted as probabilities associated to $n$ possible events– with each $\lambda_i$ of $p$ being the probability of the $i$-th event to occur. This opens up a bridge between topology and probability, that has been particularly useful in one area of mathematics: game theory.">
+
+
+
+
+  <meta itemprop="name" content="The topology of decision games">
+  <meta itemprop="description" content="TL;DR Bla
+TL;DR Simplices, probabilities and decision games Nash equilibria 2x2 games and their topology Simplices, probabilities and decision games PROB
+The fact that the standard simplex $\Delta^n$ can be simply described as $\{(\lambda_1,...,\lambda_n)\mid \sum_{i=1}^n \lambda_i=1, \,\lambda_i\geq 0\}$ make it so that points $p\in \Delta^n$ can be intepreted as probabilities associated to $n$ possible events– with each $\lambda_i$ of $p$ being the probability of the $i$-th event to occur. This opens up a bridge between topology and probability, that has been particularly useful in one area of mathematics: game theory.">
+  <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
+  <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
+  <meta itemprop="wordCount" content="1283">
+  <meta itemprop="image" content="http://localhost:1313/images/share.png">
+  <meta itemprop="keywords" content="Topology for Artists">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <style>
+  :root {
+      --width: 800px;
+      --font-main: Verdana, sans-serif;
+      --font-secondary: Verdana, sans-serif;
+      --font-scale: 1em;
+      --background-color: #fff;
+      --heading-color: #222;
+      --text-color: #444;
+      --link-color: #3273dc;
+      --visited-color:  #8b6fcb;
+      --code-background-color: #f2f2f2;
+      --code-color: #222;
+      --blockquote-color: #222;
+  }
+
+  @media (prefers-color-scheme: dark) {
+      :root {
+          --background-color: #333;
+          --heading-color: #eee;
+          --text-color: #ddd;
+          --link-color: #8cc2dd;
+          --visited-color:  #8b6fcb;
+          --code-background-color: #777;
+          --code-color: #ddd;
+          --blockquote-color: #ccc;
+      }
+  }
+
+  body {
+      font-family: var(--font-secondary);
+      font-size: var(--font-scale);
+      margin: auto;
+      padding: 20px;
+      max-width: var(--width);
+      text-align: left;
+      background-color: var(--background-color);
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      line-height: 1.5;
+      color: var(--text-color);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-main);
+      color: var(--heading-color);
+  }
+
+  a {
+      color: var(--link-color);
+      cursor: pointer;
+      text-decoration: none;
+  }
+
+  a:hover {
+      text-decoration: underline; 
+  }
+
+  nav a {
+      margin-right: 8px;
+  }
+
+  strong, b {
+      color: var(--heading-color);
+  }
+
+  button {
+      margin: 0;
+      cursor: pointer;
+  }
+
+  main {
+      line-height: 1.6;
+  }
+
+  table {
+      width: 100%;
+  }
+
+  hr {
+      border: 0;
+      border-top: 1px dashed;
+  }
+
+  img {
+      max-width: 100%;
+  }
+
+  code {
+      font-family: monospace;
+      padding: 2px;
+      background-color: var(--code-background-color);
+      color: var(--code-color);
+      border-radius: 3px;
+  }
+
+  blockquote {
+      border-left: 1px solid #999;
+      color: var(--code-color);
+      padding-left: 20px;
+      font-style: italic;
+  }
+
+  footer {
+      padding: 25px 0;
+      text-align: center;
+  }
+
+  .title:hover {
+      text-decoration: none;
+  }
+
+  .title h1 {
+      font-size: 1.5em;
+  }
+
+  .inline {
+      width: auto !important;
+  }
+
+  .highlight, .code {
+      padding: 1px 15px;
+      background-color: var(--code-background-color);
+      color: var(--code-color);
+      border-radius: 3px;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      overflow-x: auto;
+  }
+
+   
+  ul.blog-posts {
+      list-style-type: none;
+      padding: unset;
+  }
+
+  ul.blog-posts li {
+      display: flex;
+  }
+
+  ul.blog-posts li span {
+      flex: 0 0 130px;
+  }
+
+  ul.blog-posts li a:visited {
+      color: var(--visited-color);
+  }
+</style>
+
+
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)'], ['$', '$']],                  
+      macros :{
+        im : "{\\text{im}\\,}",
+        os : "[v_0,v_1]", 
+        ts : "[v_0,v_1,v_2]", 
+        ths : "[v_0,v_1,v_2,v_3]", 
+        gos : "\\langle v_0, v_1 \\rangle", 
+        gts : "\\langle v_0, v_1, v_2 \\rangle", 
+        gths : "\\langle v_0, v_1, v_2, v_3 \\rangle", 
+        rth : "\\mathbb{R}^3", 
+        rt : "\\mathbb{R}^2", 
+        ro : "\\mathbb{R}", 
+        rpt : "\\ro \\text{P}^2", 
+        rpth : "\\ro \\text{P}^3", 
+        rn : "\\mathbb{R}^n",
+        rpn : "\\mathbb{R}\\text{P}^n",
+        angled : ["{\\langle #1 \\rangle}", 1],
+        zo : "\\mathbb{Z}",
+        zmod : ["\\mathbb{Z}/#1 \\mathbb{Z}", 1],
+        inv : ["#1 ^{-1}", 1],
+        cdn : ["C^\\Delta_#1", 1],
+        csn : ["C^s_#1", 1],
+        rank : ["\\text{rank}\\,\\,\\,"],
+        pard : ["\\frac{\\partial #1}{\\partial #2}", 2] 
+      }
+    }
+  };
+</script>
+  
+</head>
+
+<script type="text/javascript" src="/js/GlslCanvas.js"></script>
+
+<body>
+  <header><a href="/" class="title">
+  <h2>Topophilic</h2>
+</a>
+<nav><a href="/">Home</a>
+
+
+<a href="/blog">Blog</a>
+
+</nav>
+</header>
+  
+  <main>
+
+<h1>The topology of decision games</h1>
+<p>
+  <i>
+    <time datetime='2025-01-14'>
+      14 Jan, 2025
+    </time>
+  </i>
+</p>
+
+
+<h1 id="tldr">TL;DR</h1>
+<p>Bla</p>
+
+    <aside id="TableOfContents">
+        <nav id="TableOfContents">
+  <ol>
+    <li><a href="#tldr">TL;DR</a></li>
+    <li><a href="#simplices-probabilities-and-decision-games">Simplices, probabilities and decision games</a></li>
+    <li><a href="#nash-equilibria">Nash equilibria</a></li>
+    <li><a href="#2x2-games-and-their-topology">2x2 games and their topology</a></li>
+  </ol>
+</nav>
+    </aside>
+
+<h1 id="simplices-probabilities-and-decision-games">Simplices, probabilities and decision games</h1>
+<p>PROB</p>
+<p>The fact that the standard simplex $\Delta^n$ can be simply described as $\{(\lambda_1,...,\lambda_n)\mid  \sum_{i=1}^n \lambda_i=1, \,\lambda_i\geq 0\}$ make it so that points $p\in \Delta^n$ can be intepreted as <strong>probabilities</strong> associated to $n$ possible events&ndash; with each $\lambda_i$ of $p$ being the probability of the $i$-th event to occur. This opens up a bridge between topology and probability, that has been particularly useful in one area of mathematics: <strong>game theory</strong>.</p>
+<p>Game theory is concerned with what one might call &ldquo;decision games&rdquo;. These are problems when $n$ distinct players $P_1,...,P_n$ are confronted with different options. Each player $P_i$ takes moves from a set $A_i.$ Players simultaneously decide a move $a_i\in A_i$, ending in a final state $(a_1, ..., a_n)$ associated to some reward $r_i$ for each player. The goal of $P_i$ is to maximize $r_i$ taking into consideration other players&rsquo; moves.</p>
+<p>EXS
+PRISIONERS
+ROUSSEAU (EX DO LIVRO + EX DO MAL AMIGO DAS CONFISSOES)
+ex mistos?
+BACH X SCHOENBERG (COM MÚSICAS EMBEDDADAS)</p>
+$$\begin{array}{c|c c }
+  & \text{Prisioner A} & \text{Prisioner B}  \\
+\hline
+\text{Prisioner A} & 1,1 & -1,2  \\
+\text{Prisioner B} & 2,-1 & 0,0 \\
+\end{array}
+$$$$\begin{array}{c|c c }
+  & \text{Bach} & \text{Schoenberg}  \\
+\hline
+\text{Bach} & 2,1 & 0,0  \\
+\text{Schoenberg} & 0,0 & 1,2 \\
+\end{array}
+$$
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/RDADGE44i_o?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
+
+<p><em>In this manner, men may have insensibly acquired some gross ideas of mutual undertakings, and of the advantages of fulfilling them: that is, just so far as their present and apparent interest was concerned: for they were perfect strangers to foresight, and were so far from troubling themselves about the distant future, that they hardly thought of the morrow. If a deer was to be taken, every one saw that, in order to succeed, he must abide faithfully by his post: but if a hare happened to come within the reach of any one of them, it is not to be doubted that he pursued it without scruple, and, having seized his prey, cared very little, if by so doing he caused his companions to miss theirs.</em></p>
+$$\begin{array}{c|c c }
+  & \text{Stag} & \text{Rabbit}  \\
+\hline
+\text{Stag} & 5, 5 & 0, 3  \\
+\text{Rabbit} & 3,0 & 3, 3 \\
+\end{array}
+$$<p>Philosophical justice, however, forces me to also present another game we might relate to Rousseau. From his <em>Confessions</em>:</p>
+<p><em>I am less tempted by money than by other objects, because between the moment of possessing the money and that of using it to obtain the desired object there is always an interval, however short; whereas to possess the thing is to enjoy it. I see a thing and it tempts me; but if I see not the thing itself but only the means of acquiring it, I am not tempted. Therefore it is that I have been a pilferer, and am so even now, in the way of mere trifles to which I take a fancy, and which I find it easier to take than to ask for; but I never in my life recollect having taken a farthing from any one, except about fifteen years ago, when I stole seven francs and ten sous. The story is worth recounting, as it exhibits a concurrence of ignorance and stupidity I should scarcely credit, did it relate to any but myself.</em></p>
+<p><em>It was in Paris: I was walking with M. de Franceul at the Palais Royal; he pulled out his watch, he looked at it, and said to me, “Suppose we go to the opera?”—“With all my heart.” We go: he takes two box tickets, gives me one, and enters himself with the other; I follow, find the door crowded; and, looking in, see every one standing; judging, therefore, that M. de Franceul might suppose me concealed by the company, I go out, ask for my ticket, and, getting the money returned, leave the house, without considering, that by then I had reached the door every one would be seated, and M. de Franceul might readily perceive I was not there.</em></p>
+<p><em>As nothing could be more opposite to my natural inclination than this abominable meanness, I note it, to show there are moments of delirium when men ought not to be judged by their actions: this was not stealing the money, it was only stealing the use of it, and was the more infamous for wanting the excuse of a temptation.</em></p>
+<p>(absurd convertions by me give it equal to about 80 us dolars)</p>
+$$\begin{array}{c|c c }
+  & \text{Franceul} & \text{Rousseau}  \\
+\hline
+\text{Franceul} & -7.5, -7.5 & -15, 7.5  \\
+\text{Rousseau} & 7.5,-15 & 0, 0 \\
+\end{array}
+$$<pre><code>EX MISTOS
+</code></pre>
+<p>ELEIC?</p>
+<p>ESTRATEGS DOMINADAS</p>
+<h1 id="nash-equilibria">Nash equilibria</h1>
+<p>NASH EQUILIBRIA
+EXS PUROS (prisionners, eleic)
+EXS MISTOS (bach, pennies)</p>
+<p>Formally, define a function $\text{Gain} (\sigma): A \rightarrow \ro^i$ that, for each action $a$, returns the expected gain to player $i$ given the action:</p>
+$$\text{Gain}_i(\sigma)(a) = \max (0, u_i(a, \sigma_{-i}) - u_i(\sigma))$$<p>Then a <strong>Nash equilibirum</strong> of a game is a mixed strategy such that $\text{Gain}_i(\sigma)(a)=0$ for all $i$&ndash; i.e., no players can improve their position.</p>
+<p><strong>Theorem</strong>: Every game with finite players and actions has at least one Nash equilibrium.</p>
+<p><strong>Proof</strong>:
+Let $\sigma \in \Delta^{i_1}\times...\times\Delta^{i_k}$ be a mixed strategy. Let&rsquo;s try to define a &ldquo;winning flow&rdquo; which, for each $\sigma$, points in the direction of the direction of a strategy with better expected gains. The idea is that fixed points of this flow will exactly be the strategies that can&rsquo;t be improved for any player&ndash; i.e., Nash equilibria.</p>
+<p>We can try to define the flow by pushing $\sigma$ by its gain: $g(\sigma)(a) = \sigma(a) + \text{Gain}(\sigma)(a)$. This, however, doesn&rsquo;t necessarily gives an element inside $\Delta = \Delta^{i_1}\times...\times\Delta^{i_k}$, because its components might not sum to one. What we need is a flow definition $f$ such that $\sum_{b\in A_i}f(\sigma)_i(a_j)=1$. To get this $f$, note that, since $\sigma_i$ is an element of a simplex,</p>
+$$\sum_{a\in A_i} g(\sigma)_i(a) = \sum_{a\in A_i} \big( \sigma_i(a) + \text{Gain}_i(\sigma)(a) \big)=1 + \sum_{a\in A_i} \text{Gain}_i(\sigma)(a).$$<p>This means we can define a flow $f:\Delta\rightarrow\Delta$ normalizing $g$ by this value:</p>
+$$f(\sigma)_i(a) = \frac{\sigma_i(a) + \text{Gain}_i(\sigma)(a)} 
+                      {1 + \sum_{b\in A_i} \text{Gain}_i(\sigma)(b)},$$<p>which indeed satisfies the property of returning mixed strategies.</p>
+<p>Since $\Delta$ is a product of simplices, it is homeomorphic to a disk of some higher dimension, and the fixed point theorem applies. That is, there exists at least one $\sigma^*\in\Delta$ such that $f(\sigma^*)=\sigma^*$. We claim this mixed strategy is a Nash equilibrium. Let&rsquo;s prove that.</p>
+<p>Defining $S=1 + \sum_{b\in A_i} \text{Gain}_i(\sigma)(b)$ to be the constant normalizing factor above, $\sigma^*$ being a fixed point means $\sigma^*_i(a)=\frac{1}{S}(\sigma^*_i(a) + \text{Gain}_i(\sigma^*, a))$, and so $(S-1)\sigma^*_i(a)=\text{Gain}_i(\sigma^*, a)$.</p>
+<p>Now, note that the expected value of gains for the player $i$ according to the strategy $\sigma^*$ is zero:</p>
+$$
+\begin{align}
+    \sum_{a\in A_i}\sigma^*_i(a)\text{Gain}_i(\sigma^*, a) &=\sum_{a\in A_i'}\sigma^*_i(a)(u_i(a, \sigma_{-i}^*) - u_i(\sigma_i^*))
+    \\&= \left(\sum_{a\in A_i'}\sigma^*_i(a)u_i(a, \sigma_{-i}^*)\right) - u_i(\sigma_i^*)
+    \\& = u_i(\sigma_i^*) - u_i(\sigma_i^*)=0
+\end{align}
+$$<p>where $A'_i$ is the set of actions such that $\text{Gain}_i(\sigma^*, a)\neq 0.$ FALSE!!!!!!!! DAÍ O RESTO DAS IGUALDADES N ROLA The penultimate equality comes from $\sigma^*_i$ being a simplex and $u_i(\sigma_i^*)$ constand, and the last one by the very definition of $u_i(\sigma_i^*)$.</p>
+<p>However, we also have that $\sum_{a\in A_i}\sigma^*_i(a)\text{Gain}_i(\sigma^*, a)=\sum_{a\in A_i}(S-1)\sigma^*_i(a)^2$, and, since there&rsquo;s at least one $a$ such that $\sigma^*_i(a)>0$ (otherwise mixed strategies wouldn&rsquo;t sum to one), $S=1$ in order for the expected value of the gains to be null. Thus we have $\sigma^*_i(a)=\sigma^*_i(a) + \text{Gain}_i(\sigma^*, a)$, and $\text{Gain}_i(\sigma, a)=0$ for any player $i$ and action $a\in A_i$&ndash; proving that $\sigma^*$ is indeed a Nash equilibrium.</p>
+<div style="text-align: right;">\(\blacksquare\)</div>
+<p>Conversely, every possible Nash equilibrium gives a fixed point of the flow above&ndash; i.e., <strong>equilibria are exactly the fixed points of the &ldquo;winning flow&rdquo;</strong> $f$.</p>
+<p>ARROWS!!!!</p>
+<h1 id="2x2-games-and-their-topology">2x2 games and their topology</h1>
+
+
+<p>
+  
+  <a href="http://localhost:1313/blog/topology-for-artists/">#Topology for Artists</a>
+  
+</p>
+
+  </main>
+
+  <footer>
+</footer>
+
+    
+
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "your-disqus-shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  
+</body>
+
+</html>

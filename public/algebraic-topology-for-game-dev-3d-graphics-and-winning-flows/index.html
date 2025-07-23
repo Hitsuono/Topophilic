@@ -40,7 +40,7 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
   <meta itemprop="description" content="TL;DR In our search for topological invariants, we’ll learn how holes can be defined and be used to study spaces. This will require studying “model” spaces, known as simplicial complexes, which are widely used in 3D rendering. We will be able to define general topological concepts like “boundary” and “cycle”. This will be formalized through a quick detour on group theory, the study of permutations and their algebras, which can be exemplified by the moves and configurations of a Rubik’s cube. With this machinery, we’ll define the homology groups of a topological space, in which holes live, and are one of the most important and studied topological invariants of spaces.">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="17240">
+  <meta itemprop="wordCount" content="15994">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -280,7 +280,6 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
           </ol>
         </li>
         <li><a href="#delta-spaces">Delta spaces</a></li>
-        <li><a href="#simplices-probabilities-and-decision-games-">Simplices, probabilities and decision games **</a></li>
       </ol>
     </li>
     <li><a href="#3d-graphics-and-the-algebra-of-holes">3D graphics and the algebra of holes</a>
@@ -310,7 +309,6 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
       <ol>
         <li><a href="#functors-retractions-and-fixed-points">Functors, retractions and fixed points</a></li>
         <li><a href="#the-hex-game">The Hex game</a></li>
-        <li><a href="#nash-equilibria-">Nash equilibria **</a></li>
       </ol>
     </li>
     <li><a href="#going-further">Going further</a>
@@ -760,55 +758,6 @@ $$\partial \angled{v_0,...,v_k} = \bigcup_{i=0}^n \angled{v_0,...,\widehat{v_i},
 <p>Note: with delta structures, we&rsquo;re dealing with functions here, not with spaces directly. However, it will still be pretty common for us to call the maps in the structure by their images. So, in the example above for $T^2$, we&rsquo;ll usually call $\sigma_0$ just as $v$, $\sigma_1$ as $a$, $\sigma_2$ as $b$, $\sigma_3$ as $c$, $\sigma_4$ as $U$ and $\sigma_5$ as $L$, even though this is a little stretch of our terminology.</p>
 <p>Delta spaces will simplify our computations a lot, so here are some ways of describing the surfaces we&rsquo;ve discussed so far as $\Delta$-spaces (note again that these are just the square representation we studied applied to a quad):</p>
 <p>IMGS!!!</p>
-<h2 id="simplices-probabilities-and-decision-games-">Simplices, probabilities and decision games **</h2>
-<p>PROB</p>
-<p>The fact that the standard simplex $\Delta^n$ can be simply described as $\{(\lambda_1,...,\lambda_n)\mid  \sum_{i=1}^n \lambda_i=1, \,\lambda_i\geq 0\}$ make it so that points $p\in \Delta^n$ can be intepreted as <strong>probabilities</strong> associated to $n$ possible events&ndash; with each $\lambda_i$ of $p$ being the probability of the $i$-th event to occur. This opens up a bridge between topology and probability, that has been particularly useful in one area of mathematics: <strong>game theory</strong>.</p>
-<p>GAMES- DEFS
-Game theory is concerned with what one might call &ldquo;decision games&rdquo;. These are problems when $n$ distinct players $P_1,...,P_n$ are confronted with different options in a set $A_i$ for each $P_i.$ Players simultaneously decide a move $a_i\in A_i$, ending in a final state $(a_1, ..., a_n)$ associated to some reward $r_i$ for each player. The goal of $P_i$ is</p>
-<p>EXS
-PRISIONERS
-ROUSSEAU (EX DO LIVRO + EX DO MAL AMIGO DAS CONFISSOES)
-ex mistos?
-BACH X SCHOENBERG (COM MÚSICAS EMBEDDADAS)</p>
-$$\begin{array}{c|c c }
-  & \text{Prisioner A} & \text{Prisioner B}  \\
-\hline
-\text{Prisioner A} & 1,1 & -1,2  \\
-\text{Prisioner B} & 2,-1 & 0,0 \\
-\end{array}
-$$$$\begin{array}{c|c c }
-  & \text{Bach} & \text{Schoenberg}  \\
-\hline
-\text{Bach} & 2,1 & 0,0  \\
-\text{Schoenberg} & 0,0 & 1,2 \\
-\end{array}
-$$
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/RDADGE44i_o?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
-    </div>
-
-<p><em>In this manner, men may have insensibly acquired some gross ideas of mutual undertakings, and of the advantages of fulfilling them: that is, just so far as their present and apparent interest was concerned: for they were perfect strangers to foresight, and were so far from troubling themselves about the distant future, that they hardly thought of the morrow. If a deer was to be taken, every one saw that, in order to succeed, he must abide faithfully by his post: but if a hare happened to come within the reach of any one of them, it is not to be doubted that he pursued it without scruple, and, having seized his prey, cared very little, if by so doing he caused his companions to miss theirs.</em></p>
-$$\begin{array}{c|c c }
-  & \text{Stag} & \text{Rabbit}  \\
-\hline
-\text{Stag} & 5, 5 & 0, 3  \\
-\text{Rabbit} & 3,0 & 3, 3 \\
-\end{array}
-$$<p>Philosophical justice, however, forces me to also present another game we might relate to Rousseau. From his <em>Confessions</em>:</p>
-<p><em>I am less tempted by money than by other objects, because between the moment of possessing the money and that of using it to obtain the desired object there is always an interval, however short; whereas to possess the thing is to enjoy it. I see a thing and it tempts me; but if I see not the thing itself but only the means of acquiring it, I am not tempted. Therefore it is that I have been a pilferer, and am so even now, in the way of mere trifles to which I take a fancy, and which I find it easier to take than to ask for; but I never in my life recollect having taken a farthing from any one, except about fifteen years ago, when I stole seven francs and ten sous. The story is worth recounting, as it exhibits a concurrence of ignorance and stupidity I should scarcely credit, did it relate to any but myself.</em></p>
-<p><em>It was in Paris: I was walking with M. de Franceul at the Palais Royal; he pulled out his watch, he looked at it, and said to me, “Suppose we go to the opera?”—“With all my heart.” We go: he takes two box tickets, gives me one, and enters himself with the other; I follow, find the door crowded; and, looking in, see every one standing; judging, therefore, that M. de Franceul might suppose me concealed by the company, I go out, ask for my ticket, and, getting the money returned, leave the house, without considering, that by then I had reached the door every one would be seated, and M. de Franceul might readily perceive I was not there.</em></p>
-<p><em>As nothing could be more opposite to my natural inclination than this abominable meanness, I note it, to show there are moments of delirium when men ought not to be judged by their actions: this was not stealing the money, it was only stealing the use of it, and was the more infamous for wanting the excuse of a temptation.</em></p>
-<p>(absurd convertions by me give it equal to about 80 us dolars)</p>
-$$\begin{array}{c|c c }
-  & \text{Franceul} & \text{Rousseau}  \\
-\hline
-\text{Franceul} & -7.5, -7.5 & -15, 7.5  \\
-\text{Rousseau} & 7.5,-15 & 0, 0 \\
-\end{array}
-$$<pre><code>EX MISTOS
-</code></pre>
-<p>ELEIC?</p>
-<p>ESTRATEGS DOMINADAS</p>
 <h1 id="3d-graphics-and-the-algebra-of-holes">3D graphics and the algebra of holes</h1>
 <h2 id="meshes-and-simplices">Meshes and simplices</h2>
 <p>Simplices and simplicial complexes shouldn&rsquo;t be foreign to those artists working with 3D rendering. In this area, they go by the name of <strong>meshes</strong>, which are just simplicial complexes constructed only gluing 2-simplices, plus some extra data we will discuss below.</p>
@@ -1193,8 +1142,9 @@ $$<h2 id="invariance-of-the-euler-characteristic">Invariance of the Euler charac
 <p>Since we have exact sequences $0\rightarrow Z_n \rightarrow C_n \xrightarrow{\partial} B_{n-1} \rightarrow 0$ and $0\rightarrow B_n \rightarrow Z_n \rightarrow H_n \rightarrow 0$ involving chain, cycle, boundary and homology groups of a space $M$, we have</p>
 $$\rank C_n = \rank Z_n + \rank B_{n-1}$$$$\rank H_n = \rank Z_n - \rank B_{n}$$<p>Substituting, we have $\rank C_n = \rank H_n + \rank B_n + \rank B_{n+1}.$ This means we can sum the $\rank C_n$ alternating signs to get</p>
 $$\begin{align}
-\sum_n (-1)^n\rank C_n&=\sum_n (-1)^n (\rank H_n + \rank B_n + \rank {n+1})\\&=\sum_n (-1)^n\rank H_n,
-\end{align}$$<p>since the ranks of the boundary groups cancel each other. Thus, the Euler characteristic has the formula $\chi(M)=\sum_n (-1)^n\rank H_n(M),$ which we might as well use as its &ldquo;new&rdquo; definition. Since $H_n(M)$ are topological invariants, so is $\chi(M).$ We&rsquo;ll use the characteristic later on when we classify patterns and tilings by their symmetries using algebraic topology.</p>
+\sum_n (-1)^n\rank C_n&=\sum_n (-1)^n (\rank H_n + \rank B_n + \rank B_{n+1})\\&=\sum_n (-1)^n\rank H_n,
+\end{align}$$<p>since the ranks of the boundary groups cancel each other. Thus, the Euler characteristic has the formula $\chi(M)=\sum_n (-1)^n\rank H_n(M),$ which we might as well use as its &ldquo;new&rdquo; definition. Since $H_n(M)$ are topological invariants, so is $\chi(M).$ We&rsquo;ll use the characteristic later on when we classify symmetries, patterns and tilings by their symmetries using algebraic topology.</p>
+<p>Our previous computations show that $\chi(T^2)=0,$ $\chi(S^n)=0$ for $n$ odd and $2$ for $n$ even, $\chi(K)=0$ and $\chi(\rpt)=1.$</p>
 <h2 id="holes-of-order-2-">Holes of order 2 *</h2>
 <h2 id="homology-with-coefficients">Homology with coefficients</h2>
 <h1 id="applications">Applications</h1>
@@ -1263,33 +1213,6 @@ $$\begin{align}
 <p>IMG!!!!  jogo e exemplo</p>
 <p>By <a href="https://en.wikipedia.org/wiki/Zermelo%27s_theorem_(game_theory)">Zermelo&rsquo;s Theorem</a>, since Hex has no draws, there must be a winning strategy for either black or white. Well, if white&ndash; the second player&ndash; had such a strategy, then black could begin with a generic move and then immitate it. Since in Hex a placed stone can never be a disadvantage, black&rsquo;s first stone wouldn&rsquo;t stop them from following the immitated winning strategy. Thus, if white had such a forced win, black would have one as well&ndash; which is a contradiction. Thus, it must be that <strong>black&ndash; the first player&ndash; has a winning strategy from the beginning</strong>.</p>
 <p>In that sense, Hex is &ldquo;solved&rdquo;. But note that we didn&rsquo;t actually construct this strategy, and the &ldquo;perfect Hex game&rdquo; is still unknown. The strategies for the 7x7, 8x8 and 9x9 boards, however, have been found.</p>
-<h2 id="nash-equilibria-">Nash equilibria **</h2>
-<p>NASH EQUILIBRIA
-EXS PUROS (prisionners, eleic)
-EXS MISTOS (bach, pennies)</p>
-<p>Formally, define a function $\text{Gain} (\sigma): A \rightarrow \ro^i$ that, for each action $a$, returns the expected gain to player $i$ given the action:</p>
-$$\text{Gain}_i(\sigma)(a) = \max (0, u_i(a, \sigma_{-i}) - u_i(\sigma))$$<p>Then a <strong>Nash equilibirum</strong> of a game is a mixed strategy such that $\text{Gain}_i(\sigma)(a)=0$ for all $i$&ndash; i.e., no players can improve their position.</p>
-<p><strong>Theorem</strong>: Every game with finite players and actions has at least one Nash equilibrium.</p>
-<p><strong>Proof</strong>:
-Let $\sigma \in \Delta^{i_1}\times...\times\Delta^{i_k}$ be a mixed strategy. Let&rsquo;s try to define a &ldquo;winning flow&rdquo; which, for each $\sigma$, points in the direction of the direction of a strategy with better expected gains. The idea is that fixed points of this flow will exactly be the strategies that can&rsquo;t be improved for any player&ndash; i.e., Nash equilibria.</p>
-<p>We can try to define the flow by pushing $\sigma$ by its gain: $g(\sigma)(a) = \sigma(a) + \text{Gain}(\sigma)(a)$. This, however, doesn&rsquo;t necessarily gives an element inside $\Delta = \Delta^{i_1}\times...\times\Delta^{i_k}$, because its components might not sum to one. What we need is a flow definition $f$ such that $\sum_{b\in A_i}f(\sigma)_i(a_j)=1$. To get this $f$, note that, since $\sigma_i$ is an element of a simplex,</p>
-$$\sum_{a\in A_i} g(\sigma)_i(a) = \sum_{a\in A_i} \big( \sigma_i(a) + \text{Gain}_i(\sigma)(a) \big)=1 + \sum_{a\in A_i} \text{Gain}_i(\sigma)(a).$$<p>This means we can define a flow $f:\Delta\rightarrow\Delta$ normalizing $g$ by this value:</p>
-$$f(\sigma)_i(a) = \frac{\sigma_i(a) + \text{Gain}_i(\sigma)(a)} 
-                      {1 + \sum_{b\in A_i} \text{Gain}_i(\sigma)(b)},$$<p>which indeed satisfies the property of returning mixed strategies.</p>
-<p>Since $\Delta$ is a product of simplices, it is homeomorphic to a disk of some higher dimension, and the fixed point theorem applies. That is, there exists at least one $\sigma^*\in\Delta$ such that $f(\sigma^*)=\sigma^*$. We claim this mixed strategy is a Nash equilibrium. Let&rsquo;s prove that.</p>
-<p>Defining $S=1 + \sum_{b\in A_i} \text{Gain}_i(\sigma)(b)$ to be the constant normalizing factor above, $\sigma^*$ being a fixed point means $\sigma^*_i(a)=\frac{1}{S}(\sigma^*_i(a) + \text{Gain}_i(\sigma^*, a))$, and so $(S-1)\sigma^*_i(a)=\text{Gain}_i(\sigma^*, a)$.</p>
-<p>Now, note that the expected value of gains for the player $i$ according to the strategy $\sigma^*$ is zero:</p>
-$$
-\begin{align}
-    \sum_{a\in A_i}\sigma^*_i(a)\text{Gain}_i(\sigma^*, a) &=\sum_{a\in A_i'}\sigma^*_i(a)(u_i(a, \sigma_{-i}^*) - u_i(\sigma_i^*))
-    \\&= \left(\sum_{a\in A_i'}\sigma^*_i(a)u_i(a, \sigma_{-i}^*)\right) - u_i(\sigma_i^*)
-    \\& = u_i(\sigma_i^*) - u_i(\sigma_i^*)=0
-\end{align}
-$$<p>where $A'_i$ is the set of actions such that $\text{Gain}_i(\sigma^*, a)\neq 0.$ FALSE!!!!!!!! DAÍ O RESTO DAS IGUALDADES N ROLA The penultimate equality comes from $\sigma^*_i$ being a simplex and $u_i(\sigma_i^*)$ constand, and the last one by the very definition of $u_i(\sigma_i^*)$.</p>
-<p>However, we also have that $\sum_{a\in A_i}\sigma^*_i(a)\text{Gain}_i(\sigma^*, a)=\sum_{a\in A_i}(S-1)\sigma^*_i(a)^2$, and, since there&rsquo;s at least one $a$ such that $\sigma^*_i(a)>0$ (otherwise mixed strategies wouldn&rsquo;t sum to one), $S=1$ in order for the expected value of the gains to be null. Thus we have $\sigma^*_i(a)=\sigma^*_i(a) + \text{Gain}_i(\sigma^*, a)$, and $\text{Gain}_i(\sigma, a)=0$ for any player $i$ and action $a\in A_i$&ndash; proving that $\sigma^*$ is indeed a Nash equilibrium.</p>
-<div style="text-align: right;">\(\blacksquare\)</div>
-<p>Conversely, every possible Nash equilibrium gives a fixed point of the flow above&ndash; i.e., <strong>equilibria are exactly the fixed points of the &ldquo;winning flow&rdquo;</strong> $f$.</p>
-<p>ARROWS!!!!</p>
 <h1 id="going-further">Going further</h1>
 <h2 id="homotopy-invariance-of-homology">Homotopy invariance of homology</h2>
 <p>To prove that <em>singular</em> homology is a topological invariant, it&rsquo;s actually easier to prove that two spaces $X,Y$ with the same <em>homotopy</em> type (which includes homeomorphic spaces) have the same homology groups.</p>

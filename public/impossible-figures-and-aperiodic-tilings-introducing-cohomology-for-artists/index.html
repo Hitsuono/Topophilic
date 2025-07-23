@@ -40,18 +40,13 @@ Bla
         Cohomology of impossible figures
       
     
-    State spaces
+    Tilings, holes and computation
       
-        Cellular automata
         Tilings
-          
-            Tilings in the history of art
-            The math behind
-            Aperiodic tilings
-            Tiling spaces
-            The cohomology of tiling spaces
-          
-        
+        Aperiodic tilings
+        Tiling spaces
+        The cohomology of tiling spaces
+        Wang tiles
       
     
   
@@ -69,7 +64,7 @@ In more advanced calculus, integration is generally defined over what&rsquo;s ca
   <meta property="og:site_name" content="Topophilic">
   <meta property="og:title" content="Impossible figures and aperiodic tilings: introducing cohomology for artists">
   <meta property="og:description" content="TL;DR Bla
-TL;DR Cohomology as dual to homology Definition Origins from calculus The cohomology ring Computing some cohomology groups and rings Torus Projective plane and spaces Limits and colimits Getting a delta structure for any space Cech cohomology Impossible figures In art Cohomology of impossible figures State spaces Cellular automata Tilings Tilings in the history of art The math behind Aperiodic tilings Tiling spaces The cohomology of tiling spaces Cohomology as dual to homology Definition Origins from calculus In more advanced calculus, integration is generally defined over what’s called a “differential form”. For our intentions, these can just be considered as expressions of the form $f(x)dx$, $f(x,y)dxdy,$ $A(x,y)dx &#43; B(x,y)dy$ etc.: i.e., functions and the corresponding “infinitesimal amounts” that can be integrated. For example, $\int_{[a,b]}f(x)dx=\int_a^b f(x)dx$ is the usual, one-dimensional integral in the interval $[a,b]$ from basic calculus (measuring the area below the curve $f$); $\int_A f(x,y)dxdy$ represents the double integral of $f(x,y)$ in the region $A$ inside the plane (measuing the volume below the graph of $f$); $\int_C A(x,y)dx&#43;B(x,y)dy$ is the line integral of the vector field $A(x,y)dx &#43; B(x,y)dy$ along the curve $C$ (measuring the “flow” of the field through $C$). Such an expression is a $k$-form if it contains only sums of expressions $f(x_1,...,x_k)dx_1...dx_k,$ and they form the set of $k$-forms $\omega^k(\ro^n).$ $0$- forms are just functions over $\ro^n,$ and $1$-forms $f_1dx_1&#43;...&#43;f_ndx_n$ are closely associated to vector fields $F$ on $\ro^n$ by letting each $f_i$ be the $i$-th component of $F.$">
+TL;DR Cohomology as dual to homology Definition Origins from calculus The cohomology ring Computing some cohomology groups and rings Torus Projective plane and spaces Limits and colimits Getting a delta structure for any space Cech cohomology Impossible figures In art Cohomology of impossible figures Tilings, holes and computation Tilings Aperiodic tilings Tiling spaces The cohomology of tiling spaces Wang tiles Cohomology as dual to homology Definition Origins from calculus In more advanced calculus, integration is generally defined over what’s called a “differential form”. For our intentions, these can just be considered as expressions of the form $f(x)dx$, $f(x,y)dxdy,$ $A(x,y)dx &#43; B(x,y)dy$ etc.: i.e., functions and the corresponding “infinitesimal amounts” that can be integrated. For example, $\int_{[a,b]}f(x)dx=\int_a^b f(x)dx$ is the usual, one-dimensional integral in the interval $[a,b]$ from basic calculus (measuring the area below the curve $f$); $\int_A f(x,y)dxdy$ represents the double integral of $f(x,y)$ in the region $A$ inside the plane (measuing the volume below the graph of $f$); $\int_C A(x,y)dx&#43;B(x,y)dy$ is the line integral of the vector field $A(x,y)dx &#43; B(x,y)dy$ along the curve $C$ (measuring the “flow” of the field through $C$). Such an expression is a $k$-form if it contains only sums of expressions $f(x_1,...,x_k)dx_1...dx_k,$ and they form the set of $k$-forms $\omega^k(\ro^n).$ $0$- forms are just functions over $\ro^n,$ and $1$-forms $f_1dx_1&#43;...&#43;f_ndx_n$ are closely associated to vector fields $F$ on $\ro^n$ by letting each $f_i$ be the $i$-th component of $F.$">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -85,17 +80,17 @@ TL;DR Cohomology as dual to homology Definition Origins from calculus The cohomo
   <meta name="twitter:image" content="http://localhost:1313/images/share.png">
   <meta name="twitter:title" content="Impossible figures and aperiodic tilings: introducing cohomology for artists">
   <meta name="twitter:description" content="TL;DR Bla
-TL;DR Cohomology as dual to homology Definition Origins from calculus The cohomology ring Computing some cohomology groups and rings Torus Projective plane and spaces Limits and colimits Getting a delta structure for any space Cech cohomology Impossible figures In art Cohomology of impossible figures State spaces Cellular automata Tilings Tilings in the history of art The math behind Aperiodic tilings Tiling spaces The cohomology of tiling spaces Cohomology as dual to homology Definition Origins from calculus In more advanced calculus, integration is generally defined over what’s called a “differential form”. For our intentions, these can just be considered as expressions of the form $f(x)dx$, $f(x,y)dxdy,$ $A(x,y)dx &#43; B(x,y)dy$ etc.: i.e., functions and the corresponding “infinitesimal amounts” that can be integrated. For example, $\int_{[a,b]}f(x)dx=\int_a^b f(x)dx$ is the usual, one-dimensional integral in the interval $[a,b]$ from basic calculus (measuring the area below the curve $f$); $\int_A f(x,y)dxdy$ represents the double integral of $f(x,y)$ in the region $A$ inside the plane (measuing the volume below the graph of $f$); $\int_C A(x,y)dx&#43;B(x,y)dy$ is the line integral of the vector field $A(x,y)dx &#43; B(x,y)dy$ along the curve $C$ (measuring the “flow” of the field through $C$). Such an expression is a $k$-form if it contains only sums of expressions $f(x_1,...,x_k)dx_1...dx_k,$ and they form the set of $k$-forms $\omega^k(\ro^n).$ $0$- forms are just functions over $\ro^n,$ and $1$-forms $f_1dx_1&#43;...&#43;f_ndx_n$ are closely associated to vector fields $F$ on $\ro^n$ by letting each $f_i$ be the $i$-th component of $F.$">
+TL;DR Cohomology as dual to homology Definition Origins from calculus The cohomology ring Computing some cohomology groups and rings Torus Projective plane and spaces Limits and colimits Getting a delta structure for any space Cech cohomology Impossible figures In art Cohomology of impossible figures Tilings, holes and computation Tilings Aperiodic tilings Tiling spaces The cohomology of tiling spaces Wang tiles Cohomology as dual to homology Definition Origins from calculus In more advanced calculus, integration is generally defined over what’s called a “differential form”. For our intentions, these can just be considered as expressions of the form $f(x)dx$, $f(x,y)dxdy,$ $A(x,y)dx &#43; B(x,y)dy$ etc.: i.e., functions and the corresponding “infinitesimal amounts” that can be integrated. For example, $\int_{[a,b]}f(x)dx=\int_a^b f(x)dx$ is the usual, one-dimensional integral in the interval $[a,b]$ from basic calculus (measuring the area below the curve $f$); $\int_A f(x,y)dxdy$ represents the double integral of $f(x,y)$ in the region $A$ inside the plane (measuing the volume below the graph of $f$); $\int_C A(x,y)dx&#43;B(x,y)dy$ is the line integral of the vector field $A(x,y)dx &#43; B(x,y)dy$ along the curve $C$ (measuring the “flow” of the field through $C$). Such an expression is a $k$-form if it contains only sums of expressions $f(x_1,...,x_k)dx_1...dx_k,$ and they form the set of $k$-forms $\omega^k(\ro^n).$ $0$- forms are just functions over $\ro^n,$ and $1$-forms $f_1dx_1&#43;...&#43;f_ndx_n$ are closely associated to vector fields $F$ on $\ro^n$ by letting each $f_i$ be the $i$-th component of $F.$">
 
 
 
 
   <meta itemprop="name" content="Impossible figures and aperiodic tilings: introducing cohomology for artists">
   <meta itemprop="description" content="TL;DR Bla
-TL;DR Cohomology as dual to homology Definition Origins from calculus The cohomology ring Computing some cohomology groups and rings Torus Projective plane and spaces Limits and colimits Getting a delta structure for any space Cech cohomology Impossible figures In art Cohomology of impossible figures State spaces Cellular automata Tilings Tilings in the history of art The math behind Aperiodic tilings Tiling spaces The cohomology of tiling spaces Cohomology as dual to homology Definition Origins from calculus In more advanced calculus, integration is generally defined over what’s called a “differential form”. For our intentions, these can just be considered as expressions of the form $f(x)dx$, $f(x,y)dxdy,$ $A(x,y)dx &#43; B(x,y)dy$ etc.: i.e., functions and the corresponding “infinitesimal amounts” that can be integrated. For example, $\int_{[a,b]}f(x)dx=\int_a^b f(x)dx$ is the usual, one-dimensional integral in the interval $[a,b]$ from basic calculus (measuring the area below the curve $f$); $\int_A f(x,y)dxdy$ represents the double integral of $f(x,y)$ in the region $A$ inside the plane (measuing the volume below the graph of $f$); $\int_C A(x,y)dx&#43;B(x,y)dy$ is the line integral of the vector field $A(x,y)dx &#43; B(x,y)dy$ along the curve $C$ (measuring the “flow” of the field through $C$). Such an expression is a $k$-form if it contains only sums of expressions $f(x_1,...,x_k)dx_1...dx_k,$ and they form the set of $k$-forms $\omega^k(\ro^n).$ $0$- forms are just functions over $\ro^n,$ and $1$-forms $f_1dx_1&#43;...&#43;f_ndx_n$ are closely associated to vector fields $F$ on $\ro^n$ by letting each $f_i$ be the $i$-th component of $F.$">
+TL;DR Cohomology as dual to homology Definition Origins from calculus The cohomology ring Computing some cohomology groups and rings Torus Projective plane and spaces Limits and colimits Getting a delta structure for any space Cech cohomology Impossible figures In art Cohomology of impossible figures Tilings, holes and computation Tilings Aperiodic tilings Tiling spaces The cohomology of tiling spaces Wang tiles Cohomology as dual to homology Definition Origins from calculus In more advanced calculus, integration is generally defined over what’s called a “differential form”. For our intentions, these can just be considered as expressions of the form $f(x)dx$, $f(x,y)dxdy,$ $A(x,y)dx &#43; B(x,y)dy$ etc.: i.e., functions and the corresponding “infinitesimal amounts” that can be integrated. For example, $\int_{[a,b]}f(x)dx=\int_a^b f(x)dx$ is the usual, one-dimensional integral in the interval $[a,b]$ from basic calculus (measuring the area below the curve $f$); $\int_A f(x,y)dxdy$ represents the double integral of $f(x,y)$ in the region $A$ inside the plane (measuing the volume below the graph of $f$); $\int_C A(x,y)dx&#43;B(x,y)dy$ is the line integral of the vector field $A(x,y)dx &#43; B(x,y)dy$ along the curve $C$ (measuring the “flow” of the field through $C$). Such an expression is a $k$-form if it contains only sums of expressions $f(x_1,...,x_k)dx_1...dx_k,$ and they form the set of $k$-forms $\omega^k(\ro^n).$ $0$- forms are just functions over $\ro^n,$ and $1$-forms $f_1dx_1&#43;...&#43;f_ndx_n$ are closely associated to vector fields $F$ on $\ro^n$ by letting each $f_i$ be the $i$-th component of $F.$">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="1136">
+  <meta itemprop="wordCount" content="1127">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -344,18 +339,13 @@ TL;DR Cohomology as dual to homology Definition Origins from calculus The cohomo
         <li><a href="#cohomology-of-impossible-figures">Cohomology of impossible figures</a></li>
       </ol>
     </li>
-    <li><a href="#state-spaces">State spaces</a>
+    <li><a href="#tilings-holes-and-computation">Tilings, holes and computation</a>
       <ol>
-        <li><a href="#cellular-automata">Cellular automata</a></li>
-        <li><a href="#tilings">Tilings</a>
-          <ol>
-            <li><a href="#tilings-in-the-history-of-art">Tilings in the history of art</a></li>
-            <li><a href="#the-math-behind">The math behind</a></li>
-            <li><a href="#aperiodic-tilings">Aperiodic tilings</a></li>
-            <li><a href="#tiling-spaces">Tiling spaces</a></li>
-            <li><a href="#the-cohomology-of-tiling-spaces">The cohomology of tiling spaces</a></li>
-          </ol>
-        </li>
+        <li><a href="#tilings">Tilings</a></li>
+        <li><a href="#aperiodic-tilings">Aperiodic tilings</a></li>
+        <li><a href="#tiling-spaces">Tiling spaces</a></li>
+        <li><a href="#the-cohomology-of-tiling-spaces">The cohomology of tiling spaces</a></li>
+        <li><a href="#wang-tiles">Wang tiles</a></li>
       </ol>
     </li>
   </ol>
@@ -366,7 +356,7 @@ TL;DR Cohomology as dual to homology Definition Origins from calculus The cohomo
 <h2 id="definition">Definition</h2>
 <h2 id="origins-from-calculus">Origins from calculus</h2>
 <p>In more advanced calculus, integration is generally defined over what&rsquo;s called a &ldquo;<strong>differential form</strong>&rdquo;. For our intentions, these can just be considered as expressions of the form $f(x)dx$, $f(x,y)dxdy,$ $A(x,y)dx + B(x,y)dy$ etc.: i.e., functions and the corresponding &ldquo;infinitesimal amounts&rdquo; that can be integrated. For example, $\int_{[a,b]}f(x)dx=\int_a^b f(x)dx$ is the usual, one-dimensional integral in the interval $[a,b]$ from basic calculus (measuring the area below the curve $f$); $\int_A f(x,y)dxdy$ represents the double integral of $f(x,y)$ in the region $A$ inside the plane (measuing the volume below the graph of $f$); $\int_C A(x,y)dx+B(x,y)dy$ is the line integral of the vector field $A(x,y)dx + B(x,y)dy$ along the curve $C$ (measuring the &ldquo;flow&rdquo; of the field through $C$). Such an expression is a $k$-form if it contains <strong>only</strong> sums of expressions $f(x_1,...,x_k)dx_1...dx_k,$  and they form the set of $k$-forms $\omega^k(\ro^n).$ $0$- forms are just functions over $\ro^n,$ and $1$-forms $f_1dx_1+...+f_ndx_n$ are closely associated to vector fields $F$ on $\ro^n$ by letting each $f_i$ be the $i$-th component of $F.$</p>
-<p>These infinitesimals satisfy the rule $dxdy=-dydx$ and, generally, odd permutations of them change the sign, and even ones don&rsquo;t&ndash; similarly to the representation of oriented simplices, which, as we&rsquo;ll see, isn&rsquo;t a coindicence. This rule has to do with how you actually use forms to define integrals, and has to do with determinants (we&rsquo;ll also see soon how it derives important theorems from calculus). In particular, $dxdx=-dxdx$ so that $dxdx=0.$</p>
+<p>These infinitesimals satisfy the rule $dxdy=-dydx$ (this is because of determinants) and, generally, odd permutations of them change the sign, and even ones don&rsquo;t&ndash; similarly to the representation of oriented simplices, which, as we&rsquo;ll see, isn&rsquo;t a coindicence. This rule has to do with how you actually use forms to define integrals, and has to do with determinants (we&rsquo;ll also see soon how it derives important theorems from calculus). In particular, $dxdx=-dxdx$ so that $dxdx=0.$</p>
 <p>Thus, if you have such a differential form (an expression as above) $\omega$ and a subspace $S\subset \ro^n$ of the appropriate dimension, then the integration $\int_S \omega$ is a real number. Suggestively, we can write this integral as $\omega[S],$ and interpret $\omega$ as a function taking subspaces $S$ and giving real numbers. If $S$ is the image of a chain $\sigma: \Delta^k\rightarrow \ro^n,$ we might define $\omega[\sigma]=\omega[S],$ so that $\omega$ becomes an element of the cochains $\text{Hom}(C_k(\ro^n), \ro)= C^k(\ro^n).$</p>
 <p>In general, if we have a manifold $M,$ then we can integrate using local coordinates, getting integrals $\int_N\omega,$ for $N\subseteq M$ a submanifold of dimension $k$ and $\omega\in \omega^k(M)$ a $k$-form over $M$ (which we may interpret as just a usual expression as above with the used coordinates). Due to the rule of change of variables, these integrals are only really well-defined for orientable manifolds.</p>
 <p>As above, then, $k$-forms can be integrated over submanifolds $N,$ and they can be similarly seen as elements of $\text{Hom}(C_k(M), \ro)= C^k(M).$</p>
@@ -399,14 +389,12 @@ $$\phi\smile\psi([v_0,...,v_{n+m}])=\phi([v_0,...,v_n])\cdot \psi([v_n,...,v_{n+
 <h1 id="impossible-figures">Impossible figures</h1>
 <h2 id="in-art">In art</h2>
 <h2 id="cohomology-of-impossible-figures">Cohomology of impossible figures</h2>
-<h1 id="state-spaces">State spaces</h1>
-<h2 id="cellular-automata">Cellular automata</h2>
+<h1 id="tilings-holes-and-computation">Tilings, holes and computation</h1>
 <h2 id="tilings">Tilings</h2>
-<h3 id="tilings-in-the-history-of-art">Tilings in the history of art</h3>
-<h3 id="the-math-behind">The math behind</h3>
-<h3 id="aperiodic-tilings">Aperiodic tilings</h3>
-<h3 id="tiling-spaces">Tiling spaces</h3>
-<h3 id="the-cohomology-of-tiling-spaces">The cohomology of tiling spaces</h3>
+<h2 id="aperiodic-tilings">Aperiodic tilings</h2>
+<h2 id="tiling-spaces">Tiling spaces</h2>
+<h2 id="the-cohomology-of-tiling-spaces">The cohomology of tiling spaces</h2>
+<h2 id="wang-tiles">Wang tiles</h2>
 
 
 <p>

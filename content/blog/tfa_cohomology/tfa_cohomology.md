@@ -23,7 +23,7 @@ Bla
 
 In more advanced calculus, integration is generally defined over what's called a "**differential form**". For our intentions, these can just be considered as expressions of the form $f(x)dx$, $f(x,y)dxdy,$ $A(x,y)dx + B(x,y)dy$ etc.: i.e., functions and the corresponding "infinitesimal amounts" that can be integrated. For example, $\int_{[a,b]}f(x)dx=\int_a^b f(x)dx$ is the usual, one-dimensional integral in the interval $[a,b]$ from basic calculus (measuring the area below the curve $f$); $\int_A f(x,y)dxdy$ represents the double integral of $f(x,y)$ in the region $A$ inside the plane (measuing the volume below the graph of $f$); $\int_C A(x,y)dx+B(x,y)dy$ is the line integral of the vector field $A(x,y)dx + B(x,y)dy$ along the curve $C$ (measuring the "flow" of the field through $C$). Such an expression is a $k$-form if it contains **only** sums of expressions $f(x_1,...,x_k)dx_1...dx_k,$  and they form the set of $k$-forms $\omega^k(\ro^n).$ $0$- forms are just functions over $\ro^n,$ and $1$-forms $f_1dx_1+...+f_ndx_n$ are closely associated to vector fields $F$ on $\ro^n$ by letting each $f_i$ be the $i$-th component of $F.$
 
-These infinitesimals satisfy the rule $dxdy=-dydx$ and, generally, odd permutations of them change the sign, and even ones don't-- similarly to the representation of oriented simplices, which, as we'll see, isn't a coindicence. This rule has to do with how you actually use forms to define integrals, and has to do with determinants (we'll also see soon how it derives important theorems from calculus). In particular, $dxdx=-dxdx$ so that $dxdx=0.$
+These infinitesimals satisfy the rule $dxdy=-dydx$ (this is because of determinants) and, generally, odd permutations of them change the sign, and even ones don't-- similarly to the representation of oriented simplices, which, as we'll see, isn't a coindicence. This rule has to do with how you actually use forms to define integrals, and has to do with determinants (we'll also see soon how it derives important theorems from calculus). In particular, $dxdx=-dxdx$ so that $dxdx=0.$
 
 Thus, if you have such a differential form (an expression as above) $\omega$ and a subspace $S\subset \ro^n$ of the appropriate dimension, then the integration $\int_S \omega$ is a real number. Suggestively, we can write this integral as $\omega[S],$ and interpret $\omega$ as a function taking subspaces $S$ and giving real numbers. If $S$ is the image of a chain $\sigma: \Delta^k\rightarrow \ro^n,$ we might define $\omega[\sigma]=\omega[S],$ so that $\omega$ becomes an element of the cochains $\text{Hom}(C_k(\ro^n), \ro)= C^k(\ro^n).$
 
@@ -95,18 +95,14 @@ Now, this is a product of cochains, but not properly of cohomology classes. We w
 
 ## Cohomology of impossible figures
 
-# State spaces
-
-## Cellular automata
+# Tilings, holes and computation
 
 ## Tilings
 
-### Tilings in the history of art
+## Aperiodic tilings
 
-### The math behind
+## Tiling spaces
 
-### Aperiodic tilings
+## The cohomology of tiling spaces
 
-### Tiling spaces
-
-### The cohomology of tiling spaces
+## Wang tiles
