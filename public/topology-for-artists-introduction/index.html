@@ -15,8 +15,9 @@ Bla
         
   
     TL;DR
-    A preview
+    This series
     What you&rsquo;ll need
+    What is topology?
     The necessity of spaces
     Metric and topological spaces
       
@@ -25,6 +26,13 @@ Bla
         Metric sets
         Topological spaces
         Some common topologies
+          
+            Basic examples
+            Subspaces, spheres, donuts and manifolds
+            Topologies on cartesian products
+            Gluing spaces: quotient topologies
+          
+        
         Continuity, homeomorphisms
         Homotopy
         Connectivity
@@ -51,10 +59,7 @@ Bla
 
     
 
-TGT AUDIENCE
-A preview
-ORDER
-this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;" />
+TGT AUDIENCE" />
 <meta name="keywords" content="Topology for Artists," />
 
 
@@ -62,8 +67,7 @@ this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;" />
   <meta property="og:site_name" content="Topophilic">
   <meta property="og:title" content="Topology for Artists: introduction">
   <meta property="og:description" content="TL;DR Bla
-TL;DR A preview What you’ll need The necessity of spaces Metric and topological spaces Abstract distances Metric spaces Metric sets Topological spaces Some common topologies Continuity, homeomorphisms Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE
-A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;">
+TL;DR This series What you’ll need What is topology? The necessity of spaces Metric and topological spaces Abstract distances Metric spaces Metric sets Topological spaces Some common topologies Basic examples Subspaces, spheres, donuts and manifolds Topologies on cartesian products Gluing spaces: quotient topologies Continuity, homeomorphisms Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -79,19 +83,17 @@ A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;">
   <meta name="twitter:image" content="http://localhost:1313/images/share.png">
   <meta name="twitter:title" content="Topology for Artists: introduction">
   <meta name="twitter:description" content="TL;DR Bla
-TL;DR A preview What you’ll need The necessity of spaces Metric and topological spaces Abstract distances Metric spaces Metric sets Topological spaces Some common topologies Continuity, homeomorphisms Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE
-A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;">
+TL;DR This series What you’ll need What is topology? The necessity of spaces Metric and topological spaces Abstract distances Metric spaces Metric sets Topological spaces Some common topologies Basic examples Subspaces, spheres, donuts and manifolds Topologies on cartesian products Gluing spaces: quotient topologies Continuity, homeomorphisms Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
 
 
 
 
   <meta itemprop="name" content="Topology for Artists: introduction">
   <meta itemprop="description" content="TL;DR Bla
-TL;DR A preview What you’ll need The necessity of spaces Metric and topological spaces Abstract distances Metric spaces Metric sets Topological spaces Some common topologies Continuity, homeomorphisms Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE
-A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;">
+TL;DR This series What you’ll need What is topology? The necessity of spaces Metric and topological spaces Abstract distances Metric spaces Metric sets Topological spaces Some common topologies Basic examples Subspaces, spheres, donuts and manifolds Topologies on cartesian products Gluing spaces: quotient topologies Continuity, homeomorphisms Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="4216">
+  <meta itemprop="wordCount" content="5226">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -315,8 +317,9 @@ A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;">
         <nav id="TableOfContents">
   <ol>
     <li><a href="#tldr">TL;DR</a></li>
-    <li><a href="#a-preview">A preview</a></li>
+    <li><a href="#this-series">This series</a></li>
     <li><a href="#what-youll-need">What you&rsquo;ll need</a></li>
+    <li><a href="#what-is-topology">What is topology?</a></li>
     <li><a href="#the-necessity-of-spaces">The necessity of spaces</a></li>
     <li><a href="#metric-and-topological-spaces">Metric and topological spaces</a>
       <ol>
@@ -324,7 +327,14 @@ A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;">
         <li><a href="#metric-spaces">Metric spaces</a></li>
         <li><a href="#metric-sets">Metric sets</a></li>
         <li><a href="#topological-spaces">Topological spaces</a></li>
-        <li><a href="#some-common-topologies">Some common topologies</a></li>
+        <li><a href="#some-common-topologies">Some common topologies</a>
+          <ol>
+            <li><a href="#basic-examples">Basic examples</a></li>
+            <li><a href="#subspaces-spheres-donuts-and-manifolds">Subspaces, spheres, donuts and manifolds</a></li>
+            <li><a href="#topologies-on-cartesian-products">Topologies on cartesian products</a></li>
+            <li><a href="#gluing-spaces-quotient-topologies">Gluing spaces: quotient topologies</a></li>
+          </ol>
+        </li>
         <li><a href="#continuity-homeomorphisms">Continuity, homeomorphisms</a></li>
         <li><a href="#homotopy">Homotopy</a></li>
         <li><a href="#connectivity">Connectivity</a></li>
@@ -352,13 +362,15 @@ A preview ORDER this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;">
     </aside>
 
 <p>TGT AUDIENCE</p>
-<h1 id="a-preview">A preview</h1>
+<h1 id="this-series">This series</h1>
 <p>ORDER
 this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;</p>
 <h1 id="what-youll-need">What you&rsquo;ll need</h1>
 <p>Short answer: <strong>basic set theory</strong> (cartesian product, injective, surjective and bijective functions) and <strong>introductory linear algebra</strong> (you can find a quick reminder on the post concerning algebra).</p>
 <p>I tried to write these posts as accessible as possible, but without losing much of the mathematical rigour. That is, mathematics is a human endeavour of unlimited aesthetic capacity, but this comes with a cost&ndash; namely, rigour and precision. It is beautiful because so much formality can&rsquo;t be in vain. Without this limitation, there can ultimately be no beauty; the first is simultaneously the latter&rsquo;s restriction and its progenitor. Or, rather, rigour and aesthetical creativity are <em>consubstantial</em> in mathematics. The other member of this trinity is the insatiable human desire to further mathematicize the world and recognize itself in this construction&ndash; to spread the Word and be in a Body, so to speak. But let&rsquo;s leave the formal-hegelian-christian analogies for another place for now.</p>
 <p>Fact is, leaving out the more difficult and rigorous parts <strong>is</strong> necessary when writing to a larger audience, but I tried to keep some balance&ndash; particularly without insulting the intelligence and interest of the reader. You can always skip the more technical sections, and I hope they can spark out your curiosity and be more accessible when you come back to them.</p>
+<h1 id="what-is-topology">What is topology?</h1>
+<p>TOP VS GEO</p>
 <h1 id="the-necessity-of-spaces">The necessity of spaces</h1>
 <p>Riemann, Poincaré, Einstein &amp; Hilbert</p>
 <p>Sols restritas a subespaços</p>
@@ -366,10 +378,11 @@ this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;</p>
 <p>State spaces</p>
 <h1 id="metric-and-topological-spaces">Metric and topological spaces</h1>
 <h2 id="abstract-distances">Abstract distances</h2>
-<p>The most natural notion of an abstract space is that of a set together with some kind of &ldquo;distance&rdquo; between its points. For example, in $\ro^n$ we can always define the <strong>Euclidean distance</strong> $d(x,y)=\sqrt{(x_1-y_1)^2+...+(x_n-y_n)^2}$ between points $x=(x_1,...,x_n)$ and $y=(y_1,...,y_n)$&ndash; you can read more on it in the first section of the post concerning algebra, dedicated to linear algebra. This is the normal, flat distance we use in the real-world, but it isn&rsquo;t the only mathematical option available. Another option we implicitly use day-tod-day is the <strong>Manhattan distance</strong>, in which we consider only the difference between coordinate components and sum them up: $d(x,y)=|x_1-y_1|+...+ |x_n-y_n|.$ The name is illustrative: if you&rsquo;re walking in a rectangular grid of streets (like in Manhattan), the physical distance between you and your destination is irrelevant, since you can&rsquo;t walk through the buildings; the real distance you&rsquo;re going to travel only takes in account the straight line distances in the grid, and for that you use the Manhattan distance.</p>
+<p>The most natural notion of an abstract space is that of a set together with some kind of &ldquo;distance&rdquo; between its points. These are called metric spaces and will properly be defined after some examples.</p>
+<p>For example, in $\ro^n$ we can always define the <strong>Euclidean distance</strong> $d(x,y)=\sqrt{(x_1-y_1)^2+...+(x_n-y_n)^2}$ between points $x=(x_1,...,x_n)$ and $y=(y_1,...,y_n)$&ndash; you can read more on it in the first section of the post concerning algebra, dedicated to linear algebra. This is the normal, flat distance we use in the real-world, but it isn&rsquo;t the only mathematical option available. Another one we implicitly use in our day-to-day is the <strong>Manhattan distance</strong>, in which we consider only the difference between coordinate components and sum them up: $d(x,y)=|x_1-y_1|+...+ |x_n-y_n|.$ The name is illustrative: if you&rsquo;re walking in a rectangular grid of streets (like in Manhattan), the physical distance between you and your destination is irrelevant, since you can&rsquo;t walk through the buildings; the real distance you&rsquo;re going to travel only takes into account the straight line distances in the grid, and for that you use the Manhattan distance.</p>
 <p>IMG!!! Manhattan</p>
 <p>The Manhattan distance is widely used in any application where you work with a rectangular grid, for example when programming board games.</p>
-<p>The Manhattan distance shares a similarity with the Euclidean one: both involve sums over differences of coordinates. This motivates us to define the so-called $\mathcal{l}^p$ distances in $\ro^n,$ defined as</p>
+<p>The Manhattan distance shares a similarity with the Euclidean one: both involve sums over differences of coordinates. This motivates us to define the so-called $\mathcal{l}^p$ <strong>distances</strong> in $\ro^n,$ defined as</p>
 $$d(x,y)=\left(|x_1-y_1|^p+...+|x_n-y_n|^p\right)^{1/p}.$$<p>As you can see, setting $p=1$ gives us the Manhattan distance, and $p=2$ the Euclidean one. The cases $p>2$ are mathematically interesting, but we won&rsquo;t really consider them in this series.</p>
 <p>Graphs
 Another context where applying a notion of distance to a set is quite natural comes when dealing with <strong>graphs</strong>. A graph is a pair $G=(V,E)$ of a generic set $V$&ndash; called the set of vertices, even though the elements of $V$ don&rsquo;t need to be points in space but anything you want&ndash; and $E$ is a set of pairs $(v_1,v_2)$ of elements of $V.$ We usually think of the $v$ inside of $V$ as points in space and the $e=(v_1,v_2)$ in $E$ as straight edges connecting points $v_1$ and $v_2$. These edges may or may not be directed: we&rsquo;ll think of them as undirected here.</p>
@@ -379,7 +392,7 @@ Another context where applying a notion of distance to a set is quite natural co
 $$d(x,y)=\text{amount of positions } i \text{ where }x_i\neq y_i.$$<p>We&rsquo;ll later on extend the Hamming distance to infinite strings and apply it to the set of possible configurations of cells in a cellular automata grid, paving the way for a fascinating application of topology.</p>
 <p>Finally, we can also define <strong>distances between functions</strong>. Specifically, call $C([0,1])$ the set of all continuous functions between $[0,1]$ and $\ro.$ We&rsquo;ll explain later exactly what a continuous function is: for the momment, just take these as all the graphs that can be drawn without taking up your pencil from the paper, forming a continuous line. Then we can define the are between functions $f$ and $g$ as their distance&ndash; using calculus,</p>
 $$d(f,g)=\int_0^1 |f(x)-g(x)|dx$$<p>IMG!!! L1</p>
-<p>You can see this is somewhat similar to the $\mathcal{l}^1$ (Manhattan) distance defined above; because of this, it is also called the $L^1$ distance between functions $f$ and $g$. Similarly, one might define the general $L^p$ distance of functions as</p>
+<p>You can see this is somewhat similar to the $\mathcal{l}^1$ (Manhattan) distance defined above; because of this, it is also called the $L^1$ distance between functions $f$ and $g$. Similarly, one might define the general $L^p$ <strong>distance</strong> of functions as</p>
 $$d(f,g)=\left(\int_0^1 |f(x)-g(x)|^p dx\right)^{1/p}$$<h2 id="metric-spaces">Metric spaces</h2>
 <p>After all these examples of &ldquo;distances&rdquo; on sets, it&rsquo;s natural to look for similarities between these examples to get a general definition. It isn&rsquo;t too far-fetched to propose one like this:</p>
 <p><strong>Definition</strong>: a <strong>metric space</strong> is a set $X$ with a function $d:X\times X\rightarrow \ro$ that takes two elements $x,y$ of $X$ and returns a real number $d(x,y)$ representing their distance. This $d$ must the following properties to be a sensible representation of distance:</p>
@@ -401,7 +414,7 @@ $$d(f,g)=\left(\int_0^1 |f(x)-g(x)|^p dx\right)^{1/p}$$<h2 id="metric-spaces">Me
 <p>IMG!!! TRIANGULAR INEQ</p>
 <p>The function $d$ above is commonly called a <strong>metric</strong> on $X.$ You can check all the examples we gave in the previous sections are indeed valid metrics.</p>
 <h2 id="metric-sets">Metric sets</h2>
-<p>So far, we&rsquo;ve been strictly in the world of geometry: we do care about distance so far. <strong>This section is the heart of the transition from metric to topological spaces.</strong></p>
+<p>So far, we&rsquo;ve been strictly in the world of geometry, as we still pretty much care about distances. <strong>This section is the heart of the transition from metric to topological spaces.</strong></p>
 <p>One interesting way to study metric spaces is by sets naturally defined using the metric. For example, if we have a point $x\in X,$ we can always consider the set of points within a certain radius $r$ of $x$&ndash; mathematically, the set</p>
 $$B(x,r)=\{y\in X\mid d(x,y)< r\},$$<p>called the <strong>open ball</strong> of radius $r$ centered on $x$ (even though it might not look like a ball or a disk at all). Notice that points $y$ at distance exactly $r$ are not inside this; to add them, we consider the <strong>closed ball</strong></p>
 $$\bar{B}(x,r)=\{y\in X\mid d(x,y)\leq r\}.$$<p>It&rsquo;s also natural to consider those points only at distance $r$ from $x$ (like a circle), getting the <strong>boundary of the ball</strong>, denoted $\partial B(x,r),$ which is simply $\bar{B}(x,r)\setminus B(x,r)$&ndash; or, equivalently,</p>
@@ -411,9 +424,10 @@ $$\partial B(x,r)=\{y\in X\mid d(x,y)=r\}.$$<p>Note that a closed ball is exactl
 <p>Open balls have some interesting set-theoretic properties. First, note that $X$ is <strong>covered</strong> by them: i.e., for all $x\in X,$ there is an open ball containing it ($B(x,1)$, for example). They also have the property that their interesctions are &ldquo;fat&rdquo; and contain balls themselves: i.e., if $z\in X$ is in the intersection of balls $B(x,r_1)$ and $B(y,r_2),$ then there&rsquo;s some radius $r$ such that the ball $B(z,r)$ is inside the intersection:</p>
 $$B(z,r)\subseteq B(x,r_1)\cap B(y,r_2).$$<p>For that, just take any $r$ smaller than $d(x,y)-\max\{d(x,z), d(y,z)\}$ (this is posivite by the triangular inequality), as in the image below.</p>
 <p>IMG!!! FAT BALLS</p>
-<p>This &ldquo;fat&rdquo; property is very important: it tells you that no point in the intersection is a boundary point, since they always have a ball around them inside the intersection. This &ldquo;fatness&rdquo; property is more formally called <strong>openness</strong>, and we say a subset $S\subseteq X$ is open if for all $x\in S,$ there&rsquo;s some $r$ such that $B(x,r)\subseteq X.$ Visually, these are fat set with no boundary/frontier points.</p>
+<p>This &ldquo;fat&rdquo; property is very important: it tells you that no point in the intersection is a boundary point, since they always have a ball around them inside the intersection. This &ldquo;fatness&rdquo;  is more formally called <strong>openness</strong>, and we say a subset $S\subseteq X$ is open if for all $x\in S,$ there&rsquo;s some $r$ such that $B(x,r)\subseteq X.$ Visually, these are fat set with no boundary/frontier points.</p>
 <p>Set-theoretically, open sets are somewhat well-behaved in respect to unions and intersections. Indeed, any union (including infinite ones) of open sets will still be open, since the open balls containing elements will still be inside the union. With respect to intersection, finite intersections of open sets are open as well: for if $U$ and $V$ are open and $x\in U\cap V,$ then, by the definition of openess, there are $r_1,r_2$ such that $B(x,r_1)\subseteq U$ and $B(x,r_2)\subseteq V,$ so that $B(x,\min \{r_1,r_2\})\subseteq U\cap V$ and the intersection is open. This is valid only for finite intersections: for example, if you do the infinite intersection $\bigcap_{n=1}^\infty B(x,1/n)$ of smaller and smaller open balls around $x$ is exactly the set $\{x\}$ containing only the point $x$ itself, which certainly isn&rsquo;t open.</p>
 <p>IMG!!!</p>
+<p>EXS: FUNCS</p>
 <h2 id="topological-spaces">Topological spaces</h2>
 <p>The idea of topological spaces comes from trying to focus on the set-theoretic aspect of metric spaces: i.e., what if, instead of taking metrics as the primary concept defining our abstract spaces, we take open sets to be our focus? These would then give us <strong>a notion of proximity based only on sets</strong>, skipping the necessity of a distance function. There are many equivalent definitions, but here&rsquo;s one based on open sets:</p>
 <p><strong>Definition</strong>: a <strong>topological space</strong> is a set $X$ with a set $\tau$ of subsets of $X$ (called <strong>open sets</strong>) such that</p>
@@ -429,7 +443,7 @@ $$B(z,r)\subseteq B(x,r_1)\cap B(y,r_2).$$<p>For that, just take any $r$ smaller
 </li>
 </ul>
 <p>We&rsquo;ll often omit $\tau$ and, when the topology is understood from context, call just $X$ a topological space.</p>
-<p>How does this fit with the previous section? Well, if $(X,d)$ is a metric space, then we can <strong>topologize</strong> $X$ by taking as topology $\tau$ all the open sets of $(X,d).$</p>
+<p>How does this fit with the previous section? Well, if $(X,d)$ is a metric space, then we can <strong>topologize</strong> $X$ by taking as topology $\tau$ all the open sets of $(X,d),$ as previously defined.</p>
 <p>We can&rsquo;t, however, do the opposite: i.e., we can&rsquo;t define a metric $d$ from a general topological space $(X,\tau)$ such that $\tau$ is obtained as the open sets of $d.$ Those spaces that allow this are called <strong>metrizable</strong>, and the obtained topology $\tau$ is called a <strong>metric topology</strong>. These spaces include basically all the ones we&rsquo;ll study in this series.</p>
 <p>In the context of metric spaces, we started with a metric and then got to defining open sets as those subsets $U$ that, for all points $x\in U,$ there was an open ball $B(x,r)\subseteq U$ containing $x$ and inside $U.$ This is generalized by the following theorem:</p>
 <p><strong>Proposition</strong>: if $(X,\tau)$ is a topological space and $U\subseteq X$ is a subset such that, for all $x\in U,$ there&rsquo;s an open set $V(x)\subseteq U$ containing $x$ and inside $U,$ then $U$ is open.</p>
@@ -446,7 +460,14 @@ $$B(z,r)\subseteq B(x,r_1)\cap B(y,r_2).$$<p>For that, just take any $r$ smaller
 <p>For all sets $B_1,B_2\in \mathcal{B}$ and all $x\in B_1\cap B_2,$ there&rsquo;s a $B_3\in \mathcal{B}$ such that $x\in B_3$ and $B_3\subseteq B_1\cap B_2$ (just remember how we showed this for open ball previously).</p>
 </li>
 </ul>
+<p><strong>What&rsquo;s really the point for studying topological instead of metric spaces?</strong> First of all, because different metric spaces may have the same topology, and thus fundamentally . This is the case for all $\ro^n$ with any $\mathcal{l}^p$ distance: sure, their balls might be different, but they&rsquo;re open in any other of these metrics as well. This is fundamentally becaus of the following theorem, which states that, when two metrics are not that different from one another, then they have the same topology:</p>
+<p><strong>Theorem</strong>: If $d_1$ and $d_2$ are two metrics on the same set $X$ and there are constants $K_1, K_2$ such that, for any $x,y\in X,$ we have</p>
+$$K_1 d_2(x,y) \leq d_1(x,y) \leq K_2 d_2(x,y)$$<p>(in which case the metrics are said to be <strong>equivalent</strong>), then the metric spaces $(X,d_1)$ and $(X,d_2)$ produce the same topology (i.e., every open set in one is open in the other).</p>
+<p>This is the case for all the $\mathcal{l^p}$ metrics in any $\ro^n.$ Proving this and the theorem is quite an educative exercise on the relation between metric and topological spaces.</p>
+<p>Interestingly, the same can&rsquo;t be said for sets of functions with the $L^p$ metrics: indeed, different $p$ give us completely different topologies. This was actually one of the main sources for defining abstract topological spaces in the earlier 20th century, as many theorems were valid for some $L^p$ distances, and some not for others. This led to the consolidation of <strong>functional analysis</strong>, which is linear algebra applied to the different (infinite dimensional) vector spaces of functions.</p>
+<p>Another reason for considering topologies instead of metrics is because the latter are superfuous in many constructions and arguments. Continuity is one example in which, as we&rsquo;ll soon find out, a definition using distances is quite tedious, while one using sets brings a lot of clarity. Similarly, intuitive ideas like <strong>gluing</strong> and <strong>cutting</strong> don&rsquo;t really involve distances, and thus need no description of a metric.</p>
 <h2 id="some-common-topologies">Some common topologies</h2>
+<h3 id="basic-examples">Basic examples</h3>
 <p>That should be it for definitions and constructions so far. Let&rsquo;s get into some examples.</p>
 <p>First, every set $X$ can be given a topology: just take as basis $\mathcal{B}$ all the one-point subsets $\{x\}$ for $x\in X.$ The resulting topology is the set of all subsets of $X$, and is called the <strong>discrete topology</strong>. It is metrizable by the metric</p>
 $$d(x,y)=
@@ -455,16 +476,56 @@ $$d(x,y)=
 0, & \text{else}
 \end{cases}
 $$<p>called the discrete metric (note that the ball $B(x,r)$ is just $\{x\}$ for any $r<1$, giving the discrete basis).</p>
+<p>Here&rsquo;s a good exercise: prove that, if $(X,\tau)$ is a topological space such that all infinite subsets of $X$ are open, then $\tau$ is the discrete topology.</p>
 <p>OTHER TOPOLOGIES FOR SMALL SETS</p>
+<p>It&rsquo;s also educative to consider some</p>
+<h3 id="subspaces-spheres-donuts-and-manifolds">Subspaces, spheres, donuts and manifolds</h3>
 <p>That&rsquo;s all educative and even intersting per se, but where are our cool figures of mind-blowing shapes, our familiar friends the sphere and the torus&ndash; <strong>where are our donuts?!</strong> Indeed, most introductory courses on topology don&rsquo;t really get to these and focus on the more set-theoretical aspects of topology&ndash; the so-called <strong>point-set topology</strong>. This can be frustrating for many beginners, so let me turn to more familiar shapes and spaces.</p>
-<p>MÉTRICA, ORDEM</p>
-<p>RN MÉTRICO (equiv metrics, n em caso infinito)</p>
-<p>SUBSPACE:</p>
-<p>RN, S1, SN, DN, T2, TN, CILINDRO</p>
+<p>We studied how to metricize and topology $\ro^n$ above, and how all $\mathcal{l^p}$ topologies are the same as the one coming from the usual Euclidean distance. Of course there are other possible topologies on $\ro$ (<a href="https://en.wikipedia.org/wiki/K-topology">the K-topology</a> is a common counter-example found in point-set topology textbooks), but the Euclidean one is the only one we&rsquo;ll actually study here.</p>
+<p>Sure, we know how to topologize $\ro^n,$ but what about surfaces and other shapes living in it&ndash; like circles and spheres? The simplest way is to use the <strong>subspace topology</strong>. Generally, if you have a topological space $(X,\tau)$ and some subset $Y$ of $X,$ you can define the subspace topology $\tau'$ on $Y$ (induced by $(X,d)$) as</p>
+$$\tau'=\{U\cap Y \text{, where } U \text{ is open in } (X,\tau)\}.$$<p>You can check that this is a topology for any $(X,\tau)$ and $Y\subset X.$</p>
+<p>In the case of subsets $\ro^n,$ that&rsquo;s the topology we&rsquo;ll basically always think of. We&rsquo;ll now consider some other shapes that can be seen as living inside these spaces: but, before, a note on the notion of <strong>dimensionality</strong>.</p>
+<p>Dimension refers to the possible move directions on a space. When mathematicians speak of the dimension of a shape, they think of it as if we lived in the shape. Imagine yourself as an ant on to the surface of a ball&ndash; a sphere. You have only two movement directions: forwards/backwards and left/right. Thus we say this shape is two-dimensional. Similarly, if you were restricted to a circle, you could only go forwards or backwards. So a circle is one-dimensional. And we all live in a three-dimensional spacial world.</p>
+<p>IMGS!!!</p>
+<p>Some people, however, think it&rsquo;d be more intuitive to say a sphere is three-dimensional. Now let me ask: is a circle inside the three-dimensional space $\ro^3$ three-dimensional? Of course not! The dimension of a shape doesn&rsquo;t care where you <strong>embedd</strong> it! A sphere could also be embedded in the four-dimensional space $\ro^4$: is it four-dimensional then?! Think of it <strong>intrinsically</strong>, not extrinsically. I.e., dimension is defined as if you could only move in the shape, not from any other, external point of view. We&rsquo;ll give a more rigorous definition of dimension when we define manifolds in this section.</p>
+<p>Now, let&rsquo;s get to some concrete examples:</p>
+<ul>
+<li>
+<p>$\ro^n$: the reals. We know them alreday;</p>
+</li>
+<li>
+<p>Intervals:</p>
+</li>
+<li>
+<p>$S^n$: the <strong>spheres</strong>. This includes the sphere (a hollow ball) of radius one centered in the origin, but also a circle with the same description&ndash; this might be confusing first, but you&rsquo;ll get used to the terminology quickly. These are the set of points with Euclidean distance equal to 1 from the origin of $\ro^{n+1}$:</p>
+</li>
+</ul>
+$$S^n=\{x\in \ro^{n+1}\mid \|x\|^2=1 \}$$<p>When we speak of &ldquo;<strong>the</strong> circle&rdquo; in topology, we always mean $S^1$&ndash; i.e., one of radius one centered in the origin. $S^n$ is an $n$-dimensional space.</p>
+<p>IMGS</p>
+<ul>
+<li>$D^n$: these <strong>disks</strong>. There are just the $S^n$ with their hollow interior filled. Equivalently, they&rsquo;re just the closed balls of distance one from the center of $\ro^n$:</li>
+</ul>
+$$D^n=\{x\in \ro^{n+1}\mid \|x\|^2\leq 1 \}$$<p>$D^n$ is an $n$-dimensional space.</p>
+<p>Note that the $S^n$ are the frontier, the boundary of the $D^{n+1}.$ Pay attention to these $n$ and $(n+1)$!</p>
+<p>IMGS</p>
+<ul>
+<li>Cylinder: as a set, this is just $S^1\times [0,1]$&ndash; i.e., a circle elongated along one extra dimension. It is a two-dimenisonal space and we see it as a subspace of the three-dimensional space $\ro^3$;</li>
+</ul>
+<p>IMG</p>
+<ul>
+<li>
+<p>The torus $T^2$: this is the shape of a hollow donut. If you want a concrete description&hellip;</p>
+</li>
+<li>
+<p>The multidimensional torii $T^n$: based on the description $T^2=S^1\times S^1,$ we define $T^n$ as the product of $n$ circles $S^1$;</p>
+</li>
+</ul>
 <p>SN VIA DN, SN-1</p>
-<p>MANIFOLDS, NON-MANIFOLDS</p>
-<p>PRODUCT</p>
-<p>QUOTIENTS</p>
+<p>MANIFOLDS, NON-MANIFOLDS
+Why?
+Easy to think of low-dim examples, but what about manifolds of abstract, high-dimensional objects? Give exs. Then thinking of R^n is superfluus. Whitney, RP^2 soon.</p>
+<h3 id="topologies-on-cartesian-products">Topologies on cartesian products</h3>
+<h3 id="gluing-spaces-quotient-topologies">Gluing spaces: quotient topologies</h3>
 <h2 id="continuity-homeomorphisms">Continuity, homeomorphisms</h2>
 <p><strong>Definition</strong>: a continuous function between metric spaces $(X,d_X)$ and $(Y, d_Y)$ is a function $f:X\rightarrow Y$ such that, for every real number $\epsilon>0,$ there exists some $\delta>0$ such that $y\in B(x, \delta)$ implies $f(y)\in B(f(x), \epsilon).$</p>
 <p>How to translate this to topology? Well, the definition above is equivalent to having $B(x, \delta)\subseteq \inv{f}(B(f(x), \epsilon)).$ That is, every point in $\inv{f}(B(f(x), \epsilon))$ is in an open ball inside the $\inv{f}(B(f(x), \epsilon))$ itself. Thus, $\inv{f}(B(f(x), \epsilon))$ is open. So what we have is an open set $V\subseteq Y$ and continuity of $f$ is equivalent to $\inv{f}(V)$ being open. The following topological definition ensues:</p>

@@ -57,6 +57,35 @@ ALG LIN:
 
 **NA INTRO, DAR + EXEMPLOS DE CASOS PERFEITOS: EG, S1 1 CICLO 1D, TORO 1 2D, 2 1D, ETC. VERY IMPORTANT!!!**
 
+# What you'll need
+
+Before the section **"Homology theory"**, you'll need the following sections from other posts:
+
+- Introduction:
+    - Metric and topological spaces:
+        - Topological spaces;
+        - Some common topologies;
+        - Continuity, homeomorphisms;
+        - Homotopy.
+- Algebra:
+    - Basic linear algebra.
+
+From the section **"Homology theory"** on, you'll need:
+
+- Algebra:
+    - Groups, permutations and their games:
+        - Definitions and basic examples;
+        - Describing groups;
+        - Generating groups;
+        - Example: rings and modules;
+        - Group quotients.
+
+
+
+
+
+
+
 # Introduction and intuition
 This post will connect many different topics, but let us begin straight away with a question of topological character: what is a hole? How many holes does a space have?
 
@@ -716,6 +745,8 @@ We interpret this as saying that the disks are all connected, but have no holes 
 
 ## The circle and the spheres
 
+IMG!!! REP DELTA
+
 Using our delta structure for $S^1,$ we get that $\cdn{1}(S^1)=c\zo$ and $\cdn{0}(S^1)=v\zo$, with
 
 $$ \partial_1 c = c \mid  [v_1] - c \mid   [v_0] = c \mid  [v_0]-\sigma \mid  [v_0] = 0,$$
@@ -745,6 +776,8 @@ $$
 Again, this tells us the sphere $S^k$ is connected an has a single hole at dimension $k.$
 
 ## The torus
+
+IMG!!! REP DELTA
 
 The delta structure we used for the torus has $\cdn{2}(T^2)=U\zo\times L\zo,$ $\cdn{1}(T^2)=a\zo\times b\zo \times c\zo$ and $\cdn{0}(T^2)=v\zo.$
 
@@ -787,6 +820,8 @@ $$
 
 ## The Klein bottle
 
+IMG!!! REP DELTA
+
 The delta structure we used for the Klein bottle has $\cdn{2}(K)=U\zo\times L\zo,$ $\cdn{1}(K)=a\zo\times b\zo \times c\zo$ and $\cdn{0}(K)=v\zo.$
 
 * $\ker \partial_1$:
@@ -827,6 +862,8 @@ H_n(K)=
 $$
 
 ## The projective plane
+
+IMG!!! REP DELTA
 
 The delta structure we used for the projective plane has $\cdn{2}(\rpt)=U\zo\times L\zo,$ $\cdn{1}(\rpt)=a\zo\times b\zo \times c\zo$ and $\cdn{0}(\rpt)=v_0\zo\times v_1\zo.$
 

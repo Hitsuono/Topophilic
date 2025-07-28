@@ -17,7 +17,7 @@ Bla
 
 TGT AUDIENCE 
 
-# A preview
+# This series
 
 ORDER 
 this(n mt) -> homologia -> grupos/proj/games -> 
@@ -29,6 +29,10 @@ Short answer: **basic set theory** (cartesian product, injective, surjective and
 I tried to write these posts as accessible as possible, but without losing much of the mathematical rigour. That is, mathematics is a human endeavour of unlimited aesthetic capacity, but this comes with a cost-- namely, rigour and precision. It is beautiful because so much formality can't be in vain. Without this limitation, there can ultimately be no beauty; the first is simultaneously the latter's restriction and its progenitor. Or, rather, rigour and aesthetical creativity are *consubstantial* in mathematics. The other member of this trinity is the insatiable human desire to further mathematicize the world and recognize itself in this construction-- to spread the Word and be in a Body, so to speak. But let's leave the formal-hegelian-christian analogies for another place for now. 
 
 Fact is, leaving out the more difficult and rigorous parts **is** necessary when writing to a larger audience, but I tried to keep some balance-- particularly without insulting the intelligence and interest of the reader. You can always skip the more technical sections, and I hope they can spark out your curiosity and be more accessible when you come back to them.
+
+# What is topology?
+
+TOP VS GEO
 
 # The necessity of spaces
 
@@ -44,13 +48,15 @@ State spaces
 
 ## Abstract distances
 
-The most natural notion of an abstract space is that of a set together with some kind of "distance" between its points. For example, in $\ro^n$ we can always define the **Euclidean distance** $d(x,y)=\sqrt{(x_1-y_1)^2+...+(x_n-y_n)^2}$ between points $x=(x_1,...,x_n)$ and $y=(y_1,...,y_n)$-- you can read more on it in the first section of the post concerning algebra, dedicated to linear algebra. This is the normal, flat distance we use in the real-world, but it isn't the only mathematical option available. Another option we implicitly use day-tod-day is the **Manhattan distance**, in which we consider only the difference between coordinate components and sum them up: $d(x,y)=|x_1-y_1|+...+ |x_n-y_n|.$ The name is illustrative: if you're walking in a rectangular grid of streets (like in Manhattan), the physical distance between you and your destination is irrelevant, since you can't walk through the buildings; the real distance you're going to travel only takes in account the straight line distances in the grid, and for that you use the Manhattan distance.
+The most natural notion of an abstract space is that of a set together with some kind of "distance" between its points. These are called metric spaces and will properly be defined after some examples. 
+
+For example, in $\ro^n$ we can always define the **Euclidean distance** $d(x,y)=\sqrt{(x_1-y_1)^2+...+(x_n-y_n)^2}$ between points $x=(x_1,...,x_n)$ and $y=(y_1,...,y_n)$-- you can read more on it in the first section of the post concerning algebra, dedicated to linear algebra. This is the normal, flat distance we use in the real-world, but it isn't the only mathematical option available. Another one we implicitly use in our day-to-day is the **Manhattan distance**, in which we consider only the difference between coordinate components and sum them up: $d(x,y)=|x_1-y_1|+...+ |x_n-y_n|.$ The name is illustrative: if you're walking in a rectangular grid of streets (like in Manhattan), the physical distance between you and your destination is irrelevant, since you can't walk through the buildings; the real distance you're going to travel only takes into account the straight line distances in the grid, and for that you use the Manhattan distance.
 
 IMG!!! Manhattan
 
 The Manhattan distance is widely used in any application where you work with a rectangular grid, for example when programming board games.
 
-The Manhattan distance shares a similarity with the Euclidean one: both involve sums over differences of coordinates. This motivates us to define the so-called $\mathcal{l}^p$ distances in $\ro^n,$ defined as
+The Manhattan distance shares a similarity with the Euclidean one: both involve sums over differences of coordinates. This motivates us to define the so-called $\mathcal{l}^p$ **distances** in $\ro^n,$ defined as
 
 $$d(x,y)=\left(|x_1-y_1|^p+...+|x_n-y_n|^p\right)^{1/p}.$$
 
@@ -75,7 +81,7 @@ $$d(f,g)=\int_0^1 |f(x)-g(x)|dx$$
 
 IMG!!! L1
 
-You can see this is somewhat similar to the $\mathcal{l}^1$ (Manhattan) distance defined above; because of this, it is also called the $L^1$ distance between functions $f$ and $g$. Similarly, one might define the general $L^p$ distance of functions as
+You can see this is somewhat similar to the $\mathcal{l}^1$ (Manhattan) distance defined above; because of this, it is also called the $L^1$ distance between functions $f$ and $g$. Similarly, one might define the general $L^p$ **distance** of functions as
 
 $$d(f,g)=\left(\int_0^1 |f(x)-g(x)|^p dx\right)^{1/p}$$
 
@@ -102,7 +108,7 @@ The function $d$ above is commonly called a **metric** on $X.$ You can check all
 
 ## Metric sets
 
-So far, we've been strictly in the world of geometry: we do care about distance so far. **This section is the heart of the transition from metric to topological spaces.**
+So far, we've been strictly in the world of geometry, as we still pretty much care about distances. **This section is the heart of the transition from metric to topological spaces.**
 
 One interesting way to study metric spaces is by sets naturally defined using the metric. For example, if we have a point $x\in X,$ we can always consider the set of points within a certain radius $r$ of $x$-- mathematically, the set
 
@@ -130,11 +136,13 @@ For that, just take any $r$ smaller than $d(x,y)-\max\{d(x,z), d(y,z)\}$ (this i
 
 IMG!!! FAT BALLS
 
-This "fat" property is very important: it tells you that no point in the intersection is a boundary point, since they always have a ball around them inside the intersection. This "fatness" property is more formally called **openness**, and we say a subset $S\subseteq X$ is open if for all $x\in S,$ there's some $r$ such that $B(x,r)\subseteq X.$ Visually, these are fat set with no boundary/frontier points.
+This "fat" property is very important: it tells you that no point in the intersection is a boundary point, since they always have a ball around them inside the intersection. This "fatness"  is more formally called **openness**, and we say a subset $S\subseteq X$ is open if for all $x\in S,$ there's some $r$ such that $B(x,r)\subseteq X.$ Visually, these are fat set with no boundary/frontier points.
 
 Set-theoretically, open sets are somewhat well-behaved in respect to unions and intersections. Indeed, any union (including infinite ones) of open sets will still be open, since the open balls containing elements will still be inside the union. With respect to intersection, finite intersections of open sets are open as well: for if $U$ and $V$ are open and $x\in U\cap V,$ then, by the definition of openess, there are $r_1,r_2$ such that $B(x,r_1)\subseteq U$ and $B(x,r_2)\subseteq V,$ so that $B(x,\min \{r_1,r_2\})\subseteq U\cap V$ and the intersection is open. This is valid only for finite intersections: for example, if you do the infinite intersection $\bigcap_{n=1}^\infty B(x,1/n)$ of smaller and smaller open balls around $x$ is exactly the set $\{x\}$ containing only the point $x$ itself, which certainly isn't open.
 
 IMG!!!
+
+EXS: FUNCS
 
 ## Topological spaces
 
@@ -150,7 +158,7 @@ The idea of topological spaces comes from trying to focus on the set-theoretic a
 
 We'll often omit $\tau$ and, when the topology is understood from context, call just $X$ a topological space.
 
-How does this fit with the previous section? Well, if $(X,d)$ is a metric space, then we can **topologize** $X$ by taking as topology $\tau$ all the open sets of $(X,d).$ 
+How does this fit with the previous section? Well, if $(X,d)$ is a metric space, then we can **topologize** $X$ by taking as topology $\tau$ all the open sets of $(X,d),$ as previously defined.
 
 We can't, however, do the opposite: i.e., we can't define a metric $d$ from a general topological space $(X,\tau)$ such that $\tau$ is obtained as the open sets of $d.$ Those spaces that allow this are called **metrizable**, and the obtained topology $\tau$ is called a **metric topology**. These spaces include basically all the ones we'll study in this series.
 
@@ -172,7 +180,23 @@ We often define a topology through a basis, just as we did in the metric case. I
 
 - For all sets $B_1,B_2\in \mathcal{B}$ and all $x\in B_1\cap B_2,$ there's a $B_3\in \mathcal{B}$ such that $x\in B_3$ and $B_3\subseteq B_1\cap B_2$ (just remember how we showed this for open ball previously).
 
+**What's really the point for studying topological instead of metric spaces?** First of all, because different metric spaces may have the same topology, and thus fundamentally . This is the case for all $\ro^n$ with any $\mathcal{l}^p$ distance: sure, their balls might be different, but they're open in any other of these metrics as well. This is fundamentally becaus of the following theorem, which states that, when two metrics are not that different from one another, then they have the same topology:
+
+**Theorem**: If $d_1$ and $d_2$ are two metrics on the same set $X$ and there are constants $K_1, K_2$ such that, for any $x,y\in X,$ we have 
+
+$$K_1 d_2(x,y) \leq d_1(x,y) \leq K_2 d_2(x,y)$$
+
+(in which case the metrics are said to be **equivalent**), then the metric spaces $(X,d_1)$ and $(X,d_2)$ produce the same topology (i.e., every open set in one is open in the other).
+
+This is the case for all the $\mathcal{l^p}$ metrics in any $\ro^n.$ Proving this and the theorem is quite an educative exercise on the relation between metric and topological spaces.
+
+Interestingly, the same can't be said for sets of functions with the $L^p$ metrics: indeed, different $p$ give us completely different topologies. This was actually one of the main sources for defining abstract topological spaces in the earlier 20th century, as many theorems were valid for some $L^p$ distances, and some not for others. This led to the consolidation of **functional analysis**, which is linear algebra applied to the different (infinite dimensional) vector spaces of functions.
+
+Another reason for considering topologies instead of metrics is because the latter are superfuous in many constructions and arguments. Continuity is one example in which, as we'll soon find out, a definition using distances is quite tedious, while one using sets brings a lot of clarity. Similarly, intuitive ideas like **gluing** and **cutting** don't really involve distances, and thus need no description of a metric.
+
 ## Some common topologies
+
+### Basic examples
 
 That should be it for definitions and constructions so far. Let's get into some examples.
 
@@ -187,25 +211,74 @@ $$
 
 called the discrete metric (note that the ball $B(x,r)$ is just $\{x\}$ for any $r<1$, giving the discrete basis).
 
+Here's a good exercise: prove that, if $(X,\tau)$ is a topological space such that all infinite subsets of $X$ are open, then $\tau$ is the discrete topology.
+
 OTHER TOPOLOGIES FOR SMALL SETS
+
+It's also educative to consider some 
+
+### Subspaces, spheres, donuts and manifolds
 
 That's all educative and even intersting per se, but where are our cool figures of mind-blowing shapes, our familiar friends the sphere and the torus-- **where are our donuts?!** Indeed, most introductory courses on topology don't really get to these and focus on the more set-theoretical aspects of topology-- the so-called **point-set topology**. This can be frustrating for many beginners, so let me turn to more familiar shapes and spaces.
 
-MÉTRICA, ORDEM
+We studied how to metricize and topology $\ro^n$ above, and how all $\mathcal{l^p}$ topologies are the same as the one coming from the usual Euclidean distance. Of course there are other possible topologies on $\ro$ ([the K-topology](https://en.wikipedia.org/wiki/K-topology) is a common counter-example found in point-set topology textbooks), but the Euclidean one is the only one we'll actually study here.
 
-RN MÉTRICO (equiv metrics, n em caso infinito)
+Sure, we know how to topologize $\ro^n,$ but what about surfaces and other shapes living in it-- like circles and spheres? The simplest way is to use the **subspace topology**. Generally, if you have a topological space $(X,\tau)$ and some subset $Y$ of $X,$ you can define the subspace topology $\tau'$ on $Y$ (induced by $(X,d)$) as 
 
-SUBSPACE: 
+$$\tau'=\{U\cap Y \text{, where } U \text{ is open in } (X,\tau)\}.$$
 
-RN, S1, SN, DN, T2, TN, CILINDRO
+You can check that this is a topology for any $(X,\tau)$ and $Y\subset X.$
+
+In the case of subsets $\ro^n,$ that's the topology we'll basically always think of. We'll now consider some other shapes that can be seen as living inside these spaces: but, before, a note on the notion of **dimensionality**.
+
+Dimension refers to the possible move directions on a space. When mathematicians speak of the dimension of a shape, they think of it as if we lived in the shape. Imagine yourself as an ant on to the surface of a ball-- a sphere. You have only two movement directions: forwards/backwards and left/right. Thus we say this shape is two-dimensional. Similarly, if you were restricted to a circle, you could only go forwards or backwards. So a circle is one-dimensional. And we all live in a three-dimensional spacial world. 
+
+IMGS!!!
+
+Some people, however, think it'd be more intuitive to say a sphere is three-dimensional. Now let me ask: is a circle inside the three-dimensional space $\ro^3$ three-dimensional? Of course not! The dimension of a shape doesn't care where you **embedd** it! A sphere could also be embedded in the four-dimensional space $\ro^4$: is it four-dimensional then?! Think of it **intrinsically**, not extrinsically. I.e., dimension is defined as if you could only move in the shape, not from any other, external point of view. We'll give a more rigorous definition of dimension when we define manifolds in this section.
+
+Now, let's get to some concrete examples:
+
+- $\ro^n$: the reals. We know them alreday;
+
+- Intervals: 
+
+- $S^n$: the **spheres**. This includes the sphere (a hollow ball) of radius one centered in the origin, but also a circle with the same description-- this might be confusing first, but you'll get used to the terminology quickly. These are the set of points with Euclidean distance equal to 1 from the origin of $\ro^{n+1}$:
+
+$$S^n=\{x\in \ro^{n+1}\mid \|x\|^2=1 \}$$
+
+When we speak of "**the** circle" in topology, we always mean $S^1$-- i.e., one of radius one centered in the origin. $S^n$ is an $n$-dimensional space.
+
+IMGS
+
+- $D^n$: these **disks**. There are just the $S^n$ with their hollow interior filled. Equivalently, they're just the closed balls of distance one from the center of $\ro^n$:
+
+$$D^n=\{x\in \ro^{n+1}\mid \|x\|^2\leq 1 \}$$
+
+$D^n$ is an $n$-dimensional space. 
+
+Note that the $S^n$ are the frontier, the boundary of the $D^{n+1}.$ Pay attention to these $n$ and $(n+1)$!
+
+IMGS
+
+- Cylinder: as a set, this is just $S^1\times [0,1]$-- i.e., a circle elongated along one extra dimension. It is a two-dimenisonal space and we see it as a subspace of the three-dimensional space $\ro^3$;
+
+IMG
+
+- The torus $T^2$: this is the shape of a hollow donut. If you want a concrete description...
+
+- The multidimensional torii $T^n$: based on the description $T^2=S^1\times S^1,$ we define $T^n$ as the product of $n$ circles $S^1$;
 
 SN VIA DN, SN-1
 
 MANIFOLDS, NON-MANIFOLDS
+Why?
+Easy to think of low-dim examples, but what about manifolds of abstract, high-dimensional objects? Give exs. Then thinking of R^n is superfluus. Whitney, RP^2 soon.
 
-PRODUCT
+### Topologies on cartesian products
 
-QUOTIENTS
+### Gluing spaces: quotient topologies
+
 
 ## Continuity, homeomorphisms
 

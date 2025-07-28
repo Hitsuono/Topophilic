@@ -40,7 +40,7 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
   <meta itemprop="description" content="TL;DR In our search for topological invariants, we’ll learn how holes can be defined and be used to study spaces. This will require studying “model” spaces, known as simplicial complexes, which are widely used in 3D rendering. We will be able to define general topological concepts like “boundary” and “cycle”. This will be formalized through a quick detour on group theory, the study of permutations and their algebras, which can be exemplified by the moves and configurations of a Rubik’s cube. With this machinery, we’ll define the homology groups of a topological space, in which holes live, and are one of the most important and studied topological invariants of spaces.">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="15994">
+  <meta itemprop="wordCount" content="16070">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -264,6 +264,7 @@ In our search for topological invariants, we&rsquo;ll learn how holes can be def
         <nav id="TableOfContents">
   <ol>
     <li><a href="#tldr">TL;DR</a></li>
+    <li><a href="#what-youll-need">What you&rsquo;ll need</a></li>
     <li><a href="#introduction-and-intuition">Introduction and intuition</a></li>
     <li><a href="#simplices-and-topology">Simplices and topology</a>
       <ol>
@@ -568,6 +569,43 @@ Distância euclidiana $d(a,b)$, norma e normalizac OK
 dot e exterior products (matrizes tbm?) OK</p>
 <p>ÁLGEBRA N É PRA SER EXPERIMENTO OU SURPRESINHA, MAS ALGO Q SURGE PRA SOLUCIONAR E JUNTAR TUDO NUM MESMO ESPAÇO!!!</p>
 <p><strong>NA INTRO, DAR + EXEMPLOS DE CASOS PERFEITOS: EG, S1 1 CICLO 1D, TORO 1 2D, 2 1D, ETC. VERY IMPORTANT!!!</strong></p>
+<h1 id="what-youll-need">What you&rsquo;ll need</h1>
+<p>Before the section <strong>&ldquo;Homology theory&rdquo;</strong>, you&rsquo;ll need the following sections from other posts:</p>
+<ul>
+<li>Introduction:
+<ul>
+<li>Metric and topological spaces:
+<ul>
+<li>Topological spaces;</li>
+<li>Some common topologies;</li>
+<li>Continuity, homeomorphisms;</li>
+<li>Homotopy.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Algebra:
+<ul>
+<li>Basic linear algebra.</li>
+</ul>
+</li>
+</ul>
+<p>From the section <strong>&ldquo;Homology theory&rdquo;</strong> on, you&rsquo;ll need:</p>
+<ul>
+<li>Algebra:
+<ul>
+<li>Groups, permutations and their games:
+<ul>
+<li>Definitions and basic examples;</li>
+<li>Describing groups;</li>
+<li>Generating groups;</li>
+<li>Example: rings and modules;</li>
+<li>Group quotients.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h1 id="introduction-and-intuition">Introduction and intuition</h1>
 <p>This post will connect many different topics, but let us begin straight away with a question of topological character: what is a hole? How many holes does a space have?</p>
 <p>See, if topology is rubbersheet geometry&ndash; where things can be seen as equivalent whenever you can transform one into another continuously, without gluing or cutting&ndash;, then it should be intuitive that &ldquo;holes&rdquo; could lead us to topological invariants. You can&rsquo;t, for example, turn a circle into a disk or into a line without cutting it or gluing stuff to it. Equally, a hollow sphere can&rsquo;t be turned homeomorphically to a plane or something similar. Holes are getting in the way of such transformations. This visually makes sense, but how to actually &ldquo;compute&rdquo; the holes of a space? This is the main theoretical purpose of this post: developing a theory of holes mathematicians call <strong>homology theory</strong>, which uses notions from topology, geometry and algebra.</p>
@@ -1025,6 +1063,7 @@ H_n(D^k)=
 \end{cases}
 $$<p>We interpret this as saying that the disks are all connected, but have no holes at any dimension.</p>
 <h2 id="the-circle-and-the-spheres">The circle and the spheres</h2>
+<p>IMG!!! REP DELTA</p>
 <p>Using our delta structure for $S^1,$ we get that $\cdn{1}(S^1)=c\zo$ and $\cdn{0}(S^1)=v\zo$, with</p>
 $$ \partial_1 c = c \mid  [v_1] - c \mid   [v_0] = c \mid  [v_0]-\sigma \mid  [v_0] = 0,$$<p>and so $\ker \partial_1=\cdn{1}(S^1).$ Since $\partial_2 = 0$ (as $\cdn{2}=0$), we have $H_1(S^1)=\angled{c}\cong\zo.$ Since the circle is connected,</p>
 $$
@@ -1043,6 +1082,7 @@ H_n(S^k)=
 \end{cases}
 $$<p>Again, this tells us the sphere $S^k$ is connected an has a single hole at dimension $k.$</p>
 <h2 id="the-torus-1">The torus</h2>
+<p>IMG!!! REP DELTA</p>
 <p>The delta structure we used for the torus has $\cdn{2}(T^2)=U\zo\times L\zo,$ $\cdn{1}(T^2)=a\zo\times b\zo \times c\zo$ and $\cdn{0}(T^2)=v\zo.$</p>
 <p>Let&rsquo;s begin by computing all the neccesary kernels and images, then compute the homology.</p>
 <ul>
@@ -1075,6 +1115,7 @@ H_n(T^2)=
 0, & \text{else}
 \end{cases}
 $$<h2 id="the-klein-bottle-1">The Klein bottle</h2>
+<p>IMG!!! REP DELTA</p>
 <p>The delta structure we used for the Klein bottle has $\cdn{2}(K)=U\zo\times L\zo,$ $\cdn{1}(K)=a\zo\times b\zo \times c\zo$ and $\cdn{0}(K)=v\zo.$</p>
 <ul>
 <li>$\ker \partial_1$:</li>
@@ -1106,6 +1147,7 @@ H_n(K)=
 0, & \text{else}
 \end{cases}
 $$<h2 id="the-projective-plane">The projective plane</h2>
+<p>IMG!!! REP DELTA</p>
 <p>The delta structure we used for the projective plane has $\cdn{2}(\rpt)=U\zo\times L\zo,$ $\cdn{1}(\rpt)=a\zo\times b\zo \times c\zo$ and $\cdn{0}(\rpt)=v_0\zo\times v_1\zo.$</p>
 <ul>
 <li>$\ker \partial_1$:</li>
