@@ -36,6 +36,8 @@ TOP VS GEO
 
 # The necessity of spaces
 
+spaces encode info and restrictions (eg periodic functions are to S^1)
+
 Riemann, Poincaré, Einstein & Hilbert
 
 Sols restritas a subespaços
@@ -142,7 +144,18 @@ Set-theoretically, open sets are somewhat well-behaved in respect to unions and 
 
 IMG!!!
 
-EXS: FUNCS
+EXS: 
+GRAPHS
+FUNCS
+We've been thinking quite informally of open sets as "balls", or "disks", because that's how they look in $\ro^n.$ But let's consider a different space: $C([0,1])$ with the $L^1$ metric. Here, the open ball $B(f, r),$ for some $f\in C([0,1]),$ is the set of all (continuous) functions that differ less from $f$ than $r$, according to the $L^1$ distance. There are infinitely many of these, with all possible shapes.
+
+IMG!!!
+
+Then the set
+????????
+is open.  IF YOU DEFINE VERY SMALL R,....
+
+IMG!!!
 
 ## Topological spaces
 
@@ -211,7 +224,11 @@ $$
 
 called the discrete metric (note that the ball $B(x,r)$ is just $\{x\}$ for any $r<1$, giving the discrete basis).
 
-Here's a good exercise: prove that, if $(X,\tau)$ is a topological space such that all infinite subsets of $X$ are open, then $\tau$ is the discrete topology.
+You can check that the graph metric described before induces the discrete topology on the set of vertices, no matter the graph.
+
+Similarly, the space $\mathcal{A}^n$ of strings of length $n$ on an alphabet $\mathcal{A}$ with the Hamming distance has the discrete topology, since for any $r<1$ the open ball $B(x,r)$ contains only $x$-- and you can see that the Hamming distance for finite strings is really just an extension of the discrete topology to each position. For infinite strings, however, things get more interesting, as we'll see when studying cellular automata.
+
+Here's a good exercise: prove that, if $(X,\tau)$ is a topological space such that all infinite subsets of $X$ are open, then $\tau$ is the discrete topology. 
 
 OTHER TOPOLOGIES FOR SMALL SETS
 
@@ -227,7 +244,7 @@ Sure, we know how to topologize $\ro^n,$ but what about surfaces and other shape
 
 $$\tau'=\{U\cap Y \text{, where } U \text{ is open in } (X,\tau)\}.$$
 
-You can check that this is a topology for any $(X,\tau)$ and $Y\subset X.$
+You can check that this is a topology for any $(X,\tau)$ and $Y\subseteq X.$
 
 In the case of subsets $\ro^n,$ that's the topology we'll basically always think of. We'll now consider some other shapes that can be seen as living inside these spaces: but, before, a note on the notion of **dimensionality**.
 
@@ -237,23 +254,31 @@ IMGS!!!
 
 Some people, however, think it'd be more intuitive to say a sphere is three-dimensional. Now let me ask: is a circle inside the three-dimensional space $\ro^3$ three-dimensional? Of course not! The dimension of a shape doesn't care where you **embedd** it! A sphere could also be embedded in the four-dimensional space $\ro^4$: is it four-dimensional then?! Think of it **intrinsically**, not extrinsically. I.e., dimension is defined as if you could only move in the shape, not from any other, external point of view. We'll give a more rigorous definition of dimension when we define manifolds in this section.
 
+2D spaces are also called **surfaces**.
+
+Finally, I have to mention the way we address spaces in topology. Because topology treats spaces that can be morphed into one another as equivalent-- as we'll properly define later on--, it is common to call the whole class of these equivalent spaces of type X as "**the** space X". For example, by "the circle" a topologist really means any circle at all, independent of center or radius. It doesn't even have to be a circle, as long as it is a closed loop. Similarly for "the" torus-- which *is* a donut for a topologist-- and any other space. We might as well say that a specific circle "realizes" "the" circle, although it is also common to say that a certain realization *is* the space.
+
 Now, let's get to some concrete examples:
 
 - $\ro^n$: the reals. We know them alreday;
 
-- Intervals: 
+- Intervals: both open $(a,b)=\{x\in\ro\mid a < x < b\}$ and closed $[a,b]=\{x\in\ro\mid a \leq x \leq b\}$ with subspace topology. These are one-dimensional. THE CASE [0,1.........................];
 
-- $S^n$: the **spheres**. This includes the sphere (a hollow ball) of radius one centered in the origin, but also a circle with the same description-- this might be confusing first, but you'll get used to the terminology quickly. These are the set of points with Euclidean distance equal to 1 from the origin of $\ro^{n+1}$:
+- Cubes: these are the $n$-dimensional products $[0,1].$ A 2D cube $[0,1]^2$ is a square and a 3D one a cube in the usual sense. Since $[0,1]^n\subset \ro^n$, these can get the subspace topology from the reals; but what if we wanted to topologize it without seeing it as embedded in another space? We'll later on see how to give a topology to the cartesian product of spaces;
 
-$$S^n=\{x\in \ro^{n+1}\mid \|x\|^2=1 \}$$
+IMG!!!
 
-When we speak of "**the** circle" in topology, we always mean $S^1$-- i.e., one of radius one centered in the origin. $S^n$ is an $n$-dimensional space.
+- $S^n$: the **spheres**. For $n=2$, we get the sphere (a hollow ball), but also a circle with the same description. These may be realized as the set of points with Euclidean distance equal to 1 from the origin of $\ro^{n+1}$:
+
+$$S^n=\{x\in \ro^{n+1}\mid \sqrt{x_1^2+...+x_{n+1}^2}=1 \}$$
+
+For $n=1$, this is a circle; for $n=2$, the usual shape we mean by a "ball".
 
 IMGS
 
-- $D^n$: these **disks**. There are just the $S^n$ with their hollow interior filled. Equivalently, they're just the closed balls of distance one from the center of $\ro^n$:
+- $D^n$: the **disks**. There are just the $S^n$ with their hollow interior filled. Equivalently, they're just the closed balls of distance one from the center of $\ro^n$:
 
-$$D^n=\{x\in \ro^{n+1}\mid \|x\|^2\leq 1 \}$$
+$$D^n=\{x\in \ro^{n+1}\mid \sqrt{x_1^2+...+x_{n+1}^2}\leq 1 \}$$
 
 $D^n$ is an $n$-dimensional space. 
 
@@ -265,24 +290,74 @@ IMGS
 
 IMG
 
-- The torus $T^2$: this is the shape of a hollow donut. If you want a concrete description...
+- The torus $T^2$: this is the shape of a hollow donut. Torii can be concretely described by the internal radius $r$ of the tube and the distance $R$ from the center (usually the origin) of the torus to the center of the tube, with $R>r.$ Algebraically, then, a torus can be seen as the set
+
+$$\{(x,y,z)\in \ro^3\mid (\sqrt{x^2+y^2}-R)^2+z^2=r^2\},$$
+
+where the $(\sqrt{x^2+y^2}-R)^2$ part represents the distance of a point to the tube.
+
+There's a more topological way to describe $T^2$, though. Indeed, any point in the torus can be **uniquely** described by two circular coordinates, i.e., two angles:
+
+1. The "transversal" angle around the whole doughnut;
+
+2. The "longidutinal" around around the tube made by the torus.
+
+IMG!!!
+
+This means that we can specify every point uniquely in $T^2$ by two angles in $S^1$. This is the same as saying that $T^2=S^1\times S^1,$ that the torus is the cartesian product of two circles. The description before, with $T^2$ embedded in $\ro^3,$ allowed us to topologize it as a subspace; we'll soon see how to give it a topology just by seeing it as a product.
+
+IMG!!! GIf do torus formando com dois rcicles
+
+- $n$ handle torus: these are surfaces like the torus, but, instead of one hole in the middle, they have $n$ holes, or, rather, $n$ handles. They're also called the **genus** $g$ **surfaces**, this $g$ being the amount of holes, from $1$ (the standard torus) to as many as you wish;
+
+IMG!!!
 
 - The multidimensional torii $T^n$: based on the description $T^2=S^1\times S^1,$ we define $T^n$ as the product of $n$ circles $S^1$;
 
-SN VIA DN, SN-1
-
-MANIFOLDS, NON-MANIFOLDS
-Why?
-Easy to think of low-dim examples, but what about manifolds of abstract, high-dimensional objects? Give exs. Then thinking of R^n is superfluus. Whitney, RP^2 soon.
+Later on we'll see different ways of describing these spaces which will be very helpful to do certain topological computations.
 
 ### Topologies on cartesian products
 
+We've seen above that many interesting spaces can be formed using cartesian products. These include boxes, the cylinder and torii, but also the space of strings $\mathcal{A}^n.$ We were able to topologize these either using the metric or subspace topologies, but what if we didn't have these? How to generally give a topology to the product of topological spaces?
+
+It turns out the answer to this can get quite technical if you consider some details and how these impact further theory, but we'll ignore this and give the simple definition straight away:
+
+**Definition**: given a product $\Pi_{i\in I} X_i$ of topological spaces $(X,\tau_i)_{i\in I},$ the **product topology** on $\Pi_{i\in I} X_i$ is the topology whose open sets are of the form
+
+$$\{\Pi_{i\in I}U_i\mid U_i \text{ is open in } X_i \text{, and only for finitely many } i \text{ we have }U_i\neq X_i\}$$
+
+Quick reminder: the $I$ in $\Pi_{i\in I} X_i$ is an *index set*, and can be any set you want. For finite products, it's just $\{1,...,n\}$ for some $n$; for infinite ones, it can be the whole natural numbers $\mathbb{N},$ the integers $\zo$ or anything you want!
+
+You might also wonder why do we have the condition that only finitely many $U_i$ are not the whole $X_i$ themselves. For finite products, this condition is inoquous; however, for infinite products, it isn't. For reasons later on the theory, this condition avoids many technical issues and gives more well-behaved spaces. If you leave it and take only the topology $\{\Pi_{i\in I}U_i\mid U_i \text{ is open in } X_i\},$ you'll get the so-called **box topology**, which is of interest for pure point-set topology, but not really for us in this series.
+
+Now, if you topologize all the products we considered so far with this product topology, **will it be the same space**? I.e., is, for example, $\ro^n$ with the Euclidean topology the same as with the product one? **Thankfully, the answer is yes, and so it is for every other product we've met so far**. Still, it is good to know how to define a topology for any product you want.
+
 ### Gluing spaces: quotient topologies
 
+**Definition**: 
 
 ## Continuity, homeomorphisms
 
+If you've taken a Calculus I course, you'll surely have met the definition of a real continuous functions: it is function $f:\ro \rightarrow \ro$ such that, for every infinite sequence of points $x_1,x_2,...$ getting closer and closer-- converging, we say-- to a point $a\in \ro,$ then the sequence $f(x_1),f(x_2),...$ will also converge to $f(a)$. Visually, this means the graph $f$ has no sudden jumps. In limit notation, this is written as
+
+$$\lim_{x\rightarrow a}f(x)=f(a)$$
+
+IMG!!! func contínua e descontínua
+
+More formally, we say an infinite sequence $\{x_n\}$ converges to a value $a$ whenever for any positive real number $\epsilon>0$ (which can be very, very small), there's some index $N$ such that $d(x_n, a)<\epsilon$ for all indices $n>N$. That is, you can pick an arbitrarily tiny number $\epsilon$ and there'll come a moment in the sequence where all points will be closer to $x_n$ as $\epsilon,$ starting from the index $N.$ We write then $x_n\rightarrow a.$ In Calculus I this is thought only inside $\ro,$ but note that the only thing we need here is a metric: indeed, this can be taken as the definition of convergence for any metric space $(X,d)$!
+
+**Definition**: an infinite sequence $\{x_n\}$ in a metric space $(X,d)$ is said to **converge** to a point $a\in X$, writen $x_n\rightarrow a,$ whenever for any positive real number $\epsilon>0,$ there is some $N$ such that, for $n>N,$ $d(x_n, a)<\epsilon.$
+
+IMG!!! converging seq
+
+We can then formalize the sloppy definition of continuity we gave before, and even generalize it to all metric spaces. We'll say a function $f:X\rightarrow Y$ between metric spaces $(X,d_X)$ and $(Y, d_Y)$ is continuous if, for all sequences $x_n\rightarrow a,$ we have $f(x_n)\rightarrow f(a).$ 
+
+Simple, right?! Sure, and it is a very helpful and common way to think of convergence, no matter in which area of mathematics. However, an equivalent definition will be more helpful for topology. 
+
 **Definition**: a continuous function between metric spaces $(X,d_X)$ and $(Y, d_Y)$ is a function $f:X\rightarrow Y$ such that, for every real number $\epsilon>0,$ there exists some $\delta>0$ such that $y\in B(x, \delta)$ implies $f(y)\in B(f(x), \epsilon).$
+
+SLA ONDE POR ESSE PARAGRAFO. CAFUSO
+Is continuity really a metric property? If you stretch some space, e.g. a plane, completely altering its metric, and you apply a continuous function to this stretched version, will the function still be continuous? I.E., MULTIPLICAR MÉTRICA POR 2, POR EXEMPLO. SE EU USO METRO, FEET OU QLQ COISA, CONTÍNUO É CONTÍNUO
 
 How to translate this to topology? Well, the definition above is equivalent to having $B(x, \delta)\subseteq \inv{f}(B(f(x), \epsilon)).$ That is, every point in $\inv{f}(B(f(x), \epsilon))$ is in an open ball inside the $\inv{f}(B(f(x), \epsilon))$ itself. Thus, $\inv{f}(B(f(x), \epsilon))$ is open. So what we have is an open set $V\subseteq Y$ and continuity of $f$ is equivalent to $\inv{f}(V)$ being open. The following topological definition ensues:
 
@@ -294,9 +369,19 @@ We're now finally able to define what we actually mean by topology as rubber geo
 
 **Definition**: a **homeomorhpism** between topological spaces $(X,\tau_X)$ and $(Y,\tau_Y)$ is an inversible continuous function $f:X\rightarrow Y$ such that $\inv{f}:Y\rightarrow X$ is also continuous.
 
-If two spaces are homeomorphic, they're seen as equivalent by topology.
+If two spaces are homeomorphic, they're seen as equivalent by topology. JUST DIFFERENT NAMES
 
 EXS (ALGNS OBVIOS, BURACOS)
+
+## Manifolds
+
+MANIFOLDS, NON-MANIFOLDS
+
+Now, 
+
+Why?
+Doenst depend on R^n at all, despite our descriptions above
+Easy to think of low-dim examples, but what about manifolds of abstract, high-dimensional objects? Give exs. Then thinking of R^n is superfluus. Whitney, RP^2 soon.
 
 ## Homotopy
 
