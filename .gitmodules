@@ -1,6 +1,1 @@
-[submodule "themes/hugo-bearblog"]
-	path = themes/hugo-bearblog
-	url = https://github.com/janraasch/hugo-bearblog.git
-[submodule "themes/grey-book"]
-	path = themes/grey-book
-	url = https://github.com/henryleach/grey-book.git
+
