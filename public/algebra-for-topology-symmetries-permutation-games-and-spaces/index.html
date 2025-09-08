@@ -89,7 +89,7 @@ TL;DR Basic linear algebra Groups, permutations and their games Definitions and 
 TL;DR Basic linear algebra Groups, permutations and their games Definitions and basic examples (H) Describing groups Tables Presentations (H) Cayley graphs Generating groups Direct products (H) Semidirect products Group extensions and exact sequences Example: rings and modules (H) Example: fields, finite projective spaces and “Spot It!” * Example: non-abelian groups and permutation games Dihedral groups Symmetric groups Permutation games Example: topological groups, quaternions and the Hopf fibration * Group quotients (H) The isomorphism theorem and the classification of finite groups (optional) Going further ALGEBRA DOS QUOCIENTES">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="8952">
+  <meta itemprop="wordCount" content="8961">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -396,6 +396,7 @@ $$(a_0,a_1,a_2)\times (b_0,b_1,b_2) = (a_1\cdot b_2 - b_1\cdot a_2, a_2\cdot b_0
 </ul>
 <p>However, note that translations are not linear: if we want translate a point $x$ by a fixed vector $v$, getting $f(x)=x+v,$ this isn&rsquo;t linear since, for example, $f(2x)=2x+v\neq f(x)+f(x)=2x+2v.$ We&rsquo;ll see on the post on projective spaces that there is, however, a way to include translations as linear transformations of some space&ndash; using the so-called &ldquo;homogenous coordinates&rdquo;.</p>
 <p>IMG!!!</p>
+<p>Bijective (i.e., invertible) linear transformations are called <strong>linear isomorphisms</strong>.</p>
 <p>We can represent transformations using <strong>matrices</strong>: specifically, if $f:\ro^n\rightarrow \ro^m$ is linear, then it can be represented by the $m\times n$ matrix $M_f$ defined as</p>
 $$\begin{pmatrix}
 f(e_1)_1&...& f(e_n)_1\\
@@ -404,7 +405,7 @@ f(e_1)_m&...&f(e_n)_m
 \end{pmatrix} $$<p>Conversely, every matrix $M$ represents a transformation $f$ by defining the values of $f$ as above.</p>
 <p>Remember that the element $M_{ij}$ of a matrix is the one on the $i$-th row and $j$-th column. We then define matrix multiplication $AB$ (of size $a\times c$) between two matrices $A$ (of size $a\times b$) and $B$ (of size $b\times c$) by $(AB)_{ij}=\sum A_{ik} B_{kj}$. Equivalently, $(AB)_{ij}=A_{i*}\cdot B_{*j},$ where $A_{i*}$ and $B_{*j}$ are the vectors representing the $i$-th row of $A$ and the $j$-th column of $B,$ respectively. This operations is defined exactly so that $M_fM_g=M_{f\circ g},$ for linear transformations $g:\ro^n\rightarrow \ro^m$ and $f:\ro^m\rightarrow \ro^k.$ It is also so that, if vectors $v\in \ro^n$ are seen as a column matrices of values $\begin{pmatrix}v_1\\...\\ v_n\end{pmatrix}$ and $f:\ro^n\rightarrow \ro^m$ is linear, then $f(v)$ is obtained by multiplying $M_f$ and $v$: $f(v)=M_fv.$</p>
 <p>Note that matrix multiplication isn&rsquo;t commutative, since linear transformation composition isn&rsquo;t. For example, $M_f=\begin{pmatrix}1&0\\0&0 \end{pmatrix}$ represents a transformation $f$ annihilating $e_2$ and leaving $e_1$ as it is; $M_g=\begin{pmatrix}1&1\\0&0\end{pmatrix}$ represents one $g$ taking $e_2$ to $e_1$ and, again, fixing $e_1.$ Doing $f\circ g$ has matrix $M_fM_g=\begin{pmatrix}1&1\\0&0\end{pmatrix}$ (since $f(g(e_2))=f(e_1)=e_1$) and $g\circ f$ has $M_gM_f=\begin{pmatrix}1&0\\0&0\end{pmatrix}$ (since $g(f(e_2))=g(0)=0$).</p>
-<p>The identity transformation on $\ro^n$ is represented by the $n\times n$ identity matrix $I$ with ones on the diagonal $m_{ii}$ and zeros elsewhere. It has the property that $MI=IM=M$ for all matrices $M$ of size $n\times n.$ A matrix $M$ is then called <strong>invertible</strong> if there&rsquo;s some matrix $\inv{M}$ such that $M\inv{M}=\inv{M}M=I,$ and these represent exactly the invertible transformations on $\ro^n.$</p>
+<p>The identity transformation on $\ro^n$ is represented by the $n\times n$ identity matrix $I$ with ones on the diagonal $m_{ii}$ and zeros elsewhere. It has the property that $MI=IM=M$ for all matrices $M$ of size $n\times n.$ A matrix $M$ is then called <strong>invertible</strong> if there&rsquo;s some matrix $\inv{M}$ such that $M\inv{M}=\inv{M}M=I,$ and these represent exactly the linear isomorphisms on $\ro^n.$</p>
 <p>A counter-clockwise rotation of $\theta$ radians, for example, is given by the matrix $\begin{pmatrix}\cos (\theta) & -\sin (\theta)\\ \sin (\theta) & \cos(\theta) \end{pmatrix}.$ A clockwise rotation with the same angle is given by $\begin{pmatrix}\cos (\theta) & \sin (\theta)\\ -\sin (\theta) & \cos(\theta) \end{pmatrix},$ and these are inverses since they represent inverse transformations.</p>
 <p>IMG!!!</p>
 <p>Linear transformations are very useful for dealing in a systematic way with the solutions of systems linear equations. If we have such a system</p>

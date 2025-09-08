@@ -89,6 +89,8 @@ However, note that translations are not linear: if we want translate a point $x$
 
 IMG!!!
 
+Bijective (i.e., invertible) linear transformations are called **linear isomorphisms**.
+
 We can represent transformations using **matrices**: specifically, if $f:\ro^n\rightarrow \ro^m$ is linear, then it can be represented by the $m\times n$ matrix $M_f$ defined as
 
 $$\begin{pmatrix}
@@ -103,7 +105,7 @@ Remember that the element $M_{ij}$ of a matrix is the one on the $i$-th row and 
 
 Note that matrix multiplication isn't commutative, since linear transformation composition isn't. For example, $M_f=\begin{pmatrix}1&0\\0&0 \end{pmatrix}$ represents a transformation $f$ annihilating $e_2$ and leaving $e_1$ as it is; $M_g=\begin{pmatrix}1&1\\0&0\end{pmatrix}$ represents one $g$ taking $e_2$ to $e_1$ and, again, fixing $e_1.$ Doing $f\circ g$ has matrix $M_fM_g=\begin{pmatrix}1&1\\0&0\end{pmatrix}$ (since $f(g(e_2))=f(e_1)=e_1$) and $g\circ f$ has $M_gM_f=\begin{pmatrix}1&0\\0&0\end{pmatrix}$ (since $g(f(e_2))=g(0)=0$).
 
-The identity transformation on $\ro^n$ is represented by the $n\times n$ identity matrix $I$ with ones on the diagonal $m_{ii}$ and zeros elsewhere. It has the property that $MI=IM=M$ for all matrices $M$ of size $n\times n.$ A matrix $M$ is then called **invertible** if there's some matrix $\inv{M}$ such that $M\inv{M}=\inv{M}M=I,$ and these represent exactly the invertible transformations on $\ro^n.$ 
+The identity transformation on $\ro^n$ is represented by the $n\times n$ identity matrix $I$ with ones on the diagonal $m_{ii}$ and zeros elsewhere. It has the property that $MI=IM=M$ for all matrices $M$ of size $n\times n.$ A matrix $M$ is then called **invertible** if there's some matrix $\inv{M}$ such that $M\inv{M}=\inv{M}M=I,$ and these represent exactly the linear isomorphisms on $\ro^n.$ 
 
 A counter-clockwise rotation of $\theta$ radians, for example, is given by the matrix $\begin{pmatrix}\cos (\theta) & -\sin (\theta)\\ \sin (\theta) & \cos(\theta) \end{pmatrix}.$ A clockwise rotation with the same angle is given by $\begin{pmatrix}\cos (\theta) & \sin (\theta)\\ -\sin (\theta) & \cos(\theta) \end{pmatrix},$ and these are inverses since they represent inverse transformations.
 
