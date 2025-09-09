@@ -33,8 +33,14 @@ Bla
             Gluing spaces: quotient topologies
           
         
-        Continuity, homeomorphisms
-        Manifolds
+        Continuity
+        Homeomorphisms
+        Further common topologies
+          
+            Manifolds
+            Quotients
+          
+        
         Homotopy
         Connectivity
         Compactness
@@ -68,7 +74,7 @@ TGT AUDIENCE" />
   <meta property="og:site_name" content="Topophilic">
   <meta property="og:title" content="Topology for Artists: introduction">
   <meta property="og:description" content="TL;DR Bla
-TL;DR This series What you’ll need What is topology? The necessity of spaces Metric and topological spaces Abstract distances Metric spaces Metric sets Topological spaces Some common topologies Basic examples Subspaces, spheres, donuts and manifolds Topologies on cartesian products Gluing spaces: quotient topologies Continuity, homeomorphisms Manifolds Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
+TL;DR This series What you’ll need What is topology? The necessity of spaces Metric and topological spaces Abstract distances Metric spaces Metric sets Topological spaces Some common topologies Basic examples Subspaces, spheres, donuts and manifolds Topologies on cartesian products Gluing spaces: quotient topologies Continuity Homeomorphisms Further common topologies Manifolds Quotients Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -84,17 +90,17 @@ TL;DR This series What you’ll need What is topology? The necessity of spaces M
   <meta name="twitter:image" content="http://localhost:1313/images/share.png">
   <meta name="twitter:title" content="Topology for Artists: introduction">
   <meta name="twitter:description" content="TL;DR Bla
-TL;DR This series What you’ll need What is topology? The necessity of spaces Metric and topological spaces Abstract distances Metric spaces Metric sets Topological spaces Some common topologies Basic examples Subspaces, spheres, donuts and manifolds Topologies on cartesian products Gluing spaces: quotient topologies Continuity, homeomorphisms Manifolds Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
+TL;DR This series What you’ll need What is topology? The necessity of spaces Metric and topological spaces Abstract distances Metric spaces Metric sets Topological spaces Some common topologies Basic examples Subspaces, spheres, donuts and manifolds Topologies on cartesian products Gluing spaces: quotient topologies Continuity Homeomorphisms Further common topologies Manifolds Quotients Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
 
 
 
 
   <meta itemprop="name" content="Topology for Artists: introduction">
   <meta itemprop="description" content="TL;DR Bla
-TL;DR This series What you’ll need What is topology? The necessity of spaces Metric and topological spaces Abstract distances Metric spaces Metric sets Topological spaces Some common topologies Basic examples Subspaces, spheres, donuts and manifolds Topologies on cartesian products Gluing spaces: quotient topologies Continuity, homeomorphisms Manifolds Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
+TL;DR This series What you’ll need What is topology? The necessity of spaces Metric and topological spaces Abstract distances Metric spaces Metric sets Topological spaces Some common topologies Basic examples Subspaces, spheres, donuts and manifolds Topologies on cartesian products Gluing spaces: quotient topologies Continuity Homeomorphisms Further common topologies Manifolds Quotients Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="7526">
+  <meta itemprop="wordCount" content="8388">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -277,7 +283,8 @@ TL;DR This series What you’ll need What is topology? The necessity of spaces M
         cdn : ["C^\\Delta_#1", 1],
         csn : ["C^s_#1", 1],
         rank : ["\\text{rank}\\,\\,\\,"],
-        pard : ["\\frac{\\partial #1}{\\partial #2}", 2] 
+        pard : ["\\frac{\\partial #1}{\\partial #2}", 2], 
+        quot : ["#1 /{\\sim}", 1] 
       }
     }
   };
@@ -336,8 +343,14 @@ TL;DR This series What you’ll need What is topology? The necessity of spaces M
             <li><a href="#gluing-spaces-quotient-topologies">Gluing spaces: quotient topologies</a></li>
           </ol>
         </li>
-        <li><a href="#continuity-homeomorphisms">Continuity, homeomorphisms</a></li>
-        <li><a href="#manifolds">Manifolds</a></li>
+        <li><a href="#continuity">Continuity</a></li>
+        <li><a href="#homeomorphisms">Homeomorphisms</a></li>
+        <li><a href="#further-common-topologies">Further common topologies</a>
+          <ol>
+            <li><a href="#manifolds">Manifolds</a></li>
+            <li><a href="#quotients">Quotients</a></li>
+          </ol>
+        </li>
         <li><a href="#homotopy">Homotopy</a></li>
         <li><a href="#connectivity">Connectivity</a></li>
         <li><a href="#compactness">Compactness</a></li>
@@ -352,7 +365,7 @@ TL;DR This series What you’ll need What is topology? The necessity of spaces M
             <li><a href="#definition">Definition</a></li>
             <li><a href="#metric">Metric</a></li>
             <li><a href="#symmetries-the-shift">Symmetries: the shift</a></li>
-            <li><a href="#continuity">Continuity</a></li>
+            <li><a href="#continuity-1">Continuity</a></li>
             <li><a href="#compactness-1">Compactness</a></li>
           </ol>
         </li>
@@ -413,7 +426,7 @@ $$d(f,g)=\left(\int_0^1 |f(x)-g(x)|^p dx\right)^{1/p}$$<h2 id="metric-spaces">Me
 <p>It must satisfy the <em>triangular inequality</em>: $d(x,y)+d(x,z)\leq d(y,z)$ for all $x,y,z.$</p>
 </li>
 </ul>
-<p>I think the only property that deserves further comment is the last one. Imagine $x,y,z$ are points in the plane forming a triangle. Breaking the triangular inequality would mean that there is one edge larger than the sum of the two other ones. This seems quite absurd and would render the theory quite uninteresting and un-geometric later on.</p>
+<p>I think the only property that deserves further comment is the last one. Imagine $x,y,z$ are points in the plane forming a triangle. Breaking the triangular inequality would mean that there is one edge larger than the sum of the two other ones. This seems pretty absurd and would render the theory quite uninteresting and un-geometric later on.</p>
 <p>IMG!!! TRIANGULAR INEQ</p>
 <p>The function $d$ above is commonly called a <strong>metric</strong> on $X.$ You can check all the examples we gave in the previous sections are indeed valid metrics.</p>
 <h2 id="metric-sets">Metric sets</h2>
@@ -476,11 +489,13 @@ is open.  IF YOU DEFINE VERY SMALL R,&hellip;.</p>
 $$K_1 d_2(x,y) \leq d_1(x,y) \leq K_2 d_2(x,y)$$<p>(in which case the metrics are said to be <strong>equivalent</strong>), then the metric spaces $(X,d_1)$ and $(X,d_2)$ produce the same topology (i.e., every open set in one is open in the other).</p>
 <p>This is the case for all the $\mathcal{l^p}$ metrics in any $\ro^n.$ Proving this and the theorem is quite an educative exercise on the relation between metric and topological spaces.</p>
 <p>Interestingly, the same can&rsquo;t be said for sets of functions with the $L^p$ metrics: indeed, different $p$ give us completely different topologies. This was actually one of the main sources for defining abstract topological spaces in the earlier 20th century, as many theorems were valid for some $L^p$ distances, and some not for others. This led to the consolidation of <strong>functional analysis</strong>, which is linear algebra applied to the different (infinite dimensional) vector spaces of functions&ndash; an area that later on lead to fundamental advances in quantum mechanics, statistics, topology itself and many other applications.</p>
-<p>Another reason for considering topologies instead of metrics is because the latter are superfuous in many constructions and arguments. Continuity is one example in which, as we&rsquo;ll soon find out, a definition using distances is quite tedious, while one using sets brings a lot of clarity. Similarly, intuitive ideas like <strong>gluing</strong> and <strong>cutting</strong> don&rsquo;t really involve distances, and thus need no description of a metric.</p>
+<p>Another reason for considering topologies instead of metrics is because the latter are superfuous in many constructions and arguments. Continuity is one example in which, as we&rsquo;ll soon find out, a definition using distances is quite tedious, while one using sets brings a lot of clarity. Similarly, intuitive ideas like <strong>gluing</strong> and <strong>cutting</strong> don&rsquo;t really involve distances, and thus should need no description of a metric.</p>
 <h2 id="some-common-topologies">Some common topologies</h2>
 <h3 id="basic-examples">Basic examples</h3>
 <p>That should be it for definitions and constructions so far. Let&rsquo;s get into some examples.</p>
-<p>First, every set $X$ can be given a topology: just take as basis $\mathcal{B}$ all the one-point subsets $\{x\}$ for $x\in X.$ The resulting topology is the set of all subsets of $X$, and is called the <strong>discrete topology</strong>. It is metrizable by the metric</p>
+<p>First of all, you can topologize any union of topological spaces $(X, \tau_X)$ and $(Y, \tau_Y)$ by giving $X\cup Y$ the topology $\tau_X\cup \tau_Y.$ Open sets in $X$ and $Y$ remain open, and there are no open sets with elements both in $X$ and in $Y$: the spaces are &ldquo;disconnected,&rdquo; so to speak&ndash; a notion we&rsquo;ll later on describe properly. This space is called the <strong>disjoint union</strong> of $X$ and $Y$, and it&rsquo;s custom to denote it as $X\amalg Y.$ Since there&rsquo;s no relation here between the topologies of the two spaces, disjoint unions don&rsquo;t bring anything new and are just used as a formality.
+IMG!!!</p>
+<p>Then, note that every set $X$ can be given a topology: just take as basis $\mathcal{B}$ all the one-point subsets $\{x\}$ for $x\in X.$ The resulting topology is the set of all subsets of $X$, and is called the <strong>discrete topology</strong>. It is metrizable by the metric</p>
 $$d(x,y)=
 \begin{cases}
 1, & \text{if } x\neq y\\
@@ -510,10 +525,10 @@ $$\tau'=\{U\cap Y \text{, where } U \text{ is open in } (X,\tau)\}.$$<p>You can 
 <p>$\ro^n$: the reals with the Eucliedean distance&ndash; the only topology we&rsquo;ll consider here for them. We know them already;</p>
 </li>
 <li>
-<p>Intervals: both open $(a,b)=\{x\in\ro\mid a < x < b\}$ and closed $[a,b]=\{x\in\ro\mid a \leq x \leq b\}$ with subspace topology. These are one-dimensional. THE CASE [0,1&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.];</p>
+<p>Intervals: both open $(a,b)=\{x\in\ro\mid a < x < b\}$ and closed $[a,b]=\{x\in\ro\mid a \leq x \leq b\}$ with subspace topology. These are one-dimensional. The unit interval $[0,1]$ is often just written $I$;</p>
 </li>
 <li>
-<p>Cubes: these are the $n$-dimensional products $[0,1].$ A 2D cube $[0,1]^2$ is a square and a 3D one a cube in the usual sense. Since $[0,1]^n\subset \ro^n$, these can get the subspace topology from the reals; but what if we wanted to topologize it without seeing it as embedded in another space? We&rsquo;ll later on see how to give a topology to the cartesian product of spaces;</p>
+<p>Cubes: these are the $n$-dimensional products $I^n.$ A 2D cube $I^2$ is a square and a 3D one a cube in the usual sense. Since $I^n\subseteq \ro^n$, these can get the subspace topology from the reals; but what if we wanted to topologize it without seeing it as embedded in another space? We&rsquo;ll later on see how to give a topology to the cartesian product of spaces;</p>
 </li>
 </ul>
 <p>IMG!!!</p>
@@ -529,7 +544,7 @@ $$D^n=\{x\in \ro^{n+1}\mid \sqrt{x_1^2+...+x_{n+1}^2}\leq 1 \}$$<p>$D^n$ is an $
 <p>Note that the $S^n$ are the frontier, the boundary of the $D^{n+1}.$ Pay attention to these $n$ and $(n+1)$!</p>
 <p>IMGS</p>
 <ul>
-<li>Cylinder: as a set, this is just $S^1\times [0,1]$&ndash; i.e., a circle elongated along one extra dimension. It is a two-dimenisonal space and we see it as a subspace of the three-dimensional space $\ro^3$;</li>
+<li>Cylinder: as a set, this is just $S^1\times I$&ndash; i.e., a circle elongated along one extra dimension. It is a two-dimenisonal space and we see it as a subspace of the three-dimensional space $\ro^3$;</li>
 </ul>
 <p>IMG</p>
 <ul>
@@ -559,13 +574,13 @@ $$\{(x,y,z)\in \ro^3\mid (\sqrt{x^2+y^2}-R)^2+z^2=r^2\},$$<p>where the $(\sqrt{x
 <h3 id="topologies-on-cartesian-products">Topologies on cartesian products</h3>
 <p>We&rsquo;ve seen above that many interesting spaces can be formed using cartesian products. These include boxes, the cylinder and torii, but also the space of strings $\mathcal{A}^n.$ We were able to topologize these either using the metric or subspace topologies, but what if we didn&rsquo;t have these? How to generally give a topology to the product of topological spaces?</p>
 <p>It turns out the answer to this can get quite technical if you consider some details and how these impact further theory, but we&rsquo;ll ignore this and give the simple definition straight away:</p>
-<p><strong>Definition</strong>: given a product $\Pi_{i\in I} X_i$ of topological spaces $(X,\tau_i)_{i\in I},$ the <strong>product topology</strong> on $\Pi_{i\in I} X_i$ is the topology whose open sets are of the form</p>
-$$\{\Pi_{i\in I}U_i\mid U_i \text{ is open in } X_i \text{, and only for finitely many } i \text{ we have }U_i\neq X_i\}$$<p>Quick reminder: the $I$ in $\Pi_{i\in I} X_i$ is an <em>index set</em>, and can be any set you want. For finite products, it&rsquo;s just $\{1,...,n\}$ for some $n$; for infinite ones, it can be the whole natural numbers $\mathbb{N},$ the integers $\zo$ or anything you want!</p>
-<p>You might also wonder why do we have the condition that only finitely many $U_i$ are not the whole $X_i$ themselves. For finite products, this condition is inoquous; however, for infinite products, it isn&rsquo;t. For reasons later on the theory, this condition avoids many technical issues and gives more well-behaved spaces. If you leave it and take only the topology $\{\Pi_{i\in I}U_i\mid U_i \text{ is open in } X_i\},$ you&rsquo;ll get the so-called <strong>box topology</strong>, which is of interest for pure point-set topology, but not really for us in this series.</p>
+<p><strong>Definition</strong>: given a product $\prod_{i\in I} X_i$ of topological spaces $(X,\tau_i)_{i\in I},$ the <strong>product topology</strong> on $\prod_{i\in I} X_i$ is the topology whose open sets are of the form</p>
+$$\{\prod_{i\in I}U_i\mid U_i \text{ is open in } X_i \text{, and only for finitely many } i \text{ we have }U_i\neq X_i\}$$<p>Quick reminder: the $I$ in $\prod_{i\in I} X_i$ is an <em>index set</em>, and can be any set you want. For finite products, it&rsquo;s just $\{1,...,n\}$ for some $n$; for infinite ones, it can be the whole natural numbers $\mathbb{N},$ the integers $\zo$ or anything you want!</p>
+<p>You might also wonder why do we have the condition that only finitely many $U_i$ are not the whole $X_i$ themselves. For finite products, this condition is inoquous; however, for infinite products, it isn&rsquo;t. For reasons later on the theory, this condition avoids many technical issues and gives more well-behaved spaces. If you leave it and take only the topology $\{\prod_{i\in I}U_i\mid U_i \text{ is open in } X_i\},$ you&rsquo;ll get the so-called <strong>box topology</strong>, which is of interest for pure point-set topology, but not really for us in this series.</p>
 <p>Now, if you topologize all the products we considered so far with this product topology, <strong>will it be the same space</strong>? I.e., is, for example, $\ro^n$ with the Euclidean topology the same as with the product one? <strong>Thankfully, the answer is yes, and so it is for every other product we&rsquo;ve met so far</strong>. Still, it is good to know how to define a topology for any product you want.</p>
 <h3 id="gluing-spaces-quotient-topologies">Gluing spaces: quotient topologies</h3>
 <p><strong>Definition</strong>:</p>
-<h2 id="continuity-homeomorphisms">Continuity, homeomorphisms</h2>
+<h2 id="continuity">Continuity</h2>
 <p>If you&rsquo;ve taken a Calculus I course, you&rsquo;ll surely have met the definition of a real continuous functions; if you haven&rsquo;t, don&rsquo;t worry! Visually, a function $f:\ro\rightarrow \ro$ is said to be continuous if its graph has no sudden jumps&ndash; if it can be drawn continuously without taking your pen from the paper. More formally, this means that if a sequence of points sequence of points $x_1,x_2,...$ gets closer and closer&ndash; converges, we say&ndash; to a point $a\in \ro$ in the $x$ axis, then the sequence $f(x_1),f(x_2),...$ will also converge to $f(a)$. We often write sequences as $\{x_n\}$ and, if it converges to a point $a$ when $n$ gets larger, that $a$ is its <strong>limit</strong>, writing $\lim_{n\rightarrow\infty}x_n=a.$ Informally using this limit notation, a function $f$ as above is continuous if, and only if,</p>
 $$\lim_{x\rightarrow a}f(x)=f(a).$$<p>IMG!!! func contínua e descontínua</p>
 <p>Here&rsquo;s how to make formal sense of these terms and notations.</p>
@@ -579,22 +594,22 @@ $$\lim_{x\rightarrow a}f(x)=f(a).$$<p>IMG!!! func contínua e descontínua</p>
 <p>The following definition gets us rid of both problems: there are no sequences in it anymore, just general points in space, and only two variables ($\epsilon$ and $\delta$) for proving continuity. Proving it is equivalent to the previous one is a good exercise on metric spaces.</p>
 <p><strong>Definition</strong>: a continuous function between metric spaces $(X,d_X)$ and $(Y, d_Y)$ is a function $f:X\rightarrow Y$ such that, for every real number $\epsilon>0,$ there exists some $\delta>0$ such that $y\in B(x, \delta)$ implies $f(y)\in B(f(x), \epsilon).$</p>
 <p>The proposition above can actually be further simplified in a cleaner and deeper way, although seemingly distant from the notion of convergence. This is where topology will come in.</p>
-<p>Indeed, a careful reading will tell you that it is equivalent to saying that $f(B(x, \delta))\subset B(f(x), \epsilon),$ which is the same as $B(x, \delta) \subseteq \inv{f}(B(f(x), \epsilon)).$ But since this is valid for any $x,$ by definition the set $\inv{f}(B(f(x), \epsilon))$ is open in $X.$ It isn&rsquo;t a difficult exercise on the notion of topological basis to prove that this is again equivalent to having $\inv{f}(V)$ open for any $V$ open in $Y.$</p>
+<p>Indeed, a careful reading will tell you that it is equivalent to saying that $f(B(x, \delta))\subseteq B(f(x), \epsilon),$ which is the same as $B(x, \delta) \subseteq \inv{f}(B(f(x), \epsilon)).$ But since this is valid for any $x,$ by definition the set $\inv{f}(B(f(x), \epsilon))$ is open in $X.$ It isn&rsquo;t a difficult exercise on the notion of topological basis to prove that this is again equivalent to having $\inv{f}(V)$ open for any $V$ open in $Y.$</p>
 <p>But now this last equivalent definition is free of any notion of metric or convergence! It is <strong>purely topological</strong>! The following topological definition ensues:</p>
 <p><strong>Definition</strong>: a <strong>continuous function</strong> between topological spaces $(X,\tau_X)$ and $(Y,\tau_Y)$ is a function $f:X\rightarrow Y$ such that, for all $V\subseteq Y$ open in $Y$, $\inv{f}(V)$ is open in $X.$</p>
 <p>Note how clean this definition is: in a certain way, it deeply and truly captures the general nature of continuity as a visual phenomena.</p>
 <p>SLA ONDE POR ESSE PARAGRAFO. CAFUSO
 Is continuity really a metric property? If you stretch some space, e.g. a plane, completely altering its metric, and you apply a continuous function to this stretched version, will the function still be continuous? I.E., MULTIPLICAR MÉTRICA POR 2, POR EXEMPLO. SE EU USO METRO, FEET OU QLQ COISA, CONTÍNUO É CONTÍNUO</p>
-<p>Here are some types of common continuous functions:</p>
-<ul>
-<li>Linear transformations:</li>
-</ul>
-<p>-</p>
+<p>All most common real functions are continuous. This includes addition, subtraction, multiplication, roots, exponentiation, logarithms and division as well. The last one doesn&rsquo;t seem though: the graph of $\frac{1}{x}$ has two distinct components, doesn&rsquo;t it? It does, but its domain is $\ro\setminus \{0\},$ so it is continuous, only with a domain that&rsquo;s already disconnected. We&rsquo;ll formalize this notion of &ldquo;connectedness&rdquo; later on.</p>
 <p>You may find more over continuous real functions on textbooks on calculus.</p>
+<p>Generally, the composition of continuous functions between topological spaces is continuous: if $f:X\rightarrow Y,$ $g:Y\rightarrow Z$ are both continuous and $V\subseteq Z$ is open, then $\inv{(g\circ f)}(V)=\inv{f}(\inv{g}(V)),$ which is open by hypothesis, so that $g\circ f$ is continuous too. Notice by the way how proving this is much, much easier and more obvious using the topological definition instead of the metric one.</p>
+<p>Considering the topologies we described before, if $Y\subseteq X$ is given the subspace topology, then the <strong>inclusion function</strong> $i:Y\rightarrow X$ sending $y\in Y$ to $y$ itself is continuous. If we have a product $\prod X_i,$ then the projection $\pi_n:\prod X_i\rightarrow X_n$ sending to the $n$-th component is continuous as well.</p>
+<h2 id="homeomorphisms">Homeomorphisms</h2>
 <p>We&rsquo;re now finally able to define what we actually mean by topology as rubber geometry. Indeed, what we meant by &ldquo;a continuous deformation without gluing or cutting&rdquo; in the introduction can be formally described as a <strong>bijective continuous function</strong> $f$! The property of &ldquo;being able to go back by a deformation of the same kind&rdquo; means that $\inv{f}$ should also be continuous. Thus, we have the following fundamental definition:</p>
 <p><strong>Definition</strong>: a <strong>homeomorhpism</strong> between topological spaces $(X,\tau_X)$ and $(Y,\tau_Y)$ is an inversible continuous function $f:X\rightarrow Y$ such that $\inv{f}:Y\rightarrow X$ is also continuous. We then say X and Y are <strong>homeomorphic</strong> and write $X\cong Y.$</p>
 <p>If two spaces are homeomorphic, they&rsquo;re seen as equivalent by topology. That is, homeomorphic spaces can be seen as just different ways to name things: a point $x\in X$ is just a different name for another $y\in Y$, and an open set $U\subseteq X$ is just a different name for one open set $V\subseteq Y.$</p>
 <p>Like equality, being homeomorphic is an <strong>equivalence relation</strong> (prove it): that is, $X\cong X;$ $X\cong Y$ implies $Y\cong X;$ $X\cong Y$ and $Y\cong Z$ imply $X\cong Z.$</p>
+<p>Homeomorphisms allow us to speak of &ldquo;the&rdquo; space !!!!!!!</p>
 <p>Here are some explicit homeomorphisms:</p>
 <p>EXS (ALGNS OBVIOS, R E (0,1), BURACOS)</p>
 <ul>
@@ -605,11 +620,17 @@ Is continuity really a metric property? If you stretch some space, e.g. a plane,
 <p>$D^2$ and the square $[0,1]^2$:</p>
 </li>
 <li>
+<p><strong>Isommetries</strong>:</p>
+</li>
+<li>
 <p>$\ro$ and the interval $(0,1)$: this may be surprising, but it&rsquo;s true: for topology, the reals and an open interval inside it are really the same. A famous homeomorphism is the <strong>logistic function</strong></p>
 </li>
 </ul>
-$$\sigma(x)=\frac{1}{1+e^{-x}},$$<p>which &ldquo;encapsulates&rdquo; $\ro$ onto $(0,1).$ Its inverse is the <strong>logit function</strong> $\text{logit }:(0,1)\rightarrow \ro,$ defined as $\text{logit }p=\log\frac{p}{1-p}$&ndash; which is also continuous. Writing the variable here as $p$ is suggestive: the fraction $\frac{p}{1-p}$ can be seen as the odds (30% to 70%, 99% to 1% etc.) of a given event with probability $p$. Thus the logistic function can be seen as a function taking a real number and returning the logarithm of an odd. This makes this functions widely appliable in statistics, specially machine learning.</p>
+$$\sigma(x)=\frac{1}{1+e^{-x}},$$<p>which &ldquo;encapsulates&rdquo; $\ro$ onto $(0,1).$ Its inverse is the <strong>logit function</strong> $\text{logit }:(0,1)\rightarrow \ro,$ defined as $\text{logit }p=\log\frac{p}{1-p}$&ndash; which is also continuous. Writing the variable here as $p$ is suggestive: the fraction $\frac{p}{1-p}$ can be seen as the odds (30% to 70%, 99% to 1% etc.) of a given event with probability $p$. Thus the logistic function can be seen as a function taking a real number and returning the logarithm of an odd. This makes these two functions widely appliable in statistics, specially in machine learning.</p>
 <p>IMG!!! LOGISTIC</p>
+<ul>
+<li>PRODUCTS</li>
+</ul>
 <p>Generally, however, mathematicians don&rsquo;t describe homeomorphisms explicitly, but rely on the visual intuition of the reader for simpler cases.</p>
 <ul>
 <li>
@@ -639,13 +660,44 @@ Proving that spaces satisfying certain properties are homeomorphic is, in genera
 </li>
 </ul>
 <p>We&rsquo;ll also study two properties which are very strong topological invariants in this article: connectivity and compactness. The latter will play an important role in the topological analysis of cellular automata.</p>
-<h2 id="manifolds">Manifolds</h2>
+<h2 id="further-common-topologies">Further common topologies</h2>
+<h3 id="manifolds">Manifolds</h3>
 <p>MANIFOLDS, NON-MANIFOLDS</p>
 <p>Now,</p>
 <p>Why?
 Doenst depend on R^n at all, despite our descriptions above
 Easy to think of low-dim examples, but what about manifolds of abstract, high-dimensional objects? Give exs. Then thinking of R^n is superfluus. Whitney, RP^2 soon.</p>
 <p><strong>Definition</strong>: a space $X$ is an $n$<strong>-dimenisonal manifold</strong> if, for every point $x\in X$, there is a neighborhood $U$ of $x$ such that $U$ is homeomorphic to an open subset of $\ro^n.$</p>
+<h3 id="quotients">Quotients</h3>
+<p>EQUIVALENCE CLASSES
+WELL-BEHAVED, SIGNIFICADO</p>
+<p><strong>Topologically, making equivalences can be seen as gluing points together.</strong> For example, imagine I have a segment of line (i.e., an interval) $I=[0,1]$ and I want to glue its endpoints to make a circle $S^1.$ Mathematically, all you need to know is to define an equivalence on $I$ such that $0\sim 1$ and all other points are equivalent only to themselves, getting a quotient $\quot{I}.$ Now the extremities are really one and the same thing.</p>
+<figure style="display: flex; flex-direction: column; align-items: center; text-align: center; margin: 0 auto;">
+    <img 
+        src="intervalS1quotient.png" 
+        alt="" 
+        style="max-width: 100%; height: auto;"
+    >
+    
+        <figcaption style="margin-top: 0.5rem; font-style: italic;">
+            Illustration of the relation $\quot{I}\cong S^1$ given above. Work by <a href="https://commons.wikimedia.org/wiki/User_talk:MaxFischerUCPH">Mark Fischer</a>.
+        </figcaption>
+    
+</figure>
+
+<p>IMG!!!!!!!!!</p>
+<p>How do we topologize these spaces though? It&rsquo;s actually pretty simple: all we want is that the gluing function $q:X\rightarrow \quot{X}$ be continuous, which visually is quite sensible. This gives us the following:</p>
+<p><strong>Definition</strong>: the <strong>quotient topology</strong> over $\quot{X}$ is the smallest topology such that $q:X\rightarrow \quot{X}$ is continuous. Equivalently, it is the topology of all $U\subseteq \quot{X}$ such that $\inv{q}(U)$ is open in $X.$</p>
+<p>From the definition, you can see that, if $U$ is an open set $X$ such that its elements are equivalent only to themselves, then $q$ restricted to $U$ is a homeomorphism: i.e., $U$ is not altered in the quotient topology.</p>
+<p>Generally, if you have a space $X$ and a subspace $A\subseteq X,$ you can collapse $A$ onto a single point using the relation $\sim_A$ such that $a\sim_A b$ for all $a,b\in A$ and all other points of $X$ are equivalent only to themselves. In this case, we don&rsquo;t write $X/{\sim_A},$ but rather $X/A,$ a space often called the <strong>quotient of</strong> $X$ <strong>by</strong> $A.$</p>
+<p>In this notation, the homeomorphism $\quot{I}\cong S^1$ is the same as $I/\{0,1\}\cong S^1.$ It can now be formally proven: indeed, the function $f:I/\{0,1\}\rightarrow S^1$ is given by $f([t])=(\cos(t),\sin(t))$ (seeing $S^1$ embedded in $\ro^2$) is a homeomorphism. It is well-defined because we have $f([0])=f([1]),$ and bijective too. You can prove it is continuous as well as its inverse.</p>
+<p>The case of $I$ and $S^1$ can be generalized by noting that $I=D^1$ and $\{0,1\}=S^0.$ One dimension higher, if you have $D^2$ and glue its whole $S^1$ boundary onto a single point, you get a sphere $S^2.$ Thus, $D^2/S^1\cong S^2,$ and in general we have $D^n/S^{n-1}\cong S^n$ (you can try proving this). Cool: we&rsquo;re starting to do some algebra with spaces!</p>
+<p>The notation is suggestive: it&rsquo;s almost as if we were dividing $X$ by a $A$&ndash; imagining $A$ as a &ldquo;factor&rdquo; of $X.$ But &ldquo;suggestive&rdquo; is the best we can say, as it actually doesn&rsquo;t really follow algebraic rules like division. There&rsquo;s also somewhat of a shock of notations here: if $0$ denotes a generic point in $X,$ then $X/0$ is really, by definition, homeomorphic to $X$ itself: $X/0\cong X.$</p>
+<p>For simpler quotients, open sets in $\quot{X}$ can be easily visualized. It is as if the glued regions worked as &ldquo;portals&rdquo; open sets can now tranverse.</p>
+<p>IMG!!!</p>
+<p>One common kind of quotients are <strong>wedge sums</strong>, which consist of joining different spaces on a single point. Formally, the wedge sum between spaces $X$ and $Y$, written $X\vee Y,$ is the quotient $\quot{X\amalg Y}$ with the relation $x_0\sim y_0$ for two fixed points $x_0\in X$ and $y_0\in Y.$ You can prove that different choices of $x_0, y_0$ give homeomorphic spaces, so that we&rsquo;re allowed to speak of <strong>the</strong> wedge sum $X\vee Y.$</p>
+<p>IMG!!! S1 WEDGE S1</p>
+<p>In the article on homology, we&rsquo;ll further describe many spaces as quotients.</p>
 <h2 id="homotopy">Homotopy</h2>
 <p><strong>Definition</strong>: a <strong>homotopy</strong> between two paths $f:I\rightarrow X$ and $g:I\rightarrow X$ is a continuous association of paths $p_t$ for every $t\in I$ such that $p_0=f$ and $p_1=g.$ More formally, it is a continuous function $H:I\times I\rightarrow X$ such that $H(s,0)=f(s)$ and $H(s,1)=g(s).$</p>
 <p><strong>Definition</strong>: a <strong>homotopy</strong> between two continuous maps $f:X\rightarrow Y$ and $g:X\rightarrow Y$ is a continuous deformation from the function $H:X\times I\rightarrow Y$ with $H(x, 0)=f(x)$ and $H(x,1)=g(1)$.</p>
@@ -718,7 +770,7 @@ $$d(x,y)=\sum_{m\geq 0}\frac{D(x_{[-m,m]},y_{[-m,m]})}{2^m}$$<p>Note that this s
 <p>To verify the continuity of $s,$ let $B_p$ be the basis neighborghood of a pattern $p.$ Then $\inv{s}(B_p)$ is exactly $B_{l(p)}$ BLA. Similarly, $\inv{l}(B_p)=B_{s(p)}.$</p>
 <p>Using basically the same argument as for $s,$ we can see $\inv{s}$ is continuous. That is, <strong>the shift</strong> $s$ <strong>is a homeomorphism from</strong> $S^\zo$ <strong>to itself!</strong> In that sense, the term &ldquo;symmetry&rdquo; is quite appropriate for it. More than that, it is also an isometry: $d(s(x), s(y))=d(x,y)$ for all $x,y\in S^\zo.$</p>
 <p>EQUIVARIANT</p>
-<h3 id="continuity">Continuity</h3>
+<h3 id="continuity-1">Continuity</h3>
 <h3 id="compactness-1">Compactness</h3>
 <p>By Tychonoff&rsquo;s theorem, $S^\zo$&ndash; as an infinite product of compact spaces&ndash; is compact.</p>
 <h2 id="the-topological-definition-of-cellular-automata">The topological definition of cellular automata</h2>
