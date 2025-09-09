@@ -1,0 +1,33 @@
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  // block
+      inlineMath: [['\\(', '\\)'], ['$', '$']],                  // inline
+      macros :{
+        im : "{\\text{im}\\,}",
+        os : "[v_0,v_1]", // oriented one-simplex
+        ts : "[v_0,v_1,v_2]", // oriented two-simples
+        ths : "[v_0,v_1,v_2,v_3]", // oriented three-simplex
+        gos : "\\langle v_0, v_1 \\rangle", // geometrical one-simplex
+        gts : "\\langle v_0, v_1, v_2 \\rangle", // geometrical two-simplex
+        gths : "\\langle v_0, v_1, v_2, v_3 \\rangle", // geometrical three-simplex        
+        rth : "\\mathbb{R}^3", // R three
+        rt : "\\mathbb{R}^2", // R two
+        ro : "\\mathbb{R}", // R one
+        rpt : "\\ro \\text{P}^2", // RP two
+        rpth : "\\ro \\text{P}^3", // RP two
+        rn : "\\mathbb{R}^n",
+        rpn : "\\mathbb{R}\\text{P}^n",
+        angled : ["{\\langle #1 \\rangle}", 1],
+        zo : "\\mathbb{Z}",
+        zmod : ["\\mathbb{Z}/#1 \\mathbb{Z}", 1],
+        inv : ["#1 ^{-1}", 1],
+        cdn : ["C^\\Delta_#1", 1],
+        csn : ["C^s_#1", 1],
+        rank : ["\\text{rank}\\,\\,\\,"],
+        pard : ["\\frac{\\partial #1}{\\partial #2}", 2] // partial derivative
+      }
+    }
+  };
+</script>

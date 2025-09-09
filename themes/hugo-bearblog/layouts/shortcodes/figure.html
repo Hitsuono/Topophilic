@@ -1,0 +1,12 @@
+<figure style="display: flex; flex-direction: column; align-items: center; text-align: center; margin: 0 auto;">
+    <img 
+        src="{{ .Get "src" }}" 
+        alt="{{ .Get "alt" }}" 
+        style="max-width: {{ with .Get "width" }}{{ . }}{{ else }}100%{{ end }}; height: {{ with .Get "height" }}{{ . }}{{ else }}auto{{ end }};"
+    >
+    {{ with .Get "caption" }}
+        <figcaption style="margin-top: 0.5rem; font-style: italic;">
+            {{ . | markdownify }}
+        </figcaption>
+    {{ end }}
+</figure>
