@@ -100,7 +100,7 @@ TL;DR This series What you’ll need What is topology? The necessity of spaces M
 TL;DR This series What you’ll need What is topology? The necessity of spaces Metric and topological spaces Abstract distances Metric spaces Metric sets Topological spaces Some common topologies Basic examples Subspaces, spheres, donuts and manifolds Topologies on cartesian products Gluing spaces: quotient topologies Continuity Homeomorphisms Further common topologies Manifolds Quotients Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="8388">
+  <meta itemprop="wordCount" content="8975">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -466,7 +466,7 @@ is open.  IF YOU DEFINE VERY SMALL R,&hellip;.</p>
 <p>Finite intersections of open sets are open: $\bigcap_i^n U_i \in \tau$ for $U_i\in \tau.$</p>
 </li>
 </ul>
-<p>We&rsquo;ll often omit $\tau$ and, when the topology is understood from context, call just $X$ a topological space. An open set $U\subseteq X$ containing a point $x\in X$ is often called a <strong>neighborhood</strong> of $x$ (some authors differ on their definitions of neighborhoods, but that&rsquo;s the one I prefer).</p>
+<p>Some notation and terminology first: we&rsquo;ll often omit $\tau$ and, when the topology is understood from context, call just $X$ a topological space. An open set $U\subseteq X$ containing a point $x\in X$ is often called a <strong>neighborhood</strong> of $x$ (some authors differ on their definitions of neighborhoods, but that&rsquo;s the one I prefer). When we have open sets $\{U_i\}$ such that their union is equal to $X,$ we say they <strong>cover</strong> $X.$</p>
 <p>How does this fit with the previous section? Well, if $(X,d)$ is a metric space, then we can <strong>topologize</strong> $X$ by taking as topology $\tau$ all the open sets of $(X,d),$ as previously defined.</p>
 <p>We can&rsquo;t, however, do the opposite: i.e., we can&rsquo;t define a metric $d$ from a general topological space $(X,\tau)$ such that $\tau$ is obtained as the open sets of $d.$ Those spaces that allow this are called <strong>metrizable</strong>, and the obtained topology $\tau$ is called a <strong>metric topology</strong>. These spaces include basically all the ones we&rsquo;ll study in this series.</p>
 <p>In the context of metric spaces, we started with a metric and then got to defining open sets as those subsets $U$ that, for all points $x\in U,$ there was an open ball $B(x,r)\subseteq U$ containing $x$ and inside $U.$ This is generalized by the following theorem:</p>
@@ -493,9 +493,7 @@ $$K_1 d_2(x,y) \leq d_1(x,y) \leq K_2 d_2(x,y)$$<p>(in which case the metrics ar
 <h2 id="some-common-topologies">Some common topologies</h2>
 <h3 id="basic-examples">Basic examples</h3>
 <p>That should be it for definitions and constructions so far. Let&rsquo;s get into some examples.</p>
-<p>First of all, you can topologize any union of topological spaces $(X, \tau_X)$ and $(Y, \tau_Y)$ by giving $X\cup Y$ the topology $\tau_X\cup \tau_Y.$ Open sets in $X$ and $Y$ remain open, and there are no open sets with elements both in $X$ and in $Y$: the spaces are &ldquo;disconnected,&rdquo; so to speak&ndash; a notion we&rsquo;ll later on describe properly. This space is called the <strong>disjoint union</strong> of $X$ and $Y$, and it&rsquo;s custom to denote it as $X\amalg Y.$ Since there&rsquo;s no relation here between the topologies of the two spaces, disjoint unions don&rsquo;t bring anything new and are just used as a formality.
-IMG!!!</p>
-<p>Then, note that every set $X$ can be given a topology: just take as basis $\mathcal{B}$ all the one-point subsets $\{x\}$ for $x\in X.$ The resulting topology is the set of all subsets of $X$, and is called the <strong>discrete topology</strong>. It is metrizable by the metric</p>
+<p>First of all, note that every set $X$ can be given a topology: this can be done using the trivial topology $\{X, \emptyset\}.$ It&rsquo;s not very interesting: the only open sets are the empty set and $X$ itself. Another less trivial way is to take as basis $\mathcal{B}$ all the one-point subsets $\{x\}$ for $x\in X.$ The resulting topology is the set of all subsets of $X$, and is called the <strong>discrete topology</strong>. It is metrizable by the metric</p>
 $$d(x,y)=
 \begin{cases}
 1, & \text{if } x\neq y\\
@@ -505,20 +503,22 @@ $$<p>called the discrete metric (note that the ball $B(x,r)$ is just $\{x\}$ for
 <p>You can check that the graph metric described before induces the discrete topology on the set of vertices, no matter the graph.</p>
 <p>Similarly, the space $\mathcal{A}^n$ of strings of length $n$ on an alphabet $\mathcal{A}$ with the Hamming distance has the discrete topology, since for any $r<1$ the open ball $B(x,r)$ contains only $x$&ndash; and you can see that the Hamming distance for finite strings is really just an extension of the discrete topology to each position. For infinite strings, however, things get more interesting, as we&rsquo;ll see when studying cellular automata.</p>
 <p>Here&rsquo;s a good exercise: prove that, if $(X,\tau)$ is a topological space such that all infinite subsets of $X$ are open, then $\tau$ is the discrete topology.</p>
+<p>You can topologize any union of topological spaces $(X, \tau_X)$ and $(Y, \tau_Y)$ by giving $X\cup Y$ the topology $\tau_X\cup \tau_Y.$ Open sets in $X$ and $Y$ remain open, and there are no open sets with elements both in $X$ and in $Y$: the spaces are &ldquo;disconnected,&rdquo; so to speak&ndash; a notion we&rsquo;ll later on describe properly. This space is called the <strong>disjoint union</strong> of $X$ and $Y$, and it&rsquo;s custom to denote it as $X\amalg Y.$ Since there&rsquo;s no relation here between the topologies of the two spaces, disjoint unions don&rsquo;t bring anything new and are just used as a formality.
+IMG!!!</p>
 <p>OTHER TOPOLOGIES FOR SMALL SETS</p>
 <p>It&rsquo;s also educative to consider some</p>
 <h3 id="subspaces-spheres-donuts-and-manifolds">Subspaces, spheres, donuts and manifolds</h3>
 <p>That&rsquo;s all educative and even intersting per se, but where are our cool figures of mind-blowing shapes, our familiar friends the sphere and the torus&ndash; <strong>where are our donuts?!</strong> Indeed, most introductory courses on topology don&rsquo;t really get to these and focus on the more set-theoretical aspects of topology&ndash; the so-called <strong>point-set topology</strong>. This can be frustrating for many beginners, so let me turn to more familiar shapes and spaces.</p>
 <p>We studied how to metricize and topology $\ro^n$ above, and how all $\mathcal{l^p}$ topologies are the same as the one coming from the usual Euclidean distance. Of course there are other possible topologies on $\ro$ (<a href="https://en.wikipedia.org/wiki/K-topology">the K-topology</a> is a common counter-example found in point-set topology textbooks), but the Euclidean one is the only one we&rsquo;ll actually study here.</p>
-<p>Sure, we know how to topologize $\ro^n,$ but what about surfaces and other shapes living in it&ndash; like circles and spheres? The simplest way is to use the <strong>subspace topology</strong>. Generally, if you have a topological space $(X,\tau)$ and some subset $Y$ of $X,$ you can define the subspace topology $\tau'$ on $Y$ (induced by $(X,d)$) as</p>
-$$\tau'=\{U\cap Y \text{, where } U \text{ is open in } (X,\tau)\}.$$<p>You can check that this is a topology for any $(X,\tau)$ and $Y\subseteq X.$</p>
+<p>Sure, we know how to topologize $\ro^n,$ but what about surfaces and other shapes living in it&ndash; like circles and spheres? The simplest way is to use the <strong>subspace topology</strong>. Generally, if you have a topological space $(X,\tau)$ and some subset $Y$ of $X,$ you can define the subspace topology $\tau'$ on $Y$ (induced by $\tau$) as</p>
+$$\tau'=\{U\cap Y \text{, where } U \text{ is open in } (X,\tau)\}.$$<p>You can check that this is a topology for any $s$ and $Y\subseteq X.$</p>
 <p>In the case of subsets $\ro^n,$ that&rsquo;s the topology we&rsquo;ll basically always think of. We&rsquo;ll now consider some other shapes that can be seen as living inside these spaces: but, before, a note on the notion of <strong>dimensionality</strong>.</p>
 <p>Dimension refers to the possible move directions on a space. When mathematicians speak of the dimension of a shape, they think of it as if we lived in the shape. Imagine yourself as an ant on to the surface of a ball&ndash; a sphere. You have only two movement directions: forwards/backwards and left/right. Thus we say this shape is two-dimensional. Similarly, if you were restricted to a circle, you could only go forwards or backwards. So a circle is one-dimensional. And we all live in a three-dimensional spacial world.</p>
 <p>IMGS!!!</p>
 <p>Some people, however, think it&rsquo;d be more intuitive to say a sphere is three-dimensional. Now let me ask: is a circle inside the three-dimensional space $\ro^3$ three-dimensional? Of course not! The dimension of a shape doesn&rsquo;t care where you <strong>embedd</strong> it! A sphere could also be embedded in the four-dimensional space $\ro^4$: is it four-dimensional then?! Think of it <strong>intrinsically</strong>, not extrinsically. I.e., dimension is defined as if you could only move in the shape, not from any other, external point of view.</p>
 <p>Intuitively, a shape has dimension $d$ whenever it locally &ldquo;looks like&rdquo; $\ro^d$. Intrinsically, the sphere locally&ndash; seen at a closer distance&ndash; looks like the plane. We&rsquo;ll give a more rigorous definition of dimension when we define manifolds after studying continuity.</p>
 <p>2D spaces are also called <strong>surfaces</strong>.</p>
-<p>Finally, I have to mention the way we address spaces in topology. Because topology treats spaces that can be morphed into one another as equivalent&ndash; as we&rsquo;ll properly define later on&ndash;, it is common to call the whole class of these equivalent spaces of type X as &ldquo;<strong>the</strong> space X&rdquo;. For example, by &ldquo;the circle&rdquo; a topologist really means any circle at all, independent of center or radius. It doesn&rsquo;t even have to be a circle, as long as it is a closed loop. Similarly for &ldquo;the&rdquo; torus&ndash; which <em>is</em> a donut for a topologist&ndash; and any other space. We might as well say that a specific circle &ldquo;realizes&rdquo; &ldquo;the&rdquo; circle, although it is also common to say that a certain realization <em>is</em> the space.</p>
+<p>Finally, I have to mention the way we address spaces in topology. Because topology treats spaces that can be morphed into one another as equivalent&ndash; as we&rsquo;ll properly define later on&ndash;, it is common to call the whole class of these equivalent spaces of type X as &ldquo;<strong>the</strong> space X&rdquo;. For example, by &ldquo;the circle&rdquo; a topologist really means any circle at all, independent of center or radius. It doesn&rsquo;t even have to be a circle&ndash; it can have straight angles like a square or a triangle, or any other crazy curve, as long as it is a closed loop. Similarly for &ldquo;the&rdquo; torus&ndash; which <em>is</em> a donut for a topologist&ndash; and any other space. We might as well say that a specific circle &ldquo;realizes&rdquo; &ldquo;the&rdquo; circle, although it is also common to say that a certain realization <em>is</em> the space. We&rsquo;ll formalize this idea later on with the notion of <strong>homeomorphisms</strong>.</p>
 <p>Now, let&rsquo;s get to some concrete examples:</p>
 <ul>
 <li>
@@ -544,7 +544,12 @@ $$D^n=\{x\in \ro^{n+1}\mid \sqrt{x_1^2+...+x_{n+1}^2}\leq 1 \}$$<p>$D^n$ is an $
 <p>Note that the $S^n$ are the frontier, the boundary of the $D^{n+1}.$ Pay attention to these $n$ and $(n+1)$!</p>
 <p>IMGS</p>
 <ul>
-<li>Cylinder: as a set, this is just $S^1\times I$&ndash; i.e., a circle elongated along one extra dimension. It is a two-dimenisonal space and we see it as a subspace of the three-dimensional space $\ro^3$;</li>
+<li>
+<p>Points: sets of a single point ${p}$ are also spaces (with the trivial topology, which is the same as the subspace one), and we say they&rsquo;re $0$ dimensional. Note that $S^0$ (the $0$ dimensional sphere) is, by the definition above, the two points $\{0,1\}$ inside $\ro;$</p>
+</li>
+<li>
+<p>Cylinder: as a set, this is just $S^1\times I$&ndash; i.e., a circle elongated along one extra dimension. It is a two-dimenisonal space and we see it as a subspace of the three-dimensional space $\ro^3$;</p>
+</li>
 </ul>
 <p>IMG</p>
 <ul>
@@ -603,61 +608,65 @@ Is continuity really a metric property? If you stretch some space, e.g. a plane,
 <p>All most common real functions are continuous. This includes addition, subtraction, multiplication, roots, exponentiation, logarithms and division as well. The last one doesn&rsquo;t seem though: the graph of $\frac{1}{x}$ has two distinct components, doesn&rsquo;t it? It does, but its domain is $\ro\setminus \{0\},$ so it is continuous, only with a domain that&rsquo;s already disconnected. We&rsquo;ll formalize this notion of &ldquo;connectedness&rdquo; later on.</p>
 <p>You may find more over continuous real functions on textbooks on calculus.</p>
 <p>Generally, the composition of continuous functions between topological spaces is continuous: if $f:X\rightarrow Y,$ $g:Y\rightarrow Z$ are both continuous and $V\subseteq Z$ is open, then $\inv{(g\circ f)}(V)=\inv{f}(\inv{g}(V)),$ which is open by hypothesis, so that $g\circ f$ is continuous too. Notice by the way how proving this is much, much easier and more obvious using the topological definition instead of the metric one.</p>
+<p>You can also prove that, in order to show that a function $f:X\rightarrow Y$ is continuous, it suffices to prove it in relation to a basis $\mathcal{B}$ of $Y$: i.e., that $\inv{f}(B)$ is open in $X$ for all $B\in\mathcal{B}.$ This is particularly useful for metric spaces, with $\mathcal{B}$ being the open balls of $Y.$</p>
 <p>Considering the topologies we described before, if $Y\subseteq X$ is given the subspace topology, then the <strong>inclusion function</strong> $i:Y\rightarrow X$ sending $y\in Y$ to $y$ itself is continuous. If we have a product $\prod X_i,$ then the projection $\pi_n:\prod X_i\rightarrow X_n$ sending to the $n$-th component is continuous as well.</p>
 <h2 id="homeomorphisms">Homeomorphisms</h2>
 <p>We&rsquo;re now finally able to define what we actually mean by topology as rubber geometry. Indeed, what we meant by &ldquo;a continuous deformation without gluing or cutting&rdquo; in the introduction can be formally described as a <strong>bijective continuous function</strong> $f$! The property of &ldquo;being able to go back by a deformation of the same kind&rdquo; means that $\inv{f}$ should also be continuous. Thus, we have the following fundamental definition:</p>
 <p><strong>Definition</strong>: a <strong>homeomorhpism</strong> between topological spaces $(X,\tau_X)$ and $(Y,\tau_Y)$ is an inversible continuous function $f:X\rightarrow Y$ such that $\inv{f}:Y\rightarrow X$ is also continuous. We then say X and Y are <strong>homeomorphic</strong> and write $X\cong Y.$</p>
 <p>If two spaces are homeomorphic, they&rsquo;re seen as equivalent by topology. That is, homeomorphic spaces can be seen as just different ways to name things: a point $x\in X$ is just a different name for another $y\in Y$, and an open set $U\subseteq X$ is just a different name for one open set $V\subseteq Y.$</p>
 <p>Like equality, being homeomorphic is an <strong>equivalence relation</strong> (prove it): that is, $X\cong X;$ $X\cong Y$ implies $Y\cong X;$ $X\cong Y$ and $Y\cong Z$ imply $X\cong Z.$</p>
-<p>Homeomorphisms allow us to speak of &ldquo;the&rdquo; space !!!!!!!</p>
-<p>Here are some explicit homeomorphisms:</p>
-<p>EXS (ALGNS OBVIOS, R E (0,1), BURACOS)</p>
+<p>Homeomorphisms allow us to make use of expressions like &ldquo;the circle&rdquo;, &ldquo;the torus&rdquo; etc., even though our circle might actually take the shape of a square&ndash; it doesn&rsquo;t matter, since, as we&rsquo;ll see, both are homeomorphic!</p>
+<p>We&rsquo;ll say some property of a space $X$ is a <strong>topological invariant</strong> of $X$, or a topological <em>property</em> of it, if any space $Y$ homeomorphic to $X$ has the same property. The main goal of topology is finding invariants appliable to the largest classes of spaces possible.</p>
+<p>Note that, from set theory, the <a href="https://en.wikipedia.org/wiki/Cardinality">cardinality</a> of a space as a set is an invariant. This usually doesn&rsquo;t help us, since most interesting shapes have the same uncountable cardinality.</p>
+<p>Generally, mathematicians describe homeomorphisms explicitly, but rely on the visual intuition of the reader, which should be based on these simpler cases. Here are some of these simpler homeomorphisms which can be explicitly described:</p>
 <ul>
 <li>
-<p>Open intervals $(a,b)$ and $(c,d)$ in $\ro$: applying translation and scaling suffices. That is, we first $$</p>
+<p>The obvious case: the identity $i:X\rightarrow X$ sending $x$ to $x$ itself;</p>
 </li>
 <li>
-<p>$D^2$ and the square $[0,1]^2$:</p>
+<p>All one-point spaces are homeomorphic: for if $X=\{p\}$ and $Y=\{q\}$ (both with the trivial topology, which is the only possible one), then $f:X\rightarrow Y$ sending $p$ to $q$ is a homeomorphism. It is common to then to speak of <strong>the point space</strong>, often denoted as $0$ to denote its triviality (it&rsquo;s a space though, not a number!);</p>
 </li>
 <li>
-<p><strong>Isommetries</strong>:</p>
+<p><strong>Isommetries</strong>: these are the bijective functions between metric spaces preserving the metric: i.e., $f:(X,d_X)\rightarrow (Y,d_Y)$ such that $d(x,y)=d(f(x),f(y)),$ with $f$ bijective. This is easy to prove using what we know so far. <strong>Rotations, reflections and translations</strong> are examples of isommetries. These will become very important later on when we study the topology of cellular automata;</p>
 </li>
 <li>
-<p>$\ro$ and the interval $(0,1)$: this may be surprising, but it&rsquo;s true: for topology, the reals and an open interval inside it are really the same. A famous homeomorphism is the <strong>logistic function</strong></p>
+<p>Linear scalings: since these are just multiplication by scalars;</p>
 </li>
+<li>
+<p>Open intervals $(a,b)$ and $(c,d)$ in $\ro$: applying translation and scaling suffices. The same applies for all open balls in $\ro^n;$</p>
+</li>
+<li>
+<p>$D^2$ and the square $I^2$: this can be described using <a href="https://en.wikipedia.org/wiki/Polar_coordinates">polar coordinates</a> as $f:I^2\rightarrow D^2,$</p>
+</li>
+</ul>
+$$f(\rho, \theta) = \left( \frac{\rho}{ \max(|\cos \theta|, |\sin \theta|)}, \theta\right).$$<ul>
+<li>$\ro$ and the interval $(0,1)$: this may be surprising, but it&rsquo;s true: for topology, the reals and an open interval inside it are really the same. A famous homeomorphism is the <strong>logistic function</strong> $\sigma:\ro\rightarrow (0,1),$</li>
 </ul>
 $$\sigma(x)=\frac{1}{1+e^{-x}},$$<p>which &ldquo;encapsulates&rdquo; $\ro$ onto $(0,1).$ Its inverse is the <strong>logit function</strong> $\text{logit }:(0,1)\rightarrow \ro,$ defined as $\text{logit }p=\log\frac{p}{1-p}$&ndash; which is also continuous. Writing the variable here as $p$ is suggestive: the fraction $\frac{p}{1-p}$ can be seen as the odds (30% to 70%, 99% to 1% etc.) of a given event with probability $p$. Thus the logistic function can be seen as a function taking a real number and returning the logarithm of an odd. This makes these two functions widely appliable in statistics, specially in machine learning.</p>
 <p>IMG!!! LOGISTIC</p>
+<p>Homeomorphisms from $\ro$ to $(0,1)$ are usually called <strong>sigmoids</strong>, due to their graphs being s-shaped.</p>
 <ul>
-<li>PRODUCTS</li>
+<li>If the spaces $X_i$ are homeomorphic to $Y_i,$ then the product $\prod X_i$ is homeomorphic to $\prod Y_i,$ by applying homeomorphisms on each coordinate.</li>
 </ul>
-<p>Generally, however, mathematicians don&rsquo;t describe homeomorphisms explicitly, but rely on the visual intuition of the reader for simpler cases.</p>
-<ul>
-<li>
-<p>Linear isomorphisms:</p>
-</li>
-<li>
-<p>Smooth stretchings:</p>
-</li>
-</ul>
-<p>PROVING THE NEGATIVE
-Proving that spaces satisfying certain properties are homeomorphic is, in general, hard. However, it may be even harder to prove the opposite: that two spaces <em>aren&rsquo;t</em> homeomorphic. Proving the latter is one of the main tasks of topology. Here are some non-homeomorphic spaces and indicatives of thereof:</p>
+<p>Beware, <strong>from now on we&rsquo;ll not describe explicitely most of the homeomorphisms we mention!</strong></p>
+<p>Proving that spaces satisfying certain properties are homeomorphic is, in general, hard. However, it may be even harder to prove the opposite: that two spaces <em>aren&rsquo;t</em> homeomorphic. Proving the latter is one of the main tasks of topology. Here are some non-homeomorphic spaces and indicatives of thereof:</p>
 <ul>
 <li>
 <p>$\ro^n$ and $\ro^m$ for different $n,m.$ You think this is obvious? Intuitively, sure&ndash; but not formally! One way to prove it is to show that, after taking the origin from both $\ro^n$ and $\ro^m,$ the holes left in them are of different dimensions&ndash; something that we&rsquo;ll soon study closer when we define homology groups;</p>
 </li>
 <li>
-<p>Open and closed intervals: indeed, $(a,b)$ is not homeomorphic to $[a,b],$ and similarly for all open and closed balls $B(x, r)$ and $\bar{B}(x,r)$ in any $\ro^n$;</p>
+<p>Dimensionality: generally, if two shapes have different dimensions, they aren&rsquo;t homeomorphic;</p>
 </li>
 <li>
-<p>Dimensionality: generally, if two</p>
+<p>Open and closed intervals: indeed, $(a,b)$ is not homeomorphic to $[a,b],$ and similarly for all open and closed balls $B(x, r)$ and $\bar{B}(x,r)$ in any $\ro^n$. This has to do with the property of compactness, which we&rsquo;ll see later on, but the idea is that in $(a,b)$ you can get infinitely close to the extremities of the interval, without ever getting to them, which doesn&rsquo;t happen in $[a,b];$</p>
 </li>
 <li>
-<p>Branched spaces: these are shapes that locally look like some $\ro^n$, but with branched points or regions !!! We&rsquo;ll later find these spaces again when studying tilings and patterns.</p>
+<p>Branched spaces: these are shapes that locally look like some $\ro^n$, but with branched points or regions. They&rsquo;re not homeomorphic to non-branched spaces. We&rsquo;ll later find branched spaces again when studying tilings and patterns;</p>
 </li>
-<li>
-<p>Holes: these are the most important indicatives of non-homeomorphic spaces, and formalizing what &ldquo;a hole&rdquo; is will concern us for most of the rest of the series. Examples include: $D^2$ and $S^1$ aren&rsquo;t homeomorphic since there&rsquo;s a hole in $S^1$; similarly for, say, the sphere $S^2$ and the cylinder $S^1\times [0,1],$ or with the torus $T^2$: these all have different holes.</p>
-</li>
+</ul>
+<p>IMG!!! BRANCHED</p>
+<ul>
+<li>Holes: these are the most important indicatives of non-homeomorphic spaces, and formalizing what &ldquo;a hole&rdquo; is will concern us for most of the rest of the series. Examples include: $D^2$ and $S^1$ aren&rsquo;t homeomorphic since there&rsquo;s a hole in $S^1$; similarly for, say, the sphere $S^2$ and the cylinder $S^1\times [0,1],$ or with the torus $T^2$: these all have different holes.</li>
 </ul>
 <p>We&rsquo;ll also study two properties which are very strong topological invariants in this article: connectivity and compactness. The latter will play an important role in the topological analysis of cellular automata.</p>
 <h2 id="further-common-topologies">Further common topologies</h2>
@@ -690,7 +699,7 @@ WELL-BEHAVED, SIGNIFICADO</p>
 <p><strong>Definition</strong>: the <strong>quotient topology</strong> over $\quot{X}$ is the smallest topology such that $q:X\rightarrow \quot{X}$ is continuous. Equivalently, it is the topology of all $U\subseteq \quot{X}$ such that $\inv{q}(U)$ is open in $X.$</p>
 <p>From the definition, you can see that, if $U$ is an open set $X$ such that its elements are equivalent only to themselves, then $q$ restricted to $U$ is a homeomorphism: i.e., $U$ is not altered in the quotient topology.</p>
 <p>Generally, if you have a space $X$ and a subspace $A\subseteq X,$ you can collapse $A$ onto a single point using the relation $\sim_A$ such that $a\sim_A b$ for all $a,b\in A$ and all other points of $X$ are equivalent only to themselves. In this case, we don&rsquo;t write $X/{\sim_A},$ but rather $X/A,$ a space often called the <strong>quotient of</strong> $X$ <strong>by</strong> $A.$</p>
-<p>In this notation, the homeomorphism $\quot{I}\cong S^1$ is the same as $I/\{0,1\}\cong S^1.$ It can now be formally proven: indeed, the function $f:I/\{0,1\}\rightarrow S^1$ is given by $f([t])=(\cos(t),\sin(t))$ (seeing $S^1$ embedded in $\ro^2$) is a homeomorphism. It is well-defined because we have $f([0])=f([1]),$ and bijective too. You can prove it is continuous as well as its inverse.</p>
+<p>In this notation, the homeomorphism $\quot{I}\cong S^1$ is the same as $I/\{0,1\}\cong S^1.$ It can now be formally proven: indeed, the function $f:I/\{0,1\}\rightarrow S^1$ is given by $f([t])=(\cos(t),\sin(t))$ (seeing $S^1$ embedded in $\ro^2$) is a homeomorphism. It is well-defined because we have $f([0])=f([1]),$ and bijective too. You can prove that it and its inverse are both continuous.</p>
 <p>The case of $I$ and $S^1$ can be generalized by noting that $I=D^1$ and $\{0,1\}=S^0.$ One dimension higher, if you have $D^2$ and glue its whole $S^1$ boundary onto a single point, you get a sphere $S^2.$ Thus, $D^2/S^1\cong S^2,$ and in general we have $D^n/S^{n-1}\cong S^n$ (you can try proving this). Cool: we&rsquo;re starting to do some algebra with spaces!</p>
 <p>The notation is suggestive: it&rsquo;s almost as if we were dividing $X$ by a $A$&ndash; imagining $A$ as a &ldquo;factor&rdquo; of $X.$ But &ldquo;suggestive&rdquo; is the best we can say, as it actually doesn&rsquo;t really follow algebraic rules like division. There&rsquo;s also somewhat of a shock of notations here: if $0$ denotes a generic point in $X,$ then $X/0$ is really, by definition, homeomorphic to $X$ itself: $X/0\cong X.$</p>
 <p>For simpler quotients, open sets in $\quot{X}$ can be easily visualized. It is as if the glued regions worked as &ldquo;portals&rdquo; open sets can now tranverse.</p>
@@ -704,11 +713,12 @@ WELL-BEHAVED, SIGNIFICADO</p>
 <p><strong>Definition</strong>: two spaces $X,Y$ are <strong>homotopically equivalent</strong> if there are continuous functions $f:X\rightarrow Y$ and $g:Y\rightarrow X$ such that $f\circ g \simeq \text{id}_Y$ and $g\circ f \simeq \text{id}_X.$ We may also say that $X$ and $Y$ have the same <strong>homotopy type</strong>.</p>
 <p>HOMOTOPIA COM QUOCIENTES E OUTRAS DEFORMAÇÕES</p>
 <h2 id="connectivity">Connectivity</h2>
-<p><strong>Definition</strong>: a topological space $(X,\tau)$ is called <strong>connected</strong> if there are no disjont open sets $U,V$ such that $U\cup V = X.$</p>
-<p>It&rsquo;s easy to see that connectivity is a topological property. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ connected, then $\im f$ is also connected; otherwise, if it could be divided into two disjoint open sets $U,V$ in $\im f,$ then $\inv{f}(U)$ and $\inv{f}(V)$ would be open and disjoint (there can be no $x\in \inv{f}(U)\cap \inv{f}(V)$ since it would imply $f(x)\in U\cap V$), a contradiction.</p>
-<p><strong>Definition</strong>: a topological space $(X,\tau)$ is called <strong>path-connected</strong> if, for every two points $x,y\in X,$ theres a path $p:I\rightarrow X$ starting in $x$ and ending in $y$ (i.e., $p(0)=x$ and $p(1)=y$).</p>
+<p><strong>Definition</strong>: a topological space $X$ is called <strong>connected</strong> if there are no disjont open sets $U,V$ such that $U\cup V = X.$</p>
+<p>It&rsquo;s easy to see that connectivity is a topological property. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ connected, then $\im f$ is also connected; otherwise, if it could be divided into two disjoint open sets $U,V$ in $\im f,$ then $\inv{f}(U)$ and $\inv{f}(V)$ would be open, disjoint (there can be no $x\in \inv{f}(U)\cap \inv{f}(V)$ since it would imply $f(x)\in U\cap V$) and cover $X$, a contradiction.</p>
+<p>EXS CONNECTED SPACES</p>
+<p><strong>Definition</strong>: a topological space $X$ is called <strong>path-connected</strong> if, for every two points $x,y\in X,$ theres a path $p:I\rightarrow X$ starting in $x$ and ending in $y$ (i.e., $p(0)=x$ and $p(1)=y$).</p>
 <p>Path-connectedness is also a topological property. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ path-connected, so is $\im y$: if $f(x),f(y)$ are in $\im f,$ $x$ and $y$ can be connected by a path $p$ in $X,$ and so $f\circ p:I\rightarrow \im f$ connects $f(x)$ to $f(y).$</p>
-<p>Path-connectedness implies connectedness:</p>
+<p>Path-connectedness implies connectedness: for if $X$ were path-connected but had $U,V$ disjoint covering it, then if $p$ is a path connecting $u\in U$ and $v\in V,$ $\inv{p}(U)$ and $\inv{p}(V)$ will be disjoint open sets covering $I,$ which is absurd.</p>
 <p>One of the classic counter-examples in topology is that not all connected spaces are path-connected. For example, take the subset of $\ro^2$ that&rsquo;s composed of the graph of $\sin (\frac{1}{x})$ (with $x>0$) together with the origin.</p>
 <h2 id="compactness">Compactness</h2>
 <p>Another topological notion is that of <strong>compact subspaces</strong>. This is an idea involving finitude. Take the plane $\rt$ as an example. Both open as closed balls in it are sets with ininitely many points. But, in the open one, you can get a sequence of points in the ball that get infinitely closed to the frontier, without ever actually getting to it. This isn&rsquo;t possible in the closed one: every converging sequence actually converges to a point inside the closed ball. The exact same is valid for general open/closed sets. It is as if the closed ball is &ldquo;less finite&rdquo; as the open one, &ldquo;more bounded&rdquo;&ndash; or, rather, it&rsquo;s more <em>compact</em>.</p>
