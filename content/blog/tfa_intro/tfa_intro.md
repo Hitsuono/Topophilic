@@ -46,7 +46,7 @@ Manifold hypothesis
 
 State spaces
 
-# Metric and topological spaces
+# Metric spaces
 
 ## Abstract distances
 
@@ -87,6 +87,8 @@ You can see this is somewhat similar to the $\mathcal{l}^1$ (Manhattan) distance
 
 $$d(f,g)=\left(\int_0^1 |f(x)-g(x)|^p dx\right)^{1/p}$$
 
+There's also the $L^\infty$ distance, defined as the maximum distance that they can take for the same input $x$: i.e., it is the distance $d(f,g)=\max\{|f(x)-g(x)|\mid x\in [0,1]\}.$
+
 ## Metric spaces
 
 After all these examples of "distances" on sets, it's natural to look for similarities between these examples to get a general definition. It isn't too far-fetched to propose one like this:
@@ -112,7 +114,7 @@ The function $d$ above is commonly called a **metric** on $X.$ You can check all
 
 So far, we've been strictly in the world of geometry, as we still pretty much care about distances. **This section is the heart of the transition from metric to topological spaces.**
 
-One interesting way to study metric spaces is by sets naturally defined using the metric. For example, if we have a point $x\in X,$ we can always consider the set of points within a certain radius $r$ of $x$-- mathematically, the set
+One interesting way to study metric spaces is by sets naturally defined using the metric. For example, if we have a point $x\in X,$ we can always consider the set of points within a certain radius $r>0$ of $x$-- mathematically, the set
 
 $$B(x,r)=\{y\in X\mid d(x,y)< r\},$$
 
@@ -140,26 +142,75 @@ IMG!!! FAT BALLS
 
 This "fat" property is very important: it tells you that no point in the intersection is a boundary point, since they always have a ball around them inside the intersection. This "fatness"  is more formally called **openness**, and we say a subset $S\subseteq X$ is open if for all $x\in S,$ there's some $r$ such that $B(x,r)\subseteq X.$ Visually, these are fat set with no boundary/frontier points.
 
-Set-theoretically, open sets are somewhat well-behaved in respect to unions and intersections. Indeed, any union (including infinite ones) of open sets will still be open, since the open balls containing elements will still be inside the union. With respect to intersection, finite intersections of open sets are open as well: for if $U$ and $V$ are open and $x\in U\cap V,$ then, by the definition of openess, there are $r_1,r_2$ such that $B(x,r_1)\subseteq U$ and $B(x,r_2)\subseteq V,$ so that $B(x,\min \{r_1,r_2\})\subseteq U\cap V$ and the intersection is open. This is valid only for finite intersections: for example, if you do the infinite intersection $\bigcap_{n=1}^\infty B(x,1/n)$ of smaller and smaller open balls around $x$ is exactly the set $\{x\}$ containing only the point $x$ itself, which certainly isn't open.
+Set-theoretically, open sets are somewhat well-behaved in respect to unions and intersections. Indeed, any union (including infinite ones) of open sets will still be open, since the open balls containing elements will still be inside the union. With respect to intersection, finite intersections of open sets are open as well: for if $U$ and $V$ are open and $x\in U\cap V,$ then, by the definition of openess, there are $r_1,r_2$ such that $B(x,r_1)\subseteq U$ and $B(x,r_2)\subseteq V,$ so that $B(x,\min \{r_1,r_2\})\subseteq U\cap V$ and the intersection is open. 
+
+This is valid only for finite intersections: for example, if you do the infinite intersection $\bigcap_{n=1}^\infty B(x,1/n)$ of smaller and smaller open balls around $x$ is exactly the set $\{x\}$ containing only the point $x$ itself. In $\ro,$ points aren't open, however, since this would imply the existence of a ball $B(x,r)$ lying inside $\{x\}$-- i.e., imply $B(x,r)=\{x\},$ thus $r=0,$ something we don't allow as counting as open balls.
 
 IMG!!!
 
-EXS: 
-GRAPHS
-FUNCS
-We've been thinking quite informally of open sets as "balls", or "disks", because that's how they look in $\ro^n.$ But let's consider a different space: $C([0,1])$ with the $L^1$ metric. Here, the open ball $B(f, r),$ for some $f\in C([0,1]),$ is the set of all (continuous) functions that differ less from $f$ than $r$, according to the $L^1$ distance. There are infinitely many of these, with all possible shapes.
+We've been thinking quite informally of open sets as "balls", or "disks", because that's how they look in $\ro^n.$ But let's consider a different space: take a graph $G$ and metricize it with the metric we described. Then for a vertex $v\in G,$ the open ball $B(v,r)$ is the set of all vertices within less than $r$ edges of $v.$ Since $B(v,r)$ for $r<1$ is simply $v$ itself, we get that every vertex in $G$ is open-- and, since countable unions of open sets are open, any set of vertices of $G$ is open.
+
+A less trivial example is given by $C([0,1])$ with the $L^\infty$ metric. Here, the open ball $B(f, r),$ for some $f\in C([0,1]),$ is the set of all (continuous) functions that differ from $f$ less than $r$ in every point. There are infinitely many of these, with all possible shapes.
 
 IMG!!!
 
-Then the set
-????????
-is open.  IF YOU DEFINE VERY SMALL R,....
+In this space, for example, the set $U=\{f\in C([0,1])\mid f(x)\neq 0\text{, for all } x\in[0,1]\}$ is open. This is the case because, if $g\in U$ and $r$ is the closest $g$ gets to $0,$ then $B(g,r)\subseteq U$ (actually proving this requires the proper treatment of continuity we'll give in the next section).
 
 IMG!!!
 
-## Topological spaces
+These examples should show that, in metric spaces, **by definition a subset** $U$ **is open if, for every** $x$ **in** $U,$ **a small perturbation of** $x$ **(measured with the metric) remains inside** $U.$ This is starting to smell like the "continuous deformations" we mentioned informally in the introduction. All we need now is to define continuity properly, and we'll finally get into topology proper.
 
-The idea of topological spaces comes from trying to focus on the set-theoretic aspect of metric spaces: i.e., what if, instead of taking metrics as the primary concept defining our abstract spaces, we take open sets to be our focus? These would then give us **a notion of proximity based only on sets**, skipping the necessity of a distance function. There are many equivalent definitions, but here's one based on open sets:
+## Continuity
+
+If you've taken a Calculus I course, you'll surely have met the definition of a real continuous functions; if you haven't, don't worry! Visually, a function $f:\ro\rightarrow \ro$ is said to be continuous if its graph has no sudden jumps-- if it can be drawn continuously without taking your pen from the paper. More formally, this means that if a sequence of points sequence of points $x_1,x_2,...$ gets closer and closer-- converges, we say-- to a point $a\in \ro$ in the $x$ axis, then the sequence $f(x_1),f(x_2),...$ will also converge to $f(a)$. We often write sequences as $\{x_n\}$ and, if it converges to a point $a$ when $n$ gets larger, that $a$ is its **limit**, writing $\lim_{n\rightarrow\infty}x_n=a.$ Informally using this limit notation, a function $f$ as above is continuous if, and only if, 
+
+$$\lim_{x\rightarrow a}f(x)=f(a).$$
+
+IMG!!! func contínua e descontínua
+
+Here's how to make formal sense of these terms and notations.
+
+More properly, we say an infinite sequence $\{x_n\}$ converges to a value $a$ whenever for any positive real number $\epsilon>0$ (which can be very, very small), there's some index $N$ such that $d(x_n, a)<\epsilon$ for all indices $n>N$. That is, you can pick an arbitrarily tiny number $\epsilon$ and there'll come a moment in the sequence where all points will be closer to $x_n$ as $\epsilon,$ starting from the index $N.$ You can imagine this like a game: one player proposes a challenge with a very small $\epsilon,$ and the other has to find an $N$ after which $d(x_n,a)<\epsilon.$ We then write $x_n\rightarrow a,$ or $\lim_{n\rightarrow \infty}x_n=a.$
+
+In Calculus I this is thought only inside $\ro,$ but notice that the only thing we needed here is a metric: indeed, this can be taken as the definition of convergence for any metric space $(X,d)$!
+
+**Definition**: an infinite sequence $\{x_n\}$ in a metric space $(X,d)$ is said to **converge** to a point $a\in X$, written $x_n\rightarrow a,$ whenever for any positive real number $\epsilon>0,$ there is some $N$ such that $d(x_n, a)<\epsilon,$ for all $n>N.$
+
+IMG!!! converging seq
+
+We can then formalize the informal definition of continuity we gave before, and even generalize it to all metric spaces:
+
+**Definition**: a function $f:X\rightarrow Y$ between metric spaces $(X,d_X)$ and $(Y, d_Y)$ is continuous if, for all sequences $x_n\rightarrow a,$ we have $f(x_n)\rightarrow f(a).$ 
+
+Simple, right?! Sure, and it is a very helpful and common way to think of convergence, no matter in which area application. But it also has its disadvantages. Conceptually, it relies too much on the notion of sequences: but sequences really should be seen as tests for continuity-- as a way of exemplifying and verifying it--, but not inherent to continuity as a phenomena itself. Formally, it requires proving two convergences: thus two $\epsilon$'s and two $N$'s, giving four variables to work with. Can't we get something simpler, conceptually and formally?
+
+The following definition gets us rid of both problems: there are no sequences in it anymore, just general points in space, and only two variables ($\epsilon$ and $\delta$) for proving continuity. Proving it is equivalent to the previous one is a good exercise on metric spaces.
+
+**Definition**: a continuous function between metric spaces $(X,d_X)$ and $(Y, d_Y)$ is a function $f:X\rightarrow Y$ such that, for every real number $\epsilon>0,$ there exists some $\delta>0$ such that $y\in B(x, \delta)$ implies $f(y)\in B(f(x), \epsilon).$
+
+The proposition above can actually be further simplified in a cleaner and deeper way, although seemingly distant from the notion of convergence. This is where topology will come in. 
+
+Indeed, a careful reading will tell you that it is equivalent to saying that $f(B(x, \delta))\subseteq B(f(x), \epsilon),$ which is the same as $B(x, \delta) \subseteq \inv{f}(B(f(x), \epsilon)).$ But since this is valid for any $x,$ by definition the set $\inv{f}(B(f(x), \epsilon))$ is open in $X.$ It isn't a difficult exercise to prove that this is again equivalent to having $\inv{f}(V)$ open for any $V$ open in $Y.$
+
+But now this last equivalent definition is free of any notion of metric or convergence! It depends only on open sets, nothing more. This more concise version of continuity ensues:
+
+**Definition**: a **continuous function** between metric spaces $(X,d_X)$ and $(Y,d_Y)$ is a function $f:X\rightarrow Y$ such that, for all $V\subseteq Y$ open in $Y$, $\inv{f}(V)$ is open in $X.$
+
+Note how clean this definition is: in a certain way, it deeply and truly captures the general nature of continuity as a visual phenomena. Ask yourself this: is continuity as a notion that should depend on a metric-- on a definition of distance? Imagine you have a map and a continuous path inscribed in it. **Does the scale of the map matter as to the path being continuous**? Not at all. You can use kilometers, miles or roman feet, it'll remain a continuous path no matter what. Thus being continuous isn't properly a metric property, but something deeper and more subtle-- i.e., "topological". The definition of topology is getting very close to us. 
+
+All most common real functions are continuous. This includes addition, subtraction, multiplication, roots, exponentiation, logarithms and division as well. The last one doesn't seem though: the graph of $\frac{1}{x}$ has two distinct components, doesn't it? It does, but its domain is $\ro\setminus \{0\},$ so it is continuous, only with a domain that's already disconnected. We'll formalize this notion of "connectedness" later on.
+
+You may find more over continuous real functions on textbooks on calculus.
+
+Generally, the composition of continuous functions between metric spaces is continuous: if $f:X\rightarrow Y,$ $g:Y\rightarrow Z$ are both continuous and $V\subseteq Z$ is open, then $\inv{(g\circ f)}(V)=\inv{f}(\inv{g}(V)),$ which is open by hypothesis, so that $g\circ f$ is continuous too. Notice by the way how proving this is much, much easier and more obvious using the last definition instead of the previous ones that used explicit metrics.
+
+# Topological spaces
+
+## Purpose and definition
+
+The idea of topological spaces comes from trying to focus on the set-theoretic aspect of metric spaces: i.e., what if, instead of taking metrics as the primary concept defining our abstract spaces, we take open sets to be our basic objects? These would then give us **a notion of proximity based only on sets**, skipping the necessity of a distance function. The discussion above on continuity should make this quite reasonable: there are phenomena where openness is the main player, not distance. This includes not only continuity, but, as we'll see later, stuff like gluing two shapes together.
+
+Thus we wish to define a notion of space based only on subsets, which we'll define as being "open". These should have similar properties as open sets in metric spaces. The following definition is the most common for this:
 
 **Definition**: a **topological space** is a set $X$ with a set $\tau$ of subsets of $X$ (called **open sets**) such that
 
@@ -171,9 +222,17 @@ The idea of topological spaces comes from trying to focus on the set-theoretic a
 
 Some notation and terminology first: we'll often omit $\tau$ and, when the topology is understood from context, call just $X$ a topological space. An open set $U\subseteq X$ containing a point $x\in X$ is often called a **neighborhood** of $x$ (some authors differ on their definitions of neighborhoods, but that's the one I prefer). When we have open sets $\{U_i\}$ such that their union is equal to $X,$ we say they **cover** $X.$
 
-How does this fit with the previous section? Well, if $(X,d)$ is a metric space, then we can **topologize** $X$ by taking as topology $\tau$ all the open sets of $(X,d),$ as previously defined.
+Since continuity was a main reason to define topological spaces-- and because these concepts are intrinsically and necessarily related--, here's how can easily generalize it:
 
-We can't, however, do the opposite: i.e., we can't define a metric $d$ from a general topological space $(X,\tau)$ such that $\tau$ is obtained as the open sets of $d.$ Those spaces that allow this are called **metrizable**, and the obtained topology $\tau$ is called a **metric topology**. These spaces include basically all the ones we'll study in this series.
+**Definition**: a **continuous function** between topological spaces $(X,\tau_X)$ and $(Y,\tau_Y)$ is a function $f:X\rightarrow Y$ such that, for all $V\subseteq Y$ open in $Y$, $\inv{f}(V)$ is open in $X.$
+
+The composition of topological continuous functions is also continuous: the proof is exactly the same we gave for metric spaces previously.
+
+How do metric spaces fit in this definition? Well, if $(X,d)$ is a metric space, then we can **topologize** $X$ by taking as topology $\tau$ all the open sets of $(X,d),$ as previously defined.
+
+We can't, however, always do the opposite: i.e., we can't generally define a metric $d$ from a general topological space $(X,\tau)$ such that $\tau$ is obtained as the open sets of $d.$ Those spaces that allow this are called **metrizable**, and the obtained topology $\tau$ is called a **metric topology**. That is, topological spaces are a broader category than metric ones, even though most of the spaces we'll study in this series will be metrizable.
+
+## Defining a topology by a basis
 
 In the context of metric spaces, we started with a metric and then got to defining open sets as those subsets $U$ that, for all points $x\in U,$ there was an open ball $B(x,r)\subseteq U$ containing $x$ and inside $U.$ This is generalized by the following theorem:
 
@@ -193,7 +252,60 @@ We often define a topology through a basis, just as we did in the metric case. I
 
 - For all sets $B_1,B_2\in \mathcal{B}$ and all $x\in B_1\cap B_2,$ there's a $B_3\in \mathcal{B}$ such that $x\in B_3$ and $B_3\subseteq B_1\cap B_2$ (just remember how we showed this for open ball previously).
 
-**What's really the point for studying topological instead of metric spaces?** First of all, because different metric spaces may have the same topology, and thus fundamentally . This is the case for all $\ro^n$ with any $\mathcal{l}^p$ distance: sure, their balls might be different, but they're open in any other of these metrics as well. This is fundamentally becaus of the following theorem, which states that, when two metrics are not that different from one another, then they have the same topology:
+You can also prove that, in order to show that a function $f:X\rightarrow Y$ is continuous, it suffices to prove it in relation to a basis $\mathcal{B}$ of $Y$: i.e., that $\inv{f}(B)$ is open in $X$ for all $B\in\mathcal{B}.$ This is particularly useful for metric spaces, with $\mathcal{B}$ being the open balls of $Y.$
+
+## Closed sets
+
+
+## Homeomorphisms: equivalence of spaces by continuous deformations
+
+We're now finally able to define what we actually mean by topology as rubber geometry. Indeed, what we meant by "a continuous deformation without gluing or cutting" in the introduction can be formally described as a **bijective continuous function** $f$! The property of "being able to go back by a deformation of the same kind" means that $\inv{f}$ should also be continuous. Thus, we have the following fundamental definition:
+
+**Definition**: a **homeomorhpism** between topological spaces $(X,\tau_X)$ and $(Y,\tau_Y)$ is an inversible continuous function $f:X\rightarrow Y$ such that $\inv{f}:Y\rightarrow X$ is also continuous. We then say X and Y are **homeomorphic** and write $X\cong Y.$
+
+IMG!!! HOMEO
+
+If two spaces are homeomorphic, they're seen as equivalent by topology. That is, homeomorphic spaces can be seen as just different ways to name things: a point $x\in X$ is just a different name for another $y\in Y$, and an open set $U\subseteq X$ is just a different name for one open set $V\subseteq Y.$
+
+Like equality, being homeomorphic is an **equivalence relation** (prove it): that is, $X\cong X;$ $X\cong Y$ implies $Y\cong X;$ $X\cong Y$ and $Y\cong Z$ imply $X\cong Z.$
+
+Homeomorphisms allow us to make use of expressions like "the circle", "the torus" etc., even though our circle might actually take the shape of a square-- it doesn't matter, since, as we'll see, both are homeomorphic!
+
+We'll say some property of a space $X$ is a **topological invariant** of $X$, or a topological *property* of it, if any space $Y$ homeomorphic to $X$ has the same property. The main goal of topology is finding invariants appliable to the largest classes of spaces possible.
+
+Note that, from set theory, the [cardinality](https://en.wikipedia.org/wiki/Cardinality) of a space as a set is an invariant. This usually doesn't help us, since most interesting shapes have the same uncountable cardinality. 
+
+One main topological invariant we'll keep studying in this series are **holes**: they refrain transforming one space into another continously (i.e., without cutting or gluing): a disk and a disk with a hole in it, for example, aren't homeomorphic. To prove this will still take some time, though, but I hope it is visually intuitive.
+
+IMG!!! OU GIF SLA, BURACO
+
+Generally, mathematicians describe homeomorphisms explicitly, but rely on the visual intuition of the reader, which should be based on these simpler cases. Here are some of these simpler homeomorphisms which can be explicitly described (take $\ro^n$ and other real spaces with the metric topology from the Euclidean distance):
+
+- The obvious case: the identity $i:X\rightarrow X$ sending $x$ to $x$ itself;
+
+- All one-point spaces are homeomorphic: for if $X=\{p\}$ and $Y=\{q\}$ (both with the trivial topology, which is the only possible one), then $f:X\rightarrow Y$ sending $p$ to $q$ is a homeomorphism. It is common to then to speak of **the point space**, often denoted as $0$ to denote its triviality (it's a space though, not a number!);
+
+- **Isommetries**: these are the bijective functions between metric spaces preserving the metric: i.e., $f:(X,d_X)\rightarrow (Y,d_Y)$ such that $d(x,y)=d(f(x),f(y)),$ with $f$ bijective. This is easy to prove using what we know so far. **Rotations, reflections and translations** are examples of isommetries. These will become very important later on when we study the topology of cellular automata;
+
+- Linear scalings: since these are just multiplication by scalars on $\ro^n$;
+
+- Open intervals $(a,b)$ and $(c,d)$ in $\ro$: applying translation and scaling suffices. The same applies for all open balls in $\ro^n;$
+
+- The disk $\bar{B}(0, 1)$ and the square $[0,1]^2$ inside $\ro^2$: this can be described using [polar coordinates](https://en.wikipedia.org/wiki/Polar_coordinates) as $f:[0,1]^2\rightarrow \bar{B}(0, 1),$
+
+$$f(\rho, \theta) = \left( \frac{\rho}{ \max(|\cos \theta|, |\sin \theta|)}, \theta\right).$$
+
+- $\ro$ and the interval $(0,1)$: this may be surprising, but it's true: for topology, the reals and an open interval inside it are really the same. A famous homeomorphism is the **logistic function** $\sigma:\ro\rightarrow (0,1),$
+
+$$\sigma(x)=\frac{1}{1+e^{-x}},$$
+
+which "encapsulates" $\ro$ onto $(0,1).$ Its inverse is the **logit function** $\text{logit }:(0,1)\rightarrow \ro,$ defined as $\text{logit }p=\log\frac{p}{1-p}$-- which is also continuous. Writing the variable here as $p$ is suggestive: the fraction $\frac{p}{1-p}$ can be seen as the odds (30% to 70%, 99% to 1% etc.) of a given event with probability $p$. Thus the logistic function can be seen as a function taking a real number and returning the logarithm of an odd. This makes these two functions widely appliable in statistics, specially in machine learning.
+
+IMG!!! LOGISTIC
+
+Homeomorphisms from $\ro$ to $(0,1)$ are usually called **sigmoids**, due to their graphs being s-shaped.
+
+- $\ro^n$ with the $\mathcal{l}^p$ metrics: these are all homeomorphic as topological. Actually, their topologies are **the exact same**: sure, their balls might be different, but they're open in any other of these metrics as well. This is fundamentally because of the following theorem, which states that, when two metrics are not that different from one another, then they have the same topology:
 
 **Theorem**: If $d_1$ and $d_2$ are two metrics on the same set $X$ and there are constants $K_1, K_2$ such that, for any $x,y\in X,$ we have 
 
@@ -205,7 +317,19 @@ This is the case for all the $\mathcal{l^p}$ metrics in any $\ro^n.$ Proving thi
 
 Interestingly, the same can't be said for sets of functions with the $L^p$ metrics: indeed, different $p$ give us completely different topologies. This was actually one of the main sources for defining abstract topological spaces in the earlier 20th century, as many theorems were valid for some $L^p$ distances, and some not for others. This led to the consolidation of **functional analysis**, which is linear algebra applied to the different (infinite dimensional) vector spaces of functions-- an area that later on lead to fundamental advances in quantum mechanics, statistics, topology itself and many other applications.
 
-Another reason for considering topologies instead of metrics is because the latter are superfuous in many constructions and arguments. Continuity is one example in which, as we'll soon find out, a definition using distances is quite tedious, while one using sets brings a lot of clarity. Similarly, intuitive ideas like **gluing** and **cutting** don't really involve distances, and thus should need no description of a metric.
+Beware, **from now on we'll not describe explicitely most of the homeomorphisms we mention!**
+
+Proving that spaces satisfying certain properties are homeomorphic is, in general, hard. However, it may be even harder to prove the opposite: that two spaces *aren't* homeomorphic. Proving the latter is one of the main tasks of topology. Here are some non-homeomorphic spaces and indicatives of thereof:
+
+- $\ro^n$ and $\ro^m$ for different $n,m.$ You think this is obvious? Intuitively, sure-- but not formally! One way to prove it is to show that, after taking the origin from both $\ro^n$ and $\ro^m,$ the holes left in them are of different dimensions-- something that we'll soon study closer when we define homology groups;
+
+- Dimensionality: generally, if two shapes have different dimensions, they aren't homeomorphic. We'll discuss dimensionality properly soon;
+
+- Open and closed intervals: indeed, $(a,b)$ is not homeomorphic to $[a,b],$ and similarly for all open and closed balls $B(x, r)$ and $\bar{B}(x,r)$ in any $\ro^n$. This has to do with the property of compactness, which we'll see later on, but the idea is that in $(a,b)$ you can get infinitely close to the extremities of the interval, without ever getting to them, which doesn't happen in $[a,b];$
+
+- Holes: these are the most important indicatives of non-homeomorphic spaces, and formalizing what "a hole" is will concern us for most of the rest of the series. Examples include: a disk and and its boundary circle aren't homeomorphic since there's a hole in the latter; similarly for, say, a 2D sphere and a cylinder, or with the torus (donut shape): these all have different holes.
+
+We'll also study two properties which are very strong topological invariants in this article: connectivity and compactness. The latter will play an important role in the topological analysis of cellular automata.
 
 ## Some common topologies
 
@@ -235,35 +359,41 @@ IMG!!!
 
 OTHER TOPOLOGIES FOR SMALL SETS
 
-It's also educative to consider some 
+It's also educative to consider some  !!!!!!!!!!!!!!!!!!!!!
 
-### Subspaces, spheres, donuts and manifolds
+### Spheres and donuts: dimension, intrinsic and extrinsic views
 
 That's all educative and even intersting per se, but where are our cool figures of mind-blowing shapes, our familiar friends the sphere and the torus-- **where are our donuts?!** Indeed, most introductory courses on topology don't really get to these and focus on the more set-theoretical aspects of topology-- the so-called **point-set topology**. This can be frustrating for many beginners, so let me turn to more familiar shapes and spaces.
 
-We studied how to metricize and topology $\ro^n$ above, and how all $\mathcal{l^p}$ topologies are the same as the one coming from the usual Euclidean distance. Of course there are other possible topologies on $\ro$ ([the K-topology](https://en.wikipedia.org/wiki/K-topology) is a common counter-example found in point-set topology textbooks), but the Euclidean one is the only one we'll actually study here.
+We know where to start: with the reals $\ro^n.$ In this series, we'll **always** use the metric topology coming from the Euclidean metric-- which is homeomorphic to the one using the other $\mathcal{l^p}$ distances. Of course there are other possible topologies on $\ro$ ([the K-topology](https://en.wikipedia.org/wiki/K-topology) is a common counter-example found in point-set topology textbooks), but the Euclidean one is the only one we'll actually study here.
 
-Sure, we know how to topologize $\ro^n,$ but what about surfaces and other shapes living in it-- like circles and spheres? The simplest way is to use the **subspace topology**. Generally, if you have a topological space $(X,\tau)$ and some subset $Y$ of $X,$ you can define the subspace topology $\tau'$ on $Y$ (induced by $\tau$) as 
+Sure, we know how to topologize $\ro^n,$ but what about surfaces and other shapes living in it-- like circles and spheres? There are two ways: **extrinsic** and **intrinsic** descriptions.
+
+With extrinsic descriptions, we define our spaces as subsets of some $\ro^n$: for example, seeing the circle as something inside the plane $\ro^2.$ For this, we can use **subspace topology**. Generally, if you have a topological space $(X,\tau)$ and some subset $Y$ of $X,$ you can define the subspace topology $\tau'$ on $Y$ (induced by $\tau$) as 
 
 $$\tau'=\{U\cap Y \text{, where } U \text{ is open in } (X,\tau)\}.$$
 
-You can check that this is a topology for any $s$ and $Y\subseteq X.$
+You can check that this is a topology for any $s$ and $Y\subseteq X.$ You can also see that, for a metric space $(X,d)$ with the metric topology, the subspace topology of a subspace $Y\subseteq X$ is the same as the metric topology of $Y$ with the restriction of $d$ to it.
 
-In the case of subsets $\ro^n,$ that's the topology we'll basically always think of. We'll now consider some other shapes that can be seen as living inside these spaces: but, before, a note on the notion of **dimensionality**.
+It's basically immediate from the definition that, if $Y\subseteq X$ is given the subspace topology, then the **inclusion function** $i:Y\rightarrow X$ sending $y\in Y$ to $y$ itself is continuous. 
 
-Dimension refers to the possible move directions on a space. When mathematicians speak of the dimension of a shape, they think of it as if we lived in the shape. Imagine yourself as an ant on to the surface of a ball-- a sphere. You have only two movement directions: forwards/backwards and left/right. Thus we say this shape is two-dimensional. Similarly, if you were restricted to a circle, you could only go forwards or backwards. So a circle is one-dimensional. And we all live in a three-dimensional spacial world. 
+For lower dimensional shapes, that's how we tend to think of them: as living inside some larger space. Intrinsic definitions, however, can unsatisfactory for some reasons. First, it limits us a lot: beyond dimension $3$ our visual intuition ceases being that helpful. There are many interesting spaces we'll study in this series that can't be properly seen inside 3D space. 
+
+Second, it is conceptually quite decieving: being inside some other larger space shouldn't be a defining property of some topological space. Imagine yourself as an ant on the surface of a sphere. You have only two movement directions: forwards/backwards and left/right. Why would you care about some third extra dimension (up/down), if you can't move along it? The sphere might as well be inside a $23$-dimensional space, it is irrelevant for you-- and so it should be for the sphere as a topological space. 
 
 IMGS!!!
 
-Some people, however, think it'd be more intuitive to say a sphere is three-dimensional. Now let me ask: is a circle inside the three-dimensional space $\ro^3$ three-dimensional? Of course not! The dimension of a shape doesn't care where you **embedd** it! A sphere could also be embedded in the four-dimensional space $\ro^4$: is it four-dimensional then?! Think of it **intrinsically**, not extrinsically. I.e., dimension is defined as if you could only move in the shape, not from any other, external point of view. 
+This leads us to the **intrinsic** description of spaces: define them without seeing them as embedded in some $\ro^n.$
 
-Intuitively, a shape has dimension $d$ whenever it locally "looks like" $\ro^d$. Intrinsically, the sphere locally-- seen at a closer distance-- looks like the plane. We'll give a more rigorous definition of dimension when we define manifolds after studying continuity.
+This all has a lot to do with the notion of **dimension**. By dimension, we usually mean the **degrees of freedom** available in a space: i.e., the general directions of movement possible inside it. This is an intrinsic notion. Because in the sphere as described above the ant has only go forwards/backwards or left/right, we say the sphere is two-dimensional. Similarly, if you were restricted to a circle, you could only go forwards or backwards, and a circle is one-dimensional.
 
-2D spaces are also called **surfaces**.
+Intuitively, a shape has dimension $d$ whenever it locally "looks like" $\ro^d$. Intrinsically, circle locally looks like a line segment, and the sphere-- seen at a closer distance-- looks like a portion of the plane-- something we experience everyday using maps to represent the small portion of the round planet we live in. 
 
-Finally, I have to mention the way we address spaces in topology. Because topology treats spaces that can be morphed into one another as equivalent-- as we'll properly define later on--, it is common to call the whole class of these equivalent spaces of type X as "**the** space X". For example, by "the circle" a topologist really means any circle at all, independent of center or radius. It doesn't even have to be a circle-- it can have straight angles like a square or a triangle, or any other crazy curve, as long as it is a closed loop. Similarly for "the" torus-- which *is* a donut for a topologist-- and any other space. We might as well say that a specific circle "realizes" "the" circle, although it is also common to say that a certain realization *is* the space. We'll formalize this idea later on with the notion of **homeomorphisms**.
+Some people, however, think it'd be more intuitive to say a sphere is three-dimensional. Now let me ask: is a circle inside the three-dimensional space $\ro^3$ three-dimensional? Of course not! The dimension of a shape doesn't care where you **embedd** it! A sphere could also be embedded in the four-dimensional space $\ro^4$: is it four-dimensional then?! Think of dimension intrinsically, not extrinsically. I.e., dimension is defined as if you could only move in the shape, not from any other, external point of view. 
 
-Now, let's get to some concrete examples:
+2D spaces are so common and important that they receive the exclusive name of **surfaces**.
+
+We'll properly define spaces intrinsicaly in the next subsection. For now, let's **finally** get into some concrete examples:
 
 - $\ro^n$: the reals with the Eucliedean distance-- the only topology we'll consider here for them. We know them already;
 
@@ -321,13 +451,75 @@ IMG!!!
 
 - The multidimensional torii $T^n$: based on the description $T^2=S^1\times S^1,$ we define $T^n$ as the product of $n$ circles $S^1$;
 
-Later on we'll see different ways of describing these spaces which will be very helpful to do certain topological computations.
+### Manifolds
+
+The shapes we described above have all the property that, locally, they "look like" some $\ro^n,$ as we previously discussed. Spaces with this property are called *manifolds*, and defining them properly isn't hard for us anymore with all the topological machinery we've acquired:
+
+**Definition**: a space $M$ is an $n$**-dimenisonal manifold** if, for every point $x\in M$, there is a neighborhood $U$ of $x$ such that $U$ is homeomorphic to an open subset of $\ro^n.$
+
+See how this an intrinsic view of our spaces: we don't assume they live inside some $\ro^n.$ 
+
+You don't need to find a homeomorphism for every point, as long as you can find a collection of open sets $\{U_i\}$ covering your space, with all $U_i$ homeomorphic to an open subspace of $\ro^n$. Such a collection $\{U_i\}$ along the corresponding homeomorphisms $\{\phi_i\}$ is said to be an **atlas** of your manifold. It's common to describe atlases only by the collection of open sets, when one can assume the reader can describe the homeomorphisms by himself.
+
+IMG!!!
+
+Here are some descriptions of spaces as manifolds:
+
+- $\ro^n$ and open subsets of them: the spaces themselves together with the identity provide an atlas;
+
+- $S^1$: an atlas can be given by the open sets $S^1\setminus \{p\}$ and $S^1\setminus \{q\},$ with $p,q\in S^1$ any two points in the circle. You can describe the necessary homeomorphisms if you want to, but visually it should be clear that both sets are homeomorphic to intervals;
+
+IMG!!!
+
+- $S^2$: similarly to the 1D case, $S^2\setminus \{p\}$ and $S^2\setminus \{q\}$ provide an atlas, with any $p,q\in S^2.$ Constructing the homeomorphisms can take use of [polar coordinates](https://en.wikipedia.org/wiki/Polar_coordinates);
+
+- $T^2$:
+
+Note, however, that the definition above doesn't allow for bounded spaces, like $D^2:$ a point lying in its circular boundary can't move in 2 directions freely (it can't go beyond the disk). This is easy to solve: instead of considering $\ro^n$, consider the upper **half-spaces** $\mathbb{H}^n,$ with $\mathbb{H}=\{x\in\ro\mid x\geq 0\}$ (i.e., the subspaces of $\ro^n$ of points with only positive or zero coordinates). Give $\mathbb{H^n}$ the subspace topology inside $\ro^n$: then we have open sets with boundaries (those near the boundary of $\mathbb{H}^n$ itself). If we want to allow manifolds with boundaries, then we should use $\mathbb{H}^n$ as a model space, instead of $\ro^n,$ with points in the boundary of our bounded manifold being matched to those on the boundary of $\mathbb{H}^n.$
+
+{{< figure src="ManifoldBoundary.png" caption="Manifolds with boundaries should be based on the upper half-spaces $\mathbb{H}^2$. Work by [Pekkog](https://commons.wikimedia.org/wiki/User_talk:Pekkog)." width="60%" height="60%" >}}
+
+This allows us the following definition:
+
+**Definition**: a space $M$ is an $n$**-dimenisonal manifold with boundary** if, for every point $x\in M$, there is a neighborhood $U$ of $x$ such that $U$ is homeomorphic to an open subset of $\mathbb{H}^n.$
+
+Here are some examples:
+
+- I: the atlas can be given using the open sets $[0,1)$ and $(0,1]$ (both homeomorphic to, say, $[0,1)$ inside $\mathbb{H},$ which is open);
+
+- $D^2$: the atlas can be given using the open sets $\{(x,y)\in D^2\mid y>-0.1\}$ and $\{(x,y)\in D^2\mid y<0.1\}$
+
+IMG!!!
+
+Here are some examples of spaces that **aren't** manifolds (with or without boundary):
+
+- Branched spaces: visually, these are spaces like manifolds, but with specific points in which the space branches itself, like below. The branching points don't satisfy the manifold property;
+
+IMG!!!
+
+- Intersecting figures: lines, surfaces etc. having self-intersections, like the [folium of Descartes](https://en.wikipedia.org/wiki/Folium_of_Descartes) or a [lemniscate](https://en.wikipedia.org/wiki/Lemniscate). These are branched in the intersections.
+
+IMG!!!
+
+How do the extrinsic and intrinsic views work together? This is actually quite non-trivial. Formally, if we have a manifold $M$ and another manifold $N$, an **embedding** from $M$ to $N$ is a homeomorphism from $M$ to a subspace of $N.$ We're generally interested if we can embed $M$ on some $\ro^n,$ in such a way that it can be seen extrinsically as inside some $\ro^n.$ For the cases we've been studying so far, this seems possible-- if not obvious. But, as we'll later see, **there are some surfaces that can't be embedded in** $\ro^3$! Generally, it's not clear if every manifold can be embedded inside some $\ro^n.$
+
+Thankfully, we have the following theorem:
+
+**Theorem**: every $n$-dimensional manifold can be embedded inside $\ro^{2n+1}.$
+
+Its proof is, frankly, quite tedious.
 
 ### Topologies on cartesian products
 
 We've seen above that many interesting spaces can be formed using cartesian products. These include boxes, the cylinder and torii, but also the space of strings $\mathcal{A}^n.$ We were able to topologize these either using the metric or subspace topologies, but what if we didn't have these? How to generally give a topology to the product of topological spaces?
 
-It turns out the answer to this can get quite technical if you consider some details and how these impact further theory, but we'll ignore this and give the simple definition straight away:
+Consider first the case of a product$X\times Y$ between two spaces $(X,\tau_X)$ and $(Y,\tau_Y).$ A natural idea would be to define the topology
+
+$$\tau=\{U\times V\mid U\in \tau_X, V\in \tau_Y\},$$
+
+i.e., open sets should be product of open sets in each coordinate. If $\pi_1:X\times Y\rightarrow X$ and $\pi_2:X\times Y\rightarrow Y$ are the corresponding projections onto the $n$-th coordinate (i.e., $\pi_1(x,y)=x$ and $\pi_2(x,y)=2$), then this topology is the minimal topology with $\pi_1$ and $\pi_2$ continuous.
+
+This idea works fine for products of finitely many spaces, but for technical reasons it gets tricky with infinite products. The following definition works for both cases:
 
 **Definition**: given a product $\prod_{i\in I} X_i$ of topological spaces $(X,\tau_i)_{i\in I},$ the **product topology** on $\prod_{i\in I} X_i$ is the topology whose open sets are of the form
 
@@ -335,142 +527,13 @@ $$\{\prod_{i\in I}U_i\mid U_i \text{ is open in } X_i \text{, and only for finit
 
 Quick reminder: the $I$ in $\prod_{i\in I} X_i$ is an *index set*, and can be any set you want. For finite products, it's just $\{1,...,n\}$ for some $n$; for infinite ones, it can be the whole natural numbers $\mathbb{N},$ the integers $\zo$ or anything you want!
 
-You might also wonder why do we have the condition that only finitely many $U_i$ are not the whole $X_i$ themselves. For finite products, this condition is inoquous; however, for infinite products, it isn't. For reasons later on the theory, this condition avoids many technical issues and gives more well-behaved spaces. If you leave it and take only the topology $\{\prod_{i\in I}U_i\mid U_i \text{ is open in } X_i\},$ you'll get the so-called **box topology**, which is of interest for pure point-set topology, but not really for us in this series.
+If the spaces $X_i$ are homeomorphic to $Y_i,$ then the product $\prod X_i$ is homeomorphic to $\prod Y_i,$ by applying homeomorphisms on each coordinate.
+
+If you leave the condition that only finitely many $U_i$ are not the whole $X_i$ themselves and take only the topology $\{\prod_{i\in I}U_i\mid U_i \text{ is open in } X_i\},$ you'll get the so-called **box topology**, which is of interest for pure point-set topology, but not really for us in this series.
 
 Now, if you topologize all the products we considered so far with this product topology, **will it be the same space**? I.e., is, for example, $\ro^n$ with the Euclidean topology the same as with the product one? **Thankfully, the answer is yes, and so it is for every other product we've met so far**. Still, it is good to know how to define a topology for any product you want.
 
-### Gluing spaces: quotient topologies
-
-**Definition**: 
-
-## Continuity
-
-If you've taken a Calculus I course, you'll surely have met the definition of a real continuous functions; if you haven't, don't worry! Visually, a function $f:\ro\rightarrow \ro$ is said to be continuous if its graph has no sudden jumps-- if it can be drawn continuously without taking your pen from the paper. More formally, this means that if a sequence of points sequence of points $x_1,x_2,...$ gets closer and closer-- converges, we say-- to a point $a\in \ro$ in the $x$ axis, then the sequence $f(x_1),f(x_2),...$ will also converge to $f(a)$. We often write sequences as $\{x_n\}$ and, if it converges to a point $a$ when $n$ gets larger, that $a$ is its **limit**, writing $\lim_{n\rightarrow\infty}x_n=a.$ Informally using this limit notation, a function $f$ as above is continuous if, and only if, 
-
-$$\lim_{x\rightarrow a}f(x)=f(a).$$
-
-IMG!!! func contínua e descontínua
-
-Here's how to make formal sense of these terms and notations.
-
-More properly, we say an infinite sequence $\{x_n\}$ converges to a value $a$ whenever for any positive real number $\epsilon>0$ (which can be very, very small), there's some index $N$ such that $d(x_n, a)<\epsilon$ for all indices $n>N$. That is, you can pick an arbitrarily tiny number $\epsilon$ and there'll come a moment in the sequence where all points will be closer to $x_n$ as $\epsilon,$ starting from the index $N.$ You can imagine this like a game: one player proposes a challenge with a very small $\epsilon,$ and the other has to find an $N$ after which $d(x_n,a)<\epsilon.$ We then write $x_n\rightarrow a,$ or $\lim_{n\rightarrow \infty}x_n=a.$
-
-In Calculus I this is thought only inside $\ro,$ but notice that the only thing we needed here is a metric: indeed, this can be taken as the definition of convergence for any metric space $(X,d)$!
-
-**Definition**: an infinite sequence $\{x_n\}$ in a metric space $(X,d)$ is said to **converge** to a point $a\in X$, written $x_n\rightarrow a,$ whenever for any positive real number $\epsilon>0,$ there is some $N$ such that $d(x_n, a)<\epsilon,$ for all $n>N.$
-
-IMG!!! converging seq
-
-We can then formalize the informal definition of continuity we gave before, and even generalize it to all metric spaces:
-
-**Definition**: a function $f:X\rightarrow Y$ between metric spaces $(X,d_X)$ and $(Y, d_Y)$ is continuous if, for all sequences $x_n\rightarrow a,$ we have $f(x_n)\rightarrow f(a).$ 
-
-Simple, right?! Sure, and it is a very helpful and common way to think of convergence, no matter in which area application. But it also has its disadvantages. Conceptually, it relies too much on the notion of sequences: but sequences really should be seen as tests for continuity-- as a way of exemplifying and verifying it--, but not inherent to continuity as a phenomena itself. Formally, it requires proving two convergences: thus two $\epsilon$'s and two $N$'s, giving four variables to work with. Can't we get something simpler, conceptually and formally?
-
-The following definition gets us rid of both problems: there are no sequences in it anymore, just general points in space, and only two variables ($\epsilon$ and $\delta$) for proving continuity. Proving it is equivalent to the previous one is a good exercise on metric spaces.
-
-**Definition**: a continuous function between metric spaces $(X,d_X)$ and $(Y, d_Y)$ is a function $f:X\rightarrow Y$ such that, for every real number $\epsilon>0,$ there exists some $\delta>0$ such that $y\in B(x, \delta)$ implies $f(y)\in B(f(x), \epsilon).$
-
-The proposition above can actually be further simplified in a cleaner and deeper way, although seemingly distant from the notion of convergence. This is where topology will come in. 
-
-Indeed, a careful reading will tell you that it is equivalent to saying that $f(B(x, \delta))\subseteq B(f(x), \epsilon),$ which is the same as $B(x, \delta) \subseteq \inv{f}(B(f(x), \epsilon)).$ But since this is valid for any $x,$ by definition the set $\inv{f}(B(f(x), \epsilon))$ is open in $X.$ It isn't a difficult exercise on the notion of topological basis to prove that this is again equivalent to having $\inv{f}(V)$ open for any $V$ open in $Y.$
-
-But now this last equivalent definition is free of any notion of metric or convergence! It is **purely topological**! The following topological definition ensues:
-
-**Definition**: a **continuous function** between topological spaces $(X,\tau_X)$ and $(Y,\tau_Y)$ is a function $f:X\rightarrow Y$ such that, for all $V\subseteq Y$ open in $Y$, $\inv{f}(V)$ is open in $X.$
-
-Note how clean this definition is: in a certain way, it deeply and truly captures the general nature of continuity as a visual phenomena.
-
-SLA ONDE POR ESSE PARAGRAFO. CAFUSO
-Is continuity really a metric property? If you stretch some space, e.g. a plane, completely altering its metric, and you apply a continuous function to this stretched version, will the function still be continuous? I.E., MULTIPLICAR MÉTRICA POR 2, POR EXEMPLO. SE EU USO METRO, FEET OU QLQ COISA, CONTÍNUO É CONTÍNUO
-
-All most common real functions are continuous. This includes addition, subtraction, multiplication, roots, exponentiation, logarithms and division as well. The last one doesn't seem though: the graph of $\frac{1}{x}$ has two distinct components, doesn't it? It does, but its domain is $\ro\setminus \{0\},$ so it is continuous, only with a domain that's already disconnected. We'll formalize this notion of "connectedness" later on.
-
-You may find more over continuous real functions on textbooks on calculus.
-
-Generally, the composition of continuous functions between topological spaces is continuous: if $f:X\rightarrow Y,$ $g:Y\rightarrow Z$ are both continuous and $V\subseteq Z$ is open, then $\inv{(g\circ f)}(V)=\inv{f}(\inv{g}(V)),$ which is open by hypothesis, so that $g\circ f$ is continuous too. Notice by the way how proving this is much, much easier and more obvious using the topological definition instead of the metric one.
-
-You can also prove that, in order to show that a function $f:X\rightarrow Y$ is continuous, it suffices to prove it in relation to a basis $\mathcal{B}$ of $Y$: i.e., that $\inv{f}(B)$ is open in $X$ for all $B\in\mathcal{B}.$ This is particularly useful for metric spaces, with $\mathcal{B}$ being the open balls of $Y.$
-
-Considering the topologies we described before, if $Y\subseteq X$ is given the subspace topology, then the **inclusion function** $i:Y\rightarrow X$ sending $y\in Y$ to $y$ itself is continuous. If we have a product $\prod X_i,$ then the projection $\pi_n:\prod X_i\rightarrow X_n$ sending to the $n$-th component is continuous as well.
-
-## Homeomorphisms
-
-We're now finally able to define what we actually mean by topology as rubber geometry. Indeed, what we meant by "a continuous deformation without gluing or cutting" in the introduction can be formally described as a **bijective continuous function** $f$! The property of "being able to go back by a deformation of the same kind" means that $\inv{f}$ should also be continuous. Thus, we have the following fundamental definition:
-
-**Definition**: a **homeomorhpism** between topological spaces $(X,\tau_X)$ and $(Y,\tau_Y)$ is an inversible continuous function $f:X\rightarrow Y$ such that $\inv{f}:Y\rightarrow X$ is also continuous. We then say X and Y are **homeomorphic** and write $X\cong Y.$
-
-If two spaces are homeomorphic, they're seen as equivalent by topology. That is, homeomorphic spaces can be seen as just different ways to name things: a point $x\in X$ is just a different name for another $y\in Y$, and an open set $U\subseteq X$ is just a different name for one open set $V\subseteq Y.$
-
-Like equality, being homeomorphic is an **equivalence relation** (prove it): that is, $X\cong X;$ $X\cong Y$ implies $Y\cong X;$ $X\cong Y$ and $Y\cong Z$ imply $X\cong Z.$
-
-Homeomorphisms allow us to make use of expressions like "the circle", "the torus" etc., even though our circle might actually take the shape of a square-- it doesn't matter, since, as we'll see, both are homeomorphic!
-
-We'll say some property of a space $X$ is a **topological invariant** of $X$, or a topological *property* of it, if any space $Y$ homeomorphic to $X$ has the same property. The main goal of topology is finding invariants appliable to the largest classes of spaces possible.
-
-Note that, from set theory, the [cardinality](https://en.wikipedia.org/wiki/Cardinality) of a space as a set is an invariant. This usually doesn't help us, since most interesting shapes have the same uncountable cardinality. 
-
-Generally, mathematicians describe homeomorphisms explicitly, but rely on the visual intuition of the reader, which should be based on these simpler cases. Here are some of these simpler homeomorphisms which can be explicitly described:
-
-- The obvious case: the identity $i:X\rightarrow X$ sending $x$ to $x$ itself;
-
-- All one-point spaces are homeomorphic: for if $X=\{p\}$ and $Y=\{q\}$ (both with the trivial topology, which is the only possible one), then $f:X\rightarrow Y$ sending $p$ to $q$ is a homeomorphism. It is common to then to speak of **the point space**, often denoted as $0$ to denote its triviality (it's a space though, not a number!);
-
-- **Isommetries**: these are the bijective functions between metric spaces preserving the metric: i.e., $f:(X,d_X)\rightarrow (Y,d_Y)$ such that $d(x,y)=d(f(x),f(y)),$ with $f$ bijective. This is easy to prove using what we know so far. **Rotations, reflections and translations** are examples of isommetries. These will become very important later on when we study the topology of cellular automata;
-
-- Linear scalings: since these are just multiplication by scalars;
-
-- Open intervals $(a,b)$ and $(c,d)$ in $\ro$: applying translation and scaling suffices. The same applies for all open balls in $\ro^n;$
-
-- $D^2$ and the square $I^2$: this can be described using [polar coordinates](https://en.wikipedia.org/wiki/Polar_coordinates) as $f:I^2\rightarrow D^2,$
-
-$$f(\rho, \theta) = \left( \frac{\rho}{ \max(|\cos \theta|, |\sin \theta|)}, \theta\right).$$
-
-- $\ro$ and the interval $(0,1)$: this may be surprising, but it's true: for topology, the reals and an open interval inside it are really the same. A famous homeomorphism is the **logistic function** $\sigma:\ro\rightarrow (0,1),$
-
-$$\sigma(x)=\frac{1}{1+e^{-x}},$$
-
-which "encapsulates" $\ro$ onto $(0,1).$ Its inverse is the **logit function** $\text{logit }:(0,1)\rightarrow \ro,$ defined as $\text{logit }p=\log\frac{p}{1-p}$-- which is also continuous. Writing the variable here as $p$ is suggestive: the fraction $\frac{p}{1-p}$ can be seen as the odds (30% to 70%, 99% to 1% etc.) of a given event with probability $p$. Thus the logistic function can be seen as a function taking a real number and returning the logarithm of an odd. This makes these two functions widely appliable in statistics, specially in machine learning.
-
-IMG!!! LOGISTIC
-
-Homeomorphisms from $\ro$ to $(0,1)$ are usually called **sigmoids**, due to their graphs being s-shaped.
-
-- If the spaces $X_i$ are homeomorphic to $Y_i,$ then the product $\prod X_i$ is homeomorphic to $\prod Y_i,$ by applying homeomorphisms on each coordinate.
-
-Beware, **from now on we'll not describe explicitely most of the homeomorphisms we mention!**
-
-Proving that spaces satisfying certain properties are homeomorphic is, in general, hard. However, it may be even harder to prove the opposite: that two spaces *aren't* homeomorphic. Proving the latter is one of the main tasks of topology. Here are some non-homeomorphic spaces and indicatives of thereof:
-
-- $\ro^n$ and $\ro^m$ for different $n,m.$ You think this is obvious? Intuitively, sure-- but not formally! One way to prove it is to show that, after taking the origin from both $\ro^n$ and $\ro^m,$ the holes left in them are of different dimensions-- something that we'll soon study closer when we define homology groups;
-
-- Dimensionality: generally, if two shapes have different dimensions, they aren't homeomorphic;
-
-- Open and closed intervals: indeed, $(a,b)$ is not homeomorphic to $[a,b],$ and similarly for all open and closed balls $B(x, r)$ and $\bar{B}(x,r)$ in any $\ro^n$. This has to do with the property of compactness, which we'll see later on, but the idea is that in $(a,b)$ you can get infinitely close to the extremities of the interval, without ever getting to them, which doesn't happen in $[a,b];$
-
-- Branched spaces: these are shapes that locally look like some $\ro^n$, but with branched points or regions. They're not homeomorphic to non-branched spaces. We'll later find branched spaces again when studying tilings and patterns;
-
-IMG!!! BRANCHED
-
-- Holes: these are the most important indicatives of non-homeomorphic spaces, and formalizing what "a hole" is will concern us for most of the rest of the series. Examples include: $D^2$ and $S^1$ aren't homeomorphic since there's a hole in $S^1$; similarly for, say, the sphere $S^2$ and the cylinder $S^1\times [0,1],$ or with the torus $T^2$: these all have different holes.
-
-We'll also study two properties which are very strong topological invariants in this article: connectivity and compactness. The latter will play an important role in the topological analysis of cellular automata.
-
-## Further common topologies
-
-### Manifolds
-
-MANIFOLDS, NON-MANIFOLDS
-
-Now, 
-
-Why?
-Doenst depend on R^n at all, despite our descriptions above
-Easy to think of low-dim examples, but what about manifolds of abstract, high-dimensional objects? Give exs. Then thinking of R^n is superfluus. Whitney, RP^2 soon.
-
-**Definition**: a space $X$ is an $n$**-dimenisonal manifold** if, for every point $x\in X$, there is a neighborhood $U$ of $x$ such that $U$ is homeomorphic to an open subset of $\ro^n.$
-
-### Quotients
+### Gluing spaces: quotients
 
 EQUIVALENCE CLASSES
 WELL-BEHAVED, SIGNIFICADO
@@ -479,8 +542,6 @@ WELL-BEHAVED, SIGNIFICADO
 
 {{< figure src="intervalS1quotient.png" caption="Illustration of the relation $\quot{I}\cong S^1$ given above. Work by [Mark Fischer](https://commons.wikimedia.org/wiki/User_talk:MaxFischerUCPH)." >}}
 
-
-IMG!!!!!!!!!
 
 How do we topologize these spaces though? It's actually pretty simple: all we want is that the gluing function $q:X\rightarrow \quot{X}$ be continuous, which visually is quite sensible. This gives us the following:
 
@@ -494,6 +555,8 @@ In this notation, the homeomorphism $\quot{I}\cong S^1$ is the same as $I/\{0,1\
 
 The case of $I$ and $S^1$ can be generalized by noting that $I=D^1$ and $\{0,1\}=S^0.$ One dimension higher, if you have $D^2$ and glue its whole $S^1$ boundary onto a single point, you get a sphere $S^2.$ Thus, $D^2/S^1\cong S^2,$ and in general we have $D^n/S^{n-1}\cong S^n$ (you can try proving this). Cool: we're starting to do some algebra with spaces!
 
+IMG!!!! D2/S1
+
 The notation is suggestive: it's almost as if we were dividing $X$ by a $A$-- imagining $A$ as a "factor" of $X.$ But "suggestive" is the best we can say, as it actually doesn't really follow algebraic rules like division. There's also somewhat of a shock of notations here: if $0$ denotes a generic point in $X,$ then $X/0$ is really, by definition, homeomorphic to $X$ itself: $X/0\cong X.$
 
 For simpler quotients, open sets in $\quot{X}$ can be easily visualized. It is as if the glued regions worked as "portals" open sets can now tranverse.
@@ -503,6 +566,10 @@ IMG!!!
 One common kind of quotients are **wedge sums**, which consist of joining different spaces on a single point. Formally, the wedge sum between spaces $X$ and $Y$, written $X\vee Y,$ is the quotient $\quot{X\amalg Y}$ with the relation $x_0\sim y_0$ for two fixed points $x_0\in X$ and $y_0\in Y.$ You can prove that different choices of $x_0, y_0$ give homeomorphic spaces, so that we're allowed to speak of **the** wedge sum $X\vee Y.$
 
 IMG!!! S1 WEDGE S1
+
+Generally, if you have two distinct spaces $X$ and $Y$ and you want to glue points $x$ of $X,$ all lying in a specified subspace $A\subseteq X,$ to points $g(x)$ in $Y$ (with $g:A\rightarrow Y$ any function), then all you need is to take the relation $\sim$ in $X\amalg Y$ with $x\sim g(x).$ The quotient $\quot{X\amalg Y}$ then will represent the spaces glued together at the specified points.
+
+IMG!!! parágrafo acima
 
 In the article on homology, we'll further describe many spaces as quotients.
 

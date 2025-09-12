@@ -1004,6 +1004,8 @@ The fascinating thing about Hex is that is an inherently **topological game**, i
 
 **Proof**: 
 
+!!! COLOCAR PARTE DA PROVA (EQUIV DO HEXAGONAL COM A TRIANGULAC) PRA CIMA
+
 The proof is appliable to any $k\times k$ board (actually to any dimensions, the proof being identical).
 
 First, note that the Go-like board gives us a **triangulation** of the square $D_k=[0,k]\times [0,k]$ (with the connections giving the edges of the triangles), which is homeomorphic to a 2D disk. Denote this complex as $B_k$. Assuming there exists a Hex game without a winner, we will construct a map $f:D_k\rightarrow D_k$ without a fixed point, which is a contradiction. 
