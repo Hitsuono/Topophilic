@@ -18,7 +18,7 @@ CRÍTICA AO LANGUAGES OF ART: PERSPECTIVA N É TD N POIS ELA N É VDD (POISA SAI
 
 {{< figure src="FanKuan.jpg" caption="Fan Kuan's 'Travelers Among Mountains and Streams' (谿山行旅图), Song Dynasty, now in the National Palace Museum, Taipei." width="40%" height="40%" >}}
 
-Dois infinitos de Pascal: moderno como a era da consideração do infinito, relac com esps projetivos. Ansiedade moderna do infinito. Projetiv como o infinito topológico
+Dois infinitos de Pascal: moderno como a era da consideração do infinito, relac com esps projetivos. Ansiedade moderna do infinito. Projetiv como o infinito topológico. Pascal: 2 infs, pois percebe q td ponto eh centro (pensee onde falar de vida minusula e de jm mundo minusuclo), entao why am i here eh  tao angustiantr qnt why am i (pensee q fala disso)
 
 {{< toc >}}
 

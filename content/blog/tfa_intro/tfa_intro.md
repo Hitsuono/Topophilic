@@ -24,7 +24,7 @@ this(n mt) -> homologia -> grupos/proj/games ->
 
 # What you'll need
 
-Short answer: **basic set theory** (cartesian product, injective, surjective and bijective functions) and **introductory linear algebra** (you can find a quick reminder on the post concerning algebra).
+Short answer: **basic set theory** (cartesian product, injective, surjective and bijective functions, cardinality) and **introductory linear algebra** (you can find a quick reminder on the post concerning algebra).
 
 I tried to write these posts as accessible as possible, but without losing much of the mathematical rigour. That is, mathematics is a human endeavour of unlimited aesthetic capacity, but this comes with a cost-- namely, rigour and precision. It is beautiful because so much formality can't be in vain. Without this limitation, there can ultimately be no beauty; the first is simultaneously the latter's restriction and its progenitor. Or, rather, rigour and aesthetical creativity are *consubstantial* in mathematics. The other member of this trinity is the insatiable human desire to further mathematicize the world and recognize itself in this construction-- to spread the Word and be in a Body, so to speak. But let's leave the formal-hegelian-christian analogies for another place for now. 
 
@@ -200,9 +200,11 @@ Note how clean this definition is: in a certain way, it deeply and truly capture
 
 All most common real functions are continuous. This includes addition, subtraction, multiplication, roots, exponentiation, logarithms and division as well. The last one doesn't seem though: the graph of $\frac{1}{x}$ has two distinct components, doesn't it? It does, but its domain is $\ro\setminus \{0\},$ so it is continuous, only with a domain that's already disconnected. We'll formalize this notion of "connectedness" later on.
 
-You may find more over continuous real functions on textbooks on calculus.
+Every linear transformation between **finite dimensional** vector spaces is continuous. You may find more over continuous real functions on textbooks on calculus.
 
 Generally, the composition of continuous functions between metric spaces is continuous: if $f:X\rightarrow Y,$ $g:Y\rightarrow Z$ are both continuous and $V\subseteq Z$ is open, then $\inv{(g\circ f)}(V)=\inv{f}(\inv{g}(V)),$ which is open by hypothesis, so that $g\circ f$ is continuous too. Notice by the way how proving this is much, much easier and more obvious using the last definition instead of the previous ones that used explicit metrics.
+
+For spaces of functions, each $L^p$ metric gives a different notion of convergence. With $L^\infty,$ this is called *uniform convergence*: more explicitely, a sequence $\{f_n\}$ of functions converges to $f$ uniformly if, for every $x$ in the domain, $f_n(x)\rightarrow f(x)$-- i.e., if the functions converge punctually to $f$. What's interesting is that $L^p$ spaces allow for *non-continuous linear functions*: the derivative is one example. But we won't delve into that point here (we might though, but only much, much later in the series).
 
 # Topological spaces
 
@@ -253,6 +255,10 @@ We often define a topology through a basis, just as we did in the metric case. I
 - For all sets $B_1,B_2\in \mathcal{B}$ and all $x\in B_1\cap B_2,$ there's a $B_3\in \mathcal{B}$ such that $x\in B_3$ and $B_3\subseteq B_1\cap B_2$ (just remember how we showed this for open ball previously).
 
 You can also prove that, in order to show that a function $f:X\rightarrow Y$ is continuous, it suffices to prove it in relation to a basis $\mathcal{B}$ of $Y$: i.e., that $\inv{f}(B)$ is open in $X$ for all $B\in\mathcal{B}.$ This is particularly useful for metric spaces, with $\mathcal{B}$ being the open balls of $Y.$
+
+The cardinality of a basis can be very important. Take $\ro$ (with the Euclidean distance) as an example. Inside the basis of open sets-- i.e., intervals $(a,b)$--, we can choose a smaller class of sets that is also a basis: those intervals $(a,b)$ with $a,b$ rational numbers. That is because every real number can be approximated by rationals. Having a countable basis can avoid many technical inconveniences, and means that all open sets can be approximated by a sequence of these countable base open sets. Spaces without this property can sometimes be "too large", "too infinite" to be tractable in certain ocasions. Here's how mathematicians call this property and its proper definition:
+
+**Definition**: a topological space $X$ is **second-countable** if it has a countable basis.
 
 ## Closed sets
 
@@ -317,7 +323,7 @@ This is the case for all the $\mathcal{l^p}$ metrics in any $\ro^n.$ Proving thi
 
 Interestingly, the same can't be said for sets of functions with the $L^p$ metrics: indeed, different $p$ give us completely different topologies. This was actually one of the main sources for defining abstract topological spaces in the earlier 20th century, as many theorems were valid for some $L^p$ distances, and some not for others. This led to the consolidation of **functional analysis**, which is linear algebra applied to the different (infinite dimensional) vector spaces of functions-- an area that later on lead to fundamental advances in quantum mechanics, statistics, topology itself and many other applications.
 
-Beware, **from now on we'll not describe explicitely most of the homeomorphisms we mention!**
+Beware: **from now on we'll not describe explicitely most of the homeomorphisms we mention!**
 
 Proving that spaces satisfying certain properties are homeomorphic is, in general, hard. However, it may be even harder to prove the opposite: that two spaces *aren't* homeomorphic. Proving the latter is one of the main tasks of topology. Here are some non-homeomorphic spaces and indicatives of thereof:
 
@@ -379,7 +385,7 @@ It's basically immediate from the definition that, if $Y\subseteq X$ is given th
 
 For lower dimensional shapes, that's how we tend to think of them: as living inside some larger space. Intrinsic definitions, however, can unsatisfactory for some reasons. First, it limits us a lot: beyond dimension $3$ our visual intuition ceases being that helpful. There are many interesting spaces we'll study in this series that can't be properly seen inside 3D space. 
 
-Second, it is conceptually quite decieving: being inside some other larger space shouldn't be a defining property of some topological space. Imagine yourself as an ant on the surface of a sphere. You have only two movement directions: forwards/backwards and left/right. Why would you care about some third extra dimension (up/down), if you can't move along it? The sphere might as well be inside a $23$-dimensional space, it is irrelevant for you-- and so it should be for the sphere as a topological space. 
+Second, it is conceptually quite deceiving: being inside some other larger space shouldn't be a defining property of some topological space. Imagine yourself as an ant on the surface of a sphere. You have only two movement directions: forwards/backwards and left/right. Why would you care about some third extra dimension (up/down), if you can't move along it? The sphere might as well be inside a $23$-dimensional space, it is irrelevant for you-- and so it should be for the sphere as a topological space. 
 
 IMGS!!!
 
@@ -451,27 +457,59 @@ IMG!!!
 
 - The multidimensional torii $T^n$: based on the description $T^2=S^1\times S^1,$ we define $T^n$ as the product of $n$ circles $S^1$;
 
+### Two bizarre lines: separation and countability axioms
+
+Before we further study the beautiful and simple spaces presented above, I'd like to remind the reader that topology is full of counter-intuitive, "pathological" spaces. Here are two bizarre variations of the real line $\ro,$ intended to show that **constructing spaces based on the real numbers can get quite tricky without some proper restrictions**.
+
+The first variation concerns the notion of **separability** in topology. See, points and sets in metric spaces can be 
+
+IMG!!! Hausdorff
+
+**Definition**: the **line with two origins** is the space $X=\ro\cup \{0^*\}$ with open sets . All open subsets of $\ro$ remain open. If there an open $U$ of $\ro$ containing $0$, then we define an open set $U^*$ in $X$ which is the same as $U,$ but with $0$ swaped for $0^*.$ That way the origins $0$ and $0^*$ are topologically inseparable: there's no neighborhood of one that doesn't intersect a neighborhood of the other. I.e., the line with two origins isn't Hausdorff.
+
+IMG!!!
+
+The second variation deals with the idea of **countability**. The idea is that the reals enjoy a quite useful property: every point in the real line can be approximated by a sequence of rational numbers. This means that there's always a rational as close as you want from a real. Topologically, this means every neighborhood $U$ of a point $x$ must contain rational numbers-- i.e., that $U\cap \mathbb{Q}\neq \emptyset.$ We say that $\mathbb{Q}$ is **dense** inside $\ro$: generally, a subspace $Y$ of a topological space $X$ is **dense** in $X$ if, for every $U$ open in $X$, we have $U\cap Y\neq \emptyset.$ If $X$ has a countable dense subset, it is said to be **separable**.
+
+IMG!!!
+
+But there's a deeper manifestation of the density of the rationals. 
+
+**Definition**: the **order topology** on a totally ordered set $X$ is the topology with basis all the intervals $(a,b)$ with $a,b\in X.$
+
+This means $\ro$ is homeomorphic to $\mathbb{N}\times [0,1)$ wit the with the order topology from the lexicographical order. This makes sense: the real line is really a (countable) infinite amount of intervals $[0,1)$ attached to one another. But what if that amount becomes uncountable? Then we get this:
+
+**Definition**: the **long line** is the space $\ro\times [0,1)$ with the order topology from the lexicographical order.
+
+Here's an informal way of trying to visualize this definition: the long line is also composed of the intervals $[0,1),$ but between any of two such intervals there is an infinite amount of other ones-- just like in between two real numbers there are infinitely many other ones, and this can't be changed by any reordering. Contrast this to the normal line: there's nothing between two $[0,1)$ attached to each other-- just like there's nothing between two consecutive natural numbers. 
+
 ### Manifolds
 
-The shapes we described above have all the property that, locally, they "look like" some $\ro^n,$ as we previously discussed. Spaces with this property are called *manifolds*, and defining them properly isn't hard for us anymore with all the topological machinery we've acquired:
+#### Topological manifolds
 
-**Definition**: a space $M$ is an $n$**-dimenisonal manifold** if, for every point $x\in M$, there is a neighborhood $U$ of $x$ such that $U$ is homeomorphic to an open subset of $\ro^n.$
+The shapes we described above have all the property that, locally, they "look like" some $\ro^n,$ as we previously discussed. Another way of viewing this is saying that it locally looks like some graph of a function. Spaces with this property (plus some others) are called **manifolds**. This can be formalized as follows:
+
+**Definition**: a second-countable, Hausdorff space $M$ is an $n$**-dimenisonal manifold** if, for every point $x\in M$, there is a neighborhood $U$ of $x$ such that $U$ is homeomorphic to an open subset of $\ro^n.$
+
+We add the conditions of being second-countable and Hausdorff so that we don't have to deal with "long" or "doubled" spaces, in the terminology of the previous section.
 
 See how this an intrinsic view of our spaces: we don't assume they live inside some $\ro^n.$ 
 
-You don't need to find a homeomorphism for every point, as long as you can find a collection of open sets $\{U_i\}$ covering your space, with all $U_i$ homeomorphic to an open subspace of $\ro^n$. Such a collection $\{U_i\}$ along the corresponding homeomorphisms $\{\phi_i\}$ is said to be an **atlas** of your manifold. It's common to describe atlases only by the collection of open sets, when one can assume the reader can describe the homeomorphisms by himself.
+We say a pair $(U, \phi)$ of an open subset $U\subseteq M$ and a homeomorphism $\phi$ from $U$ to an open subspace of $\ro^n$ is a **chart**; a collection $\{U_i,\phi_i\}$ of charts with $\{U_i\}$ covering $M$ is an **manifold structure** of $M.$ To prove your space is a manifold, you don't need to find a unique homeomorphism for every point, as long as you can find an structure for the space. It's common to describe manifold structures only by the collection of open sets, when one can assume the reader can describe the homeomorphisms by himself.
+
+The topographic terminology is fitting: every chart can $(U, \phi)$ be seen as defining a **local coordinate** in $U$ based on $\phi$-- that is, describing points locally using cartesian coordinates.
 
 IMG!!!
 
 Here are some descriptions of spaces as manifolds:
 
-- $\ro^n$ and open subsets of them: the spaces themselves together with the identity provide an atlas;
+- $\ro^n$ and open subsets of them: the spaces themselves together with the identity provide a manifold structure;
 
-- $S^1$: an atlas can be given by the open sets $S^1\setminus \{p\}$ and $S^1\setminus \{q\},$ with $p,q\in S^1$ any two points in the circle. You can describe the necessary homeomorphisms if you want to, but visually it should be clear that both sets are homeomorphic to intervals;
+- $S^1$: a manifold structure can be given by the open sets $S^1\setminus \{p\}$ and $S^1\setminus \{q\},$ with $p,q\in S^1$ any two points in the circle. You can describe the necessary homeomorphisms if you want to, but visually it should be clear that both sets are homeomorphic to intervals;
 
 IMG!!!
 
-- $S^2$: similarly to the 1D case, $S^2\setminus \{p\}$ and $S^2\setminus \{q\}$ provide an atlas, with any $p,q\in S^2.$ Constructing the homeomorphisms can take use of [polar coordinates](https://en.wikipedia.org/wiki/Polar_coordinates);
+- $S^2$: similarly to the 1D case, $S^2\setminus \{p\}$ and $S^2\setminus \{q\}$ provide a manifold structure, with any $p,q\in S^2.$ Constructing the homeomorphisms can take use of [polar coordinates](https://en.wikipedia.org/wiki/Polar_coordinates);
 
 - $T^2$:
 
@@ -485,15 +523,15 @@ This allows us the following definition:
 
 Here are some examples:
 
-- I: the atlas can be given using the open sets $[0,1)$ and $(0,1]$ (both homeomorphic to, say, $[0,1)$ inside $\mathbb{H},$ which is open);
+- I: the manifold structure can be given using the open sets $[0,1)$ and $(0,1]$ (both homeomorphic to, say, $[0,1)$ inside $\mathbb{H},$ which is open);
 
-- $D^2$: the atlas can be given using the open sets $\{(x,y)\in D^2\mid y>-0.1\}$ and $\{(x,y)\in D^2\mid y<0.1\}$
+- $D^2$: the structure can be given using the open sets $\{(x,y)\in D^2\mid y>-0.1\}$ and $\{(x,y)\in D^2\mid y<0.1\}$
 
 IMG!!!
 
 Here are some examples of spaces that **aren't** manifolds (with or without boundary):
 
-- Branched spaces: visually, these are spaces like manifolds, but with specific points in which the space branches itself, like below. The branching points don't satisfy the manifold property;
+- Branched spaces: visually, these are spaces like manifolds, but with specific points in which the space branches itself, like below. The branching points don't satisfy the manifold property (we'll prove this when studying connectivity);
 
 IMG!!!
 
@@ -501,13 +539,39 @@ IMG!!!
 
 IMG!!!
 
+Branching intersecting points are examples of **singularities**: points impeding a space of becoming a manifold. [Singularity theory](https://en.wikipedia.org/wiki/Singularity_theory) is a pretty important topic in areas like chaos theory and algebraic geometry.
+
 How do the extrinsic and intrinsic views work together? This is actually quite non-trivial. Formally, if we have a manifold $M$ and another manifold $N$, an **embedding** from $M$ to $N$ is a homeomorphism from $M$ to a subspace of $N.$ We're generally interested if we can embed $M$ on some $\ro^n,$ in such a way that it can be seen extrinsically as inside some $\ro^n.$ For the cases we've been studying so far, this seems possible-- if not obvious. But, as we'll later see, **there are some surfaces that can't be embedded in** $\ro^3$! Generally, it's not clear if every manifold can be embedded inside some $\ro^n.$
 
 Thankfully, we have the following theorem:
 
 **Theorem**: every $n$-dimensional manifold can be embedded inside $\ro^{2n+1}.$
 
-Its proof is, frankly, quite tedious.
+Its proof is, frankly, quite long and tedious. It is proven by Munkres in different sections of his book, beginning at 4-5 ("Partitions of Unity") and being properly concluded at 7-9 ("An Introduction to Dimension Theory").
+
+#### Smooth manifolds
+
+**This section is skippable for most of the series**, but, if you know some calculus, it presents one of the most important concepts of all of topology.
+
+There's another very important class of manifolds: **smooth manifolds**. These rely on calculus, so we we'll try to avoid them until necessary, but the idea is that they locally look like graphs of smooth functions (a function $f:\ro^n\rightarrow\ro^m$ is smooth if every one of its components can be differentiated infinitely many times everywhere). This avoids stuff like sharp corners: the perimeter of a square, for example, is a manifold, but not a smooth one because of its corners, which aren't smooth. With this, you can do calculus-- i.e., computing curvatures and areas-- inside these spaces, which is extremely useful and powerful.
+
+How to formalize this intuition? First of all, give our space $M$ a manifold structure. How do we . Simple: turn these functions into functions of the type $\ro^n\rightarrow \ro^n,$ with which we know how to do calculus. For two charts $(U, \phi)$ and $(V, \psi),$ this can be done by beginning in $\ro^n$ and using the inverse $\inv{\psi}$ to go to $V\subseteq M$; then apply $\phi$ over the intersection $U\cap V$ to get back to $\ro^n.$ Thus we get
+
+$$\phi\circ\inv{\psi}:\psi(U\cap V)\rightarrow\phi(U\cap V)$$
+
+Functions of this type are called **transition functions**. They fundamentally correspond to a change of parametrization in $M$ from $\psi$ to $\phi.$ That they should be smooth 
+
+**Definition**: a space $M$ is an $n$**-dimenisonal smooth manifold** if it is a manifold with a maximal atlas.
+
+MAXIMAL ATLAS, detalhes no tu, SMOOTH STRUCT
+
+General manifolds, as defined previously, are called **topological manifolds**, in contrast to those for which a smooth structure is given.
+
+There are some topological manifolds which admit no smooth structure at all (eg, the [Kervaire](https://en.wikipedia.org/wiki/Kervaire_manifold) or [E8](https://en.wikipedia.org/wiki/E8_manifold) manifolds), and some others that have different non-diffeomorphic smooth structures (like the [exotic spheres](https://en.wikipedia.org/wiki/Exotic_sphere) found by [John Milnor](https://en.wikipedia.org/wiki/John_Milnor)). The interaction between the purely topological and the smooth worlds is still an area of much research.
+
+Here's a stronger embedding theorem:
+
+**Whitney embedding theorem**: every $n$-dimensional smooth manifold (with some [reasonable extra topological conditions](https://en.wikipedia.org/wiki/Whitney_embedding_theorem)) can be embedded inside $\ro^{2n}.$
 
 ### Topologies on cartesian products
 
@@ -532,6 +596,8 @@ If the spaces $X_i$ are homeomorphic to $Y_i,$ then the product $\prod X_i$ is h
 If you leave the condition that only finitely many $U_i$ are not the whole $X_i$ themselves and take only the topology $\{\prod_{i\in I}U_i\mid U_i \text{ is open in } X_i\},$ you'll get the so-called **box topology**, which is of interest for pure point-set topology, but not really for us in this series.
 
 Now, if you topologize all the products we considered so far with this product topology, **will it be the same space**? I.e., is, for example, $\ro^n$ with the Euclidean topology the same as with the product one? **Thankfully, the answer is yes, and so it is for every other product we've met so far**. Still, it is good to know how to define a topology for any product you want.
+
+PROD MANIFOLDS
 
 ### Gluing spaces: quotients
 
@@ -590,6 +656,8 @@ HOMOTOPIA COM QUOCIENTES E OUTRAS DEFORMAÇÕES
 It's easy to see that connectivity is a topological property. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ connected, then $\im f$ is also connected; otherwise, if it could be divided into two disjoint open sets $U,V$ in $\im f,$ then $\inv{f}(U)$ and $\inv{f}(V)$ would be open, disjoint (there can be no $x\in \inv{f}(U)\cap \inv{f}(V)$ since it would imply $f(x)\in U\cap V$) and cover $X$, a contradiction.
 
 EXS CONNECTED SPACES
+
+TIRAR PONTO, BRANCHES N SÃO MANIFOLDS
 
 **Definition**: a topological space $X$ is called **path-connected** if, for every two points $x,y\in X,$ theres a path $p:I\rightarrow X$ starting in $x$ and ending in $y$ (i.e., $p(0)=x$ and $p(1)=y$).
 

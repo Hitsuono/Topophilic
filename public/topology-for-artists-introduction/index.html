@@ -37,7 +37,13 @@ Bla
           
             Basic examples
             Spheres and donuts: dimension, intrinsic and extrinsic views
+            Two bizarre lines: separation and countability axioms
             Manifolds
+              
+                Topological manifolds
+                Smooth manifolds
+              
+            
             Topologies on cartesian products
             Gluing spaces: quotients
           
@@ -75,7 +81,7 @@ TGT AUDIENCE" />
   <meta property="og:site_name" content="Topophilic">
   <meta property="og:title" content="Topology for Artists: introduction">
   <meta property="og:description" content="TL;DR Bla
-TL;DR This series What you’ll need What is topology? The necessity of spaces Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Closed sets Homeomorphisms: equivalence of spaces by continuous deformations Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Manifolds Topologies on cartesian products Gluing spaces: quotients Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
+TL;DR This series What you’ll need What is topology? The necessity of spaces Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Closed sets Homeomorphisms: equivalence of spaces by continuous deformations Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -91,17 +97,17 @@ TL;DR This series What you’ll need What is topology? The necessity of spaces M
   <meta name="twitter:image" content="http://localhost:1313/images/share.png">
   <meta name="twitter:title" content="Topology for Artists: introduction">
   <meta name="twitter:description" content="TL;DR Bla
-TL;DR This series What you’ll need What is topology? The necessity of spaces Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Closed sets Homeomorphisms: equivalence of spaces by continuous deformations Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Manifolds Topologies on cartesian products Gluing spaces: quotients Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
+TL;DR This series What you’ll need What is topology? The necessity of spaces Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Closed sets Homeomorphisms: equivalence of spaces by continuous deformations Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
 
 
 
 
   <meta itemprop="name" content="Topology for Artists: introduction">
   <meta itemprop="description" content="TL;DR Bla
-TL;DR This series What you’ll need What is topology? The necessity of spaces Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Closed sets Homeomorphisms: equivalence of spaces by continuous deformations Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Manifolds Topologies on cartesian products Gluing spaces: quotients Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
+TL;DR This series What you’ll need What is topology? The necessity of spaces Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Closed sets Homeomorphisms: equivalence of spaces by continuous deformations Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Homotopy Connectivity Compactness Separation axioms The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="10136">
+  <meta itemprop="wordCount" content="11335">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -348,7 +354,13 @@ TL;DR This series What you’ll need What is topology? The necessity of spaces M
           <ol>
             <li><a href="#basic-examples">Basic examples</a></li>
             <li><a href="#spheres-and-donuts-dimension-intrinsic-and-extrinsic-views">Spheres and donuts: dimension, intrinsic and extrinsic views</a></li>
-            <li><a href="#manifolds">Manifolds</a></li>
+            <li><a href="#two-bizarre-lines-separation-and-countability-axioms">Two bizarre lines: separation and countability axioms</a></li>
+            <li><a href="#manifolds">Manifolds</a>
+              <ol>
+                <li><a href="#topological-manifolds">Topological manifolds</a></li>
+                <li><a href="#smooth-manifolds">Smooth manifolds</a></li>
+              </ol>
+            </li>
             <li><a href="#topologies-on-cartesian-products">Topologies on cartesian products</a></li>
             <li><a href="#gluing-spaces-quotients">Gluing spaces: quotients</a></li>
           </ol>
@@ -383,7 +395,7 @@ TL;DR This series What you’ll need What is topology? The necessity of spaces M
 <p>ORDER
 this(n mt) -&gt; homologia -&gt; grupos/proj/games -&gt;</p>
 <h1 id="what-youll-need">What you&rsquo;ll need</h1>
-<p>Short answer: <strong>basic set theory</strong> (cartesian product, injective, surjective and bijective functions) and <strong>introductory linear algebra</strong> (you can find a quick reminder on the post concerning algebra).</p>
+<p>Short answer: <strong>basic set theory</strong> (cartesian product, injective, surjective and bijective functions, cardinality) and <strong>introductory linear algebra</strong> (you can find a quick reminder on the post concerning algebra).</p>
 <p>I tried to write these posts as accessible as possible, but without losing much of the mathematical rigour. That is, mathematics is a human endeavour of unlimited aesthetic capacity, but this comes with a cost&ndash; namely, rigour and precision. It is beautiful because so much formality can&rsquo;t be in vain. Without this limitation, there can ultimately be no beauty; the first is simultaneously the latter&rsquo;s restriction and its progenitor. Or, rather, rigour and aesthetical creativity are <em>consubstantial</em> in mathematics. The other member of this trinity is the insatiable human desire to further mathematicize the world and recognize itself in this construction&ndash; to spread the Word and be in a Body, so to speak. But let&rsquo;s leave the formal-hegelian-christian analogies for another place for now.</p>
 <p>Fact is, leaving out the more difficult and rigorous parts <strong>is</strong> necessary when writing to a larger audience, but I tried to keep some balance&ndash; particularly without insulting the intelligence and interest of the reader. You can always skip the more technical sections, and I hope they can spark out your curiosity and be more accessible when you come back to them.</p>
 <h1 id="what-is-topology">What is topology?</h1>
@@ -472,8 +484,9 @@ $$\lim_{x\rightarrow a}f(x)=f(a).$$<p>IMG!!! func contínua e descontínua</p>
 <p><strong>Definition</strong>: a <strong>continuous function</strong> between metric spaces $(X,d_X)$ and $(Y,d_Y)$ is a function $f:X\rightarrow Y$ such that, for all $V\subseteq Y$ open in $Y$, $\inv{f}(V)$ is open in $X.$</p>
 <p>Note how clean this definition is: in a certain way, it deeply and truly captures the general nature of continuity as a visual phenomena. Ask yourself this: is continuity as a notion that should depend on a metric&ndash; on a definition of distance? Imagine you have a map and a continuous path inscribed in it. <strong>Does the scale of the map matter as to the path being continuous</strong>? Not at all. You can use kilometers, miles or roman feet, it&rsquo;ll remain a continuous path no matter what. Thus being continuous isn&rsquo;t properly a metric property, but something deeper and more subtle&ndash; i.e., &ldquo;topological&rdquo;. The definition of topology is getting very close to us.</p>
 <p>All most common real functions are continuous. This includes addition, subtraction, multiplication, roots, exponentiation, logarithms and division as well. The last one doesn&rsquo;t seem though: the graph of $\frac{1}{x}$ has two distinct components, doesn&rsquo;t it? It does, but its domain is $\ro\setminus \{0\},$ so it is continuous, only with a domain that&rsquo;s already disconnected. We&rsquo;ll formalize this notion of &ldquo;connectedness&rdquo; later on.</p>
-<p>You may find more over continuous real functions on textbooks on calculus.</p>
+<p>Every linear transformation between <strong>finite dimensional</strong> vector spaces is continuous. You may find more over continuous real functions on textbooks on calculus.</p>
 <p>Generally, the composition of continuous functions between metric spaces is continuous: if $f:X\rightarrow Y,$ $g:Y\rightarrow Z$ are both continuous and $V\subseteq Z$ is open, then $\inv{(g\circ f)}(V)=\inv{f}(\inv{g}(V)),$ which is open by hypothesis, so that $g\circ f$ is continuous too. Notice by the way how proving this is much, much easier and more obvious using the last definition instead of the previous ones that used explicit metrics.</p>
+<p>For spaces of functions, each $L^p$ metric gives a different notion of convergence. With $L^\infty,$ this is called <em>uniform convergence</em>: more explicitely, a sequence $\{f_n\}$ of functions converges to $f$ uniformly if, for every $x$ in the domain, $f_n(x)\rightarrow f(x)$&ndash; i.e., if the functions converge punctually to $f$. What&rsquo;s interesting is that $L^p$ spaces allow for <em>non-continuous linear functions</em>: the derivative is one example. But we won&rsquo;t delve into that point here (we might though, but only much, much later in the series).</p>
 <h1 id="topological-spaces">Topological spaces</h1>
 <h2 id="purpose-and-definition">Purpose and definition</h2>
 <p>The idea of topological spaces comes from trying to focus on the set-theoretic aspect of metric spaces: i.e., what if, instead of taking metrics as the primary concept defining our abstract spaces, we take open sets to be our basic objects? These would then give us <strong>a notion of proximity based only on sets</strong>, skipping the necessity of a distance function. The discussion above on continuity should make this quite reasonable: there are phenomena where openness is the main player, not distance. This includes not only continuity, but, as we&rsquo;ll see later, stuff like gluing two shapes together.</p>
@@ -513,6 +526,8 @@ $$\lim_{x\rightarrow a}f(x)=f(a).$$<p>IMG!!! func contínua e descontínua</p>
 </li>
 </ul>
 <p>You can also prove that, in order to show that a function $f:X\rightarrow Y$ is continuous, it suffices to prove it in relation to a basis $\mathcal{B}$ of $Y$: i.e., that $\inv{f}(B)$ is open in $X$ for all $B\in\mathcal{B}.$ This is particularly useful for metric spaces, with $\mathcal{B}$ being the open balls of $Y.$</p>
+<p>The cardinality of a basis can be very important. Take $\ro$ (with the Euclidean distance) as an example. Inside the basis of open sets&ndash; i.e., intervals $(a,b)$&ndash;, we can choose a smaller class of sets that is also a basis: those intervals $(a,b)$ with $a,b$ rational numbers. That is because every real number can be approximated by rationals. Having a countable basis can avoid many technical inconveniences, and means that all open sets can be approximated by a sequence of these countable base open sets. Spaces without this property can sometimes be &ldquo;too large&rdquo;, &ldquo;too infinite&rdquo; to be tractable in certain ocasions. Here&rsquo;s how mathematicians call this property and its proper definition:</p>
+<p><strong>Definition</strong>: a topological space $X$ is <strong>second-countable</strong> if it has a countable basis.</p>
 <h2 id="closed-sets">Closed sets</h2>
 <h2 id="homeomorphisms-equivalence-of-spaces-by-continuous-deformations">Homeomorphisms: equivalence of spaces by continuous deformations</h2>
 <p>We&rsquo;re now finally able to define what we actually mean by topology as rubber geometry. Indeed, what we meant by &ldquo;a continuous deformation without gluing or cutting&rdquo; in the introduction can be formally described as a <strong>bijective continuous function</strong> $f$! The property of &ldquo;being able to go back by a deformation of the same kind&rdquo; means that $\inv{f}$ should also be continuous. Thus, we have the following fundamental definition:</p>
@@ -559,7 +574,7 @@ $$\sigma(x)=\frac{1}{1+e^{-x}},$$<p>which &ldquo;encapsulates&rdquo; $\ro$ onto 
 $$K_1 d_2(x,y) \leq d_1(x,y) \leq K_2 d_2(x,y)$$<p>(in which case the metrics are said to be <strong>equivalent</strong>), then the metric spaces $(X,d_1)$ and $(X,d_2)$ produce the same topology (i.e., every open set in one is open in the other).</p>
 <p>This is the case for all the $\mathcal{l^p}$ metrics in any $\ro^n.$ Proving this and the theorem is quite an educative exercise on the relation between metric and topological spaces.</p>
 <p>Interestingly, the same can&rsquo;t be said for sets of functions with the $L^p$ metrics: indeed, different $p$ give us completely different topologies. This was actually one of the main sources for defining abstract topological spaces in the earlier 20th century, as many theorems were valid for some $L^p$ distances, and some not for others. This led to the consolidation of <strong>functional analysis</strong>, which is linear algebra applied to the different (infinite dimensional) vector spaces of functions&ndash; an area that later on lead to fundamental advances in quantum mechanics, statistics, topology itself and many other applications.</p>
-<p>Beware, <strong>from now on we&rsquo;ll not describe explicitely most of the homeomorphisms we mention!</strong></p>
+<p>Beware: <strong>from now on we&rsquo;ll not describe explicitely most of the homeomorphisms we mention!</strong></p>
 <p>Proving that spaces satisfying certain properties are homeomorphic is, in general, hard. However, it may be even harder to prove the opposite: that two spaces <em>aren&rsquo;t</em> homeomorphic. Proving the latter is one of the main tasks of topology. Here are some non-homeomorphic spaces and indicatives of thereof:</p>
 <ul>
 <li>
@@ -601,7 +616,7 @@ IMG!!!</p>
 $$\tau'=\{U\cap Y \text{, where } U \text{ is open in } (X,\tau)\}.$$<p>You can check that this is a topology for any $s$ and $Y\subseteq X.$ You can also see that, for a metric space $(X,d)$ with the metric topology, the subspace topology of a subspace $Y\subseteq X$ is the same as the metric topology of $Y$ with the restriction of $d$ to it.</p>
 <p>It&rsquo;s basically immediate from the definition that, if $Y\subseteq X$ is given the subspace topology, then the <strong>inclusion function</strong> $i:Y\rightarrow X$ sending $y\in Y$ to $y$ itself is continuous.</p>
 <p>For lower dimensional shapes, that&rsquo;s how we tend to think of them: as living inside some larger space. Intrinsic definitions, however, can unsatisfactory for some reasons. First, it limits us a lot: beyond dimension $3$ our visual intuition ceases being that helpful. There are many interesting spaces we&rsquo;ll study in this series that can&rsquo;t be properly seen inside 3D space.</p>
-<p>Second, it is conceptually quite decieving: being inside some other larger space shouldn&rsquo;t be a defining property of some topological space. Imagine yourself as an ant on the surface of a sphere. You have only two movement directions: forwards/backwards and left/right. Why would you care about some third extra dimension (up/down), if you can&rsquo;t move along it? The sphere might as well be inside a $23$-dimensional space, it is irrelevant for you&ndash; and so it should be for the sphere as a topological space.</p>
+<p>Second, it is conceptually quite deceiving: being inside some other larger space shouldn&rsquo;t be a defining property of some topological space. Imagine yourself as an ant on the surface of a sphere. You have only two movement directions: forwards/backwards and left/right. Why would you care about some third extra dimension (up/down), if you can&rsquo;t move along it? The sphere might as well be inside a $23$-dimensional space, it is irrelevant for you&ndash; and so it should be for the sphere as a topological space.</p>
 <p>IMGS!!!</p>
 <p>This leads us to the <strong>intrinsic</strong> description of spaces: define them without seeing them as embedded in some $\ro^n.$</p>
 <p>This all has a lot to do with the notion of <strong>dimension</strong>. By dimension, we usually mean the <strong>degrees of freedom</strong> available in a space: i.e., the general directions of movement possible inside it. This is an intrinsic notion. Because in the sphere as described above the ant has only go forwards/backwards or left/right, we say the sphere is two-dimensional. Similarly, if you were restricted to a circle, you could only go forwards or backwards, and a circle is one-dimensional.</p>
@@ -664,25 +679,41 @@ $$\{(x,y,z)\in \ro^3\mid (\sqrt{x^2+y^2}-R)^2+z^2=r^2\},$$<p>where the $(\sqrt{x
 <ul>
 <li>The multidimensional torii $T^n$: based on the description $T^2=S^1\times S^1,$ we define $T^n$ as the product of $n$ circles $S^1$;</li>
 </ul>
+<h3 id="two-bizarre-lines-separation-and-countability-axioms">Two bizarre lines: separation and countability axioms</h3>
+<p>Before we further study the beautiful and simple spaces presented above, I&rsquo;d like to remind the reader that topology is full of counter-intuitive, &ldquo;pathological&rdquo; spaces. Here are two bizarre variations of the real line $\ro.$</p>
+<p>The first variation concerns the notion of <strong>separability</strong> in topology. See, points and sets in metric spaces can be</p>
+<p>IMG!!! Hausdorff</p>
+<p><strong>Definition</strong>: the <strong>line with two origins</strong> is the space $X=\ro\cup \{0^*\}$ with open sets . All open subsets of $\ro$ remain open. If there an open $U$ of $\ro$ containing $0$, then we define an open set $U^*$ in $X$ which is the same as $U,$ but with $0$ swaped for $0^*.$ That way the origins $0$ and $0^*$ are topologically inseparable: there&rsquo;s no neighborhood of one that doesn&rsquo;t intersect a neighborhood of the other. I.e., the line with two origins isn&rsquo;t Hausdorff.</p>
+<p>IMG!!!</p>
+<p>The second variation deals with the idea of <strong>countability</strong>. The idea is that the reals enjoy a quite useful property: every point in the real line can be approximated by a sequence of rational numbers. This means that there&rsquo;s always a rational as close as you want from a real. Topologically, this means every neighborhood $U$ of a point $x$ must contain rational numbers&ndash; i.e., that $U\cap \mathbb{Q}\neq \emptyset.$ We say that $\mathbb{Q}$ is <strong>dense</strong> inside $\ro$: generally, a subspace $Y$ of a topological space $X$ is <strong>dense</strong> in $X$ if, for every $U$ open in $X$, we have $U\cap Y\neq \emptyset.$ If $X$ has a countable dense subset, it is said to be <strong>separable</strong>.</p>
+<p>IMG!!!</p>
+<p>But there&rsquo;s a deeper manifestation of the density of the rationals.</p>
+<p><strong>Definition</strong>: the <strong>order topology</strong> on a totally ordered set $X$ is the topology with basis all the intervals $(a,b)$ with $a,b\in X.$</p>
+<p>This means $\ro$ is homeomorphic to $\mathbb{N}\times [0,1)$ wit the with the order topology from the lexicographical order. This makes sense: the real line is really a (countable) infinite amount of intervals $[0,1)$ attached to one another. But what if that amount becomes uncountable? Then we get this:</p>
+<p><strong>Definition</strong>: the <strong>long line</strong> is the space $\ro\times [0,1)$ with the order topology from the lexicographical order.</p>
+<p>Here&rsquo;s an informal way of trying to visualize this definition: the long line is also composed of the intervals $[0,1),$ but between any of two such intervals there is an infinite amount of other ones&ndash; just like in between two real numbers there are infinitely many other ones, and this can&rsquo;t be changed by any reordering. Contrast this to the normal line: there&rsquo;s nothing between two $[0,1)$ attached to each other&ndash; just like there&rsquo;s nothing between two consecutive natural numbers.</p>
 <h3 id="manifolds">Manifolds</h3>
-<p>The shapes we described above have all the property that, locally, they &ldquo;look like&rdquo; some $\ro^n,$ as we previously discussed. Spaces with this property are called <em>manifolds</em>, and defining them properly isn&rsquo;t hard for us anymore with all the topological machinery we&rsquo;ve acquired:</p>
-<p><strong>Definition</strong>: a space $M$ is an $n$<strong>-dimenisonal manifold</strong> if, for every point $x\in M$, there is a neighborhood $U$ of $x$ such that $U$ is homeomorphic to an open subset of $\ro^n.$</p>
+<h4 id="topological-manifolds">Topological manifolds</h4>
+<p>The shapes we described above have all the property that, locally, they &ldquo;look like&rdquo; some $\ro^n,$ as we previously discussed. Another way of viewing this is saying that it locally looks like some graph of a function. Spaces with this property (plus some others) are called <strong>manifolds</strong>. This can be formalized as follows:</p>
+<p><strong>Definition</strong>: a second-countable, Hausdorff space $M$ is an $n$<strong>-dimenisonal manifold</strong> if, for every point $x\in M$, there is a neighborhood $U$ of $x$ such that $U$ is homeomorphic to an open subset of $\ro^n.$</p>
+<p>We add the conditions of being second-countable and Hausdorff so that we don&rsquo;t have to deal with &ldquo;long&rdquo; or &ldquo;doubled&rdquo; spaces, in the terminology of the previous section.</p>
 <p>See how this an intrinsic view of our spaces: we don&rsquo;t assume they live inside some $\ro^n.$</p>
-<p>You don&rsquo;t need to find a homeomorphism for every point, as long as you can find a collection of open sets $\{U_i\}$ covering your space, with all $U_i$ homeomorphic to an open subspace of $\ro^n$. Such a collection $\{U_i\}$ along the corresponding homeomorphisms $\{\phi_i\}$ is said to be an <strong>atlas</strong> of your manifold. It&rsquo;s common to describe atlases only by the collection of open sets, when one can assume the reader can describe the homeomorphisms by himself.</p>
+<p>We say a pair $(U, \phi)$ of an open subset $U\subseteq M$ and a homeomorphism $\phi$ from $U$ to an open subspace of $\ro^n$ is a <strong>chart</strong>; a collection $\{U_i,\phi_i\}$ of charts with $\{U_i\}$ covering $M$ is an <strong>manifold structure</strong> of $M.$ To prove your space is a manifold, you don&rsquo;t need to find a unique homeomorphism for every point, as long as you can find an structure for the space. It&rsquo;s common to describe manifold structures only by the collection of open sets, when one can assume the reader can describe the homeomorphisms by himself.</p>
+<p>The topographic terminology is fitting: every chart can $(U, \phi)$ be seen as defining a <strong>local coordinate</strong> in $U$ based on $\phi$&ndash; that is, describing points locally using cartesian coordinates.</p>
 <p>IMG!!!</p>
 <p>Here are some descriptions of spaces as manifolds:</p>
 <ul>
 <li>
-<p>$\ro^n$ and open subsets of them: the spaces themselves together with the identity provide an atlas;</p>
+<p>$\ro^n$ and open subsets of them: the spaces themselves together with the identity provide a manifold structure;</p>
 </li>
 <li>
-<p>$S^1$: an atlas can be given by the open sets $S^1\setminus \{p\}$ and $S^1\setminus \{q\},$ with $p,q\in S^1$ any two points in the circle. You can describe the necessary homeomorphisms if you want to, but visually it should be clear that both sets are homeomorphic to intervals;</p>
+<p>$S^1$: a manifold structure can be given by the open sets $S^1\setminus \{p\}$ and $S^1\setminus \{q\},$ with $p,q\in S^1$ any two points in the circle. You can describe the necessary homeomorphisms if you want to, but visually it should be clear that both sets are homeomorphic to intervals;</p>
 </li>
 </ul>
 <p>IMG!!!</p>
 <ul>
 <li>
-<p>$S^2$: similarly to the 1D case, $S^2\setminus \{p\}$ and $S^2\setminus \{q\}$ provide an atlas, with any $p,q\in S^2.$ Constructing the homeomorphisms can take use of <a href="https://en.wikipedia.org/wiki/Polar_coordinates">polar coordinates</a>;</p>
+<p>$S^2$: similarly to the 1D case, $S^2\setminus \{p\}$ and $S^2\setminus \{q\}$ provide a manifold structure, with any $p,q\in S^2.$ Constructing the homeomorphisms can take use of <a href="https://en.wikipedia.org/wiki/Polar_coordinates">polar coordinates</a>;</p>
 </li>
 <li>
 <p>$T^2$:</p>
@@ -707,26 +738,38 @@ $$\{(x,y,z)\in \ro^3\mid (\sqrt{x^2+y^2}-R)^2+z^2=r^2\},$$<p>where the $(\sqrt{x
 <p>Here are some examples:</p>
 <ul>
 <li>
-<p>I: the atlas can be given using the open sets $[0,1)$ and $(0,1]$ (both homeomorphic to, say, $[0,1)$ inside $\mathbb{H},$ which is open);</p>
+<p>I: the manifold structure can be given using the open sets $[0,1)$ and $(0,1]$ (both homeomorphic to, say, $[0,1)$ inside $\mathbb{H},$ which is open);</p>
 </li>
 <li>
-<p>$D^2$: the atlas can be given using the open sets $\{(x,y)\in D^2\mid y>-0.1\}$ and $\{(x,y)\in D^2\mid y<0.1\}$</p>
+<p>$D^2$: the structure can be given using the open sets $\{(x,y)\in D^2\mid y>-0.1\}$ and $\{(x,y)\in D^2\mid y<0.1\}$</p>
 </li>
 </ul>
 <p>IMG!!!</p>
 <p>Here are some examples of spaces that <strong>aren&rsquo;t</strong> manifolds (with or without boundary):</p>
 <ul>
-<li>Branched spaces: visually, these are spaces like manifolds, but with specific points in which the space branches itself, like below. The branching points don&rsquo;t satisfy the manifold property;</li>
+<li>Branched spaces: visually, these are spaces like manifolds, but with specific points in which the space branches itself, like below. The branching points don&rsquo;t satisfy the manifold property (we&rsquo;ll prove this when studying connectivity);</li>
 </ul>
 <p>IMG!!!</p>
 <ul>
 <li>Intersecting figures: lines, surfaces etc. having self-intersections, like the <a href="https://en.wikipedia.org/wiki/Folium_of_Descartes">folium of Descartes</a> or a <a href="https://en.wikipedia.org/wiki/Lemniscate">lemniscate</a>. These are branched in the intersections.</li>
 </ul>
 <p>IMG!!!</p>
+<p>Branching intersecting points are examples of <strong>singularities</strong>: points impeding a space of becoming a manifold. <a href="https://en.wikipedia.org/wiki/Singularity_theory">Singularity theory</a> is a pretty important topic in areas like chaos theory and algebraic geometry.</p>
 <p>How do the extrinsic and intrinsic views work together? This is actually quite non-trivial. Formally, if we have a manifold $M$ and another manifold $N$, an <strong>embedding</strong> from $M$ to $N$ is a homeomorphism from $M$ to a subspace of $N.$ We&rsquo;re generally interested if we can embed $M$ on some $\ro^n,$ in such a way that it can be seen extrinsically as inside some $\ro^n.$ For the cases we&rsquo;ve been studying so far, this seems possible&ndash; if not obvious. But, as we&rsquo;ll later see, <strong>there are some surfaces that can&rsquo;t be embedded in</strong> $\ro^3$! Generally, it&rsquo;s not clear if every manifold can be embedded inside some $\ro^n.$</p>
 <p>Thankfully, we have the following theorem:</p>
 <p><strong>Theorem</strong>: every $n$-dimensional manifold can be embedded inside $\ro^{2n+1}.$</p>
-<p>Its proof is, frankly, quite tedious.</p>
+<p>Its proof is, frankly, quite long and tedious. It is proven by Munkres in different sections of his book, beginning at 4-5 (&ldquo;Partitions of Unity&rdquo;) and being properly concluded at 7-9 (&ldquo;An Introduction to Dimension Theory&rdquo;).</p>
+<h4 id="smooth-manifolds">Smooth manifolds</h4>
+<p><strong>This section is skippable for most of the series</strong>, but, if you know some calculus, it presents one of the most important concepts of all of topology.</p>
+<p>There&rsquo;s another very important class of manifolds: <strong>smooth manifolds</strong>. These rely on calculus, so we we&rsquo;ll try to avoid them until necessary, but the idea is that they locally look like graphs of smooth functions (a function $f:\ro^n\rightarrow\ro^m$ is smooth if every one of its components can be differentiated infinitely many times everywhere). This avoids stuff like sharp corners: the perimeter of a square, for example, is a manifold, but not a smooth one because of its corners, which aren&rsquo;t smooth. With this, you can do calculus&ndash; i.e., computing curvatures and areas&ndash; inside these spaces, which is extremely useful and powerful.</p>
+<p>How to formalize this intuition? First of all, give our space $M$ a manifold structure. How do we . Simple: turn these functions into functions of the type $\ro^n\rightarrow \ro^n,$ with which we know how to do calculus. For two charts $(U, \phi)$ and $(V, \psi),$ this can be done by beginning in $\ro^n$ and using the inverse $\inv{\psi}$ to go to $V\subseteq M$; then apply $\phi$ over the intersection $U\cap V$ to get back to $\ro^n.$ Thus we get</p>
+$$\phi\circ\inv{\psi}:\psi(U\cap V)\rightarrow\phi(U\cap V)$$<p>Functions of this type are called <strong>transition functions</strong>. They fundamentally correspond to a change of parametrization in $M$ from $\psi$ to $\phi.$ That they should be smooth</p>
+<p><strong>Definition</strong>: a space $M$ is an $n$<strong>-dimenisonal smooth manifold</strong> if it is a manifold with a maximal atlas.</p>
+<p>MAXIMAL ATLAS, detalhes no tu, SMOOTH STRUCT</p>
+<p>General manifolds, as defined previously, are called <strong>topological manifolds</strong>, in contrast to those for which a smooth structure is given.</p>
+<p>There are some topological manifolds which admit no smooth structure at all (eg, the <a href="https://en.wikipedia.org/wiki/Kervaire_manifold">Kervaire</a> or <a href="https://en.wikipedia.org/wiki/E8_manifold">E8</a> manifolds), and some others that have different non-diffeomorphic smooth structures (like the <a href="https://en.wikipedia.org/wiki/Exotic_sphere">exotic spheres</a> found by <a href="https://en.wikipedia.org/wiki/John_Milnor">John Milnor</a>). The interaction between the purely topological and the smooth worlds is still an area of much research.</p>
+<p>Here&rsquo;s a stronger embedding theorem:</p>
+<p><strong>Whitney embedding theorem</strong>: every $n$-dimensional smooth manifold (with some <a href="https://en.wikipedia.org/wiki/Whitney_embedding_theorem">reasonable extra topological conditions</a>) can be embedded inside $\ro^{2n}.$</p>
 <h3 id="topologies-on-cartesian-products">Topologies on cartesian products</h3>
 <p>We&rsquo;ve seen above that many interesting spaces can be formed using cartesian products. These include boxes, the cylinder and torii, but also the space of strings $\mathcal{A}^n.$ We were able to topologize these either using the metric or subspace topologies, but what if we didn&rsquo;t have these? How to generally give a topology to the product of topological spaces?</p>
 <p>Consider first the case of a product$X\times Y$ between two spaces $(X,\tau_X)$ and $(Y,\tau_Y).$ A natural idea would be to define the topology</p>
@@ -737,6 +780,7 @@ $$\{\prod_{i\in I}U_i\mid U_i \text{ is open in } X_i \text{, and only for finit
 <p>If the spaces $X_i$ are homeomorphic to $Y_i,$ then the product $\prod X_i$ is homeomorphic to $\prod Y_i,$ by applying homeomorphisms on each coordinate.</p>
 <p>If you leave the condition that only finitely many $U_i$ are not the whole $X_i$ themselves and take only the topology $\{\prod_{i\in I}U_i\mid U_i \text{ is open in } X_i\},$ you&rsquo;ll get the so-called <strong>box topology</strong>, which is of interest for pure point-set topology, but not really for us in this series.</p>
 <p>Now, if you topologize all the products we considered so far with this product topology, <strong>will it be the same space</strong>? I.e., is, for example, $\ro^n$ with the Euclidean topology the same as with the product one? <strong>Thankfully, the answer is yes, and so it is for every other product we&rsquo;ve met so far</strong>. Still, it is good to know how to define a topology for any product you want.</p>
+<p>PROD MANIFOLDS</p>
 <h3 id="gluing-spaces-quotients">Gluing spaces: quotients</h3>
 <p>EQUIVALENCE CLASSES
 WELL-BEHAVED, SIGNIFICADO</p>
@@ -778,6 +822,7 @@ WELL-BEHAVED, SIGNIFICADO</p>
 <p><strong>Definition</strong>: a topological space $X$ is called <strong>connected</strong> if there are no disjont open sets $U,V$ such that $U\cup V = X.$</p>
 <p>It&rsquo;s easy to see that connectivity is a topological property. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ connected, then $\im f$ is also connected; otherwise, if it could be divided into two disjoint open sets $U,V$ in $\im f,$ then $\inv{f}(U)$ and $\inv{f}(V)$ would be open, disjoint (there can be no $x\in \inv{f}(U)\cap \inv{f}(V)$ since it would imply $f(x)\in U\cap V$) and cover $X$, a contradiction.</p>
 <p>EXS CONNECTED SPACES</p>
+<p>TIRAR PONTO, BRANCHES N SÃO MANIFOLDS</p>
 <p><strong>Definition</strong>: a topological space $X$ is called <strong>path-connected</strong> if, for every two points $x,y\in X,$ theres a path $p:I\rightarrow X$ starting in $x$ and ending in $y$ (i.e., $p(0)=x$ and $p(1)=y$).</p>
 <p>Path-connectedness is also a topological property. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ path-connected, so is $\im y$: if $f(x),f(y)$ are in $\im f,$ $x$ and $y$ can be connected by a path $p$ in $X,$ and so $f\circ p:I\rightarrow \im f$ connects $f(x)$ to $f(y).$</p>
 <p>Path-connectedness implies connectedness: for if $X$ were path-connected but had $U,V$ disjoint covering it, then if $p$ is a path connecting $u\in U$ and $v\in V,$ $\inv{p}(U)$ and $\inv{p}(V)$ will be disjoint open sets covering $I,$ which is absurd.</p>
