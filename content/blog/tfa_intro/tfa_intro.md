@@ -256,10 +256,6 @@ We often define a topology through a basis, just as we did in the metric case. I
 
 You can also prove that, in order to show that a function $f:X\rightarrow Y$ is continuous, it suffices to prove it in relation to a basis $\mathcal{B}$ of $Y$: i.e., that $\inv{f}(B)$ is open in $X$ for all $B\in\mathcal{B}.$ This is particularly useful for metric spaces, with $\mathcal{B}$ being the open balls of $Y.$
 
-The cardinality of a basis can be very important. Take $\ro$ (with the Euclidean distance) as an example. Inside the basis of open sets-- i.e., intervals $(a,b)$--, we can choose a smaller class of sets that is also a basis: those intervals $(a,b)$ with $a,b$ rational numbers. That is because every real number can be approximated by rationals. Having a countable basis can avoid many technical inconveniences, and means that all open sets can be approximated by a sequence of these countable base open sets. Spaces without this property can sometimes be "too large", "too infinite" to be tractable in certain ocasions. Here's how mathematicians call this property and its proper definition:
-
-**Definition**: a topological space $X$ is **second-countable** if it has a countable basis.
-
 ## Closed sets
 
 
@@ -461,19 +457,34 @@ IMG!!!
 
 Before we further study the beautiful and simple spaces presented above, I'd like to remind the reader that topology is full of counter-intuitive, "pathological" spaces. Here are two bizarre variations of the real line $\ro,$ intended to show that **constructing spaces based on the real numbers can get quite tricky without some proper restrictions**.
 
-The first variation concerns the notion of **separability** in topology. See, points and sets in metric spaces can be 
-
-IMG!!! Hausdorff
-
-**Definition**: the **line with two origins** is the space $X=\ro\cup \{0^*\}$ with open sets . All open subsets of $\ro$ remain open. If there an open $U$ of $\ro$ containing $0$, then we define an open set $U^*$ in $X$ which is the same as $U,$ but with $0$ swaped for $0^*.$ That way the origins $0$ and $0^*$ are topologically inseparable: there's no neighborhood of one that doesn't intersect a neighborhood of the other. I.e., the line with two origins isn't Hausdorff.
+The first variation concerns the notion of **separability** in topology. See, one type of argument we often take for granted in metric spaces is how points and sets in them can be separated and distnguished. For example, if you have a point $x$ and another point $y$ in your metric space, then there is an open ball $B(x,r)$ containing $x$ but not $y$-- just take $r< d(x,y).$ Similarly, $x$ and $y$ have disjoint open balls containing one but not the other-- just take $B(x,r)$ and $B(y,r)$ with $r < d(x,y)/2,$ the triangular inequality guaranteeing they won't intersect.
 
 IMG!!!
 
-The second variation deals with the idea of **countability**. The idea is that the reals enjoy a quite useful property: every point in the real line can be approximated by a sequence of rational numbers. This means that there's always a rational as close as you want from a real. Topologically, this means every neighborhood $U$ of a point $x$ must contain rational numbers-- i.e., that $U\cap \mathbb{Q}\neq \emptyset.$ We say that $\mathbb{Q}$ is **dense** inside $\ro$: generally, a subspace $Y$ of a topological space $X$ is **dense** in $X$ if, for every $U$ open in $X$, we have $U\cap Y\neq \emptyset.$ If $X$ has a countable dense subset, it is said to be **separable**.
+These arguments are very intuitive and almost obvious for metric spaces, but general topological spaces may not satisfy these properties! This gives rise to the **separability axioms**, which is a hierarchy of desirable properties for topological spaces in regards to the separability of points (and subsets too) by open sets. These tell how much we can separate and distinguish points topologically in our space. 
+
+We'll need only one of these axioms, which is the following:
+
+**Definition**: a topological space $X$ is a **Hausdorff space** if, for every pair of distinct points $x,y\in X,$ there are open neighborhoods $U$ of $x$ and $V$ of $y$ such that $U\cap V=\emptyset.$
+
+IMG!!! Hausdorff
+
+The Hausdorff property is sometimes denoted as the **T{{< sub "2" >}} axiom**, with separability properties generally being denoted as some "T{{< sub "n" >}} axiom". You can see more definitions on the [Wikipedia page](https://en.wikipedia.org/wiki/Separation_axiom).
+
+Here's a non-Hausdorff space based on the real line:  the **line with two origins**. As a set, it is $\ro$ with an extra point, called the *second origin* and denoted $0^*$-- that is, $X=\ro\cup \{0^*\}$. All open subsets of $\ro$ remain open. If $U$ open in $\ro$ contains $0$, then we define an open set $U^*$ in $X$ which is the same as $U,$ but with $0$ swaped for $0^*.$ That way the origins $0$ and $0^*$ are topologically inseparable: there's no neighborhood of one that doesn't intersect a neighborhood of the other. I.e., the line with two origins isn't Hausdorff.
+
+IMG!!!
+
+The second variation of the line deals with the idea of **countability**. The idea is that the reals enjoy a quite useful property: every point in the real line can be approximated by a sequence of rational numbers. This means that there's always a rational as close as you want from a real. Topologically, this means every neighborhood $U$ of a point $x$ must contain rational numbers-- i.e., that $U\cap \mathbb{Q}\neq \emptyset.$ We say that $\mathbb{Q}$ is **dense** inside $\ro$: generally, a subspace $Y$ of a topological space $X$ is **dense** in $X$ if, for every $U$ open in $X$, we have $U\cap Y\neq \emptyset.$ If $X$ has a countable dense subset, it is said to be **separable**.
 
 IMG!!!
 
 But there's a deeper manifestation of the density of the rationals. 
+
+The cardinality of a basis can be very important. Take $\ro$ (with the Euclidean distance) as an example. Inside the basis of open sets-- i.e., intervals $(a,b)$--, we can choose a smaller class of sets that is also a basis: those intervals $(a,b)$ with $a,b$ rational numbers. That is because every real number can be approximated by rationals. Having a countable basis can avoid many technical inconveniences, and means that all open sets can be approximated by a sequence of these countable base open sets. Spaces without this property can sometimes be "too large", "too infinite" to be tractable in certain ocasions. Here's how mathematicians call this property and its proper definition:
+
+**Definition**: a topological space $X$ is **second-countable** if it has a countable basis.
+
 
 **Definition**: the **order topology** on a totally ordered set $X$ is the topology with basis all the intervals $(a,b)$ with $a,b\in X.$
 
@@ -482,6 +493,14 @@ This means $\ro$ is homeomorphic to $\mathbb{N}\times [0,1)$ wit the with the or
 **Definition**: the **long line** is the space $\ro\times [0,1)$ with the order topology from the lexicographical order.
 
 Here's an informal way of trying to visualize this definition: the long line is also composed of the intervals $[0,1),$ but between any of two such intervals there is an infinite amount of other ones-- just like in between two real numbers there are infinitely many other ones, and this can't be changed by any reordering. Contrast this to the normal line: there's nothing between two $[0,1)$ attached to each other-- just like there's nothing between two consecutive natural numbers. 
+
+Another way is to see each point of the real line as representing a whole interval-- how colossally infinite is this space?!
+
+IMG!!! PRA CADA REAL, UM [0,1)
+
+The careful reader, however, has probably noted something: the **set** $\ro\times[0,1)$ is actually completely familiar! It can be seen inside the plane $\ro^2$ as an infinite horizontal strip. It doesn't seem so mysterious in this version. The difference lies in topology: $\ro\times[0,1)$ with the Euclidean topology is one thing, with the long line another one. The latter has an order topology, which can be seen as trying to representing the set $\ro\times[0,1)$ as a huge line, zigzagging line. Notice too how open sets in these two topologies are completely different: in particular, the identity $i:(\ro\times[0,1), \tau_1)\rightarrow (\ro\times[0,1),\tau_2)$ sending $x$ to $x$ itself, but between these two different topological spaces (on the same set) is not even continuous-- you can try proving that.
+
+IMG!!! ORDEM EM RX[0,1), LINHA ZIGZAGUEANDO
 
 ### Manifolds
 
@@ -682,8 +701,6 @@ In purely topological language, we can get this definition:
 IMG!!!
 
 **Tychonoff's theorem**: 
-
-## Separation axioms
 
 # The topology of cellular automata
 
