@@ -256,9 +256,6 @@ We often define a topology through a basis, just as we did in the metric case. I
 
 You can also prove that, in order to show that a function $f:X\rightarrow Y$ is continuous, it suffices to prove it in relation to a basis $\mathcal{B}$ of $Y$: i.e., that $\inv{f}(B)$ is open in $X$ for all $B\in\mathcal{B}.$ This is particularly useful for metric spaces, with $\mathcal{B}$ being the open balls of $Y.$
 
-## Closed sets
-
-
 ## Homeomorphisms: equivalence of spaces by continuous deformations
 
 We're now finally able to define what we actually mean by topology as rubber geometry. Indeed, what we meant by "a continuous deformation without gluing or cutting" in the introduction can be formally described as a **bijective continuous function** $f$! The property of "being able to go back by a deformation of the same kind" means that $\inv{f}$ should also be continuous. Thus, we have the following fundamental definition:
@@ -333,6 +330,32 @@ Proving that spaces satisfying certain properties are homeomorphic is, in genera
 
 We'll also study two properties which are very strong topological invariants in this article: connectivity and compactness. The latter will play an important role in the topological analysis of cellular automata.
 
+## Boundaries and closed sets
+
+One further thing topological spaces allow us to define, in analogy to metric ones, is the notion of the **boundary** of a subset. Think of the open ball $B(0,1)$ in $\ro^2$ and the circle $C$ of radius one which is its frontier. How are these sets topologically related? Visually, even though $B(0,1)$ doesn't contain $C$, its outward points tend to $C$-- in the proper converge meaning. Similarly, every point of $C$ is "topologically glued" to $B(0,1),$ in the sense that, if $x\in C,$ every neighborhood of $x$ intersects with $B(0,1).$ 
+
+This "adherence property" is fundamental to the notion of a boundary:
+
+**Definition**: for a subset $S$ of a topological space $X$, a point $x\in X$ is an **adherent point** of $S$ if, for every neighborhood $U$ of $x,$ $U$ and $S$ intersect: $U\cap S\neq \emptyset.$ Of course, all points of $S$ are adherent to it. The set of all adherent points to $S$ is called its **closure**, written $\bar{S}.$
+
+In the example above, every point in $C$ is adherent to $B(0,1)$ and the closure of $B(0,1)$ is the closed ball $\bar{B}(0,1)=B(0,1)\cup C.$
+
+These notions allow us too to define closed sets (like the closed balls $\bar{B}(x,r)$ in metric spaces) for general topological spaces:
+
+**Definition**: a subset $S$ of a topological space $X$ is said to be **closed** if it's equal to its closure: $S=\bar{S}.$
+
+Now, note that $C=\bar{B}(0,1)\setminus B(0,1).$ The general idea is that **"boundary=closed-open"**. Open sets, since they're "fat" (as we introduced them), visually form the interior mass of a shape, while adherent points form a crust around it. This gives the following definition:
+
+**Definition**: the **interior** of a subset $S$ of a topological space $X$ is the union of all open sets $U$ of $X$ contained inside $S.$ The interior of $S$ is usually written as $\text{int } S.$
+
+IMG!!! CLOSURE, INTERIOR E BOUNDARY (formato q é um disco tangente a um segmento)
+
+With this, the proper formula for the boundary can be given:
+
+**Definition**: the **boundary** of a subset $S\subseteq X$ is its closure minus its interior: $\partial S= \bar{S}\setminus \text{int } S.$
+
+This definition allows us now to use the intuitive notions of boundary and frontier in the general topological context.
+
 ## Some common topologies
 
 ### Basic examples
@@ -399,6 +422,10 @@ We'll properly define spaces intrinsicaly in the next subsection. For now, let's
 
 - $\ro^n$: the reals with the Eucliedean distance-- the only topology we'll consider here for them. We know them already;
 
+- Points: sets of a single point ${p},$ with $p\in\ro$ are are said to be 0-dimensional-- we actually define $\ro^0$ as being the set solely containing the origin, $\ro^0=\{0\};$  
+
+- The natural and integer numbers: with the subspace topology, they have the discrete topology. They're seen as 0-dimensional spaces as well;
+
 - Intervals: both open $(a,b)=\{x\in\ro\mid a < x < b\}$ and closed $[a,b]=\{x\in\ro\mid a \leq x \leq b\}$ with subspace topology. These are one-dimensional. The unit interval $[0,1]$ is often just written $I$;
 
 - Cubes: these are the $n$-dimensional products $I^n.$ A 2D cube $I^2$ is a square and a 3D one a cube in the usual sense. Since $I^n\subseteq \ro^n$, these can get the subspace topology from the reals; but what if we wanted to topologize it without seeing it as embedded in another space? We'll later on see how to give a topology to the cartesian product of spaces;
@@ -409,7 +436,7 @@ IMG!!!
 
 $$S^n=\{x\in \ro^{n+1}\mid \sqrt{x_1^2+...+x_{n+1}^2}=1 \}$$
 
-For $n=1$, this is a circle; for $n=2$, the usual shape we mean by a "ball".
+For $n=1$, this is a circle; for $n=2$, the usual shape we mean by a "ball". Note that $S^0$ is, by definition, the two points $\{0,1\}$ inside $\ro;$
 
 IMGS
 
@@ -417,13 +444,11 @@ IMGS
 
 $$D^n=\{x\in \ro^{n+1}\mid \sqrt{x_1^2+...+x_{n+1}^2}\leq 1 \}$$
 
-$D^n$ is an $n$-dimensional space. 
+$D^n$ is an $n$-dimensional space, as the index tells. $D^1$ is the same thing as the closed interval $I=[0,1].$
 
-Note that the $S^n$ are the frontier, the boundary of the $D^{n+1}.$ Pay attention to these $n$ and $(n+1)$!
+Note that the $S^n$ are the boundary of the $D^{n+1}.$
 
 IMGS
-
-- Points: sets of a single point ${p}$ are also spaces (with the trivial topology, which is the same as the subspace one), and we say they're $0$ dimensional. Note that $S^0$ (the $0$ dimensional sphere) is, by the definition above, the two points $\{0,1\}$ inside $\ro;$
 
 - Cylinder: as a set, this is just $S^1\times I$-- i.e., a circle elongated along one extra dimension. It is a two-dimenisonal space and we see it as a subspace of the three-dimensional space $\ro^3$;
 
@@ -455,9 +480,9 @@ IMG!!!
 
 ### Two bizarre lines: separation and countability axioms
 
-Before we further study the beautiful and simple spaces presented above, I'd like to remind the reader that topology is full of counter-intuitive, "pathological" spaces. Here are two bizarre variations of the real line $\ro,$ intended to show that **constructing spaces based on the real numbers can get quite tricky without some proper restrictions**.
+Before we further study the visually intuitive spaces presented above, I'd like to remind the reader that topology is full of counter-intuitive, "pathological" spaces. Here are two bizarre variations of the real line $\ro,$ intended to show that **constructing spaces based on the real numbers can get quite tricky without some proper restrictions**.
 
-The first variation concerns the notion of **separability** in topology. See, one type of argument we often take for granted in metric spaces is how points and sets in them can be separated and distnguished. For example, if you have a point $x$ and another point $y$ in your metric space, then there is an open ball $B(x,r)$ containing $x$ but not $y$-- just take $r< d(x,y).$ Similarly, $x$ and $y$ have disjoint open balls containing one but not the other-- just take $B(x,r)$ and $B(y,r)$ with $r < d(x,y)/2,$ the triangular inequality guaranteeing they won't intersect.
+The first variation concerns the notion of **separability** in topology. See, one type of argument we often take for granted in metric spaces is how points and sets in them can be separated and distnguished. For example, if you have a point $x$ and another $y$ in your metric space, then there is an open ball $B(x,r)$ containing $x$ but not $y$-- just take $r< d(x,y).$ Similarly, $x$ and $y$ have disjoint open balls containing one but not the other-- just take $B(x,r)$ and $B(y,r)$ with $r < d(x,y)/2,$ the triangular inequality guaranteeing they won't intersect.
 
 IMG!!!
 
@@ -469,36 +494,60 @@ We'll need only one of these axioms, which is the following:
 
 IMG!!! Hausdorff
 
-The Hausdorff property is sometimes denoted as the **T{{< sub "2" >}} axiom**, with separability properties generally being denoted as some "T{{< sub "n" >}} axiom". You can see more definitions on the [Wikipedia page](https://en.wikipedia.org/wiki/Separation_axiom).
+The Hausdorff property is sometimes denoted as the **T{{< sub "2" >}} axiom**, with separability properties generally being denoted as some "T{{< sub "n" >}} axiom". You can read more definitions on the [Wikipedia page](https://en.wikipedia.org/wiki/Separation_axiom).
 
-Here's a non-Hausdorff space based on the real line:  the **line with two origins**. As a set, it is $\ro$ with an extra point, called the *second origin* and denoted $0^*$-- that is, $X=\ro\cup \{0^*\}$. All open subsets of $\ro$ remain open. If $U$ open in $\ro$ contains $0$, then we define an open set $U^*$ in $X$ which is the same as $U,$ but with $0$ swaped for $0^*.$ That way the origins $0$ and $0^*$ are topologically inseparable: there's no neighborhood of one that doesn't intersect a neighborhood of the other. I.e., the line with two origins isn't Hausdorff.
-
-IMG!!!
-
-The second variation of the line deals with the idea of **countability**. The idea is that the reals enjoy a quite useful property: every point in the real line can be approximated by a sequence of rational numbers. This means that there's always a rational as close as you want from a real. Topologically, this means every neighborhood $U$ of a point $x$ must contain rational numbers-- i.e., that $U\cap \mathbb{Q}\neq \emptyset.$ We say that $\mathbb{Q}$ is **dense** inside $\ro$: generally, a subspace $Y$ of a topological space $X$ is **dense** in $X$ if, for every $U$ open in $X$, we have $U\cap Y\neq \emptyset.$ If $X$ has a countable dense subset, it is said to be **separable**.
+Here's a non-Hausdorff space based on the real line:  the **line with two origins**. As a set, it is $\ro$ with an extra point, called the *second origin* and denoted $0^*$-- that is, $X=\ro\cup \{0^*\}$. All open subsets of $\ro$ remain open in $X.$ If $U$ open in $\ro$ contains $0$, then we define an open set $U^*$ in $X$ which is the same as $U,$ but with $0$ swaped for $0^*.$ That way the origins $0$ and $0^*$ are **topologically inseparable**: there's no neighborhood of one that doesn't intersect a neighborhood of the other. I.e., the line with two origins isn't Hausdorff.
 
 IMG!!!
 
-But there's a deeper manifestation of the density of the rationals. 
+The second variation of the line deals with the idea of **countability**. This concerns how large your space is by measuring if points in it can be approximated by a smaller subset. The idea is that the reals enjoy a quite useful property: every point in the real line can be approximated by a sequence of rational numbers. This means that there's always a rational as close as you want from a real. Topologically, this implies every neighborhood $U$ of a point $x$ must contain rational numbers-- i.e., that $U\cap \mathbb{Q}\neq \emptyset.$ We say that $\mathbb{Q}$ is **dense** inside $\ro$: generally, a subspace $Y$ of a topological space $X$ is **dense** in $X$ if, for every $U$ open in $X$, we have $U\cap Y\neq \emptyset.$ If $X$ has a countable dense subset-- like $\ro$ in the standard topology does--, it is said to be **separable**.
 
-The cardinality of a basis can be very important. Take $\ro$ (with the Euclidean distance) as an example. Inside the basis of open sets-- i.e., intervals $(a,b)$--, we can choose a smaller class of sets that is also a basis: those intervals $(a,b)$ with $a,b$ rational numbers. That is because every real number can be approximated by rationals. Having a countable basis can avoid many technical inconveniences, and means that all open sets can be approximated by a sequence of these countable base open sets. Spaces without this property can sometimes be "too large", "too infinite" to be tractable in certain ocasions. Here's how mathematicians call this property and its proper definition:
+IMG!!!
+
+But there's a stronger version of this idea. See, rational numbers can actually be used to **generate** all open sets of $\ro.$ If $(a,b)$ is an open interval, then it can be seen as the infinite union $\cup_n^\infty(a_n, b_n),$ with $a_n$ a sequence of rationals larger than $a$ and converging to $a$, and $b_n$ rationals less than $b$ converging to it. This means that the open intervals with rational extremities generate all intervals-- and, thus, form a basis for the standard topology of $\ro.$ This is a stronger property than being dense: not only all open sets can't be separated from the rationals (density), but they're actually all describable using rational numbers!
+
+Generally speaking, we have the following generalization:
 
 **Definition**: a topological space $X$ is **second-countable** if it has a countable basis.
 
+We just proved above that (using the basis $(a, b)$ for $a,b\in\mathbb{Q}$) the reals are second-countable. It is a good exercise on topological bases to prove that all second-countable spaces are separable-- the opposite, however, isn't true.
 
-**Definition**: the **order topology** on a totally ordered set $X$ is the topology with basis all the intervals $(a,b)$ with $a,b\in X.$
+Before we construct our second bizarre line, we need to define a new kind of topology. See, intervals in $\ro$ are defined using the strict order $ < $ on the line. Instead of using the Euclidean metric, we could equivalently just use this order to define the topology of $\ro$-- and this we can do for general sets as well.
 
-This means $\ro$ is homeomorphic to $\mathbb{N}\times [0,1)$ wit the with the order topology from the lexicographical order. This makes sense: the real line is really a (countable) infinite amount of intervals $[0,1)$ attached to one another. But what if that amount becomes uncountable? Then we get this:
+Generally, a **total strict order** on a set $X$ is a (binary) relation between points of $X$ such that 
+
+- Not $a< a$;
+- If $a< b$ then not $b> a$;
+- If $a< b$ and $b< c,$ then $a< c$;
+- If $a\neq b,$ then $a< b$ or $b < a$ (this is the "totality" of the order).
+
+The set $X$ together with some total strict order is said to be a totally ordered set.
+
+With this, we can make the following definition:
+
+**Definition**: the **order topology** on a totally ordered set $X$ is the topology with basis all the intervals 
+
+$$(a,b)=\{x\in X\mid a< x \text{ and } x < b \},$$
+
+for $a,b\in X$ and $a< b.$
+
+There's one special order that will concern us now. If you have a product $X\times Y$ of two totally ordered sets $X$ and $Y,$ then the **lexicographical order** on $X\times Y$ is as follows: if $p_1=(x_1,y_1)$ and $p_2=(x_2,y_2)$ are two pairs, then $p_1< p_2$ if $x_1< x_2$; if $x_1 = x_2,$ then $p_1< p_2$ if $y_1 < y_2.$ That is, like in a dictionary, we first search for the entry on the first coordinate (like our first letter), then, if the values are equal, on the second one.
+
+The lexicographical order allows us to give another definition of the real line. Divide $\ro$ the intervals $I_n=[n, n+1),$ for $n$ an integer. If you want to compare two points $x,y\in \ro,$ you can use this subdivision. First, if, say, $x$ lies in $I_n$ and $y$ in a different $I_m,$ you don't need to go further: if $n>m,$ then $x>y,$ else $x< y.$ If they lie on the same such interval $I_n$, then you need to check who's larger inside $I_n.$
+
+This means $\ro$ is homeomorphic to $\zo\times [0,1)$ with the with the order topology from the lexicographical order-- the homeomorphism being $f:\zo\times [0,1) \rightarrow \ro$ being simply $f(n, x) = n + x.$ I.e., $n\in \zo$ gives the integer part of a number, $x\in[0,1)$ its fractional part. 
+
+This makes sense: the real line is really a (countable) infinite amount of intervals $[0,1)$ attached to one another. But what if this amount becomes uncountable? Then we get this:
 
 **Definition**: the **long line** is the space $\ro\times [0,1)$ with the order topology from the lexicographical order.
 
-Here's an informal way of trying to visualize this definition: the long line is also composed of the intervals $[0,1),$ but between any of two such intervals there is an infinite amount of other ones-- just like in between two real numbers there are infinitely many other ones, and this can't be changed by any reordering. Contrast this to the normal line: there's nothing between two $[0,1)$ attached to each other-- just like there's nothing between two consecutive natural numbers. 
+Here's an informal way of trying to visualize this definition: the long line is also composed of the intervals $[0,1),$ but between any of two such intervals there is an infinite amount of other ones-- just like in between two real numbers there are infinitely many other ones, and this can't be changed by any reordering. Contrast this to the normal line: there's nothing between two $[0,1)$ attached to each other-- just like there's nothing between two consecutive integers. 
 
 Another way is to see each point of the real line as representing a whole interval-- how colossally infinite is this space?!
 
 IMG!!! PRA CADA REAL, UM [0,1)
 
-The careful reader, however, has probably noted something: the **set** $\ro\times[0,1)$ is actually completely familiar! It can be seen inside the plane $\ro^2$ as an infinite horizontal strip. It doesn't seem so mysterious in this version. The difference lies in topology: $\ro\times[0,1)$ with the Euclidean topology is one thing, with the long line another one. The latter has an order topology, which can be seen as trying to representing the set $\ro\times[0,1)$ as a huge line, zigzagging line. Notice too how open sets in these two topologies are completely different: in particular, the identity $i:(\ro\times[0,1), \tau_1)\rightarrow (\ro\times[0,1),\tau_2)$ sending $x$ to $x$ itself, but between these two different topological spaces (on the same set) is not even continuous-- you can try proving that.
+The careful reader, however, has probably noted something: the **set** $\ro\times[0,1)$ is actually completely familiar! It can be seen inside the plane $\ro^2$ as an infinite horizontal strip. It doesn't seem so mysterious in this version. The difference lies in topology: $\ro\times[0,1)$ with the Euclidean topology is one thing, with the long line's another one. The latter has an order topology, which can be seen as trying to representing the set $\ro\times[0,1)$ as a huge, zigzagging line. Notice too how open sets in these two topologies are completely different: in particular, the identity $i:(\ro\times[0,1), \tau_1)\rightarrow (\ro\times[0,1),\tau_2)$ sending $x$ to $x$ itself, but between these two different topologies, is not even continuous.
 
 IMG!!! ORDEM EM RX[0,1), LINHA ZIGZAGUEANDO
 
@@ -506,13 +555,13 @@ IMG!!! ORDEM EM RX[0,1), LINHA ZIGZAGUEANDO
 
 #### Topological manifolds
 
-The shapes we described above have all the property that, locally, they "look like" some $\ro^n,$ as we previously discussed. Another way of viewing this is saying that it locally looks like some graph of a function. Spaces with this property (plus some others) are called **manifolds**. This can be formalized as follows:
+The shapes we described in the penultimate have all the property that, locally, they "look like" some $\ro^n,$ as we previously discussed. Another way of viewing this is saying that $M$ locally looks like some graph of a function. The last section, however, showed that studying spaces based on the reals $\ro^n$ can be quite tricky without restrictions. Here's a definition of the more intuitive spaces that we actually wish to work on:
 
 **Definition**: a second-countable, Hausdorff space $M$ is an $n$**-dimenisonal manifold** if, for every point $x\in M$, there is a neighborhood $U$ of $x$ such that $U$ is homeomorphic to an open subset of $\ro^n.$
 
 We add the conditions of being second-countable and Hausdorff so that we don't have to deal with "long" or "doubled" spaces, in the terminology of the previous section.
 
-See how this an intrinsic view of our spaces: we don't assume they live inside some $\ro^n.$ 
+See, by the way, how this an intrinsic view of spaces: we don't assume they live inside some $\ro^n$!
 
 We say a pair $(U, \phi)$ of an open subset $U\subseteq M$ and a homeomorphism $\phi$ from $U$ to an open subspace of $\ro^n$ is a **chart**; a collection $\{U_i,\phi_i\}$ of charts with $\{U_i\}$ covering $M$ is an **manifold structure** of $M.$ To prove your space is a manifold, you don't need to find a unique homeomorphism for every point, as long as you can find an structure for the space. It's common to describe manifold structures only by the collection of open sets, when one can assume the reader can describe the homeomorphisms by himself.
 
@@ -578,7 +627,9 @@ How to formalize this intuition? First of all, give our space $M$ a manifold str
 
 $$\phi\circ\inv{\psi}:\psi(U\cap V)\rightarrow\phi(U\cap V)$$
 
-Functions of this type are called **transition functions**. They fundamentally correspond to a change of parametrization in $M$ from $\psi$ to $\phi.$ That they should be smooth 
+Functions of this type are called **transition functions**. They fundamentally correspond to a change of parametrization in $M$ from $\psi$ to $\phi.$ That 
+
+IMG!!! ESPAÇO LOCALMENTE É ^, DAÍ PSI DÁ PARAMETRIZAC, PHI TRAZ DE VOLTA.
 
 **Definition**: a space $M$ is an $n$**-dimenisonal smooth manifold** if it is a manifold with a maximal atlas.
 
@@ -590,7 +641,7 @@ There are some topological manifolds which admit no smooth structure at all (eg,
 
 Here's a stronger embedding theorem:
 
-**Whitney embedding theorem**: every $n$-dimensional smooth manifold (with some [reasonable extra topological conditions](https://en.wikipedia.org/wiki/Whitney_embedding_theorem)) can be embedded inside $\ro^{2n}.$
+**Whitney embedding theorem**: every $n$-dimensional smooth manifold can be embedded inside $\ro^{2n}.$
 
 ### Topologies on cartesian products
 
@@ -625,7 +676,7 @@ WELL-BEHAVED, SIGNIFICADO
 
 **Topologically, making equivalences can be seen as gluing points together.** For example, imagine I have a segment of line (i.e., an interval) $I=[0,1]$ and I want to glue its endpoints to make a circle $S^1.$ Mathematically, all you need to know is to define an equivalence on $I$ such that $0\sim 1$ and all other points are equivalent only to themselves, getting a quotient $\quot{I}.$ Now the extremities are really one and the same thing.
 
-{{< figure src="intervalS1quotient.png" caption="Illustration of the relation $\quot{I}\cong S^1$ given above. Work by [Mark Fischer](https://commons.wikimedia.org/wiki/User_talk:MaxFischerUCPH)." >}}
+{{< figure src="intervalS1quotient.png" caption="Illustration of the relation $\quot{I}\cong S^1$ given above. Work by [MaxFischerUCPH](https://commons.wikimedia.org/wiki/User_talk:MaxFischerUCPH)." >}}
 
 
 How do we topologize these spaces though? It's actually pretty simple: all we want is that the gluing function $q:X\rightarrow \quot{X}$ be continuous, which visually is quite sensible. This gives us the following:
@@ -782,6 +833,8 @@ Using basically the same argument as for $s,$ we can see $\inv{s}$ is continuous
 EQUIVARIANT
 
 ### Continuity
+
+... Again, please note how this is absurdly simplier than the description of continuity using the metric explicitely.
 
 ### Compactness
 
