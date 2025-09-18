@@ -23,6 +23,8 @@ languageCode = "en-US"
         [markup.goldmark.extensions.passthrough.delimiters]
           block = [['\[', '\]'], ['$$', '$$']]
           inline = [['\(', '\)'], ['$', '$']]
+      [markup.goldmark.renderer]
+        unsafe = true
     [markup.highlight]
         anchorLineNos = false
         codeFences = true

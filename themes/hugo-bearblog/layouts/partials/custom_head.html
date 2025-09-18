@@ -1,3 +1,10 @@
 <!-- A partial to be overwritten by the user.
   Simply place a custom_head.html into
   your local /layouts/partials-directory -->
+<meta charset="UTF-8">
+
+{{ $style := resources.Get "css/custom.scss" | toCSS | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}">
+
+{{ $custom := resources.Get "css/custom.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $custom.RelPermalink }}">

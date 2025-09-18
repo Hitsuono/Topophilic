@@ -1,0 +1,1 @@
+.book-columns{gap:1rem}.book-columns>div{margin:1rem 0;min-width:13.2rem}.book-columns>ul{list-style:none;display:flex;padding:0;flex-wrap:wrap;gap:1rem}.book-columns>ul>li{flex:1 1;min-width:13.2rem}
