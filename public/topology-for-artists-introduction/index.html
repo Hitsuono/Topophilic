@@ -106,7 +106,7 @@ TL;DR This series What you’ll need What is topology? The necessity of spaces M
 TL;DR This series What you’ll need What is topology? The necessity of spaces Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: equivalence of spaces by continuous deformations Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Homotopy Connectivity Compactness The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="12573">
+  <meta itemprop="wordCount" content="12905">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -804,9 +804,28 @@ $$(a,b)=\{x\in X\mid a< x \text{ and } x < b \},$$<p>for $a,b\in X$ and $a< b.$<
 <h4 id="smooth-manifolds">Smooth manifolds</h4>
 <p><strong>This section is skippable for most of the series</strong>, but, if you know some calculus, it presents one of the most important concepts of all of topology.</p>
 <p>There&rsquo;s another very important class of manifolds: <strong>smooth manifolds</strong>. These rely on calculus, so we we&rsquo;ll try to avoid them until necessary, but the idea is that they locally look like graphs of smooth functions (a function $f:\ro^n\rightarrow\ro^m$ is smooth if every one of its components can be differentiated infinitely many times everywhere). This avoids stuff like sharp corners: the perimeter of a square, for example, is a manifold, but not a smooth one because of its corners, which aren&rsquo;t smooth. With this, you can do calculus&ndash; i.e., computing curvatures and areas&ndash; inside these spaces, which is extremely useful and powerful.</p>
-<p>How to formalize this intuition? First of all, give our space $M$ a manifold structure. How do we . Simple: turn these functions into functions of the type $\ro^n\rightarrow \ro^n,$ with which we know how to do calculus. For two charts $(U, \phi)$ and $(V, \psi),$ this can be done by beginning in $\ro^n$ and using the inverse $\inv{\psi}$ to go to $V\subseteq M$; then apply $\phi$ over the intersection $U\cap V$ to get back to $\ro^n.$ Thus we get</p>
-$$\phi\circ\inv{\psi}:\psi(U\cap V)\rightarrow\phi(U\cap V)$$<p>Functions of this type are called <strong>transition functions</strong>. They fundamentally correspond to a change of parametrization in $M$ from $\psi$ to $\phi.$ That</p>
-<p>IMG!!! ESPAÇO LOCALMENTE É ^, DAÍ PSI DÁ PARAMETRIZAC, PHI TRAZ DE VOLTA.</p>
+<p>How to formalize this intuition? Imagine the simple case of some continuous function $f:M\rightarrow \ro,$ and say we want to find the derivatives of $f$ on a point $p\in M.$ We know how to do this if $M$ were some $\ro^n$: express this function in terms of coordinates $x_1,...,x_n$ and then compute the partial derivatives $\pard{f}{x_i}(p)$ on $p.$ But what is a partial derivative? It&rsquo;s the change of $f$ in the direction $i.$ Formally, if you have a path $\gamma:(-1,1)\rightarrow \ro^n$ with $\gamma(0)=p$ (i.e., $p$ is in the center of $\gamma$)QQQQQQQGAMMA CAMINHOEHQCAMINHO, then you define the partial derivative $\pard{f}{x_i}(p)$ as</p>
+$$\pard{f}{x_i}(p)=\frac{d}\frac{dt}f(\gamma(t))\right_{t=0}$$<ol>
+<li>
+<p>O Q EH SER CAMINHO DIF. PROB: E SE MUDAR A PARAMETR? EXIGE-SE Q SEJAM COMPATIVEIS; IMG Q É ASSIM: TOMA-SE UMA PARAMETRIZAC PHI. DAÍ CURVA DOUTRA PARAMETRIZAC N SENDO SMOOTH, MAS RETA, N PODE</p>
+</li>
+<li>
+<p>DERIVADA. EH DIF A DEP DA PARAMETRIZAC. TRANSITION FUNCTIONS MOSTRAM COMO Q IR DE UMA DERIVADA A OUTRA</p>
+</li>
+<li>
+<p>NÚMEROS VS VETORES</p>
+</li>
+<li>
+<p>VETORES TANGENTES</p>
+</li>
+</ol>
+<p>QUESTÃO CONCEITUAL: NÚMEROS VS VETORES TANGENTES</p>
+<p>IN SEARCH FOR DERIVATIVES: PATHS, THEN OF COURSE PARAMMETRIZATIONS MUST BE DIFFERENTIABLE. DPS: TRANSITION FUNCTIONS MOSTRA COMO IR DE UMA DERIVADA A OUTRA</p>
+<p>The problem is that $M$ might not be $\ro^n.$ What should we do then? Well, if $p$ is contained in a chart $(U,\phi),$ then $f$ can&rsquo;t be directly derivated, but $f\circ \inv{\phi}$ is a function of type $\ro^n\rightarrow \ro,$ whose partial derivatives can be computed. What $f\circ \inv{\phi}$ means is that we&rsquo;re seeing some open subset of $\ro^n$ (the set $\inv{\phi}(U)$) as a parametrized version of $U,$ and then applied $f$ to this local parametrization.</p>
+<p>Why not then define the derivatives $\pard{f}{x_i}(p),$ for $p\in U,$ as those of $f\circ \inv{\phi}$? There&rsquo;s an issue: if $p$ is inside another chart $(V,\psi),$ what if we use $\phi$ instead of $\phi$ to get $f\circ \inv{\psi}$? Would the derivatives using different parametrizations be the same? A simple example shows that no: for the interval $(0,1)$ take $f:(0,1)\rightarrow$ as the identity. As charts, choose $\big((0,1), i\big),$ with $i$ the identity, and $\big((0,1), g\big),$ with $g(x)=2x.$ Then $f\circ\inv{i}(x)=f(x)=x$ and $f\circ \inv{g}(x)=f(x/2)=x/2,$ with these two functions having different derivatives.</p>
+<p>That is,</p>
+<p>First of all, give our space $M$ a manifold structure. How do we . Simple: turn these functions into functions of the type $\ro^n\rightarrow \ro^n,$ with which we know how to do calculus. For two charts $(U, \phi)$ and $(V, \psi),$ this can be done by beginning in $\ro^n$ and using the inverse $\inv{\psi}$ to go to $V\subseteq M$; then apply $\phi$ over the intersection $U\cap V$ to get back to $\ro^n.$ Thus we get</p>
+$$\phi\circ\inv{\psi}:\psi(U\cap V)\rightarrow\phi(U\cap V)$$<p>Functions of this type are called <strong>transition functions</strong>. Intuitively, it means that we are begin with the region $\psi(U\cap V),$ which</p>
 <p><strong>Definition</strong>: a space $M$ is an $n$<strong>-dimenisonal smooth manifold</strong> if it is a manifold with a maximal atlas.</p>
 <p>MAXIMAL ATLAS, detalhes no tu, SMOOTH STRUCT</p>
 <p>General manifolds, as defined previously, are called <strong>topological manifolds</strong>, in contrast to those for which a smooth structure is given.</p>

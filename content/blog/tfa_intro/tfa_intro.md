@@ -623,13 +623,39 @@ Its proof is, frankly, quite long and tedious. It is proven by Munkres in differ
 
 There's another very important class of manifolds: **smooth manifolds**. These rely on calculus, so we we'll try to avoid them until necessary, but the idea is that they locally look like graphs of smooth functions (a function $f:\ro^n\rightarrow\ro^m$ is smooth if every one of its components can be differentiated infinitely many times everywhere). This avoids stuff like sharp corners: the perimeter of a square, for example, is a manifold, but not a smooth one because of its corners, which aren't smooth. With this, you can do calculus-- i.e., computing curvatures and areas-- inside these spaces, which is extremely useful and powerful.
 
-How to formalize this intuition? First of all, give our space $M$ a manifold structure. How do we . Simple: turn these functions into functions of the type $\ro^n\rightarrow \ro^n,$ with which we know how to do calculus. For two charts $(U, \phi)$ and $(V, \psi),$ this can be done by beginning in $\ro^n$ and using the inverse $\inv{\psi}$ to go to $V\subseteq M$; then apply $\phi$ over the intersection $U\cap V$ to get back to $\ro^n.$ Thus we get
+How to formalize this intuition? Imagine the simple case of some continuous function $f:M\rightarrow \ro,$ and say we want to find the derivatives of $f$ on a point $p\in M.$ We know how to do this if $M$ were some $\ro^n$: express this function in terms of coordinates $x_1,...,x_n$ and then compute the partial derivatives $\pard{f}{x_i}(p)$ on $p.$ But what is a partial derivative? It's the change of $f$ in the direction $i.$ Formally, if you have a path $\gamma:(-1,1)\rightarrow \ro^n$ with $\gamma(0)=p$ (i.e., $p$ is in the center of $\gamma$)QQQQQQQGAMMA CAMINHOEHQCAMINHO, then you define the partial derivative $\pard{f}{x_i}(p)$ as
+
+$$\pard{f}{x_i}(p)=\frac{d}\frac{dt}f(\gamma(t))\right_{t=0}$$
+
+1) O Q EH SER CAMINHO DIF. PROB: E SE MUDAR A PARAMETR? EXIGE-SE Q SEJAM COMPATIVEIS; IMG Q É ASSIM: TOMA-SE UMA PARAMETRIZAC PHI. DAÍ CURVA DOUTRA PARAMETRIZAC N SENDO SMOOTH, MAS RETA, N PODE
+
+4) DERIVADA. EH DIF A DEP DA PARAMETRIZAC. TRANSITION FUNCTIONS MOSTRAM COMO Q IR DE UMA DERIVADA A OUTRA
+
+2) NÚMEROS VS VETORES
+
+3) VETORES TANGENTES
+
+
+QUESTÃO CONCEITUAL: NÚMEROS VS VETORES TANGENTES
+
+
+
+IN SEARCH FOR DERIVATIVES: PATHS, THEN OF COURSE PARAMMETRIZATIONS MUST BE DIFFERENTIABLE. DPS: TRANSITION FUNCTIONS MOSTRA COMO IR DE UMA DERIVADA A OUTRA
+
+
+
+The problem is that $M$ might not be $\ro^n.$ What should we do then? Well, if $p$ is contained in a chart $(U,\phi),$ then $f$ can't be directly derivated, but $f\circ \inv{\phi}$ is a function of type $\ro^n\rightarrow \ro,$ whose partial derivatives can be computed. What $f\circ \inv{\phi}$ means is that we're seeing some open subset of $\ro^n$ (the set $\inv{\phi}(U)$) as a parametrized version of $U,$ and then applied $f$ to this local parametrization. 
+
+Why not then define the derivatives $\pard{f}{x_i}(p),$ for $p\in U,$ as those of $f\circ \inv{\phi}$? There's an issue: if $p$ is inside another chart $(V,\psi),$ what if we use $\phi$ instead of $\phi$ to get $f\circ \inv{\psi}$? Would the derivatives using different parametrizations be the same? A simple example shows that no: for the interval $(0,1)$ take $f:(0,1)\rightarrow$ as the identity. As charts, choose $\big((0,1), i\big),$ with $i$ the identity, and $\big((0,1), g\big),$ with $g(x)=2x.$ Then $f\circ\inv{i}(x)=f(x)=x$ and $f\circ \inv{g}(x)=f(x/2)=x/2,$ with these two functions having different derivatives. 
+
+That is, 
+
+First of all, give our space $M$ a manifold structure. How do we . Simple: turn these functions into functions of the type $\ro^n\rightarrow \ro^n,$ with which we know how to do calculus. For two charts $(U, \phi)$ and $(V, \psi),$ this can be done by beginning in $\ro^n$ and using the inverse $\inv{\psi}$ to go to $V\subseteq M$; then apply $\phi$ over the intersection $U\cap V$ to get back to $\ro^n.$ Thus we get
 
 $$\phi\circ\inv{\psi}:\psi(U\cap V)\rightarrow\phi(U\cap V)$$
 
-Functions of this type are called **transition functions**. They fundamentally correspond to a change of parametrization in $M$ from $\psi$ to $\phi.$ That 
+Functions of this type are called **transition functions**. Intuitively, it means that we are begin with the region $\psi(U\cap V),$ which 
 
-IMG!!! ESPAÇO LOCALMENTE É ^, DAÍ PSI DÁ PARAMETRIZAC, PHI TRAZ DE VOLTA.
 
 **Definition**: a space $M$ is an $n$**-dimenisonal smooth manifold** if it is a manifold with a maximal atlas.
 
