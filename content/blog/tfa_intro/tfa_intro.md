@@ -426,7 +426,11 @@ We'll properly define spaces intrinsicaly in the next subsection. For now, let's
 
 - The natural and integer numbers: with the subspace topology, they have the discrete topology. They're seen as 0-dimensional spaces as well;
 
-- Intervals: both open $(a,b)=\{x\in\ro\mid a < x < b\}$ and closed $[a,b]=\{x\in\ro\mid a \leq x \leq b\}$ with subspace topology. These are one-dimensional. The unit interval $[0,1]$ is often just written $I$;
+- Intervals: both open $(a,b)=\{x\in\ro\mid a < x < b\}$ and closed $[a,b]=\{x\in\ro\mid a \leq x \leq b\}$ with subspace topology. These are one-dimensional. The unit interval $[0,1]$ is often just written $I.$
+
+The interval $I$ is a very important space, because we can use it to define paths in any topological space $X.$ We say a **path** in $X$ is a continuous function $p:I\rightarrow X.$ It is common to call the image $p(I)\rightarrow X$ as "the path" as well, instead of the function $p.$
+
+IMG!!!
 
 - Cubes: these are the $n$-dimensional products $I^n.$ A 2D cube $I^2$ is a square and a 3D one a cube in the usual sense. Since $I^n\subseteq \ro^n$, these can get the subspace topology from the reals; but what if we wanted to topologize it without seeing it as embedded in another space? We'll later on see how to give a topology to the cartesian product of spaces;
 
@@ -737,19 +741,103 @@ In the article on homology, we'll further describe many spaces as quotients.
 
 ## Homotopy
 
-**Definition**: a **homotopy** between two paths $f:I\rightarrow X$ and $g:I\rightarrow X$ is a continuous association of paths $p_t$ for every $t\in I$ such that $p_0=f$ and $p_1=g.$ More formally, it is a continuous function $H:I\times I\rightarrow X$ such that $H(s,0)=f(s)$ and $H(s,1)=g(s).$
+### Paths and holes
 
-**Definition**: a **homotopy** between two continuous maps $f:X\rightarrow Y$ and $g:X\rightarrow Y$ is a continuous deformation from the function $H:X\times I\rightarrow Y$ with $H(x, 0)=f(x)$ and $H(x,1)=g(1)$.
+Beyond homeomorphisms, there's another notion of equivalence between spaces: **homotopy**. We say two spaces are homotopical when you can continuously transform one into the other over time. 
+
+Let's begin with the simplest case: that of a paths in our space $X,$ which can be used as probes to explore the topology of $X.$ Begin with two paths $f,g.$ To say we can "continuously transform" path $f$ into $g$ means that, for a time value $t$ in the range $[0,1],$ we have a path $p_t,$ representing the transformation at $t.$ We should have $p_0=f$ and $p_1=g,$ so as to begin with $f$ and end with $g.$
+
+IMG!!!
+
+How can we actually tell if these $p_t$ evolve "continuily"? This can be done by writting the process as a function $H:I\times I\rightarrow X,$ with $H(s,t)$ equal to $p_t(s)$-- i.e., the first coordinate is spacial, the second temporal. We should then have $H(s,0)=f(s)$ and $H(s, 1) = g(s)$. If $H$ is continuous we then say the transformation is too as well.
+
+That's what we have:
+
+**Definition**: a **homotopy** between two paths $f:I\rightarrow X$ and $g:I\rightarrow X$ in a space $X$ is a continuous association of paths $p_t$ for every $t\in I$ such that $p_0=f$ and $p_1=g.$ More formally, it is a continuous function $H:I\times I\rightarrow X$ such that $H(s,0)=f(s)$ and $H(s,1)=g(s).$
+
+There are many variations of this concept. For example, we can also consider homotopy with **fixed endings**-- i.e., where we require that all paths have the same end points. This means enforcing extra conditions $p_t(0)=x_1$ and $p_t(1)=x_2$ for all $t.$
+
+One of the main uses of path homotopy is to use paths as probes with each you can explore your space. For example, they can-- and this will be topic for a post of its own in the future-- detect holes in shapes, specially because of these two scenarios:
+
+- Loop ao redor de buraco e um não ao redor
+
+- N loops ao redor de S1
+
+How can we generalize homotopy for general spaces, though? Again, there are two ways to do so: with an extrinsic or an intrinsic view. Let's take the time to consider each option, instead of me giving the definitions right away.
+
+### Extrinsic view: isotopy and knots
+
+One way is to, similarly with path homotopy, see your space as embedded into another one, and considering continuous transformations *inside this larger space*. This is called isotopy, and the definition is an immediate generalization of path homotopy:
+
+**Definition**: an **isotopy** between two embeddings $f:X\rightarrow Y$ and $g:X\rightarrow Y$ is a continuous function $H:X\times I\rightarrow Y$ such that $H(x,0)=f(x)$ and $H(x,1)=g(x).$
+
+IMG!!!
+
+The most common and intuitive application of isotopy-- one we use day to day and have engraved in our spatial perception of the world-- are knots. Mathematically, knots are seen as embeddings of the circle:
+
+**Definition**: a **knot** is an embedding of $S^1$ in some space, generally taken to be $\ro^3.$ Two knots are said to be the same if they are isotopic.
+
+Note that this definition considers only knots with their ends joined-- those with free ends are all isotopic to the segment $I,$ so not much can be topologically said without gluing ends.
+
+Knot theory is a vast area of topology and still actively researched. Its main goals, fundamentally, are to classificate all knots, and tell whenever two arbitrary knots are equivalent or not. This might be done using "knot invariants", which are quantities or properties that don't change with isotopies and may help us distinguishing knots. Still, both tasks are insanely difficult and probably will never be fulfilled.
+
+We generally study knots by planar figures of them. T!!!
+
+IMG!!! KNOT TABLE, KNOT ATLAS
+
+Knot theory is a beautiful area of study, specially because many of the invariant aren't actually hard to compute-- even though finding and proving they're invariant might be. !!! In the later 20th century, deep and fascinating relations between knots and physics-- specially statistical mechanics and quantum field theory-- were found, leading to major breakthroughs in knot theory. New invariants were found and interpreted as invariant properties of certain physical systems-- . 
+
+Knots, in general, are just fascinating per se. They have a certain "thingness" to them: each knot is an object by itself, and there's a pleasure in studying each of them-- like a collection of some sort. Unlike collections of plants, insects or whatever it be, a single knot can take a multitude of appearances, so that you never know if a complicated knot might actually be an old friend in disguise. The generation principle of this multitude is isotopy in 3D space, but also the vast combinatorial possibilities of how to slide strings into holes. Their local simplicity makes them even more interesting: they're just lines, 1D spaces. They're "thin", "topologico-combinatorial" "things", if we want to describe the "phenomenology" of knots.
+
+Despite the incredible richness of this mathematical theory, it would be a great pity to limit oneself to the theoretical world. One principle of this series is that we should remain curious to all aspects of a thing. And then we reach a truly infinite branch of human activity when we study knots in the real world-- their use in the naval world, in fabrics, hitching, heraldry and semiotics, and much, much more. A more careful exposition of both the mathematical and practical sides will be given when we study homotopy further, in a dedicated post.
+
+The classical encyclopedic reference on knots in the real world is  !!!
+
+Since the book is already copyright-free, here's a pdf for you: SERÁ Q A GNT CONSEGUE POR O PDF? LEGALMENTE É CLARO, SÓ VE AI COMO SERIA NO HUGO PRA TER UM LINK PRA PAGINA DO SITE.
+
+IMGS!!! ANIMAIS NO ASHLEY. 
+
+Going back to the notion of homotopy, however, we find a problem-- well, actually it was found in the 19th century. Since isotopy by definition depends on embedding a space $X$ inside a larger $Y,$ it isn't clear if it tells us something about $X$ or $Y,$ or even about their relation. $X$ might have one isotopy behaviour inside $Y$ and a completely different one in $Z,$ so that actually isotopy is not a property *of a space*, but rather *between spaces*. 
+
+A classical example proved by [Klein](https://en.wikipedia.org/wiki/Felix_Klein) is that all knots embedded in $\ro^4$ are isotopic to the unknot-- i.e., they can all be untied in 4D space. The extra dimension that allows you to do that: this is similar to how we can "free" a shape contained into another in the plane by lifting it in 3D space and then putting it back in the plane, but outside the other figure. 
+
+IMG!! OU GIF!!
+
+That there are no knots in 4D space has lead -- a the great encyclopedist, but notoriously rea!!!!!ctionary of knots--
+
+*To me the simple act of tying a knot is an adventure in unlimited space. A bit of string affords a dimensional latitude that is unique among the entities. For an uncomplicated strand is a palpable object that, for all practical purposes, possesses one dimension only. If we move a single strand in a plane, interlacing it at will, actual objects of beauty and of utility can reulst in what is practically two dimensions; and if we choose to direct our strand out of this one plane, another dimension is added which provides opportunity for an excursion that is limited only by the scope of our own imagery and the lenght of the ropemaker's coil.*
+
+*What can be more wonderful than that?*
+
+*But there always seems to be another car ahead in every likely parking space. Here is a Mr. Klein who claims to have proved* (Mathematische Annalen) *that knots cannot exist in space of four dimensions. This in itself is bad enough, but if someonse else should come forward to prove that heaven does not exist in three dimensions, what future is there left for the confirmed knot tier?*
+
+IMG!!! MARIA DESATANDO NÓS
+
+If isotopy can't tell us much about a single space $X$, how can we make homotopy a strong classification method for spaces, like homeomorphisms? An intrinsic view makes itself necessary.
+
+### Intrinsic view: homotopy equivalence
+
+Thankfully Ashley's knot-hell can be untied with an intrinsic view of homotopy, independent of any embeddings. It will still kill knots for now, but a later article will show how to redeem them.
+
+**Definition**: a **homotopy** between two continuous maps $f:X\rightarrow Y$ and $g:X\rightarrow Y$ is a continuous function $H:X\times I\rightarrow Y$ such that $H(x, 0)=f(x)$ and $H(x,1)=g(1)$.
 
 **Definition**: two spaces $X,Y$ are **homotopically equivalent** if there are continuous functions $f:X\rightarrow Y$ and $g:Y\rightarrow X$ such that $f\circ g \simeq \text{id}_Y$ and $g\circ f \simeq \text{id}_X.$ We may also say that $X$ and $Y$ have the same **homotopy type**.
 
-HOMOTOPIA COM QUOCIENTES E OUTRAS DEFORMAÇÕES
+
+
+
+PROPS: EQUIVALENC
+
+HOMOTOPIA COM QUOCIENTES E OUTRAS DEFORMAÇÕES. COM PONTOS FIXOS
+- R^n, D^n and a point $p$:
 
 ## Connectivity
 
 **Definition**: a topological space $X$ is called **connected** if there are no disjont open sets $U,V$ such that $U\cup V = X.$
 
-It's easy to see that connectivity is a topological property. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ connected, then $\im f$ is also connected; otherwise, if it could be divided into two disjoint open sets $U,V$ in $\im f,$ then $\inv{f}(U)$ and $\inv{f}(V)$ would be open, disjoint (there can be no $x\in \inv{f}(U)\cap \inv{f}(V)$ since it would imply $f(x)\in U\cap V$) and cover $X$, a contradiction.
+It's easy to see that connectivity is a topological invariant. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ connected, then $\im f$ is also connected; otherwise, if it could be divided into two disjoint open sets $U,V$ in $\im f,$ then $\inv{f}(U)$ and $\inv{f}(V)$ would be open, disjoint (there can be no $x\in \inv{f}(U)\cap \inv{f}(V)$ since it would imply $f(x)\in U\cap V$) and cover $X$, a contradiction. That is,
+
+**Proposition**: continuous functions preserve connectivy between their domains and images.
 
 EXS CONNECTED SPACES
 

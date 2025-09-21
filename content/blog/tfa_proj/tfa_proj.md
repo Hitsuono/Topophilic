@@ -86,7 +86,7 @@ Graphic programmers should immediately remember Z-buffers:
     *North, south, severing light and shade.*<br>
 
     *Shaking chest, clouds’ layered breast.*<br> 
-    *Strain, squint, to see homing fowl.*<br>
+    *Strain, squint, to sight homing fowl.*<br>
 
     *Then ascend, the mountain’s crest:*<br>
     *At a glance, all mountains small.*<br>

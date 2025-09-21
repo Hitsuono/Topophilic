@@ -49,6 +49,12 @@ Bla
           
         
         Homotopy
+          
+            Paths and holes
+            Extrinsic view: isotopy and knots
+            Intrinsic view: homotopy equivalence
+          
+        
         Connectivity
         Compactness
       
@@ -80,7 +86,7 @@ TGT AUDIENCE" />
   <meta property="og:site_name" content="Topophilic">
   <meta property="og:title" content="Topology for Artists: introduction">
   <meta property="og:description" content="TL;DR Bla
-TL;DR This series What you’ll need What is topology? The necessity of spaces Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: equivalence of spaces by continuous deformations Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Homotopy Connectivity Compactness The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
+TL;DR This series What you’ll need What is topology? The necessity of spaces Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: equivalence of spaces by continuous deformations Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Homotopy Paths and holes Extrinsic view: isotopy and knots Intrinsic view: homotopy equivalence Connectivity Compactness The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -96,17 +102,17 @@ TL;DR This series What you’ll need What is topology? The necessity of spaces M
   <meta name="twitter:image" content="http://localhost:1313/images/share.png">
   <meta name="twitter:title" content="Topology for Artists: introduction">
   <meta name="twitter:description" content="TL;DR Bla
-TL;DR This series What you’ll need What is topology? The necessity of spaces Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: equivalence of spaces by continuous deformations Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Homotopy Connectivity Compactness The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
+TL;DR This series What you’ll need What is topology? The necessity of spaces Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: equivalence of spaces by continuous deformations Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Homotopy Paths and holes Extrinsic view: isotopy and knots Intrinsic view: homotopy equivalence Connectivity Compactness The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
 
 
 
 
   <meta itemprop="name" content="Topology for Artists: introduction">
   <meta itemprop="description" content="TL;DR Bla
-TL;DR This series What you’ll need What is topology? The necessity of spaces Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: equivalence of spaces by continuous deformations Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Homotopy Connectivity Compactness The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
+TL;DR This series What you’ll need What is topology? The necessity of spaces Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: equivalence of spaces by continuous deformations Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Homotopy Paths and holes Extrinsic view: isotopy and knots Intrinsic view: homotopy equivalence Connectivity Compactness The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="12905">
+  <meta itemprop="wordCount" content="14337">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -371,7 +377,13 @@ TL;DR This series What you’ll need What is topology? The necessity of spaces M
             <li><a href="#gluing-spaces-quotients">Gluing spaces: quotients</a></li>
           </ol>
         </li>
-        <li><a href="#homotopy">Homotopy</a></li>
+        <li><a href="#homotopy">Homotopy</a>
+          <ol>
+            <li><a href="#paths-and-holes">Paths and holes</a></li>
+            <li><a href="#extrinsic-view-isotopy-and-knots">Extrinsic view: isotopy and knots</a></li>
+            <li><a href="#intrinsic-view-homotopy-equivalence">Intrinsic view: homotopy equivalence</a></li>
+          </ol>
+        </li>
         <li><a href="#connectivity">Connectivity</a></li>
         <li><a href="#compactness">Compactness</a></li>
       </ol>
@@ -650,11 +662,13 @@ $$\tau'=\{U\cap Y \text{, where } U \text{ is open in } (X,\tau)\}.$$<p>You can 
 <p>The natural and integer numbers: with the subspace topology, they have the discrete topology. They&rsquo;re seen as 0-dimensional spaces as well;</p>
 </li>
 <li>
-<p>Intervals: both open $(a,b)=\{x\in\ro\mid a < x < b\}$ and closed $[a,b]=\{x\in\ro\mid a \leq x \leq b\}$ with subspace topology. These are one-dimensional. The unit interval $[0,1]$ is often just written $I$;</p>
+<p>Intervals: both open $(a,b)=\{x\in\ro\mid a < x < b\}$ and closed $[a,b]=\{x\in\ro\mid a \leq x \leq b\}$ with subspace topology. These are one-dimensional. The unit interval $[0,1]$ is often just written $I.$</p>
 </li>
-<li>
-<p>Cubes: these are the $n$-dimensional products $I^n.$ A 2D cube $I^2$ is a square and a 3D one a cube in the usual sense. Since $I^n\subseteq \ro^n$, these can get the subspace topology from the reals; but what if we wanted to topologize it without seeing it as embedded in another space? We&rsquo;ll later on see how to give a topology to the cartesian product of spaces;</p>
-</li>
+</ul>
+<p>The interval $I$ is a very important space, because we can use it to define paths in any topological space $X.$ We say a <strong>path</strong> in $X$ is a continuous function $p:I\rightarrow X.$ It is common to call the image $p(I)\rightarrow X$ as &ldquo;the path&rdquo; as well, instead of the function $p.$</p>
+<p>IMG!!!</p>
+<ul>
+<li>Cubes: these are the $n$-dimensional products $I^n.$ A 2D cube $I^2$ is a square and a 3D one a cube in the usual sense. Since $I^n\subseteq \ro^n$, these can get the subspace topology from the reals; but what if we wanted to topologize it without seeing it as embedded in another space? We&rsquo;ll later on see how to give a topology to the cartesian product of spaces;</li>
 </ul>
 <p>IMG!!!</p>
 <ul>
@@ -876,13 +890,62 @@ WELL-BEHAVED, SIGNIFICADO</p>
 <p>IMG!!! parágrafo acima</p>
 <p>In the article on homology, we&rsquo;ll further describe many spaces as quotients.</p>
 <h2 id="homotopy">Homotopy</h2>
-<p><strong>Definition</strong>: a <strong>homotopy</strong> between two paths $f:I\rightarrow X$ and $g:I\rightarrow X$ is a continuous association of paths $p_t$ for every $t\in I$ such that $p_0=f$ and $p_1=g.$ More formally, it is a continuous function $H:I\times I\rightarrow X$ such that $H(s,0)=f(s)$ and $H(s,1)=g(s).$</p>
-<p><strong>Definition</strong>: a <strong>homotopy</strong> between two continuous maps $f:X\rightarrow Y$ and $g:X\rightarrow Y$ is a continuous deformation from the function $H:X\times I\rightarrow Y$ with $H(x, 0)=f(x)$ and $H(x,1)=g(1)$.</p>
+<h3 id="paths-and-holes">Paths and holes</h3>
+<p>Beyond homeomorphisms, there&rsquo;s another notion of equivalence between spaces: <strong>homotopy</strong>. We say two spaces are homotopical when you can continuously transform one into the other over time.</p>
+<p>Let&rsquo;s begin with the simplest case: that of a paths in our space $X,$ which can be used as probes to explore the topology of $X.$ Begin with two paths $f,g.$ To say we can &ldquo;continuously transform&rdquo; path $f$ into $g$ means that, for a time value $t$ in the range $[0,1],$ we have a path $p_t,$ representing the transformation at $t.$ We should have $p_0=f$ and $p_1=g,$ so as to begin with $f$ and end with $g.$</p>
+<p>IMG!!!</p>
+<p>How can we actually tell if these $p_t$ evolve &ldquo;continuily&rdquo;? This can be done by writting the process as a function $H:I\times I\rightarrow X,$ with $H(s,t)$ equal to $p_t(s)$&ndash; i.e., the first coordinate is spacial, the second temporal. We should then have $H(s,0)=f(s)$ and $H(s, 1) = g(s)$. If $H$ is continuous we then say the transformation is too as well.</p>
+<p>That&rsquo;s what we have:</p>
+<p><strong>Definition</strong>: a <strong>homotopy</strong> between two paths $f:I\rightarrow X$ and $g:I\rightarrow X$ in a space $X$ is a continuous association of paths $p_t$ for every $t\in I$ such that $p_0=f$ and $p_1=g.$ More formally, it is a continuous function $H:I\times I\rightarrow X$ such that $H(s,0)=f(s)$ and $H(s,1)=g(s).$</p>
+<p>There are many variations of this concept. For example, we can also consider homotopy with <strong>fixed endings</strong>&ndash; i.e., where we require that all paths have the same end points. This means enforcing extra conditions $p_t(0)=x_1$ and $p_t(1)=x_2$ for all $t.$</p>
+<p>One of the main uses of path homotopy is to use paths as probes with each you can explore your space. For example, they can&ndash; and this will be topic for a post of its own in the future&ndash; detect holes in shapes, specially because of these two scenarios:</p>
+<ul>
+<li>
+<p>Loop ao redor de buraco e um não ao redor</p>
+</li>
+<li>
+<p>N loops ao redor de S1</p>
+</li>
+</ul>
+<p>How can we generalize homotopy for general spaces, though? Again, there are two ways to do so: with an extrinsic or an intrinsic view. Let&rsquo;s take the time to consider each option, instead of me giving the definitions right away.</p>
+<h3 id="extrinsic-view-isotopy-and-knots">Extrinsic view: isotopy and knots</h3>
+<p>One way is to, similarly with path homotopy, see your space as embedded into another one, and considering continuous transformations <em>inside this larger space</em>. This is called isotopy, and the definition is an immediate generalization of path homotopy:</p>
+<p><strong>Definition</strong>: an <strong>isotopy</strong> between two embeddings $f:X\rightarrow Y$ and $g:X\rightarrow Y$ is a continuous function $H:X\times I\rightarrow Y$ such that $H(x,0)=f(x)$ and $H(x,1)=g(x).$</p>
+<p>IMG!!!</p>
+<p>The most common and intuitive application of isotopy&ndash; one we use day to day and have engraved in our spatial perception of the world&ndash; are knots. Mathematically, knots are seen as embeddings of the circle:</p>
+<p><strong>Definition</strong>: a <strong>knot</strong> is an embedding of $S^1$ in some space, generally taken to be $\ro^3.$ Two knots are said to be the same if they are isotopic.</p>
+<p>Note that this definition considers only knots with their ends joined&ndash; those with free ends are all isotopic to the segment $I,$ so not much can be topologically said without gluing ends.</p>
+<p>Knot theory is a vast area of topology and still actively researched. Its main goals, fundamentally, are to classificate all knots, and tell whenever two arbitrary knots are equivalent or not. This might be done using &ldquo;knot invariants&rdquo;, which are quantities or properties that don&rsquo;t change with isotopies and may help us distinguishing knots. Still, both tasks are insanely difficult and probably will never be fulfilled.</p>
+<p>We generally study knots by planar figures of them. T!!!</p>
+<p>IMG!!! KNOT TABLE, KNOT ATLAS</p>
+<p>Knot theory is a beautiful area of study, specially because many of the invariant aren&rsquo;t actually hard to compute&ndash; even though finding and proving they&rsquo;re invariant might be. !!! In the later 20th century, deep and fascinating relations between knots and physics&ndash; specially statistical mechanics and quantum field theory&ndash; were found, leading to major breakthroughs in knot theory. New invariants were found and interpreted as invariant properties of certain physical systems&ndash; .</p>
+<p>Knots, in general, are just fascinating per se. They have a certain &ldquo;thingness&rdquo; to them: each knot is an object by itself, and there&rsquo;s a pleasure in studying each of them&ndash; like a collection of some sort. Unlike collections of plants, insects or whatever it be, a single knot can take a multitude of appearances, so that you never know if a complicated knot might actually be an old friend in disguise. The generation principle of this multitude is isotopy in 3D space, but also the vast combinatorial possibilities of how to slide strings into holes. Their local simplicity makes them even more interesting: they&rsquo;re just lines, 1D spaces. They&rsquo;re &ldquo;thin&rdquo;, &ldquo;topologico-combinatorial&rdquo; &ldquo;things&rdquo;, if we want to describe the &ldquo;phenomenology&rdquo; of knots.</p>
+<p>Despite the incredible richness of this mathematical theory, it would be a great pity to limit oneself to the theoretical world. One principle of this series is that we should remain curious to all aspects of a thing. And then we reach a truly infinite branch of human activity when we study knots in the real world&ndash; their use in the naval world, in fabrics, hitching, heraldry and semiotics, and much, much more. A more careful exposition of both the mathematical and practical sides will be given when we study homotopy further, in a dedicated post.</p>
+<p>The classical encyclopedic reference on knots in the real world is  !!!</p>
+<p>Since the book is already copyright-free, here&rsquo;s a pdf for you: SERÁ Q A GNT CONSEGUE POR O PDF? LEGALMENTE É CLARO, SÓ VE AI COMO SERIA NO HUGO PRA TER UM LINK PRA PAGINA DO SITE.</p>
+<p>IMGS!!! ANIMAIS NO ASHLEY.</p>
+<p>Going back to the notion of homotopy, however, we find a problem&ndash; well, actually it was found in the 19th century. Since isotopy by definition depends on embedding a space $X$ inside a larger $Y,$ it isn&rsquo;t clear if it tells us something about $X$ or $Y,$ or even about their relation. $X$ might have one isotopy behaviour inside $Y$ and a completely different one in $Z,$ so that actually isotopy is not a property <em>of a space</em>, but rather <em>between spaces</em>.</p>
+<p>A classical example proved by <a href="https://en.wikipedia.org/wiki/Felix_Klein">Klein</a> is that all knots embedded in $\ro^4$ are isotopic to the unknot&ndash; i.e., they can all be untied in 4D space. The extra dimension that allows you to do that: this is similar to how we can &ldquo;free&rdquo; a shape contained into another in the plane by lifting it in 3D space and then putting it back in the plane, but outside the other figure.</p>
+<p>IMG!! OU GIF!!</p>
+<p>That there are no knots in 4D space has lead &ndash; a the great encyclopedist, but notoriously rea!!!!!ctionary of knots&ndash;</p>
+<p><em>To me the simple act of tying a knot is an adventure in unlimited space. A bit of string affords a dimensional latitude that is unique among the entities. For an uncomplicated strand is a palpable object that, for all practical purposes, possesses one dimension only. If we move a single strand in a plane, interlacing it at will, actual objects of beauty and of utility can reulst in what is practically two dimensions; and if we choose to direct our strand out of this one plane, another dimension is added which provides opportunity for an excursion that is limited only by the scope of our own imagery and the lenght of the ropemaker&rsquo;s coil.</em></p>
+<p><em>What can be more wonderful than that?</em></p>
+<p><em>But there always seems to be another car ahead in every likely parking space. Here is a Mr. Klein who claims to have proved</em> (Mathematische Annalen) <em>that knots cannot exist in space of four dimensions. This in itself is bad enough, but if someonse else should come forward to prove that heaven does not exist in three dimensions, what future is there left for the confirmed knot tier?</em></p>
+<p>IMG!!! MARIA DESATANDO NÓS</p>
+<p>If isotopy can&rsquo;t tell us much about a single space $X$, how can we make homotopy a strong classification method for spaces, like homeomorphisms? An intrinsic view makes itself necessary.</p>
+<h3 id="intrinsic-view-homotopy-equivalence">Intrinsic view: homotopy equivalence</h3>
+<p>Thankfully Ashley&rsquo;s knot-hell can be untied with an intrinsic view of homotopy, independent of any embeddings. It will still kill knots for now, but a later article will show how to redeem them.</p>
+<p><strong>Definition</strong>: a <strong>homotopy</strong> between two continuous maps $f:X\rightarrow Y$ and $g:X\rightarrow Y$ is a continuous function $H:X\times I\rightarrow Y$ such that $H(x, 0)=f(x)$ and $H(x,1)=g(1)$.</p>
 <p><strong>Definition</strong>: two spaces $X,Y$ are <strong>homotopically equivalent</strong> if there are continuous functions $f:X\rightarrow Y$ and $g:Y\rightarrow X$ such that $f\circ g \simeq \text{id}_Y$ and $g\circ f \simeq \text{id}_X.$ We may also say that $X$ and $Y$ have the same <strong>homotopy type</strong>.</p>
-<p>HOMOTOPIA COM QUOCIENTES E OUTRAS DEFORMAÇÕES</p>
+<p>PROPS: EQUIVALENC</p>
+<p>HOMOTOPIA COM QUOCIENTES E OUTRAS DEFORMAÇÕES. COM PONTOS FIXOS</p>
+<ul>
+<li>R^n, D^n and a point $p$:</li>
+</ul>
 <h2 id="connectivity">Connectivity</h2>
 <p><strong>Definition</strong>: a topological space $X$ is called <strong>connected</strong> if there are no disjont open sets $U,V$ such that $U\cup V = X.$</p>
-<p>It&rsquo;s easy to see that connectivity is a topological property. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ connected, then $\im f$ is also connected; otherwise, if it could be divided into two disjoint open sets $U,V$ in $\im f,$ then $\inv{f}(U)$ and $\inv{f}(V)$ would be open, disjoint (there can be no $x\in \inv{f}(U)\cap \inv{f}(V)$ since it would imply $f(x)\in U\cap V$) and cover $X$, a contradiction.</p>
+<p>It&rsquo;s easy to see that connectivity is a topological invariant. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ connected, then $\im f$ is also connected; otherwise, if it could be divided into two disjoint open sets $U,V$ in $\im f,$ then $\inv{f}(U)$ and $\inv{f}(V)$ would be open, disjoint (there can be no $x\in \inv{f}(U)\cap \inv{f}(V)$ since it would imply $f(x)\in U\cap V$) and cover $X$, a contradiction. That is,</p>
+<p><strong>Proposition</strong>: continuous functions preserve connectivy between their domains and images.</p>
 <p>EXS CONNECTED SPACES</p>
 <p>TIRAR PONTO, BRANCHES N SÃO MANIFOLDS</p>
 <p><strong>Definition</strong>: a topological space $X$ is called <strong>path-connected</strong> if, for every two points $x,y\in X,$ theres a path $p:I\rightarrow X$ starting in $x$ and ending in $y$ (i.e., $p(0)=x$ and $p(1)=y$).</p>
