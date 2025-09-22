@@ -112,7 +112,7 @@ TL;DR This series What you’ll need What is topology? The necessity of spaces M
 TL;DR This series What you’ll need What is topology? The necessity of spaces Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: equivalence of spaces by continuous deformations Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Homotopy Paths and holes Extrinsic view: isotopy and knots Intrinsic view: homotopy equivalence Connectivity Compactness The topology of cellular automata Cellular automata A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="14337">
+  <meta itemprop="wordCount" content="14823">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -557,7 +557,7 @@ $$\lim_{x\rightarrow a}f(x)=f(a).$$<p>IMG!!! func contínua e descontínua</p>
 <p>Generally, mathematicians describe homeomorphisms explicitly, but rely on the visual intuition of the reader, which should be based on these simpler cases. Here are some of these simpler homeomorphisms which can be explicitly described (take $\ro^n$ and other real spaces with the metric topology from the Euclidean distance):</p>
 <ul>
 <li>
-<p>The obvious case: the identity $i:X\rightarrow X$ sending $x$ to $x$ itself;</p>
+<p>The obvious case: the identity $\text{id}_X:X\rightarrow X$ sending $x$ to $x$ itself;</p>
 </li>
 <li>
 <p>All one-point spaces are homeomorphic: for if $X=\{p\}$ and $Y=\{q\}$ (both with the trivial topology, which is the only possible one), then $f:X\rightarrow Y$ sending $p$ to $q$ is a homeomorphism. It is common to then to speak of <strong>the point space</strong>, often denoted as $0$ to denote its triviality (it&rsquo;s a space though, not a number!);</p>
@@ -896,7 +896,8 @@ WELL-BEHAVED, SIGNIFICADO</p>
 <p>IMG!!!</p>
 <p>How can we actually tell if these $p_t$ evolve &ldquo;continuily&rdquo;? This can be done by writting the process as a function $H:I\times I\rightarrow X,$ with $H(s,t)$ equal to $p_t(s)$&ndash; i.e., the first coordinate is spacial, the second temporal. We should then have $H(s,0)=f(s)$ and $H(s, 1) = g(s)$. If $H$ is continuous we then say the transformation is too as well.</p>
 <p>That&rsquo;s what we have:</p>
-<p><strong>Definition</strong>: a <strong>homotopy</strong> between two paths $f:I\rightarrow X$ and $g:I\rightarrow X$ in a space $X$ is a continuous association of paths $p_t$ for every $t\in I$ such that $p_0=f$ and $p_1=g.$ More formally, it is a continuous function $H:I\times I\rightarrow X$ such that $H(s,0)=f(s)$ and $H(s,1)=g(s).$</p>
+<p><strong>Definition</strong>: a <strong>homotopy</strong> between two paths $f:I\rightarrow X$ and $g:I\rightarrow X$ in a space $X$ is a continuous association of paths $p_t$ for every $t\in I$ such that $p_0=f$ and $p_1=g.$ More formally, it is a continuous function $H:I\times I\rightarrow X$ such that $H(s,0)=f(s)$ and $H(s,1)=g(s).$ When $f$ and $g$ are <strong>homotopic</strong> (i.e., there&rsquo;s a homotopy between them), we write $f\simeq g.$</p>
+<p>Homotopy is a sort of &ldquo;path between paths&rdquo;, so to speak. You can check that it is an equivalence relation between paths in $X$: that is, $p\simeq p$ for all paths $p$; $p\simeq q$ implies $q\simeq p$; and, most importantly, $p\simeq q$ and $q\simeq r$ implies $p\simeq r$ (i.e., homotopy of paths is transitive).</p>
 <p>There are many variations of this concept. For example, we can also consider homotopy with <strong>fixed endings</strong>&ndash; i.e., where we require that all paths have the same end points. This means enforcing extra conditions $p_t(0)=x_1$ and $p_t(1)=x_2$ for all $t.$</p>
 <p>One of the main uses of path homotopy is to use paths as probes with each you can explore your space. For example, they can&ndash; and this will be topic for a post of its own in the future&ndash; detect holes in shapes, specially because of these two scenarios:</p>
 <ul>
@@ -915,16 +916,18 @@ WELL-BEHAVED, SIGNIFICADO</p>
 <p>The most common and intuitive application of isotopy&ndash; one we use day to day and have engraved in our spatial perception of the world&ndash; are knots. Mathematically, knots are seen as embeddings of the circle:</p>
 <p><strong>Definition</strong>: a <strong>knot</strong> is an embedding of $S^1$ in some space, generally taken to be $\ro^3.$ Two knots are said to be the same if they are isotopic.</p>
 <p>Note that this definition considers only knots with their ends joined&ndash; those with free ends are all isotopic to the segment $I,$ so not much can be topologically said without gluing ends.</p>
+<p>We generally study knots by planar figures of them. The least amount of crossings such a figure for a knot has is called the <strong>crossing number</strong> of the knot.</p>
+<p>IMG!!! Knot 3D E FIGURA</p>
 <p>Knot theory is a vast area of topology and still actively researched. Its main goals, fundamentally, are to classificate all knots, and tell whenever two arbitrary knots are equivalent or not. This might be done using &ldquo;knot invariants&rdquo;, which are quantities or properties that don&rsquo;t change with isotopies and may help us distinguishing knots. Still, both tasks are insanely difficult and probably will never be fulfilled.</p>
-<p>We generally study knots by planar figures of them. T!!!</p>
+<p>Here&rsquo;s a table of knots with small crossing numbers:</p>
 <p>IMG!!! KNOT TABLE, KNOT ATLAS</p>
-<p>Knot theory is a beautiful area of study, specially because many of the invariant aren&rsquo;t actually hard to compute&ndash; even though finding and proving they&rsquo;re invariant might be. !!! In the later 20th century, deep and fascinating relations between knots and physics&ndash; specially statistical mechanics and quantum field theory&ndash; were found, leading to major breakthroughs in knot theory. New invariants were found and interpreted as invariant properties of certain physical systems&ndash; .</p>
+<p>Knot theory is a beautiful area of study, specially because many of the invariant aren&rsquo;t actually hard to compute&ndash; even though finding and proving they&rsquo;re invariant might be. In the early and mid 20th century, it was developed as an application of algebraic topology and a challenge to its concepts. Later in the century, deep and fascinating relations between knots and physics&ndash; specially statistical mechanics and quantum field theory&ndash; were found, leading to major breakthroughs in knot theory. New invariants were found and interpreted as invariant properties of certain physical systems&ndash; like the <a href="https://en.wikipedia.org/wiki/Ising_model">Ising model</a>, a simplified model of magnets.</p>
 <p>Knots, in general, are just fascinating per se. They have a certain &ldquo;thingness&rdquo; to them: each knot is an object by itself, and there&rsquo;s a pleasure in studying each of them&ndash; like a collection of some sort. Unlike collections of plants, insects or whatever it be, a single knot can take a multitude of appearances, so that you never know if a complicated knot might actually be an old friend in disguise. The generation principle of this multitude is isotopy in 3D space, but also the vast combinatorial possibilities of how to slide strings into holes. Their local simplicity makes them even more interesting: they&rsquo;re just lines, 1D spaces. They&rsquo;re &ldquo;thin&rdquo;, &ldquo;topologico-combinatorial&rdquo; &ldquo;things&rdquo;, if we want to describe the &ldquo;phenomenology&rdquo; of knots.</p>
 <p>Despite the incredible richness of this mathematical theory, it would be a great pity to limit oneself to the theoretical world. One principle of this series is that we should remain curious to all aspects of a thing. And then we reach a truly infinite branch of human activity when we study knots in the real world&ndash; their use in the naval world, in fabrics, hitching, heraldry and semiotics, and much, much more. A more careful exposition of both the mathematical and practical sides will be given when we study homotopy further, in a dedicated post.</p>
-<p>The classical encyclopedic reference on knots in the real world is  !!!</p>
-<p>Since the book is already copyright-free, here&rsquo;s a pdf for you: SERÁ Q A GNT CONSEGUE POR O PDF? LEGALMENTE É CLARO, SÓ VE AI COMO SERIA NO HUGO PRA TER UM LINK PRA PAGINA DO SITE.</p>
+<p>The classical encyclopedic reference on knots in the real world is <strong>The Ashley Book of Knots</strong>, a magnificent work with almost four thousand entries and seven thousand illustrations.</p>
+<p>Since the book is already copyright-free, <a href="/pdfs/ashley.pdf">here&rsquo;s a pdf for you</a>.</p>
 <p>IMGS!!! ANIMAIS NO ASHLEY.</p>
-<p>Going back to the notion of homotopy, however, we find a problem&ndash; well, actually it was found in the 19th century. Since isotopy by definition depends on embedding a space $X$ inside a larger $Y,$ it isn&rsquo;t clear if it tells us something about $X$ or $Y,$ or even about their relation. $X$ might have one isotopy behaviour inside $Y$ and a completely different one in $Z,$ so that actually isotopy is not a property <em>of a space</em>, but rather <em>between spaces</em>.</p>
+<p>Going back to the notion of homotopy, however, we find a problem&ndash; well, actually it was found in the 19th century. Since isotopy by definition depends on embedding a space $X$ inside a larger $Y,$ it isn&rsquo;t clear if it tells us something about $X$ or $Y,$ or even about their relation. $X$ might have one isotopy behaviour inside $Y$ and a completely different one in $Z,$ so that actually isotopy is not a property <em>of a space</em>, but rather <em>between spaces</em>.  That&rsquo;s interesting, but not really what we wanted: we wished to use the notion of homotopy to study topological properties of <em>one</em> space, but now we&rsquo;d have two study <em>two</em>!</p>
 <p>A classical example proved by <a href="https://en.wikipedia.org/wiki/Felix_Klein">Klein</a> is that all knots embedded in $\ro^4$ are isotopic to the unknot&ndash; i.e., they can all be untied in 4D space. The extra dimension that allows you to do that: this is similar to how we can &ldquo;free&rdquo; a shape contained into another in the plane by lifting it in 3D space and then putting it back in the plane, but outside the other figure.</p>
 <p>IMG!! OU GIF!!</p>
 <p>That there are no knots in 4D space has lead &ndash; a the great encyclopedist, but notoriously rea!!!!!ctionary of knots&ndash;</p>
@@ -935,12 +938,32 @@ WELL-BEHAVED, SIGNIFICADO</p>
 <p>If isotopy can&rsquo;t tell us much about a single space $X$, how can we make homotopy a strong classification method for spaces, like homeomorphisms? An intrinsic view makes itself necessary.</p>
 <h3 id="intrinsic-view-homotopy-equivalence">Intrinsic view: homotopy equivalence</h3>
 <p>Thankfully Ashley&rsquo;s knot-hell can be untied with an intrinsic view of homotopy, independent of any embeddings. It will still kill knots for now, but a later article will show how to redeem them.</p>
+<p>A rather elegant way to get an intrinsic view of homotopy is to say that two spaces are homotopic if &ldquo;their homotopy of paths work the same&rdquo;. We can formalize this by analogy with bijections in set theory, or homeomorphisms in topology: given a path $p$ in $X,$ we want continuous functions $f:X\rightarrow Y$ and $g:Y\rightarrow X$ such that</p>
+$$g\big(f(p)\big)\simeq p \text{ and } f\big(g(q)\big)\simeq q,$$<p>for all paths $p$ in $X$ and $q$ in $Y$&ndash; in the very same way a function $f:X\rightarrow Y$ is bijective whenever there&rsquo;s some $g:Y\rightarrow X$ (usually written $\inv{f},$ the inverse of $f$) such that $g\big(f(x)\big)=x$ and $f\big(g(y)\big)=y,$ for all $x\in X$ and $y\in Y,$ and similarly for homeomorphisms when we consider continuous functions. Note, however, that we&rsquo;re not using equality, but rather the homotopy equivalence $\simeq$ of paths, so that we&rsquo;re properly in the &ldquo;homotopical world&rdquo;. The function $g$ is often appropriately called the &ldquo;<strong>homotopy inverse</strong>&rdquo; of $f,$ and vice-versa.</p>
+<p>IMG!!! BIJEÇÃO E EQUIV</p>
+<p>That is, in the same way that a homeomorphism shows that homeomorphic spaces are actually only different labelings of the same thing, a homotopy equivalence should show us that homotopically equivalent spaces have the same homotopy of paths, just with different labels for these. For every path $p$ in $X,$ you can get one in $Y$ using $f,$ and then go back to the same (homotopically saying) $p$ with $g,$ so that there&rsquo;s no &ldquo;homotopical loss of information&rdquo; with $f.$</p>
+<p>If that doesn&rsquo;t satisfy your intuition, let&rsquo;s take an example. DEFORMA CPOR RETTRAC</p>
 <p><strong>Definition</strong>: a <strong>homotopy</strong> between two continuous maps $f:X\rightarrow Y$ and $g:X\rightarrow Y$ is a continuous function $H:X\times I\rightarrow Y$ such that $H(x, 0)=f(x)$ and $H(x,1)=g(1)$.</p>
+<p>Either way, we have the following definition:</p>
 <p><strong>Definition</strong>: two spaces $X,Y$ are <strong>homotopically equivalent</strong> if there are continuous functions $f:X\rightarrow Y$ and $g:Y\rightarrow X$ such that $f\circ g \simeq \text{id}_Y$ and $g\circ f \simeq \text{id}_X.$ We may also say that $X$ and $Y$ have the same <strong>homotopy type</strong>.</p>
 <p>PROPS: EQUIVALENC</p>
 <p>HOMOTOPIA COM QUOCIENTES E OUTRAS DEFORMAÇÕES. COM PONTOS FIXOS</p>
 <ul>
-<li>R^n, D^n and a point $p$:</li>
+<li>
+<p>All homeomorphisms $f$ are homotpy equivalences by just taking $f$ and its inverse;</p>
+</li>
+<li>
+<p>$\ro^n,$ $D^n$ are equivalent to a point $p$: the equivalence is provided by $H(x,t)=tx$&ndash; i.e., all elements are bringed to the origin. In general, spaces with the homotopy type of a point are called <strong>contractible</strong>. Open balls in $\ro^n$ are also contractible;</p>
+</li>
+<li>
+<p>D^n and S^n aren&rsquo;t equivalent, due to $S^n$ having a hole in the middle. We&rsquo;ll prove this later;</p>
+</li>
+<li>
+<p>Letters</p>
+</li>
+<li>
+<p>Contraindo subespaços contráteis permanece msm tp dhomotopia</p>
+</li>
 </ul>
 <h2 id="connectivity">Connectivity</h2>
 <p><strong>Definition</strong>: a topological space $X$ is called <strong>connected</strong> if there are no disjont open sets $U,V$ such that $U\cup V = X.$</p>
@@ -1004,7 +1027,7 @@ Let $S$ be our set of cell states. We&rsquo;ll consider the bi-infinite (that is
 <p>The set of these sequences, denoted $S^\zo,$ can be given the product topology. Thus, by definition, it has as basis the subsets $B\subseteq S^\zo$ such that only finite components $B_i$ of $B$ are not $S^\zo$. Since $S$ is finite, this topology is equivalent to the one generated by the $B_i$ which</p>
 $$d(x,y)=\sum_{m\geq 0}\frac{D(x_{[-m,m]},y_{[-m,m]})}{2^m}$$<p>Note that this space is &ldquo;bounded&rdquo; and does not allow for arbitrarily large distances: for if $x$ and $y$ are different in all positions, then $d(x,y)=\sum_{m\geq 0}\frac{2m}{2^m},$ and this infinite series can be somewhat unproblematically calculated: it is equal to $4.$ Thus, the greatest distance two points in $S^\zo$ may take is $4$&ndash; and we may as well say that the <strong>diameter</strong> of $S^\zo$ is equal to $4.$</p>
 <h3 id="metric">Metric</h3>
-<p>In general, distances in this space are hard to find exactly. However, if $x,y\in S^\zo$ differ only inside an interval $[-L,L]$ and have exactly $k$ different values, then $d(x,y)&=\sum_{m\geq 0} \frac{D(x,y)}{2^m}\leq k\sum_{m\geq 0} \frac{1}{2^m}=2k.$</p>
+<p>In general, distances in this space are hard to find exactly. However, if $x,y\in S^\zo$ differ only inside an interval $[-L,L]$ and have exactly $k$ different values, then $d(x,y)=\sum_{m\geq 0} \frac{D(x,y)}{2^m}\leq k\sum_{m\geq 0} \frac{1}{2^m}=2k.$</p>
 <h3 id="symmetries-the-shift">Symmetries: the shift</h3>
 <p>The space $S^\zo$ is quite interesting because it comes along a continuous symmetry, the <strong>shift</strong> $s:S^\zo\rightarrow S^\zo,$ which shifts sequences one step to the right: $s(x)_i=x_{i-1}.$ Note also that $s$ is invertible, with $\inv{s}$ being a shift one step to the left: $\inv{s}(x)_i=x_{i+1}.$ We&rsquo;ll denote this left shift $l.$</p>
 <p>IMG!!!</p>

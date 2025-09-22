@@ -280,7 +280,7 @@ IMG!!! OU GIF SLA, BURACO
 
 Generally, mathematicians describe homeomorphisms explicitly, but rely on the visual intuition of the reader, which should be based on these simpler cases. Here are some of these simpler homeomorphisms which can be explicitly described (take $\ro^n$ and other real spaces with the metric topology from the Euclidean distance):
 
-- The obvious case: the identity $i:X\rightarrow X$ sending $x$ to $x$ itself;
+- The obvious case: the identity $\text{id}_X:X\rightarrow X$ sending $x$ to $x$ itself;
 
 - All one-point spaces are homeomorphic: for if $X=\{p\}$ and $Y=\{q\}$ (both with the trivial topology, which is the only possible one), then $f:X\rightarrow Y$ sending $p$ to $q$ is a homeomorphism. It is common to then to speak of **the point space**, often denoted as $0$ to denote its triviality (it's a space though, not a number!);
 
@@ -753,7 +753,9 @@ How can we actually tell if these $p_t$ evolve "continuily"? This can be done by
 
 That's what we have:
 
-**Definition**: a **homotopy** between two paths $f:I\rightarrow X$ and $g:I\rightarrow X$ in a space $X$ is a continuous association of paths $p_t$ for every $t\in I$ such that $p_0=f$ and $p_1=g.$ More formally, it is a continuous function $H:I\times I\rightarrow X$ such that $H(s,0)=f(s)$ and $H(s,1)=g(s).$
+**Definition**: a **homotopy** between two paths $f:I\rightarrow X$ and $g:I\rightarrow X$ in a space $X$ is a continuous association of paths $p_t$ for every $t\in I$ such that $p_0=f$ and $p_1=g.$ More formally, it is a continuous function $H:I\times I\rightarrow X$ such that $H(s,0)=f(s)$ and $H(s,1)=g(s).$ When $f$ and $g$ are **homotopic** (i.e., there's a homotopy between them), we write $f\simeq g.$
+
+Homotopy is a sort of "path between paths", so to speak. You can check that it is an equivalence relation between paths in $X$: that is, $p\simeq p$ for all paths $p$; $p\simeq q$ implies $q\simeq p$; and, most importantly, $p\simeq q$ and $q\simeq r$ implies $p\simeq r$ (i.e., homotopy of paths is transitive).
 
 There are many variations of this concept. For example, we can also consider homotopy with **fixed endings**-- i.e., where we require that all paths have the same end points. This means enforcing extra conditions $p_t(0)=x_1$ and $p_t(1)=x_2$ for all $t.$
 
@@ -779,25 +781,29 @@ The most common and intuitive application of isotopy-- one we use day to day and
 
 Note that this definition considers only knots with their ends joined-- those with free ends are all isotopic to the segment $I,$ so not much can be topologically said without gluing ends.
 
+We generally study knots by planar figures of them. The least amount of crossings such a figure for a knot has is called the **crossing number** of the knot.
+
+IMG!!! Knot 3D E FIGURA
+
 Knot theory is a vast area of topology and still actively researched. Its main goals, fundamentally, are to classificate all knots, and tell whenever two arbitrary knots are equivalent or not. This might be done using "knot invariants", which are quantities or properties that don't change with isotopies and may help us distinguishing knots. Still, both tasks are insanely difficult and probably will never be fulfilled.
 
-We generally study knots by planar figures of them. T!!!
+Here's a table of knots with small crossing numbers:
 
 IMG!!! KNOT TABLE, KNOT ATLAS
 
-Knot theory is a beautiful area of study, specially because many of the invariant aren't actually hard to compute-- even though finding and proving they're invariant might be. !!! In the later 20th century, deep and fascinating relations between knots and physics-- specially statistical mechanics and quantum field theory-- were found, leading to major breakthroughs in knot theory. New invariants were found and interpreted as invariant properties of certain physical systems-- . 
+Knot theory is a beautiful area of study, specially because many of the invariant aren't actually hard to compute-- even though finding and proving they're invariant might be. In the early and mid 20th century, it was developed as an application of algebraic topology and a challenge to its concepts. Later in the century, deep and fascinating relations between knots and physics-- specially statistical mechanics and quantum field theory-- were found, leading to major breakthroughs in knot theory. New invariants were found and interpreted as invariant properties of certain physical systems-- like the [Ising model](https://en.wikipedia.org/wiki/Ising_model), a simplified model of magnets. 
 
 Knots, in general, are just fascinating per se. They have a certain "thingness" to them: each knot is an object by itself, and there's a pleasure in studying each of them-- like a collection of some sort. Unlike collections of plants, insects or whatever it be, a single knot can take a multitude of appearances, so that you never know if a complicated knot might actually be an old friend in disguise. The generation principle of this multitude is isotopy in 3D space, but also the vast combinatorial possibilities of how to slide strings into holes. Their local simplicity makes them even more interesting: they're just lines, 1D spaces. They're "thin", "topologico-combinatorial" "things", if we want to describe the "phenomenology" of knots.
 
 Despite the incredible richness of this mathematical theory, it would be a great pity to limit oneself to the theoretical world. One principle of this series is that we should remain curious to all aspects of a thing. And then we reach a truly infinite branch of human activity when we study knots in the real world-- their use in the naval world, in fabrics, hitching, heraldry and semiotics, and much, much more. A more careful exposition of both the mathematical and practical sides will be given when we study homotopy further, in a dedicated post.
 
-The classical encyclopedic reference on knots in the real world is  !!!
+The classical encyclopedic reference on knots in the real world is **The Ashley Book of Knots**, a magnificent work with almost four thousand entries and seven thousand illustrations. 
 
-Since the book is already copyright-free, here's a pdf for you: SERÁ Q A GNT CONSEGUE POR O PDF? LEGALMENTE É CLARO, SÓ VE AI COMO SERIA NO HUGO PRA TER UM LINK PRA PAGINA DO SITE.
+Since the book is already copyright-free, [here's a pdf for you](/pdfs/ashley.pdf).
 
 IMGS!!! ANIMAIS NO ASHLEY. 
 
-Going back to the notion of homotopy, however, we find a problem-- well, actually it was found in the 19th century. Since isotopy by definition depends on embedding a space $X$ inside a larger $Y,$ it isn't clear if it tells us something about $X$ or $Y,$ or even about their relation. $X$ might have one isotopy behaviour inside $Y$ and a completely different one in $Z,$ so that actually isotopy is not a property *of a space*, but rather *between spaces*. 
+Going back to the notion of homotopy, however, we find a problem-- well, actually it was found in the 19th century. Since isotopy by definition depends on embedding a space $X$ inside a larger $Y,$ it isn't clear if it tells us something about $X$ or $Y,$ or even about their relation. $X$ might have one isotopy behaviour inside $Y$ and a completely different one in $Z,$ so that actually isotopy is not a property *of a space*, but rather *between spaces*.  That's interesting, but not really what we wanted: we wished to use the notion of homotopy to study topological properties of *one* space, but now we'd have two study *two*! 
 
 A classical example proved by [Klein](https://en.wikipedia.org/wiki/Felix_Klein) is that all knots embedded in $\ro^4$ are isotopic to the unknot-- i.e., they can all be untied in 4D space. The extra dimension that allows you to do that: this is similar to how we can "free" a shape contained into another in the plane by lifting it in 3D space and then putting it back in the plane, but outside the other figure. 
 
@@ -819,17 +825,38 @@ If isotopy can't tell us much about a single space $X$, how can we make homotopy
 
 Thankfully Ashley's knot-hell can be untied with an intrinsic view of homotopy, independent of any embeddings. It will still kill knots for now, but a later article will show how to redeem them.
 
+A rather elegant way to get an intrinsic view of homotopy is to say that two spaces are homotopic if "their homotopy of paths work the same". We can formalize this by analogy with bijections in set theory, or homeomorphisms in topology: given a path $p$ in $X,$ we want continuous functions $f:X\rightarrow Y$ and $g:Y\rightarrow X$ such that 
+
+$$g\big(f(p)\big)\simeq p \text{ and } f\big(g(q)\big)\simeq q,$$
+
+for all paths $p$ in $X$ and $q$ in $Y$-- in the very same way a function $f:X\rightarrow Y$ is bijective whenever there's some $g:Y\rightarrow X$ (usually written $\inv{f},$ the inverse of $f$) such that $g\big(f(x)\big)=x$ and $f\big(g(y)\big)=y,$ for all $x\in X$ and $y\in Y,$ and similarly for homeomorphisms when we consider continuous functions. Note, however, that we're not using equality, but rather the homotopy equivalence $\simeq$ of paths, so that we're properly in the "homotopical world". The function $g$ is often appropriately called the "**homotopy inverse**" of $f,$ and vice-versa.
+
+IMG!!! BIJEÇÃO E EQUIV
+
+That is, in the same way that a homeomorphism shows that homeomorphic spaces are actually only different labelings of the same thing, a homotopy equivalence should show us that homotopically equivalent spaces have the same homotopy of paths, just with different labels for these. For every path $p$ in $X,$ you can get one in $Y$ using $f,$ and then go back to the same (homotopically saying) $p$ with $g,$ so that there's no "homotopical loss of information" with $f.$
+
+If that doesn't satisfy your intuition, let's take an example. DEFORMA CPOR RETTRAC
+
 **Definition**: a **homotopy** between two continuous maps $f:X\rightarrow Y$ and $g:X\rightarrow Y$ is a continuous function $H:X\times I\rightarrow Y$ such that $H(x, 0)=f(x)$ and $H(x,1)=g(1)$.
 
+Either way, we have the following definition:
+
 **Definition**: two spaces $X,Y$ are **homotopically equivalent** if there are continuous functions $f:X\rightarrow Y$ and $g:Y\rightarrow X$ such that $f\circ g \simeq \text{id}_Y$ and $g\circ f \simeq \text{id}_X.$ We may also say that $X$ and $Y$ have the same **homotopy type**.
-
-
 
 
 PROPS: EQUIVALENC
 
 HOMOTOPIA COM QUOCIENTES E OUTRAS DEFORMAÇÕES. COM PONTOS FIXOS
-- R^n, D^n and a point $p$:
+
+- All homeomorphisms $f$ are homotpy equivalences by just taking $f$ and its inverse;
+
+- $\ro^n,$ $D^n$ are equivalent to a point $p$: the equivalence is provided by $H(x,t)=tx$-- i.e., all elements are bringed to the origin. In general, spaces with the homotopy type of a point are called **contractible**. Open balls in $\ro^n$ are also contractible;
+
+- D^n and S^n aren't equivalent, due to $S^n$ having a hole in the middle. We'll prove this later;
+
+- Letters
+
+- Contraindo subespaços contráteis permanece msm tp dhomotopia
 
 ## Connectivity
 
@@ -932,7 +959,7 @@ Note that this space is "bounded" and does not allow for arbitrarily large dista
 
 ### Metric
 
-In general, distances in this space are hard to find exactly. However, if $x,y\in S^\zo$ differ only inside an interval $[-L,L]$ and have exactly $k$ different values, then $d(x,y)&=\sum_{m\geq 0} \frac{D(x,y)}{2^m}\leq k\sum_{m\geq 0} \frac{1}{2^m}=2k.$
+In general, distances in this space are hard to find exactly. However, if $x,y\in S^\zo$ differ only inside an interval $[-L,L]$ and have exactly $k$ different values, then $d(x,y)=\sum_{m\geq 0} \frac{D(x,y)}{2^m}\leq k\sum_{m\geq 0} \frac{1}{2^m}=2k.$
 
 ### Symmetries: the shift
 
