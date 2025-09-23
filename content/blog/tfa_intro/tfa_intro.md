@@ -17,6 +17,8 @@ Bla
 
 TGT AUDIENCE 
 
+FALAR DEUCLIDES
+
 # This series
 
 ORDER 
@@ -33,6 +35,65 @@ Fact is, leaving out the more difficult and rigorous parts **is** necessary when
 # What is topology?
 
 TOP VS GEO
+
+
+{{% columns ration="1:1" %}}
+- **Ancient Greek**
+
+    **αʹ.**
+    σημεῖόν ἐστιν, οὗ μέρος οὐθέν.
+
+    **βʹ.**
+    γραμμὴ δὲ μῆκος ἀπλατές.
+
+    **γʹ.**
+    γραμμῆς δὲ πέρατα σημεῖα.
+
+    (...)
+
+    **εʹ.**
+    ἐπιφάνεια δέ ἐστιν, ὃ μῆκος καὶ πλάτος μόνον ἔχει.
+
+    **ϛʹ.**
+    ἐπιφανείας δὲ πέρατα γραμμαί.
+
+    (...)
+
+    **ιεʹ.**
+    ὅρος ἐστίν, ὅ τινός ἐστι πέρας.
+
+    **ιϛʹ.**
+    σχῆμά ἐστι τὸ ὑπό τινος ἤ τινων ὅρων περιεχόμενον.
+
+
+- **English**
+
+    **I.**
+    A point is that which has no parts.
+
+    **II.**
+    A line is length without breadth.
+
+    **III.**
+    The extremities of a line are points.
+
+    (...)
+
+    **V.**
+    A surface is that which has length and breadth only.
+
+    **VI.**
+    The extremities of a surface are lines.
+
+    (...)
+
+    **XIII.**
+    A term or boundary is the extremity of any thing.
+
+    **XIV.**
+    A figure is a surface enclosed on all sides by a line or lines.
+
+{{% /columns %}}
 
 # The necessity of spaces
 
@@ -204,7 +265,7 @@ Every linear transformation between **finite dimensional** vector spaces is cont
 
 Generally, the composition of continuous functions between metric spaces is continuous: if $f:X\rightarrow Y,$ $g:Y\rightarrow Z$ are both continuous and $V\subseteq Z$ is open, then $\inv{(g\circ f)}(V)=\inv{f}(\inv{g}(V)),$ which is open by hypothesis, so that $g\circ f$ is continuous too. Notice by the way how proving this is much, much easier and more obvious using the last definition instead of the previous ones that used explicit metrics.
 
-For spaces of functions, each $L^p$ metric gives a different notion of convergence. With $L^\infty,$ this is called *uniform convergence*: more explicitely, a sequence $\{f_n\}$ of functions converges to $f$ uniformly if, for every $x$ in the domain, $f_n(x)\rightarrow f(x)$-- i.e., if the functions converge punctually to $f$. What's interesting is that $L^p$ spaces allow for *non-continuous linear functions*: the derivative is one example. But we won't delve into that point here (we might though, but only much, much later in the series).
+For spaces of functions, each $L^p$ metric gives a different notion of convergence. With $L^\infty,$ this is called *uniform convergence*: more explicitly, a sequence $\{f_n\}$ of functions converges to $f$ uniformly if, for every $x$ in the domain, $f_n(x)\rightarrow f(x)$-- i.e., if the functions converge punctually to $f$. What's interesting is that $L^p$ spaces allow for *non-continuous linear functions*: the derivative is one example. But we won't delve into that point here (we might though, but only much, much later in the series).
 
 # Topological spaces
 
@@ -316,7 +377,7 @@ This is the case for all the $\mathcal{l^p}$ metrics in any $\ro^n.$ Proving thi
 
 Interestingly, the same can't be said for sets of functions with the $L^p$ metrics: indeed, different $p$ give us completely different topologies. This was actually one of the main sources for defining abstract topological spaces in the earlier 20th century, as many theorems were valid for some $L^p$ distances, and some not for others. This led to the consolidation of **functional analysis**, which is linear algebra applied to the different (infinite dimensional) vector spaces of functions-- an area that later on lead to fundamental advances in quantum mechanics, statistics, topology itself and many other applications.
 
-Beware: **from now on we'll not describe explicitely most of the homeomorphisms we mention!**
+Beware: **from now on we'll not describe explicitly most of the homeomorphisms we mention!**
 
 Proving that spaces satisfying certain properties are homeomorphic is, in general, hard. However, it may be even harder to prove the opposite: that two spaces *aren't* homeomorphic. Proving the latter is one of the main tasks of topology. Here are some non-homeomorphic spaces and indicatives of thereof:
 
@@ -355,6 +416,12 @@ With this, the proper formula for the boundary can be given:
 **Definition**: the **boundary** of a subset $S\subseteq X$ is its closure minus its interior: $\partial S= \bar{S}\setminus \text{int } S.$
 
 This definition allows us now to use the intuitive notions of boundary and frontier in the general topological context.
+
+Open and closed sets are, literally, complementary notions. For, if $C$ is closed in a space $X$, then $X\setminus C$ is open: otherwise, there'd an $x\in X\setminus C$ with all of its neighborhoods not completely inside $X\setminus C.$ Thus $x$ is an addherent point of $C$ not in $C$-- a contradiction. Conversely, if a subset $C$ is the complement $X\setminus U$ of an open $U$ in $X,$ then all addherent points of $C$ are contained in $C$: for if $x$ is addherent to $C$ but not in it, it is in $X\setminus C= U$ and all its neighborhoods intersect $C$-- implying $U$ isn't open, a contradiction. We thus get:
+
+**Proposition**: a set is closed in $X$ if, and only if, it is the complement of an open set in $X.$
+
+Funnily enough, there are sets that are both open and closed: they're called **clopen** sets. For now, you can see that $X$ and $\emptyset$ are clopen, but we'll meet more subsets of this kind later on.
 
 ## Some common topologies
 
@@ -739,11 +806,63 @@ IMG!!! parágrafo acima
 
 In the article on homology, we'll further describe many spaces as quotients.
 
+## Connectivity
+
+If topology gives us a notion of proximity, can it define a notion of connectivity of a space? Take the example of the union of the intervals $(0,1)$ and $(2,3)$ in $\ro.$ Intuitively, their union forms a disconnected subspace. One might then be tempted to say that this is because they're disjoint, and we're done. But then consider $(0,1)$ and $\{0,1\}$-- i.e., $(0,1)$ and its boundary. These are disjoint sets, but their union forms the interval $[0,1],$ which feels connected, and so mere set theoretical disjointness can't explain the intuition of connectivity. 
+
+What pure set theory lacks is the notion, as we saw above, of addherent points. Sure, $(0,1)$ and $\{0,1\}$ are disconnected, but the later are addherent to the first. The points $0$ and $1$ can't really be separated from the interval $(0,1)$-- they're "connected" to it. This leads us to say that a space $X$ should be disconnected if there are disjoint subsets sets $A,B$ covering it, with $A$ and $B$ sharing no addherence relation-- i.e., no point in one is addherent to the other. 
+
+This implies $A$ and $B$ above are closed: if $x$ is addherent to $A,$ it must be in $A$ or else it would contradictorily be in $B$-- and similarly for addherent points of $B.$ But then $A$ and $B$ are also open, since $A=X\setminus B$ and $B$ is closed- and similarly for $B.$ In particular, $A$ and $B$ are **clopen sets!** This leads us to the more common definition of connectivity:
+
+**Definition**: a topological space $X$ is called **connected** if there are no disjont open sets $U,V$ such that $U\cup V = X.$ Otherwise, it is said to be **disconnected**, and we'll say $U$ and $V$ separate $X.$
+
+You can check that, if $U,V$ separate $X,$ they must be clopen.
+
+The largest connected subset containing a point $x\in X$ is said to be its **connected component**. Any space can be divided into connected components.
+
+It's easy to see that connectivity is a **topological invariant**. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ connected, then $\im f$ is also connected; otherwise, if it could be divided into two disjoint open sets $U,V$ in $\im f,$ then $\inv{f}(U)$ and $\inv{f}(V)$ would be open, disjoint (there can be no $x\in \inv{f}(U)\cap \inv{f}(V)$ since it would imply $f(x)\in U\cap V$) and cover $X$, a contradiction. That is,
+
+**Proposition**: continuous functions preserve connectivy between their domains and images.
+
+An important theorem is that intervals in $\ro$ (and in any order topology too) are connected. This must be proven, but we'll not do that here-- you check Munkres for it. This can then in its turn be used to prove that the entire line $\ro$ is connected, by using the result (a good exercise) that, if $A,B$ are connected subspaces of a space $X$ with non-empty intersection, $A\cup B$ is connected. Since $\ro$ can be seen as a chain of open intervals-- as $\bigcup_{n\in \zo} (n-1, n+1),$ for example--, then the line must be connected. 
+
+IMG!!! 
+
+Take this together with the last proposition and you immediately get an important theorem from calculus:
+
+**Intermediate value theorem**: if a continuous function $f:X\rightarrow \ro$ obtains values $a$ and $b,$ with $a< b,$ then there must exist a $x\in X$ obtaining an intermediate value: $a < f(x) < b.$
+
+IMG!!!
+
+Furthermore, the product of connected spaces is connected as well. Every quotient of a connected space is also connected. Both proofs are quite simple and work by assuming disconnectedness and then finding a contradiction with the connectivity of the original spaces.
+
+Connectivity can be used to prove some spaces aren't homeomorphic. The classical example is that of $\ro$ and $\ro^n,$ for $n>1.$ For, if you take the origin away from the line, you get a disconnected space with two components: $(-\infty,0)$ and $(0,\infty).$ But if you do the same for any other $\ro^n,$ $n>1,$ you still get a connected space. Thus these two can't be homeomorphic. You can use a similar trick to prove that branched spaces aren't manifolds.
+
+Beyond this notion of connectivity purely based on sets, there's another intuitive one: visually, we think of connected figures as those in which every two points can be connected by a line. Thus we get the following definition:
+
+**Definition**: a topological space $X$ is called **path-connected** if, for every two points $x,y\in X,$ theres a path $p:I\rightarrow X$ starting in $x$ and ending in $y$ (i.e., $p(0)=x$ and $p(1)=y$).
+
+Path-connectedness is also a topological property. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ path-connected, so is $\im y$: if $f(x),f(y)$ are in $\im f,$ $x$ and $y$ can be connected by a path $p$ in $X,$ and so $f\circ p:I\rightarrow \im f$ connects $f(x)$ to $f(y).$ Thus:
+
+**Proposition**: continuous functions preserve path-connectivy between their domains and images.
+
+Path-connectedness implies connectedness: for if $X$ were path-connected but had $U,V$ separating it, then if $p$ is a path connecting $u\in U$ and $v\in V,$ $\inv{p}(U)$ and $\inv{p}(V)$ will be disjoint open sets covering $I,$ which is absurd.
+
+Is the converse true-- i.e., are all connected spaces path-connected. The answer is negative. The classical example is the [topologist's sine curve](https://en.wikipedia.org/wiki/Topologist%27s_sine_curve), which is the subspace of $\ro^2$ formed by the graph of the curve $f(x)=\sin (\frac{1}{x})$ (with $x\in (0,1]$) joined with the origin.
+
+IMG !!!!
+
+The topologist's sine curve is connected, since the graph of $f$ is connected and the origin is addherent to it. But there's no continuous path connecting a point in the graph to the origin. Try to make visualize it and make this is somewhat intuitive-- proving it is a bit tedious so we won't do it here. 
+
 ## Homotopy
 
 ### Paths and holes
 
 Beyond homeomorphisms, there's another notion of equivalence between spaces: **homotopy**. We say two spaces are homotopical when you can continuously transform one into the other over time. 
+
++MOTIVAC
+
+PATHS
 
 Let's begin with the simplest case: that of a paths in our space $X,$ which can be used as probes to explore the topology of $X.$ Begin with two paths $f,g.$ To say we can "continuously transform" path $f$ into $g$ means that, for a time value $t$ in the range $[0,1],$ we have a path $p_t,$ representing the transformation at $t.$ We should have $p_0=f$ and $p_1=g,$ so as to begin with $f$ and end with $g.$
 
@@ -757,6 +876,8 @@ That's what we have:
 
 Homotopy is a sort of "path between paths", so to speak. You can check that it is an equivalence relation between paths in $X$: that is, $p\simeq p$ for all paths $p$; $p\simeq q$ implies $q\simeq p$; and, most importantly, $p\simeq q$ and $q\simeq r$ implies $p\simeq r$ (i.e., homotopy of paths is transitive).
 
+[I, X] AND CONNECTIVITY
+
 There are many variations of this concept. For example, we can also consider homotopy with **fixed endings**-- i.e., where we require that all paths have the same end points. This means enforcing extra conditions $p_t(0)=x_1$ and $p_t(1)=x_2$ for all $t.$
 
 One of the main uses of path homotopy is to use paths as probes with each you can explore your space. For example, they can-- and this will be topic for a post of its own in the future-- detect holes in shapes, specially because of these two scenarios:
@@ -767,13 +888,19 @@ One of the main uses of path homotopy is to use paths as probes with each you ca
 
 How can we generalize homotopy for general spaces, though? Again, there are two ways to do so: with an extrinsic or an intrinsic view. Let's take the time to consider each option, instead of me giving the definitions right away.
 
-### Extrinsic view: isotopy and knots
+### General homotopy
+
+GENERALIZACS E [X, Y]. [(X,A), (Y,B)]. EQUIVALÊNCIA. [(S^1, 0), (X, x_0)]
+
+### A stronger view: isotopy and knots
 
 One way is to, similarly with path homotopy, see your space as embedded into another one, and considering continuous transformations *inside this larger space*. This is called isotopy, and the definition is an immediate generalization of path homotopy:
 
-**Definition**: an **isotopy** between two embeddings $f:X\rightarrow Y$ and $g:X\rightarrow Y$ is a continuous function $H:X\times I\rightarrow Y$ such that $H(x,0)=f(x)$ and $H(x,1)=g(x).$
+**Definition**: an **isotopy** between two embeddings $f:X\rightarrow Y$ and $g:X\rightarrow Y$ is a continuous function $H:X\times I\rightarrow Y$ such that $H(x,0)=f(x),$ $H(x,1)=g(x)$ and, for every fixed $t$, $H(\cdot, t):X\rightarrow Y$ is a homeomorphism.
 
 IMG!!!
+
+EX DE N ISOTOPIA (-1 EM [-1,1])
 
 The most common and intuitive application of isotopy-- one we use day to day and have engraved in our spatial perception of the world-- are knots. Mathematically, knots are seen as embeddings of the circle:
 
@@ -829,54 +956,35 @@ A rather elegant way to get an intrinsic view of homotopy is to say that two spa
 
 $$g\big(f(p)\big)\simeq p \text{ and } f\big(g(q)\big)\simeq q,$$
 
-for all paths $p$ in $X$ and $q$ in $Y$-- in the very same way a function $f:X\rightarrow Y$ is bijective whenever there's some $g:Y\rightarrow X$ (usually written $\inv{f},$ the inverse of $f$) such that $g\big(f(x)\big)=x$ and $f\big(g(y)\big)=y,$ for all $x\in X$ and $y\in Y,$ and similarly for homeomorphisms when we consider continuous functions. Note, however, that we're not using equality, but rather the homotopy equivalence $\simeq$ of paths, so that we're properly in the "homotopical world". The function $g$ is often appropriately called the "**homotopy inverse**" of $f,$ and vice-versa.
+for all paths $p$ in $X$ and $q$ in $Y$-- in the very same way a function $f:X\rightarrow Y$ is bijective whenever there's some $g:Y\rightarrow X$ (usually written $\inv{f},$ the inverse of $f$) such that $g\big(f(x)\big)=x$ and $f\big(g(y)\big)=y,$ for all $x\in X$ and $y\in Y,$ and similarly for homeomorphisms when we consider continuous functions. Note, however, that we're not using equality, but rather the homotopy equivalence $\simeq$ of paths, so that we're properly in the "homotopical world". The function $f$ is called then a **homotopy equivalence** and $g$ its "**homotopy inverse**".
 
 IMG!!! BIJEÇÃO E EQUIV
 
+More concisely, a homotopy equivalence is a continuous function $f:X\rightarrow Y$ inducing a bijection between homotopy equivalence classes of paths in $X$ and $Y$-- i.e., $f$ applied to paths gives such a bijection of classes.
+
 That is, in the same way that a homeomorphism shows that homeomorphic spaces are actually only different labelings of the same thing, a homotopy equivalence should show us that homotopically equivalent spaces have the same homotopy of paths, just with different labels for these. For every path $p$ in $X,$ you can get one in $Y$ using $f,$ and then go back to the same (homotopically saying) $p$ with $g,$ so that there's no "homotopical loss of information" with $f.$
 
-If that doesn't satisfy your intuition, let's take an example. DEFORMA CPOR RETTRAC
+Another common way to define equivalence is by first defining a general notion of homotopy between functions:
 
 **Definition**: a **homotopy** between two continuous maps $f:X\rightarrow Y$ and $g:X\rightarrow Y$ is a continuous function $H:X\times I\rightarrow Y$ such that $H(x, 0)=f(x)$ and $H(x,1)=g(1)$.
 
-Either way, we have the following definition:
+Which allows us to state equivalence more clearly as a sort of "bijection up to homotopy":
 
 **Definition**: two spaces $X,Y$ are **homotopically equivalent** if there are continuous functions $f:X\rightarrow Y$ and $g:Y\rightarrow X$ such that $f\circ g \simeq \text{id}_Y$ and $g\circ f \simeq \text{id}_X.$ We may also say that $X$ and $Y$ have the same **homotopy type**.
 
+You can check that the given definitions are equivalent and that homotopy equivalence is, indeed, an equivalence relation between topological spaces.
 
-PROPS: EQUIVALENC
-
-HOMOTOPIA COM QUOCIENTES E OUTRAS DEFORMAÇÕES. COM PONTOS FIXOS
+Here are some important cases:
 
 - All homeomorphisms $f$ are homotpy equivalences by just taking $f$ and its inverse;
 
-- $\ro^n,$ $D^n$ are equivalent to a point $p$: the equivalence is provided by $H(x,t)=tx$-- i.e., all elements are bringed to the origin. In general, spaces with the homotopy type of a point are called **contractible**. Open balls in $\ro^n$ are also contractible;
+- The reals $\ro^n$ are equivalent to a point $\{p\}$. Explicitly, for $f:\ro^n\rightarrow \{p\},$ it has a homotopical inverse $g:\{p\}\rightarrow \ro^n$ given by $g(p)=0.$ The homotopy is $H(x,t)=tx$-- i.e., all elements are bringed to the origin along a line. There's no hole or other topological obstruction not allowing you to continually collapse the whole space into a single point. This can also be seen through paths: every path in $\ro^n$ is contractible to a single point-- even if one end point The In general, spaces with the homotopy type of a point are called **contractible**. Open balls in $\ro^n$ are also contractible;
 
 - D^n and S^n aren't equivalent, due to $S^n$ having a hole in the middle. We'll prove this later;
 
 - Letters
 
 - Contraindo subespaços contráteis permanece msm tp dhomotopia
-
-## Connectivity
-
-**Definition**: a topological space $X$ is called **connected** if there are no disjont open sets $U,V$ such that $U\cup V = X.$
-
-It's easy to see that connectivity is a topological invariant. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ connected, then $\im f$ is also connected; otherwise, if it could be divided into two disjoint open sets $U,V$ in $\im f,$ then $\inv{f}(U)$ and $\inv{f}(V)$ would be open, disjoint (there can be no $x\in \inv{f}(U)\cap \inv{f}(V)$ since it would imply $f(x)\in U\cap V$) and cover $X$, a contradiction. That is,
-
-**Proposition**: continuous functions preserve connectivy between their domains and images.
-
-EXS CONNECTED SPACES
-
-TIRAR PONTO, BRANCHES N SÃO MANIFOLDS
-
-**Definition**: a topological space $X$ is called **path-connected** if, for every two points $x,y\in X,$ theres a path $p:I\rightarrow X$ starting in $x$ and ending in $y$ (i.e., $p(0)=x$ and $p(1)=y$).
-
-Path-connectedness is also a topological property. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ path-connected, so is $\im y$: if $f(x),f(y)$ are in $\im f,$ $x$ and $y$ can be connected by a path $p$ in $X,$ and so $f\circ p:I\rightarrow \im f$ connects $f(x)$ to $f(y).$
-
-Path-connectedness implies connectedness: for if $X$ were path-connected but had $U,V$ disjoint covering it, then if $p$ is a path connecting $u\in U$ and $v\in V,$ $\inv{p}(U)$ and $\inv{p}(V)$ will be disjoint open sets covering $I,$ which is absurd.
-
-One of the classic counter-examples in topology is that not all connected spaces are path-connected. For example, take the subset of $\ro^2$ that's composed of the graph of $\sin (\frac{1}{x})$ (with $x>0$) together with the origin.
 
 ## Compactness
 
@@ -975,7 +1083,7 @@ EQUIVARIANT
 
 ### Continuity
 
-... Again, please note how this is absurdly simplier than the description of continuity using the metric explicitely.
+... Again, please note how this is absurdly simplier than the description of continuity using the metric explicitly.
 
 ### Compactness
 

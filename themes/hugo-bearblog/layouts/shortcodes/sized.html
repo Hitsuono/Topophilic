@@ -1,0 +1,4 @@
+{{ $size := .Get "size" | default "1.5em" }}
+<div style="font-size: {{ $size }};">
+  {{ .Inner | markdownify }}
+</div>
