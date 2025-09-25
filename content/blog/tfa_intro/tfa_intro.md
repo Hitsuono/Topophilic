@@ -317,7 +317,7 @@ We often define a topology through a basis, just as we did in the metric case. I
 
 You can also prove that, in order to show that a function $f:X\rightarrow Y$ is continuous, it suffices to prove it in relation to a basis $\mathcal{B}$ of $Y$: i.e., that $\inv{f}(B)$ is open in $X$ for all $B\in\mathcal{B}.$ This is particularly useful for metric spaces, with $\mathcal{B}$ being the open balls of $Y.$
 
-## Homeomorphisms: equivalence of spaces by continuous deformations
+## Homeomorphisms: the topological notion of equality
 
 We're now finally able to define what we actually mean by topology as rubber geometry. Indeed, what we meant by "a continuous deformation without gluing or cutting" in the introduction can be formally described as a **bijective continuous function** $f$! The property of "being able to go back by a deformation of the same kind" means that $\inv{f}$ should also be continuous. Thus, we have the following fundamental definition:
 
@@ -343,7 +343,7 @@ Generally, mathematicians describe homeomorphisms explicitly, but rely on the vi
 
 - The obvious case: the identity $\text{id}_X:X\rightarrow X$ sending $x$ to $x$ itself;
 
-- All one-point spaces are homeomorphic: for if $X=\{p\}$ and $Y=\{q\}$ (both with the trivial topology, which is the only possible one), then $f:X\rightarrow Y$ sending $p$ to $q$ is a homeomorphism. It is common to then to speak of **the point space**, often denoted as $0$ to denote its triviality (it's a space though, not a number!);
+- All one-point spaces are homeomorphic: for if $X=\{p\}$ and $Y=\{q\}$ (both with the only possible topology, composes solely of the point and the empty set), then $f:X\rightarrow Y$ sending $p$ to $q$ is a homeomorphism. It is common to then to speak of **the point space**, often denoted as $0$ to denote its triviality (it's a space though, not a number!);
 
 - **Isommetries**: these are the bijective functions between metric spaces preserving the metric: i.e., $f:(X,d_X)\rightarrow (Y,d_Y)$ such that $d(x,y)=d(f(x),f(y)),$ with $f$ bijective. This is easy to prove using what we know so far. **Rotations, reflections and translations** are examples of isommetries. These will become very important later on when we study the topology of cellular automata;
 
@@ -429,7 +429,7 @@ Funnily enough, there are sets that are both open and closed: they're called **c
 
 That should be it for definitions and constructions so far. Let's get into some examples.
 
-First of all, note that every set $X$ can be given a topology: this can be done using the trivial topology $\{X, \emptyset\}.$ It's not very interesting: the only open sets are the empty set and $X$ itself. Another less trivial way is to take as basis $\mathcal{B}$ all the one-point subsets $\{x\}$ for $x\in X.$ The resulting topology is the set of all subsets of $X$, and is called the **discrete topology**. It is metrizable by the metric
+First of all, note that every set $X$ can be given a topology: this can be done using the **trivial topology** $\{X, \emptyset\}.$ It's not very interesting: the only open sets are the empty set and $X$ itself. Another less trivial way is to take as basis $\mathcal{B}$ all the one-point subsets $\{x\}$ for $x\in X.$ The resulting topology is the set of all subsets of $X$, and is called the **discrete topology**. It is metrizable by the metric
 
 $$d(x,y)=
 \begin{cases}
@@ -840,7 +840,7 @@ Connectivity can be used to prove some spaces aren't homeomorphic. The classical
 
 Beyond this notion of connectivity purely based on sets, there's another intuitive one: visually, we think of connected figures as those in which every two points can be connected by a line. Thus we get the following definition:
 
-**Definition**: a topological space $X$ is called **path-connected** if, for every two points $x,y\in X,$ theres a path $p:I\rightarrow X$ starting in $x$ and ending in $y$ (i.e., $p(0)=x$ and $p(1)=y$).
+**Definition**: a topological space $X$ is called **path-connected** if, for every two points $x,y\in X,$ there's a path $p:I\rightarrow X$ starting in $x$ and ending in $y$ (i.e., $p(0)=x$ and $p(1)=y$).
 
 Path-connectedness is also a topological property. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ path-connected, so is $\im y$: if $f(x),f(y)$ are in $\im f,$ $x$ and $y$ can be connected by a path $p$ in $X,$ and so $f\circ p:I\rightarrow \im f$ connects $f(x)$ to $f(y).$ Thus:
 
@@ -858,13 +858,15 @@ The topologist's sine curve is connected, since the graph of $f$ is connected an
 
 ### Paths and holes
 
-Beyond homeomorphisms, there's another notion of equivalence between spaces: **homotopy**. We say two spaces are homotopical when you can continuously transform one into the other over time. 
+Beyond homeomorphisms, there's another notion of equivalence between spaces: **homotopy**. **We say two spaces are "homotopical" when you can continuously transform one into the other over time**. 
 
-+MOTIVAC
+A circle and a square should be seen as homotopical since one can be transformed into the other in a continuous process. But this notion is even stronger: a disk and a point are homotopical since you can continuously shrink the disk in time until you get a single point (say its center). But you intuitively shouldn't be able to modify a disk into its boundary circle in this way. 
 
-PATHS
+On the other hand, if you take the center point of the disk, this can be done by pushing points towards the boundary along a radial line. Similarly, a cylinder and a circle should be homotopical since you can flatten the first into the later-- but still preserving the hole in the middle. These are good indications that the notion of homotopy might be a good notion to identify holes: let's formalize it!
 
-Let's begin with the simplest case: that of a paths in our space $X,$ which can be used as probes to explore the topology of $X.$ Begin with two paths $f,g.$ To say we can "continuously transform" path $f$ into $g$ means that, for a time value $t$ in the range $[0,1],$ we have a path $p_t,$ representing the transformation at $t.$ We should have $p_0=f$ and $p_1=g,$ so as to begin with $f$ and end with $g.$
+IMG!!! IBAAAAAAAAAGENS
+
+Let's begin with the simplest case: that of a paths in our space $X,$ which can be used as probes to explore the topology of $X.$ Begin with two paths $p,q.$ To say we can "continuously transform" path $p$ into $q$ means that, for a time value $t$ in the range $[0,1],$ we have a path $p_t,$ representing the transformation at $t,$ with $p_0=p$ and $p_1=q,$ so as to begin with $p$ and end with $q.$
 
 IMG!!!
 
@@ -874,23 +876,66 @@ That's what we have:
 
 **Definition**: a **homotopy** between two paths $f:I\rightarrow X$ and $g:I\rightarrow X$ in a space $X$ is a continuous association of paths $p_t$ for every $t\in I$ such that $p_0=f$ and $p_1=g.$ More formally, it is a continuous function $H:I\times I\rightarrow X$ such that $H(s,0)=f(s)$ and $H(s,1)=g(s).$ When $f$ and $g$ are **homotopic** (i.e., there's a homotopy between them), we write $f\simeq g.$
 
-Homotopy is a sort of "path between paths", so to speak. You can check that it is an equivalence relation between paths in $X$: that is, $p\simeq p$ for all paths $p$; $p\simeq q$ implies $q\simeq p$; and, most importantly, $p\simeq q$ and $q\simeq r$ implies $p\simeq r$ (i.e., homotopy of paths is transitive).
+Homotopy is a sort of "path between paths", so to speak. You can check that it is an equivalence relation between paths in $X$: that is, $p\simeq p$ for all paths $p$; $p\simeq q$ implies $q\simeq p$; and, most importantly, $p\simeq q$ and $q\simeq r$ implies $p\simeq r$ (i.e., homotopy of paths is transitive). The set of the equivalence class of this relation is written as $[I,X].$
 
-[I, X] AND CONNECTIVITY
+It is a further indicative of the importance of homotopy that $[I,X]$ is fundamentally related to the connectivity of $X.$ See, if we have paths $p$ and $q$ lying on the same path-connected component of $X,$ then they're homotopic: for if $r$ is a path between the end of $p$ and the beginning of $q,$ then the path $p$ can be brought to $q$ along $r.$ More explicitly, if $f:I\rightarrow X$ is the path which travels through $p,$ then $r$ and $q,$
 
-There are many variations of this concept. For example, we can also consider homotopy with **fixed endings**-- i.e., where we require that all paths have the same end points. This means enforcing extra conditions $p_t(0)=x_1$ and $p_t(1)=x_2$ for all $t.$
+$$f(x)=
+\begin{cases}
+p(3x), & \text{if } 0\leq x\leq \frac{1}{3} \\
+r(3x), & \text{if } \frac{1}{3} \leq x\leq \frac{2}{3}\\
+q(3x), & \text{if } \frac{2}{3}\leq x\leq 1
+\end{cases}
+$$
 
-One of the main uses of path homotopy is to use paths as probes with each you can explore your space. For example, they can-- and this will be topic for a post of its own in the future-- detect holes in shapes, specially because of these two scenarios:
+then a homotopy between $p$ and $q$ is given by $H(x,t)=f(\frac{x}{3} + \frac{2t}{3})$-- i.e., $H$ slides $p$ into $q$ along $f$ along time $t.$
 
-- Loop ao redor de buraco e um não ao redor
+IMG!!!
 
-- N loops ao redor de S1
+Conversely, if paths $p$ and $q$ are homotopic, then for each point $x\in I,$ $H(x,t)$ is a path from $p(s)$ to $q(s),$  so that all points in both paths being in the same path-componnent. **Thus the elements of** $[I,X]$ **represent exactly the path-connected components of** $X,$ with the class $[p]$ being associated to the path-componnent of path $p.$
 
-How can we generalize homotopy for general spaces, though? Again, there are two ways to do so: with an extrinsic or an intrinsic view. Let's take the time to consider each option, instead of me giving the definitions right away.
+IMG!!!
+
+There are many variations of path homotopy. For example, we can also consider homotopy with **fixed endings**-- i.e., where we require that all paths have the same end points. This means enforcing extra conditions $p_t(0)=x_1$ and $p_t(1)=x_2$ for all $t.$ This homotopy is also an equivalence relation, and its set of equivalence classes is written $[(I,0,1), (X,x_1,x_2)].$ 
+
+What the notation $[(I,0,1), (X,x_1,x_2)]$ means is that we restrict ourselves to maps and homotopies seding $0$ to $x_1$ and $1$ to $x_2.$ In general, if you have subspaces $A_i\subseteq I,$ and $B_i\subseteq X,$ then you have a set of classes $[(I, A_1, A_2,...), (X, B_1, B_2,...)].$ Each class is represented by paths $p:I\rightarrow X$ such that $p(A_i)\subseteq B_i$ and the equivalence is given by homotopies of the form $H:I\times I\rightarrow X$ such that each path $H(x,t)$ for $x$ fixed is of the desired type of paths (i.e., those sending $A_i$ to $B_i$). These general homotopies will be handy later on.
+
+Note that $[(I,0,1), (X,x_1,x_2)]$ considers only paths beginning in $x_1$ and ending in $x_2,$ and if we wanted to include those with reverted end points we should then use $[(I,\{0,1\}), (X, \{x_1,x_2\})].$
+
+A particularly important set of homotopy classes is $[(I,\{0,1\}), (X, x_0)],$ as it represents **homotopy of loops** at a chosen point $x_0$-- i.e., of paths $p$ with $p(0)=p(1)=x_0,$ and homotopies fixing this point $x_0.$
+
+IMG!!!
+
+One of the main uses of path homotopy is to use paths as probes with each you can explore your. Beyond $[I,X]$ and its relation to path-connectivity, loop homotopy is fundamental because of the two following intuitive considerations:
+
+- Take the space $X,$ which is $D^2$ with a smaller disk taken away from it, and let's consider homotopy of loops in it. Some loops don't go around the empty middle region. These can be slowly shrunk until they're the constant paths $p(x)=x_0,$ for all $x\in I$-- i.e., the paths can be shrunk to the single point $x_0.$ However, some loops do go aroung the "hole" left over, and, intuitively, these can't be homotoped to $x_0.$ These are "detecting" the hole, so to speak, and are a loop homotopy class different from those that don't go around it;
+
+- Take the same $X$ as above. It doesn't matter only if a loop goes around the hole, but **how many times** it goes around. Intuitively, this should homotopically distinguish loops too. Orientation matters too: a loop goin clockwise around the hole can't really be homotoped to one goind counter-clockwise.
+
+IMG!!!
+
+This all indicates that $[(I,\{0,1\}), (X, x_0)]$ is able to detect holes in a space $X$; further, it distinguishes the amount of times a loop goes around a hole. These are indicatives of an underlying algebraic structure, and, indeed, we can properly define how to "join" two loops together, getting an operation that makes $[(I,\{0,1\}), (X, x_0)]$ an algebraic structure called a **group**. This is called the **fundamental group** of $X,$ written $\pi_1(X).$ In the examples above, $\pi_1(X)$ can be seen as the group of integers $\zo$: a loop going counter-clockwise $n$ times around the hole is associated to the number $n,$ and one doing so $n$ times clockwise to $-n.$ But this will be a topic for a further article on its own.
+
+Homotopy of paths seemed to be a very powerful tool to study spaces. Let's generalize it!
 
 ### General homotopy
 
-GENERALIZACS E [X, Y]. [(X,A), (Y,B)]. EQUIVALÊNCIA. [(S^1, 0), (X, x_0)]
+Homotopy of paths was great, but remember our initial motivation of homotopy as a notion of equivalence between spaces-- not only paths--, much like homeomorphisms.´
+
+Thankfully, the general definitions are almost immediate now. Substituting paths by any sort of mapping from a space $X$ to another one $Y,$ we get
+
+**Definition**: a **homotopy** between two continuous maps $f:X\rightarrow Y$ and $g:X\rightarrow Y$ is a continuous function $H:X\times I\rightarrow Y$ such that $H(x, 0)=f(x)$ and $H(x,1)=g(1)$.
+
+IMG
+
+Similarly to above, homotopy is an equivalence relation. We denote the set of its classes as $[X,Y],$ and we may generalize as above to get $[(X,A_1,A_2,...), (Y,B_1,B_2,...)].$
+
+Note, for example, that $[(I,\{0,1\}), (X, x_0)]$ is fundamentally the same thing as $[(S^1, p), (X, x_0)],$ with $p$ some fixed point of the circle, since the endpoints $\{0,1\}$ of $I$ are fundamentally glued together as they're both sent to $x_0.$
+
+Now, for each $X$ and $Y,$ $[X,Y]$ is a whole world of topology-- usually a very difficult one to completely specify. Indeed, most branches of (algebraic) topology can be seen as the study of some $[X,Y],$ for specific $X,Y.$ This includes homotopy groups, homology, cohomology, cobordism and many other interesting theories we'll have the opportunity to study in this series. Describing a topological theory as the study of some $[X,Y]$ is one of the tasks of [spectra theory](https://en.wikipedia.org/wiki/Spectrum_(topology)), a branch of algebraic topology probably way beyond anything we'll actually see in Topology for Artists.
+
+Anyway, now that we know how to describe general homotopies, we know what it should mean to say two $X,Y$ spaces are "homotopically equivalent": 
+
 
 ### A stronger view: isotopy and knots
 
@@ -1006,6 +1051,8 @@ IMG!!!
 
 ## Cellular automata
 
+### Conway's Game of Life
+
 Some readers might have heard of **Conway's Game of Life** (CGOL). It was invented by the mathematician [John H. Conway](https://en.wikipedia.org/wiki/John_Horton_Conway), who-- due his abundant creativity and prolificity throughout his career-- we will meet again later on in this series. This is a game played on an infinite square grid, which each cell in the grid having one of two states: dead (painted white) and alive (painted black). At each turn, states are updated according to the following rule:
 
 * Live cells survive only if they have 3 or 2 alive neighbors;
@@ -1040,13 +1087,19 @@ IMG!!! NEIGHBORHOODS
 
 More formally, a grid state is a function $s:G\rightarrow S,$ where $G$ is the set of our grid cells and $S$ that of possible cell states. In the 2D square grid, we have $G=\zo^2$; in the 1D one, $G=\zo.$ The set $S$ may be finite, infinite or even have continuously many states. A CA update rule is some function that brings state $s$ to $s',$ at each cell $c\in G,$ **depending only on the neighbors of** $c.$ We'll later on describe this function using topology.
 
-NEUMANN
+### Machines and termites
 
-CGOL
+CGOL TURING
+
+NEUMANN
 
 WOLFRAM
 
+### Entropy and reversibility
+
 SIMULACS
+
+### Evolution and chaos: the space of CA rules
 
 ## A topological space for cell worlds
 
