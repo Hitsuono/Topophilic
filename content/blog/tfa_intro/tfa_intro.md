@@ -928,28 +928,62 @@ Thankfully, the general definitions are almost immediate now. Substituting paths
 
 IMG
 
-Similarly to above, homotopy is an equivalence relation. We denote the set of its classes as $[X,Y],$ and we may generalize as above to get $[(X,A_1,A_2,...), (Y,B_1,B_2,...)].$
+Similarly to above, homotopy is an equivalence relation, detoned $\simeq$ as well, with the spaces being understood in context. We denote the set of its classes as $[X,Y],$ and we may generalize as above to get $[(X,A_1,A_2,...), (Y,B_1,B_2,...)].$ These are called **homotopies of tuples**, and we showed above how useful they can be.
 
 Note, for example, that $[(I,\{0,1\}), (X, x_0)]$ is fundamentally the same thing as $[(S^1, p), (X, x_0)],$ with $p$ some fixed point of the circle, since the endpoints $\{0,1\}$ of $I$ are fundamentally glued together as they're both sent to $x_0.$
 
 Now, for each $X$ and $Y,$ $[X,Y]$ is a whole world of topology-- usually a very difficult one to completely specify. Indeed, most branches of (algebraic) topology can be seen as the study of some $[X,Y],$ for specific $X,Y.$ This includes homotopy groups, homology, cohomology, cobordism and many other interesting theories we'll have the opportunity to study in this series. Describing a topological theory as the study of some $[X,Y]$ is one of the tasks of [spectra theory](https://en.wikipedia.org/wiki/Spectrum_(topology)), a branch of algebraic topology probably way beyond anything we'll actually see in Topology for Artists.
 
-Anyway, now that we know how to describe general homotopies, we know what it should mean to say two $X,Y$ spaces are "homotopically equivalent": 
+Homotopic functions can be substituted without any worries in equations using the relation $\simeq$: i.e., if $f\simeq g,$ then $f\circ h\simeq g\circ h$ and $h \circ f\simeq h \circ g.$ For if $H:X\times I\rightarrow Y$ is a homotopy between $f$ and $g$ and $h:Z\rightarrow X$ any continuous map, then $H':Z\times I\rightarrow I$ with $H'(z,t)=H(h(z),t)$ is a homotopy between $f\circ h\simeq g\circ h,$ and similarly can be proven for the other substitution case.
+
+Anyway, now that we know how to describe general homotopies, we can now properly define when two $X,Y$ spaces are "homotopically equivalent". This can be used in analogy to homeomorphisms: a continuous function $f:X\rightarrow Y$ is a homeomorphism if there's another continuous function $g:Y\rightarrow X$ (the inverse of $f,$ written $\inv{f}$) such that $f\circ g = \text{id}_X$ and $g\circ f = \text{id}_Y.$ For homotopy, instead of asking for equality $=$, we can instead ask just for the homotopy relation $\simeq.$ That is, we define
+
+**Definition**: two spaces $X,Y$ are **homotopically equivalent** if there are continuous functions $f:X\rightarrow Y$ and $g:Y\rightarrow X$ such that $f\circ g \simeq \text{id}_Y$ and $g\circ f \simeq \text{id}_X.$ We may also say that $X$ and $Y$ have the same **homotopy type**.
+
+What this means is that you don't need to properly find an inverse for $f,$ but anything homotopically equivalent to an inverse-- so that $g$ above is often called the **homotopy inverse** of $f.$ 
+
+You can check that the given definitions are equivalent and that homotopy equivalence is, indeed, an equivalence relation between topological spaces.
+
+Another reason why this is a good definition is that, if $X,Y$ are homotopically equivalent, then $[Z,X]$ and $[Z,Y]$ stand in one-to-one correspondence, for any $Z.$ This is the case because if we define $f':[Z,X]\rightarrow [Z,Y]$ with $f'([h])=[f\circ h],$ this is well-defined and has inverse $g':[Z,Y]\rightarrow [Z,X]$ with $g'([h])=[g\circ h],$ once 
+
+$$g\circ(f\circ h)\simeq \text{id}_X\circ h=h,$$
+
+so that $g'(f'([h]))=[h],$ thus $f'$ being a bijection between $[Z,X]$ and $[Z,Y].$ 
+
+Similarly can be shown for $[X,Z]$ and $[Y,Z],$ for any $Z,$ and for homotopies of tuples as well. That is, $f$ and $g$ giving a homotopy equivalence $X\simeq Y$ are fundamentally the same thing as continuous functions inducing bijections on sets of homotopy equivalence classes, so that anything that can be said of (any kind of!) homotopies in $X$ can be said for $Y.$
+
+Here are some homotopy equivalences:
+
+- All homeomorphisms $f$ are homotpy equivalences by just taking $f$ and its inverse;
+
+- The reals $\ro^n$ are equivalent to a point $\{p\}$. Explicitly, for $f:\ro^n\rightarrow \{p\},$ it has a homotopical inverse $g:\{p\}\rightarrow \ro^n$ given by $g(p)=0,$ the inclusion of $p$ as the originl. The homotopy is $H(x,t)=tx$-- i.e., all elements are bringed to the origin along a line, homotopying $\ro^n$ into the origin. There's no hole or other topological obstruction not allowing you to continually collapse the whole space into a single point. The exact same can be said of $D^2.$ In general, spaces with the homotopy type of a point are called **contractible**. Open balls in $\ro^n$ are also contractible;
+
+- $D^n$ and $S^n$ aren't equivalent, due to $S^n$ having a hole in the middle. We'll prove this properly later;
+
+- RETRATOS DEFORMACS
+
+- Letters
+
+- Contraindo subespaços contráteis permanece msm tp dhomotopia
 
 
 ### A stronger view: isotopy and knots
 
-One way is to, similarly with path homotopy, see your space as embedded into another one, and considering continuous transformations *inside this larger space*. This is called isotopy, and the definition is an immediate generalization of path homotopy:
+Note above that, in the definition of homotopy of funtions, we did not ask for $f$ to be an embedding-- it could be full of self-intersections and other singularities. What if we didn't allow that, and require that homotopy be done without gluing any pieces of our space together or doing anything else to change its topology? This is called isotopy, and the definition is an immediate generalization of homotopy:
 
 **Definition**: an **isotopy** between two embeddings $f:X\rightarrow Y$ and $g:X\rightarrow Y$ is a continuous function $H:X\times I\rightarrow Y$ such that $H(x,0)=f(x),$ $H(x,1)=g(x)$ and, for every fixed $t$, $H(\cdot, t):X\rightarrow Y$ is a homeomorphism.
 
-IMG!!!
+IMG!!! caminhos, espaços gerais
 
-EX DE N ISOTOPIA (-1 EM [-1,1])
+Note that, while homotopy is an invariant of a single space $X,$ isotopy is an invariant of two spaces $X$ and $Y$-- more properly, an invariant relation between the two. $X$ might have one isotopy behaviour inside $Y$ and a completely different one in $Z,$ so that actually isotopy is not a property *of a space*, but rather *between spaces*.
+
+An example of the difference between homotopy and isotopy can be shown with two paths $p, q$ in $I$: $p(x)=x$ traverses $I$ from left to right, $q(x)=1-x$ going in the opposite direction. These are homotopical paths, for example with the homotopy $H(x,t)=x+t-2xt,$ which progressively linearly flips $p$ into $q.$ This flipping, however, can't be done in any way without eventually collapsing the path into a single point-- only then to invert its direction. At this singularity (happening for example at $t=\frac{1}{2}$ in the given homotopy), we're not "homotopying" with embeddings. Thus the paths $p$ and $q$ are homotopic, but surely not isotopic.
 
 The most common and intuitive application of isotopy-- one we use day to day and have engraved in our spatial perception of the world-- are knots. Mathematically, knots are seen as embeddings of the circle:
 
 **Definition**: a **knot** is an embedding of $S^1$ in some space, generally taken to be $\ro^3.$ Two knots are said to be the same if they are isotopic.
+
+All knots are homotopic to one another as paths, but, since this would require self-intersections, not necessarily isotopic!
 
 Note that this definition considers only knots with their ends joined-- those with free ends are all isotopic to the segment $I,$ so not much can be topologically said without gluing ends.
 
@@ -969,19 +1003,55 @@ Knots, in general, are just fascinating per se. They have a certain "thingness" 
 
 Despite the incredible richness of this mathematical theory, it would be a great pity to limit oneself to the theoretical world. One principle of this series is that we should remain curious to all aspects of a thing. And then we reach a truly infinite branch of human activity when we study knots in the real world-- their use in the naval world, in fabrics, hitching, heraldry and semiotics, and much, much more. A more careful exposition of both the mathematical and practical sides will be given when we study homotopy further, in a dedicated post.
 
-The classical encyclopedic reference on knots in the real world is **The Ashley Book of Knots**, a magnificent work with almost four thousand entries and seven thousand illustrations. 
+IMG!!!
+
+The classical encyclopedic reference on knots in the real world is **The Ashley Book of Knots**, a magnificent work with almost four thousand entries and seven thousand illustrations. The author, [Clifford W. Ashley](https://en.wikipedia.org/wiki/Clifford_Warren_Ashley), can be described as a kind of *knot-romantic*-- or *knot-reactionary*, as these two often come together. I hope it won't bore the reader if we analyse a little of his curious introduction to the Book of Knots.
+
+
+
+*The sailor, from the very nature of his craft, has a dependence upon rope and a consequent familiarity with knots that is demanded of no other workman. It follows that most important knots owe both their origin and their names to the requirements of a ship at sea. So diverse are these requirements that the number of knots devised by the sailor is probably ten times greater than the sum of all other handicrafts combined. Nor is this surprising if we consider that on a full-rigged ship, in everyday use, are several miles of rigging, and an able seaman, of necessity, is acquainted with every inch of this extent.*
+
+*Knotting has been an important adjunct to the everyday life of all people from the earliest days of which we have knowledge. There are still primitive races who fasten their huts, traps, canoes, and harness with knotted thongs and withes. But civilized man is no less dependent on knots than his more backward brothers, even though knots today are much less in evidence in sophisticated surroundings.*
+
+*Long ago man recognized the decorative possibilities of knots, and “fancy knotting” is one of the oldest and most widely distributed of the folk arts. But it remained for the sailor to seize upon this art and to develop it into something that is peculiarly his own.*
+
+INTERNACIONALISTA, MAS NEM TNT....
+
+*Very little nationalism is evident among knots. One reason for this may be that the merchant sailor has never been too particular about what flag he sailed under, and in the general shifting about, knots soon became common property. Here and there we have a “Spanish,” “Portuguese,” “English,” “French,” or “American” Knot, but seldom is the application of such a name at all universal. The same knot may be attributed to several countries, just as Flat “Over-One-and-Under-One” Sinnet (#2976) is called by English-speaking sailors “French Sinnet” and by the ever-polite French “Tresse Anglaise.”*
+
+*It is impossible to make a distinction between the British and the American contribution to knots. There were English sailors in every Yankee forecastle. But it would seem that English-speaking people as a whole have made the largest single contribution to the subject. At the present time Scandinavian sailors are doing more toward preserving the traditions of marlingspike seamanship than any other seamen.*
+
+REAAAAAAAAAÇA
+
+*Usually the advent of steam is held accountable for putting a period to the art of knottin. But the facts that a sailor could not read an ad the same time employ his hands may be acceptes as in great part responsible.*
+
+*(...)*
+
+*It was inevitable that when the sailor learned to read he would neglect the arts. Eventually good marlingspike sailors became scarce. Only the essential everyday knots were taught to the greenhorns in the forecastle, and work that formerly had been done at sea was turned out in the rigging loft*
+
+*Abruptly, however, in the second quarter of the twentieeth century, knotting began to pick up again, and sailors the world over evinced a renewed interest. To the casual observer this might have seemd to be a fabricated or even a sentimental phenomenon. Yet on turbine and Diesel ships, on gasoline boats and piano-wired yachts, fancy knots were again in evidence*
+
+*(...)*
+
+*This I hold to be real progress; and the sailor today is a far happier mortal than ever he was before. Something of course is missing, for gone are the tall ships of yesterday, but somewhere in the offing may be something else quite as beautiful*
+
+*Also, just beyond the horizon is the threat of the cinema and television, whcih require only a little popularizing cheapness before they too will invade the forecastle; when they do the sailor's hands will again be idle.*
+
+ROMANT
+
+*From that day I have continued to collect knots wherever I could find them, and as unfamiliar sailors’ knots became increasingly difficult to find I was attracted by the knots of other occupations. I hobnobbed with butchers and steeple jacks, cobblers and truck drivers, electric linesmen, Boy Scouts, and with elderly ladies who knit. Mr. Ringling himself, I cannot recall now which of the several brothers it was, took me about his circus and was pleased to be able to dazzle me with a score of knots with which I was quite unfamiliar. It was pleasant to talk to a brother showman again, and the meeting was not one bit too soon, for almost overnight the interior of the circus tent became a spiderweb of wire and turnbuckles instead of hemp and blocks.*
+
+*Will James, “the Lone Cowboy,” showed me the THEODORE KNOT one day while we were lunching with Joseph Chapin, then the Art Editor of Scribner’s Magazine. In Boston I halted an operation to see how the surgeon made fast his stitches. I have watched oxen slung for the shoeing, I have helped throw pack lashings, I have followed tree surgeons through their acrobatics and examined poachers’ traps and snares. But I never saw Houdini, never was present at a successful lynching, and never participated in a commercial second-story venture.*
 
 Since the book is already copyright-free, [here's a pdf for you](/pdfs/ashley.pdf).
 
 IMGS!!! ANIMAIS NO ASHLEY. 
 
-Going back to the notion of homotopy, however, we find a problem-- well, actually it was found in the 19th century. Since isotopy by definition depends on embedding a space $X$ inside a larger $Y,$ it isn't clear if it tells us something about $X$ or $Y,$ or even about their relation. $X$ might have one isotopy behaviour inside $Y$ and a completely different one in $Z,$ so that actually isotopy is not a property *of a space*, but rather *between spaces*.  That's interesting, but not really what we wanted: we wished to use the notion of homotopy to study topological properties of *one* space, but now we'd have two study *two*! 
-
-A classical example proved by [Klein](https://en.wikipedia.org/wiki/Felix_Klein) is that all knots embedded in $\ro^4$ are isotopic to the unknot-- i.e., they can all be untied in 4D space. The extra dimension that allows you to do that: this is similar to how we can "free" a shape contained into another in the plane by lifting it in 3D space and then putting it back in the plane, but outside the other figure. 
+Another classical example of the difference between homotopy and isotopy was proved [Klein](https://en.wikipedia.org/wiki/Felix_Klein), in that he showed that all knots embedded in $\ro^4$ are isotopic to the unknot-- i.e., they can all be untied in 4D space. The extra dimension that allows you to do that: this is similar to how we can "free" a shape contained into another in the plane by lifting it in 3D space and then putting it back in the plane, but outside the other figure. 
 
 IMG!! OU GIF!!
 
-That there are no knots in 4D space has lead -- a the great encyclopedist, but notoriously rea!!!!!ctionary of knots--
+The fact that there are no knots in 4D space, and seemingly the whole mathematical theory of knots, were seen by our beloved knot-romantic/reactionary with some contempt:
 
 *To me the simple act of tying a knot is an adventure in unlimited space. A bit of string affords a dimensional latitude that is unique among the entities. For an uncomplicated strand is a palpable object that, for all practical purposes, possesses one dimension only. If we move a single strand in a plane, interlacing it at will, actual objects of beauty and of utility can reulst in what is practically two dimensions; and if we choose to direct our strand out of this one plane, another dimension is added which provides opportunity for an excursion that is limited only by the scope of our own imagery and the lenght of the ropemaker's coil.*
 
@@ -989,47 +1059,7 @@ That there are no knots in 4D space has lead -- a the great encyclopedist, but n
 
 *But there always seems to be another car ahead in every likely parking space. Here is a Mr. Klein who claims to have proved* (Mathematische Annalen) *that knots cannot exist in space of four dimensions. This in itself is bad enough, but if someonse else should come forward to prove that heaven does not exist in three dimensions, what future is there left for the confirmed knot tier?*
 
-IMG!!! MARIA DESATANDO NÓS
-
-If isotopy can't tell us much about a single space $X$, how can we make homotopy a strong classification method for spaces, like homeomorphisms? An intrinsic view makes itself necessary.
-
-### Intrinsic view: homotopy equivalence
-
-Thankfully Ashley's knot-hell can be untied with an intrinsic view of homotopy, independent of any embeddings. It will still kill knots for now, but a later article will show how to redeem them.
-
-A rather elegant way to get an intrinsic view of homotopy is to say that two spaces are homotopic if "their homotopy of paths work the same". We can formalize this by analogy with bijections in set theory, or homeomorphisms in topology: given a path $p$ in $X,$ we want continuous functions $f:X\rightarrow Y$ and $g:Y\rightarrow X$ such that 
-
-$$g\big(f(p)\big)\simeq p \text{ and } f\big(g(q)\big)\simeq q,$$
-
-for all paths $p$ in $X$ and $q$ in $Y$-- in the very same way a function $f:X\rightarrow Y$ is bijective whenever there's some $g:Y\rightarrow X$ (usually written $\inv{f},$ the inverse of $f$) such that $g\big(f(x)\big)=x$ and $f\big(g(y)\big)=y,$ for all $x\in X$ and $y\in Y,$ and similarly for homeomorphisms when we consider continuous functions. Note, however, that we're not using equality, but rather the homotopy equivalence $\simeq$ of paths, so that we're properly in the "homotopical world". The function $f$ is called then a **homotopy equivalence** and $g$ its "**homotopy inverse**".
-
-IMG!!! BIJEÇÃO E EQUIV
-
-More concisely, a homotopy equivalence is a continuous function $f:X\rightarrow Y$ inducing a bijection between homotopy equivalence classes of paths in $X$ and $Y$-- i.e., $f$ applied to paths gives such a bijection of classes.
-
-That is, in the same way that a homeomorphism shows that homeomorphic spaces are actually only different labelings of the same thing, a homotopy equivalence should show us that homotopically equivalent spaces have the same homotopy of paths, just with different labels for these. For every path $p$ in $X,$ you can get one in $Y$ using $f,$ and then go back to the same (homotopically saying) $p$ with $g,$ so that there's no "homotopical loss of information" with $f.$
-
-Another common way to define equivalence is by first defining a general notion of homotopy between functions:
-
-**Definition**: a **homotopy** between two continuous maps $f:X\rightarrow Y$ and $g:X\rightarrow Y$ is a continuous function $H:X\times I\rightarrow Y$ such that $H(x, 0)=f(x)$ and $H(x,1)=g(1)$.
-
-Which allows us to state equivalence more clearly as a sort of "bijection up to homotopy":
-
-**Definition**: two spaces $X,Y$ are **homotopically equivalent** if there are continuous functions $f:X\rightarrow Y$ and $g:Y\rightarrow X$ such that $f\circ g \simeq \text{id}_Y$ and $g\circ f \simeq \text{id}_X.$ We may also say that $X$ and $Y$ have the same **homotopy type**.
-
-You can check that the given definitions are equivalent and that homotopy equivalence is, indeed, an equivalence relation between topological spaces.
-
-Here are some important cases:
-
-- All homeomorphisms $f$ are homotpy equivalences by just taking $f$ and its inverse;
-
-- The reals $\ro^n$ are equivalent to a point $\{p\}$. Explicitly, for $f:\ro^n\rightarrow \{p\},$ it has a homotopical inverse $g:\{p\}\rightarrow \ro^n$ given by $g(p)=0.$ The homotopy is $H(x,t)=tx$-- i.e., all elements are bringed to the origin along a line. There's no hole or other topological obstruction not allowing you to continually collapse the whole space into a single point. This can also be seen through paths: every path in $\ro^n$ is contractible to a single point-- even if one end point The In general, spaces with the homotopy type of a point are called **contractible**. Open balls in $\ro^n$ are also contractible;
-
-- D^n and S^n aren't equivalent, due to $S^n$ having a hole in the middle. We'll prove this later;
-
-- Letters
-
-- Contraindo subespaços contráteis permanece msm tp dhomotopia
+{{< figure src="MaryUntier.jpg" caption="'This in itself is bad enough, but if someonse else should come forward to prove that heaven does not exist in three dimensions, what future is there left for the confirmed knot tier?'. '[Mary, Untier of Knots](https://en.wikipedia.org/wiki/Mary,_Untier_of_Knots)', by Johann Georg Schmidtner, at the St. Peter am Perlach Church, Augsburg." width="40%" height="40%" >}}
 
 ## Compactness
 
