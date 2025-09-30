@@ -9,6 +9,7 @@ toc = true
 +++
 
 # TL;DR
+$$\inv{f}(U)=\inv{f}(-\infty, c)\cup \inv{f}(c, \infty)$$
 
 Bla
 

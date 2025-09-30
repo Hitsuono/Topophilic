@@ -119,7 +119,7 @@ TL;DR This series What you’ll need What is topology? The necessity of spaces M
 TL;DR This series What you’ll need What is topology? The necessity of spaces Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: the topological notion of equality Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Connectivity Homotopy Paths and holes General homotopy A stronger view: isotopy and knots Compactness The topology of cellular automata Cellular automata Conway’s Game of Life Machines and termites Entropy and reversibility Evolution and chaos: the space of CA rules A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="17948">
+  <meta itemprop="wordCount" content="19682">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -276,7 +276,7 @@ TL;DR This series What you’ll need What is topology? The necessity of spaces M
 <meta charset="UTF-8">
 
 
-<link rel="stylesheet" href="/css/custom.min.f176ea64c09c5bcb482232eeb25ee5379718d7db14185405aec2a6ddd4ead7c0.css">
+<link rel="stylesheet" href="/css/custom.min.d722f069524078bdaa033670484ac56947f507d02d61c73f23d04791f72a6f73.css">
 
 
 <link rel="stylesheet" href="/css/custom.min.4c26bae0e5810c523ec4888e597c3fdd68040b639e552b010d8ce4caad227fb8.css">
@@ -544,6 +544,7 @@ $$B(z,r)\subseteq B(x,r_1)\cap B(y,r_2).$$<p>For that, just take any $r$ smaller
 $$\lim_{x\rightarrow a}f(x)=f(a).$$<p>IMG!!! func contínua e descontínua</p>
 <p>Here&rsquo;s how to make formal sense of these terms and notations.</p>
 <p>More properly, we say an infinite sequence $\{x_n\}$ converges to a value $a$ whenever for any positive real number $\epsilon>0$ (which can be very, very small), there&rsquo;s some index $N$ such that $d(x_n, a)<\epsilon$ for all indices $n>N$. That is, you can pick an arbitrarily tiny number $\epsilon$ and there&rsquo;ll come a moment in the sequence where all points will be closer to $x_n$ as $\epsilon,$ starting from the index $N.$ You can imagine this like a game: one player proposes a challenge with a very small $\epsilon,$ and the other has to find an $N$ after which $d(x_n,a)<\epsilon.$ We then write $x_n\rightarrow a,$ or $\lim_{n\rightarrow \infty}x_n=a.$</p>
+<p><strong>We&rsquo;ll only work with infinite sequences here, indexed by $n\in \mathbb{N},$ possibly containing (even infinitely many) repetitions.</strong></p>
 <p>In Calculus I this is thought only inside $\ro,$ but notice that the only thing we needed here is a metric: indeed, this can be taken as the definition of convergence for any metric space $(X,d)$!</p>
 <p><strong>Definition</strong>: an infinite sequence $\{x_n\}$ in a metric space $(X,d)$ is said to <strong>converge</strong> to a point $a\in X$, written $x_n\rightarrow a,$ whenever for any positive real number $\epsilon>0,$ there is some $N$ such that $d(x_n, a)<\epsilon,$ for all $n>N.$</p>
 <p>IMG!!! converging seq</p>
@@ -667,6 +668,9 @@ $$K_1 d_2(x,y) \leq d_1(x,y) \leq K_2 d_2(x,y)$$<p>(in which case the metrics ar
 <p>This &ldquo;adherence property&rdquo; is fundamental to the notion of a boundary:</p>
 <p><strong>Definition</strong>: for a subset $S$ of a topological space $X$, a point $x\in X$ is an <strong>adherent point</strong> of $S$ if, for every neighborhood $U$ of $x,$ $U$ and $S$ intersect: $U\cap S\neq \emptyset.$ Of course, all points of $S$ are adherent to it. The set of all adherent points to $S$ is called its <strong>closure</strong>, written $\bar{S}.$</p>
 <p>In the example above, every point in $C$ is adherent to $B(0,1)$ and the closure of $B(0,1)$ is the closed ball $\bar{B}(0,1)=B(0,1)\cup C.$</p>
+<p>Addherent points of a set $S,$ but not in $S$ are called <strong>limit points</strong>. These are a bridge between metric and topological spaces. For if $\{x_n\}$ is a sequence <em>in a metric space</em> and $S$ is the set of points $x_n,$ then a point $x$ addherent to $S$ can occur only if there are elements of the sequence infinitely close to $x.$ This doesn&rsquo;t mean necessarily that $x_n\rightarrow x,$ but at least that there is a <strong>subsequence</strong> of it that converges to $x.$ Thus limit points of $S$ are the points of convergence of subsequences of $\{x_n\}$ (disconsidering elements of the sequence that repeat infinitely). For example, the sequence $x_n=\frac{1}{n}+(-1)^n$ doesn&rsquo;t converge, but it has two subsequences $x_{2n}$ and $x_{2n+1}$ converging to $1$ and $-1,$ respectively&ndash; so that $1$ and $-1$ are limit, or addherent points to the set of points of the sequence.</p>
+<p>Thus limit points allow us to speak of convergence in general topological spaces: $x_n\rightarrow x$ if $x$ is the only limit point of $S$ as above.</p>
+<p>IMG!!!</p>
 <p>These notions allow us too to define closed sets (like the closed balls $\bar{B}(x,r)$ in metric spaces) for general topological spaces:</p>
 <p><strong>Definition</strong>: a subset $S$ of a topological space $X$ is said to be <strong>closed</strong> if it&rsquo;s equal to its closure: $S=\bar{S}.$</p>
 <p>Now, note that $C=\bar{B}(0,1)\setminus B(0,1).$ The general idea is that <strong>&ldquo;boundary=closed-open&rdquo;</strong>. Open sets, since they&rsquo;re &ldquo;fat&rdquo; (as we introduced them), visually form the interior mass of a shape, while adherent points form a crust around it. This gives the following definition:</p>
@@ -808,6 +812,8 @@ $$(a,b)=\{x\in X\mid a< x \text{ and } x < b \},$$<p>for $a,b\in X$ and $a< b.$<
 <p>IMG!!! PRA CADA REAL, UM [0,1)</p>
 <p>The careful reader, however, has probably noted something: the <strong>set</strong> $\ro\times[0,1)$ is actually completely familiar! It can be seen inside the plane $\ro^2$ as an infinite horizontal strip. It doesn&rsquo;t seem so mysterious in this version. The difference lies in topology: $\ro\times[0,1)$ with the Euclidean topology is one thing, with the long line&rsquo;s another one. The latter has an order topology, which can be seen as trying to representing the set $\ro\times[0,1)$ as a huge, zigzagging line. Notice too how open sets in these two topologies are completely different: in particular, the identity $i:(\ro\times[0,1), \tau_1)\rightarrow (\ro\times[0,1),\tau_2)$ sending $x$ to $x$ itself, but between these two different topologies, is not even continuous.</p>
 <p>IMG!!! ORDEM EM RX[0,1), LINHA ZIGZAGUEANDO</p>
+<p>Actually, the proper definition of the long line can change a little from author to author, and here we have avoided using too much set theory by having $\ro\times [0,1)$ instead of $\omega_1\times [0,1)$&ndash; $\omega_1$ being the <a href="https://en.wikipedia.org/wiki/First_uncountable_ordinal">first uncountable ordinal</a>.</p>
+<p>There&rsquo;s also a variation of the long line called the <strong>long ray</strong>, which is $[0,\infty)\times[0,1)$ with topology as above. We&rsquo;ll use it later as a counter-example.</p>
 <h3 id="manifolds">Manifolds</h3>
 <h4 id="topological-manifolds">Topological manifolds</h4>
 <p>The shapes we described in the penultimate have all the property that, locally, they &ldquo;look like&rdquo; some $\ro^n,$ as we previously discussed. Another way of viewing this is saying that $M$ locally looks like some graph of a function. The last section, however, showed that studying spaces based on the reals $\ro^n$ can be quite tricky without restrictions. Here&rsquo;s a definition of the more intuitive spaces that we actually wish to work on:</p>
@@ -956,17 +962,26 @@ WELL-BEHAVED, SIGNIFICADO</p>
 <p><strong>Definition</strong>: a topological space $X$ is called <strong>connected</strong> if there are no disjont open sets $U,V$ such that $U\cup V = X.$ Otherwise, it is said to be <strong>disconnected</strong>, and we&rsquo;ll say $U$ and $V$ separate $X.$</p>
 <p>You can check that, if $U,V$ separate $X,$ they must be clopen.</p>
 <p>The largest connected subset containing a point $x\in X$ is said to be its <strong>connected component</strong>. Any space can be divided into connected components.</p>
-<p>It&rsquo;s easy to see that connectivity is a <strong>topological invariant</strong>. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ connected, then $\im f$ is also connected; otherwise, if it could be divided into two disjoint open sets $U,V$ in $\im f,$ then $\inv{f}(U)$ and $\inv{f}(V)$ would be open, disjoint (there can be no $x\in \inv{f}(U)\cap \inv{f}(V)$ since it would imply $f(x)\in U\cap V$) and cover $X$, a contradiction. That is,</p>
-<p><strong>Proposition</strong>: continuous functions preserve connectivy between their domains and images.</p>
+<p>It&rsquo;s easy to see that connectivity is a <strong>topological invariant</strong>. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ connected, then $f(X)$ is also connected; otherwise, if it could be divided into two disjoint open sets $U,V$ in $\im f,$ then $\inv{f}(U)$ and $\inv{f}(V)$ would be open, disjoint (there can be no $x\in \inv{f}(U)\cap \inv{f}(V)$ since it would imply $f(x)\in U\cap V$) and cover $X$, a contradiction. In particular, homeomorphic have the same connectivity, in the sense that they have homeomorphic connected components.</p>
 <p>An important theorem is that intervals in $\ro$ (and in any order topology too) are connected. This must be proven, but we&rsquo;ll not do that here&ndash; you check Munkres for it. This can then in its turn be used to prove that the entire line $\ro$ is connected, by using the result (a good exercise) that, if $A,B$ are connected subspaces of a space $X$ with non-empty intersection, $A\cup B$ is connected. Since $\ro$ can be seen as a chain of open intervals&ndash; as $\bigcup_{n\in \zo} (n-1, n+1),$ for example&ndash;, then the line must be connected.</p>
 <p>IMG!!!</p>
-<p>Take this together with the last proposition and you immediately get an important theorem from calculus:</p>
-<p><strong>Intermediate value theorem</strong>: if a continuous function $f:X\rightarrow \ro$ obtains values $a$ and $b,$ with $a< b,$ then there must exist a $x\in X$ obtaining an intermediate value: $a < f(x) < b.$</p>
+<p>Take this together with the last proposition and you almost immediately get an important theorem from calculus:</p>
+<p><strong>Intermediate value theorem</strong>: if a continuous function $f:X\rightarrow \ro$ from a connected space $X$ obtains values $a$ and $b,$ with $a< b,$ then there must exist a $x\in X$ obtaining an intermediate value: $a < f(x) < b.$</p>
+<p><strong>Proof</strong>: The proof is by contradiction. Suppose there were $x_1,x_2\in X$ with $f(x_1)< f(x_2),$ and that there is some real number $c$ such that $f(x_1)< c<  f(x_2)$ but no $x\in X$ with $f(x)=c.$ But then we have $\inv{f}(\ro)$ as the union of two disjoint open sets</p>
+$$\inv{f}(U)=\inv{f}(-\infty, c)\cup \inv{f}(c, \infty)$$<p>Thus, $\inv{f}(U)=X$ is disconnected, which contradicts our hypothesis.</p>
+<div style="text-align: right;">\(\blacksquare\)</div>
 <p>IMG!!!</p>
+<p>For example, we can prove the following theorem&ndash; whose generalization to any dimension will be a topological result of extreme importance with interesting applications to the study of games and game theory:</p>
+<p><strong>One-dimensional Brouwer fixed point theorem</strong>: a continuous function $f:[0,1]\rightarrow[0,1]$ has at least one fixed point&ndash; i.e., a point $x$ such that $f(x)=x.$</p>
+<p><strong>Proof</strong>: we can visualize the theorem as stating that for any such continuous function $f,$ its graph must intersect the (positive) diagonal of the square $[0,1]^2.$</p>
+<p>IMG!!!</p>
+<p>Suppose by contradiction, that $f$ has no fixed point, thus its graph not intersecting the diagonal. If there are $x,y$ such that $f(x)>x$ and $f(y)< y,$ the intermediate value theorem would imply some $z$ with $f(z)=z,$ so suppose, say, that $f(x)>x$ for all $x\in[0,1].$ Then $1\geq f(x)>x$ for all $x,$ which can&rsquo;t be true for $x=1.$ Similarly, assuming $f(x)< x$ would also lead to a contradiction. Thus $f$ must have a fixed point.</p>
+<div style="text-align: right;">\(\blacksquare\)</div>
 <p>Furthermore, the product of connected spaces is connected as well. Every quotient of a connected space is also connected. Both proofs are quite simple and work by assuming disconnectedness and then finding a contradiction with the connectivity of the original spaces.</p>
 <p>Connectivity can be used to prove some spaces aren&rsquo;t homeomorphic. The classical example is that of $\ro$ and $\ro^n,$ for $n>1.$ For, if you take the origin away from the line, you get a disconnected space with two components: $(-\infty,0)$ and $(0,\infty).$ But if you do the same for any other $\ro^n,$ $n>1,$ you still get a connected space. Thus these two can&rsquo;t be homeomorphic. You can use a similar trick to prove that branched spaces aren&rsquo;t manifolds.</p>
 <p>Beyond this notion of connectivity purely based on sets, there&rsquo;s another intuitive one: visually, we think of connected figures as those in which every two points can be connected by a line. Thus we get the following definition:</p>
 <p><strong>Definition</strong>: a topological space $X$ is called <strong>path-connected</strong> if, for every two points $x,y\in X,$ there&rsquo;s a path $p:I\rightarrow X$ starting in $x$ and ending in $y$ (i.e., $p(0)=x$ and $p(1)=y$).</p>
+<p>Similarly to connected components, spaces also have path-connected components.</p>
 <p>Path-connectedness is also a topological property. Indeed, if $f:X\rightarrow Y$ is continuous and $X$ path-connected, so is $\im y$: if $f(x),f(y)$ are in $\im f,$ $x$ and $y$ can be connected by a path $p$ in $X,$ and so $f\circ p:I\rightarrow \im f$ connects $f(x)$ to $f(y).$ Thus:</p>
 <p><strong>Proposition</strong>: continuous functions preserve path-connectivy between their domains and images.</p>
 <p>Path-connectedness implies connectedness: for if $X$ were path-connected but had $U,V$ separating it, then if $p$ is a path connecting $u\in U$ and $v\in V,$ $\inv{p}(U)$ and $\inv{p}(V)$ will be disjoint open sets covering $I,$ which is absurd.</p>
@@ -1023,7 +1038,7 @@ $$<p>then a homotopy between $p$ and $q$ is given by $H(x,t)=f(\frac{x}{3} + \fr
 <p>Now, for each $X$ and $Y,$ $[X,Y]$ is a whole world of topology&ndash; usually a very difficult one to completely specify. Indeed, most branches of (algebraic) topology can be seen as the study of some $[X,Y],$ for specific $X,Y.$ This includes homotopy groups, homology, cohomology, cobordism and many other interesting theories we&rsquo;ll have the opportunity to study in this series. Describing a topological theory as the study of some $[X,Y]$ is one of the tasks of <a href="https://en.wikipedia.org/wiki/Spectrum_(topology)">spectra theory</a>, a branch of algebraic topology probably way beyond anything we&rsquo;ll actually see in Topology for Artists.</p>
 <p>Homotopic functions can be substituted without any worries in equations using the relation $\simeq$: i.e., if $f\simeq g,$ then $f\circ h\simeq g\circ h$ and $h \circ f\simeq h \circ g.$ For if $H:X\times I\rightarrow Y$ is a homotopy between $f$ and $g$ and $h:Z\rightarrow X$ any continuous map, then $H':Z\times I\rightarrow I$ with $H'(z,t)=H(h(z),t)$ is a homotopy between $f\circ h\simeq g\circ h,$ and similarly can be proven for the other substitution case.</p>
 <p>Anyway, now that we know how to describe general homotopies, we can now properly define when two $X,Y$ spaces are &ldquo;homotopically equivalent&rdquo;. This can be used in analogy to homeomorphisms: a continuous function $f:X\rightarrow Y$ is a homeomorphism if there&rsquo;s another continuous function $g:Y\rightarrow X$ (the inverse of $f,$ written $\inv{f}$) such that $f\circ g = \text{id}_X$ and $g\circ f = \text{id}_Y.$ For homotopy, instead of asking for equality $=$, we can instead ask just for the homotopy relation $\simeq.$ That is, we define</p>
-<p><strong>Definition</strong>: two spaces $X,Y$ are <strong>homotopically equivalent</strong> if there are continuous functions $f:X\rightarrow Y$ and $g:Y\rightarrow X$ such that $f\circ g \simeq \text{id}_Y$ and $g\circ f \simeq \text{id}_X.$ We may also say that $X$ and $Y$ have the same <strong>homotopy type</strong>.</p>
+<p><strong>Definition</strong>: two spaces $X,Y$ are <strong>homotopically equivalent</strong> if there are continuous functions $f:X\rightarrow Y$ and $g:Y\rightarrow X$ such that $f\circ g \simeq \text{id}_Y$ and $g\circ f \simeq \text{id}_X.$ We may also say that $X$ and $Y$ have the same <strong>homotopy type</strong>, and write $X\simeq Y.$</p>
 <p>What this means is that you don&rsquo;t need to properly find an inverse for $f,$ but anything homotopically equivalent to an inverse&ndash; so that $g$ above is often called the <strong>homotopy inverse</strong> of $f.$</p>
 <p>You can check that the given definitions are equivalent and that homotopy equivalence is, indeed, an equivalence relation between topological spaces.</p>
 <p>Another reason why this is a good definition is that, if $X,Y$ are homotopically equivalent, then $[Z,X]$ and $[Z,Y]$ stand in one-to-one correspondence, for any $Z.$ This is the case because if we define $f':[Z,X]\rightarrow [Z,Y]$ with $f'([h])=[f\circ h],$ this is well-defined and has inverse $g':[Z,Y]\rightarrow [Z,X]$ with $g'([h])=[g\circ h],$ once</p>
@@ -1041,15 +1056,30 @@ $$g\circ(f\circ h)\simeq \text{id}_X\circ h=h,$$<p>so that $g'(f'([h]))=[h],$ th
 <p>$D^n$ and $S^n$ aren&rsquo;t equivalent, due to $S^n$ having a hole in the middle. We&rsquo;ll prove this properly later;</p>
 </li>
 <li>
-<p>RETRATOS DEFORMACS</p>
-</li>
-<li>
-<p>Letters</p>
-</li>
-<li>
-<p>Contraindo subespaços contráteis permanece msm tp dhomotopia</p>
+<p>A very important kind of functions, both for intuition and for formalities, is that of retractions. Formally, a <strong>retraction</strong> from a space $X$ to a subspace $A\subseteq X$ is a continuous functions $r:X\rightarrow A$ such that $r(a)=a$ for all $a\in A.$ That is, we leave $A$ alone and send the rest of $X$ to it. A <strong>deformation retract</strong> is a deformation $r$ which is homotopical to the idenitity in $X.$ Together with the inclusion $i:A\rightarrow X,$ a deformation retract gives an equivalence between $X$ and $A,$ so that $A$ is a potentially smaller and simpler subspace, but homotopically identical to the original $X.$</p>
 </li>
 </ul>
+<p>IMG!!!</p>
+<ul>
+<li>A very important theorem (not hard, but tedious to prove) is that <strong>contracting contractible subspaces preserves homotopy type</strong>. That is, if $A\subseteq X$ is contractible, then $X/A\simeq X.$ For example, $S^1\vee S^1$ has the same type as the space $X$ formed by two copies of $S^1$ connected by a segment $I,$ since the later is contractible. Note, however, that these two spaces aren&rsquo;t homeomorphic, in particular because only $S^1\vee S^1$ has a point with a neighborhood with four branches (an &ldquo;X&rdquo; shape), and only $X$ has points with a neighborhood with three branches (an &ldquo;Y&rdquo; shape).</li>
+</ul>
+<p>IMG!!!</p>
+<ul>
+<li>We can use these facts to homotopically classify the English alphabet. Take the capital letters and topologically consider them as surfaces with boundaries. We can deformation retract them to their &ldquo;thin&rdquo; versions, getting 1D branched figures. One can further simplify these figures by contracting contractible subspaces, e.g. the two legs in &ldquo;A&rdquo; in order to get a triangle&ndash; topologically, a circle $S^1.$ This allows for a complete homotopical classification of all letters, with the amount of holes being the deciding property: &ldquo;B&rdquo; has two holes and is equivalent to $S^1\vee S^1;$ &ldquo;A&rdquo;, &ldquo;R&rdquo;, &ldquo;D&rdquo;, &ldquo;O&rdquo;, &ldquo;P&rdquo; and &ldquo;Q&rdquo; are equivalent to $S^1;$ all other letters have no holes and are equivalent to a single point. Note that the original spaces and their deformation retracts are homotopically equivalent, but not homeomorphic, since, in particular, they have different dimensions.</li>
+</ul>
+<figure style="display: flex; flex-direction: column; align-items: center; text-align: center; margin: 0 auto;">
+    <img 
+        src="alphabet.png" 
+        alt="" 
+        style="max-width: 40%; height: 40%;"
+    >
+    
+        <figcaption style="margin-top: 0.5rem; font-style: italic;">
+            Retracting fat letters to thin ones. From Hatcher&rsquo;s &lsquo;Algebraic Topology&rsquo;.
+        </figcaption>
+    
+</figure>
+
 <h3 id="a-stronger-view-isotopy-and-knots">A stronger view: isotopy and knots</h3>
 <p>Note above that, in the definition of homotopy of funtions, we did not ask for $f$ to be an embedding&ndash; it could be full of self-intersections and other singularities. What if we didn&rsquo;t allow that, and require that homotopy be done without gluing any pieces of our space together or doing anything else to change its topology? This is called isotopy, and the definition is an immediate generalization of homotopy:</p>
 <p><strong>Definition</strong>: an <strong>isotopy</strong> between two embeddings $f:X\rightarrow Y$ and $g:X\rightarrow Y$ is a continuous function $H:X\times I\rightarrow Y$ such that $H(x,0)=f(x),$ $H(x,1)=g(x)$ and, for every fixed $t$, $H(\cdot, t):X\rightarrow Y$ is a homeomorphism.</p>
@@ -1070,31 +1100,42 @@ $$g\circ(f\circ h)\simeq \text{id}_X\circ h=h,$$<p>so that $g'(f'([h]))=[h],$ th
 <p>Despite the incredible richness of this mathematical theory, it would be a great pity to limit oneself to the theoretical world. One principle of this series is that we should remain curious to all aspects of a thing. And then we reach a truly infinite branch of human activity when we study knots in the real world&ndash; their use in the naval world, in fabrics, hitching, heraldry and semiotics, and much, much more. A more careful exposition of both the mathematical and practical sides will be given when we study homotopy further, in a dedicated post.</p>
 <p>IMG!!!</p>
 <p>The classical encyclopedic reference on knots in the real world is <strong>The Ashley Book of Knots</strong>, a magnificent work with almost four thousand entries and seven thousand illustrations. The author, <a href="https://en.wikipedia.org/wiki/Clifford_Warren_Ashley">Clifford W. Ashley</a>, can be described as a kind of <em>knot-romantic</em>&ndash; or <em>knot-reactionary</em>, as these two often come together. I hope it won&rsquo;t bore the reader if we analyse a little of his curious introduction to the Book of Knots.</p>
+<p>Since the book is already copyright-free, <a href="/pdfs/ashley.pdf">here&rsquo;s a pdf for you</a>.</p>
+<p>Ashley begins by affirming his main devotion to naval knots, whose importance, one must admit, is probably unsurpassed by any other application. Still, this is representative for how he highlights the dignity of knots as coming from the human universal of tying them, at the same time not without internally differentiating the same universality:</p>
+<blockquote class="md-hint normal">
 <p><em>The sailor, from the very nature of his craft, has a dependence upon rope and a consequent familiarity with knots that is demanded of no other workman. It follows that most important knots owe both their origin and their names to the requirements of a ship at sea. So diverse are these requirements that the number of knots devised by the sailor is probably ten times greater than the sum of all other handicrafts combined. Nor is this surprising if we consider that on a full-rigged ship, in everyday use, are several miles of rigging, and an able seaman, of necessity, is acquainted with every inch of this extent.</em></p>
 <p><em>Knotting has been an important adjunct to the everyday life of all people from the earliest days of which we have knowledge. There are still primitive races who fasten their huts, traps, canoes, and harness with knotted thongs and withes. But civilized man is no less dependent on knots than his more backward brothers, even though knots today are much less in evidence in sophisticated surroundings.</em></p>
 <p><em>Long ago man recognized the decorative possibilities of knots, and “fancy knotting” is one of the oldest and most widely distributed of the folk arts. But it remained for the sailor to seize upon this art and to develop it into something that is peculiarly his own.</em></p>
-<p>INTERNACIONALISTA, MAS NEM TNT&hellip;.</p>
+</blockquote>
+<p>In a later passager, he also praises the internationalism of knots, but not refraining from letting evident some anglophone pride:</p>
+<blockquote class="md-hint normal">
 <p><em>Very little nationalism is evident among knots. One reason for this may be that the merchant sailor has never been too particular about what flag he sailed under, and in the general shifting about, knots soon became common property. Here and there we have a “Spanish,” “Portuguese,” “English,” “French,” or “American” Knot, but seldom is the application of such a name at all universal. The same knot may be attributed to several countries, just as Flat “Over-One-and-Under-One” Sinnet (#2976) is called by English-speaking sailors “French Sinnet” and by the ever-polite French “Tresse Anglaise.”</em></p>
 <p><em>It is impossible to make a distinction between the British and the American contribution to knots. There were English sailors in every Yankee forecastle. But it would seem that English-speaking people as a whole have made the largest single contribution to the subject. At the present time Scandinavian sailors are doing more toward preserving the traditions of marlingspike seamanship than any other seamen.</em></p>
-<p>REAAAAAAAAAÇA</p>
+</blockquote>
+<p>Then, in a platonic move (Plato would&rsquo;ve loved knot theory), Ashley clearly interprets the introduction of new media in the sea life as a necessary opponent to knot-tying:</p>
+<blockquote class="md-hint normal">
 <p><em>Usually the advent of steam is held accountable for putting a period to the art of knottin. But the facts that a sailor could not read an ad the same time employ his hands may be acceptes as in great part responsible.</em></p>
 <p><em>(&hellip;)</em></p>
-<p><em>It was inevitable that when the sailor learned to read he would neglect the arts. Eventually good marlingspike sailors became scarce. Only the essential everyday knots were taught to the greenhorns in the forecastle, and work that formerly had been done at sea was turned out in the rigging loft</em></p>
-<p><em>Abruptly, however, in the second quarter of the twentieeth century, knotting began to pick up again, and sailors the world over evinced a renewed interest. To the casual observer this might have seemd to be a fabricated or even a sentimental phenomenon. Yet on turbine and Diesel ships, on gasoline boats and piano-wired yachts, fancy knots were again in evidence</em></p>
+<p><em>It was inevitable that when the sailor learned to read he would neglect the arts. Eventually good marlingspike sailors became scarce. Only the essential everyday knots were taught to the greenhorns in the forecastle, and work that formerly had been done at sea was turned out in the rigging loft.</em></p>
+<p><em>Abruptly, however, in the second quarter of the twentieeth century, knotting began to pick up again, and sailors the world over evinced a renewed interest. To the casual observer this might have seemd to be a fabricated or even a sentimental phenomenon. Yet on turbine and Diesel ships, on gasoline boats and piano-wired yachts, fancy knots were again in evidence.</em></p>
 <p><em>(&hellip;)</em></p>
-<p><em>This I hold to be real progress; and the sailor today is a far happier mortal than ever he was before. Something of course is missing, for gone are the tall ships of yesterday, but somewhere in the offing may be something else quite as beautiful</em></p>
-<p><em>Also, just beyond the horizon is the threat of the cinema and television, whcih require only a little popularizing cheapness before they too will invade the forecastle; when they do the sailor&rsquo;s hands will again be idle.</em></p>
-<p>ROMANT</p>
+<p><em>This I hold to be real progress; and the sailor today is a far happier mortal than ever he was before. Something of course is missing, for gone are the tall ships of yesterday, but somewhere in the offing may be something else quite as beautiful.</em></p>
+<p><em>Also, just beyond the horizon is the threat of the cinema and television, which require only a little popularizing cheapness before they too will invade the forecastle; when they do the sailor&rsquo;s hands will again be idle.</em></p>
+</blockquote>
+<p>Despite contradictions and a certain stiff predominance of naval knots, Ashley&rsquo;s knot-romanticism still had its place, and one may wonder how far a knot-obsession can lead a man:</p>
+<blockquote class="md-hint normal">
 <p><em>From that day I have continued to collect knots wherever I could find them, and as unfamiliar sailors’ knots became increasingly difficult to find I was attracted by the knots of other occupations. I hobnobbed with butchers and steeple jacks, cobblers and truck drivers, electric linesmen, Boy Scouts, and with elderly ladies who knit. Mr. Ringling himself, I cannot recall now which of the several brothers it was, took me about his circus and was pleased to be able to dazzle me with a score of knots with which I was quite unfamiliar. It was pleasant to talk to a brother showman again, and the meeting was not one bit too soon, for almost overnight the interior of the circus tent became a spiderweb of wire and turnbuckles instead of hemp and blocks.</em></p>
 <p><em>Will James, “the Lone Cowboy,” showed me the THEODORE KNOT one day while we were lunching with Joseph Chapin, then the Art Editor of Scribner’s Magazine. In Boston I halted an operation to see how the surgeon made fast his stitches. I have watched oxen slung for the shoeing, I have helped throw pack lashings, I have followed tree surgeons through their acrobatics and examined poachers’ traps and snares. But I never saw Houdini, never was present at a successful lynching, and never participated in a commercial second-story venture.</em></p>
-<p>Since the book is already copyright-free, <a href="/pdfs/ashley.pdf">here&rsquo;s a pdf for you</a>.</p>
+</blockquote>
 <p>IMGS!!! ANIMAIS NO ASHLEY.</p>
-<p>Another classical example of the difference between homotopy and isotopy was proved <a href="https://en.wikipedia.org/wiki/Felix_Klein">Klein</a>, in that he showed that all knots embedded in $\ro^4$ are isotopic to the unknot&ndash; i.e., they can all be untied in 4D space. The extra dimension that allows you to do that: this is similar to how we can &ldquo;free&rdquo; a shape contained into another in the plane by lifting it in 3D space and then putting it back in the plane, but outside the other figure.</p>
+<p>Back to the math, remind yourself that isotopy is about the relation between spaces, and not spaces themselves. This is made clear by a classical theorem proved by <a href="https://en.wikipedia.org/wiki/Felix_Klein">Klein</a>, stating that all knots embedded in $\ro^4$ are isotopic to the unknot&ndash; i.e., they can all be untied in 4D space. The extra dimension is what allows you to do that: this is similar to how we can &ldquo;free&rdquo; a shape contained into another in the plane by lifting it in 3D space and then putting it back in the plane, but outside the other figure.</p>
 <p>IMG!! OU GIF!!</p>
-<p>The fact that there are no knots in 4D space, and seemingly the whole mathematical theory of knots, were seen by our beloved knot-romantic/reactionary with some contempt:</p>
+<p>The fact that there are no knots in 4D space, and seemingly the whole mathematical theory of knots, were seen by our beloved knot-romantic/reactionary with a slight contempt:</p>
+<blockquote class="md-hint normal">
 <p><em>To me the simple act of tying a knot is an adventure in unlimited space. A bit of string affords a dimensional latitude that is unique among the entities. For an uncomplicated strand is a palpable object that, for all practical purposes, possesses one dimension only. If we move a single strand in a plane, interlacing it at will, actual objects of beauty and of utility can reulst in what is practically two dimensions; and if we choose to direct our strand out of this one plane, another dimension is added which provides opportunity for an excursion that is limited only by the scope of our own imagery and the lenght of the ropemaker&rsquo;s coil.</em></p>
 <p><em>What can be more wonderful than that?</em></p>
 <p><em>But there always seems to be another car ahead in every likely parking space. Here is a Mr. Klein who claims to have proved</em> (Mathematische Annalen) <em>that knots cannot exist in space of four dimensions. This in itself is bad enough, but if someonse else should come forward to prove that heaven does not exist in three dimensions, what future is there left for the confirmed knot tier?</em></p>
+</blockquote>
 <figure style="display: flex; flex-direction: column; align-items: center; text-align: center; margin: 0 auto;">
     <img 
         src="MaryUntier.jpg" 
@@ -1109,13 +1150,30 @@ $$g\circ(f\circ h)\simeq \text{id}_X\circ h=h,$$<p>so that $g'(f'([h]))=[h],$ th
 </figure>
 
 <h2 id="compactness">Compactness</h2>
-<p>Another topological notion is that of <strong>compact subspaces</strong>. This is an idea involving finitude. Take the plane $\rt$ as an example. Both open as closed balls in it are sets with ininitely many points. But, in the open one, you can get a sequence of points in the ball that get infinitely closed to the frontier, without ever actually getting to it. This isn&rsquo;t possible in the closed one: every converging sequence actually converges to a point inside the closed ball. The exact same is valid for general open/closed sets. It is as if the closed ball is &ldquo;less finite&rdquo; as the open one, &ldquo;more bounded&rdquo;&ndash; or, rather, it&rsquo;s more <em>compact</em>.</p>
-<p>IMG!!! OPEN BALL SEQ</p>
-<p>In metric language,</p>
-<p>In purely topological language, we can get this definition:</p>
-<p><strong>Definition</strong>: a topological space $(X, \tau)$ is called <strong>compact</strong> if for all open covers $\{U_i\}_{i\in J},$ there exists a finite subcollection $\{U_i\}_{i\leq n}$ that also covers $X.$</p>
+<p>The last topological propery we&rsquo;ll study in this article is that of <strong>compact subspaces</strong>. This is an idea involving finitude. Take the plane $\ro$ as an example. Of course, both the open and closed intervals $(0,1)$ and $[0,1]$ are sets with ininitely many elements. We can consider the sequence $x_n=\frac{1}{n}$ in both of them, and, as we know, $x_n\rightarrow 0$ in the real line. However, inside $(0,1)$ the sequence $x_n$ is not convergent, as $0$ is not an element of this interval. The $x_n$ can, so to speak, stroll infinitely and avoid any convergence inside $(0,1),$ even if its distances are bounded. This can&rsquo;t happen in $[0,1]$&ndash; inside it, $x_n$ is forced to converge to an element in the interval. Remember too how the open interval is homeomohpric to $\ro^n.$ This all indicates that $(0,1)$ has some infinitude to it that $[0,1]$ doesn&rsquo;t.</p>
+<p>Topologically, we can consider the situation as follows. Let&rsquo;s try to divide our space $X$ in many open subsets $\{U_i\}$ that cover it. We can subdivide $(0,1)$ into a chain of open sub-intervals that get smaller and smaller when getting to the endpoints. For example, inspired from the sequence $x_n$ above,</p>
+$$(0,1)=\bigcup_{n=1}^\infty (\frac{1}{n+1}, 1)$$<p>The particular &ldquo;infinitude&rdquo; of $(0,1)$ we discussed above is revealed in the fact that the open sets $\{(\frac{1}{n+1}, 1)\}$ cover the interval, and that&rsquo;s the best you can do with this decomposition: no finite subcollection of it would still cover the open interval, as there would always be some space left up. That is, there are decompositions of $(0,1)$ that <strong>require</strong> an infinite amount of sets to be a cover, and no finite sub-decomposition of them will cover the entire interval.</p>
+<p>But in $[0,1]$ this can&rsquo;t happen. If we wanted to make the decomposition above cover $[0,1],$ we would have to add to it open (in $[0,1]$) sets of the form $[0,a)$ and $(b,1].$ But with these two new sets, $[0,1]$ can be finitely decomposed: for example, if $\frac{1}{N}< a,$ we get the finite open cover</p>
+$$[0,1]=[0,a) \cup (\frac{1}{N},1)\cup (b,1]$$<p>The &ldquo;infinitude&rdquo; of $(0,1)$ is thus broken, and indeed $[0,1]$ has a certain finitude property called <strong>compactness</strong>, which guarantees that $[0,1]$ can be finitely decomposed, using <strong>any</strong> open decomposition of it.</p>
 <p>IMG!!!</p>
-<p><strong>Tychonoff&rsquo;s theorem</strong>:</p>
+<p>That is, <strong>compactness is a measure of the finitude of the ways of decomposing a space</strong>.</p>
+<p>Generally, this is the definition we get from the example above:</p>
+<p><strong>Definition</strong>: a topological space $X$ is called <strong>compact</strong> if for all open covers $\{U_i\}_{i\in J},$ there exists a finite subcollection $\{U_i\}_{i\leq n}$ that also covers $X.$</p>
+<p>It isn&rsquo;t hard to prove that, if $X$ is compact and $f:X\rightarrow Y$ any continuous function, $f(X)$ is a compact subspace of $Y.$ In particular, homeomorphisms preserve compactness.</p>
+<p>Example of compact spaces are $D^n,$ $S^n,$ $T^n,$ etc. Non-compact spaces include the reals $\ro^n$ and their open balls. You can imagine that the long line is very, very much non-compact.</p>
+<p>Metric spaces have a particularly strong and useful description of compactness. Let $(X,d)$ be a metric space that is topologically compact. Take some sequence $\{x_n\}$ and let $S$ be the set of points of the sequence. The idea is that, because of the compactness of $X,$ $\{x_n\}$ is too restricted and must have limit points (if you need, recall the definition as given previosly). For if $S$ is infinite and has no limit points, then there must be a real $\epsilon>0$ such that the balls $B(x,\epsilon)$ intersect no point of $S$&ndash; or, if $x\in S,$ only $x$ itself. These form an open cover of $X,$ and, thus, there must be finitely many such balls covering $X$ as well. But, by their deffining property, this finite subcover contains only finitely many elements of $S$&ndash; and thus doesn&rsquo;t cover it at all, a contradiction.</p>
+<p>If $S$ as above is finite, then, since $\{x_n\}$ is infinite, there must be a point hit by the sequence infinitely many times&ndash; which corresponds to a converging subsequence.</p>
+<p>Thus we have proved:</p>
+<p><strong>Theorem</strong>: any sequence $\{x_n\}$ in a compact metric space $X$ has at least one converging subsequence.</p>
+<p>IMG!!!</p>
+<p>This idea can be generalized to give the following definition:</p>
+<p><strong>Definition</strong>: a topological space $X$ is <strong>sequentially compact</strong> it every sequence in it has at least one converging subsequence.</p>
+<p>Naturally, one is lead to ask the relation between sequential and usual compactness. For metric spaces, <strong>they&rsquo;re equivalent</strong> (we proved one part above, <a href="https://proofwiki.org/wiki/Sequentially_Compact_Metric_Space_is_Compact">here&rsquo;s the other half</a>), but for general topological spaces there&rsquo;s no actual general correspondence between any of the two. The long ray $[0,\infty)\times[0,1),$ for example, is sequentially compact, but not compact&ndash; and, in particular, the first <strong>non-metrizable</strong> space we met here.</p>
+<p>Compact spaces were first studied in real analysis, specially because of their sequential properties. Here&rsquo;s a classic result (a subset $A$ of a metric space is said to be bounded if there&rsquo;s some real $M>0$ such that $d(x,y)< M$ for all $x,y\in A$):</p>
+<p><strong>Bolzano-Weierstrass theorem</strong>: a subspace $A\subseteq \ro^n$ is compact if and only if $A$ is closed and bounded.</p>
+<p>Further, compact spaces have some pretty strong properties. For example, every closed subspace of a compact space is compact as well. Homeomorphisms are also easier to prove, and a classical theorem states that every bijective continuous function from a compact space to a Hausdorff one must be a homeomorphism (<a href="https://proofwiki.org/wiki/Continuous_Bijection_from_Compact_to_Hausdorff_is_Homeomorphism">proof</a>).</p>
+<p>Another very strong theorem we&rsquo;ll later apply to cellular automata is Tychonoff&rsquo;s theorem. It isn&rsquo;t very hard to prove that finite products of compacts spaces are compact, but infinite products are considerably harder to deal with. Still, we have a positive answer:</p>
+<p><strong>Tychonoff&rsquo;s theorem</strong>: any product of compact spaces is compact.</p>
 <h1 id="the-topology-of-cellular-automata">The topology of cellular automata</h1>
 <h2 id="cellular-automata">Cellular automata</h2>
 <h3 id="conways-game-of-life">Conway&rsquo;s Game of Life</h3>
@@ -1215,3 +1273,4 @@ $$d(x,y)=\sum_{m\geq 0}\frac{D(x_{[-m,m]},y_{[-m,m]})}{2^m}$$<p>Note that this s
 </body>
 
 </html>
+
