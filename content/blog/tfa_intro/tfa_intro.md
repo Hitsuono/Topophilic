@@ -28,9 +28,40 @@ this(n mt) -> homologia -> grupos/proj/games ->
 
 Short answer: **basic set theory** (cartesian product, injective, surjective and bijective functions, cardinality) and **introductory linear algebra** (you can find a quick reminder on the post concerning algebra).
 
-I tried to write these posts as accessible as possible, but without losing much of the mathematical rigour. That is, mathematics is a human endeavour of unlimited aesthetic capacity, but this comes with a cost-- namely, rigour and precision. It is beautiful because so much formality can't be in vain. Without this limitation, there can ultimately be no beauty; the first is simultaneously the latter's restriction and its progenitor. Or, rather, rigour and aesthetical creativity are *consubstantial* in mathematics. The other member of this trinity is the insatiable human desire to further mathematicize the world and recognize itself in this construction-- to spread the Word and be in a Body, so to speak. But let's leave the formal-hegelian-christian analogies for another place for now. 
+I tried to write these posts as accessible as possible, but without losing much of the mathematical rigour. Mathematics is a human endeavour of unlimited aesthetic capacity, but this comes with a cost-- namely, rigour and precision. It is beautiful because so much formality can't be in vain. Without this limitation, there can ultimately be no beauty; the first is simultaneously the latter's restriction and its progenitor. Or, rather, rigour and aesthetical creativity are *consubstantial* in mathematics. The other member of this trinity is the insatiable human desire to further mathematicize the world and recognize itself in this construction-- to spread the Word and be in a Body, so to speak. But let's leave the formal-hegelian-christian analogies for another place for now. 
 
 Fact is, leaving out the more difficult and rigorous parts **is** necessary when writing to a larger audience, but I tried to keep some balance-- particularly without insulting the intelligence and interest of the reader. You can always skip the more technical sections, and I hope they can spark out your curiosity and be more accessible when you come back to them.
+
+Here are some extra I remind the reader of some other basic concepts of set theory.
+
+A basic understanding of [cardinality](https://en.wikipedia.org/wiki/Cardinality) is (all you'll need to know is the difference between countable and uncountable sets and that $\ro$ is uncountable).
+
+A **total strict order** on a set $X$ is a (binary) relation between elements of $X$ such that 
+
+- Not $a< a$;
+- If $a< b$ then not $b> a$;
+- If $a< b$ and $b< c,$ then $a< c$;
+- If $a\neq b,$ then $a< b$ or $b < a$ (this is the "totality" of the order).
+
+The set $X$ together with some total strict order is said to be a totally ordered set.
+
+An **equivalence relation** on a set $X$ is a (binary) relation between elements of $X$ such that 
+
+* Reflexivity: $a\sim a;$
+
+* Symmetry: $a\sim b$ implies $b\sim a;$ 
+
+* Transitivity: $a\sim b$ and $b\sim c$ imply $a \sim c.$
+
+With an equivalence relation, you can define its **equivalence classes**, which are the sets 
+
+$$[x]=\{y\in X\mid x\sim y\},$$
+
+or, equivalently, the maximal subsets of $X$ containing only equivalent elements. The set of equivalence classes based on the relation $\sim$ in $X$ is denoted $X/\sim.$ That is,
+
+$$X/\sim = \{[x]\mid x\in X\}$$
+
+A function $f:X\rightarrow Y$ can be extended to a $f':X/\sim \rightarrow Y$ if $f(x)=f(y)$ for all $x\sim y,$ simply defining $f'([x])=f(x),$ in which case we use the jargon that $f'$ is **well-defined**. A function $f:X\rightarrow Y$ can always be extended to a $f':X\rightarrow Y/\sim$ by setting $f'(x)=[x].$
 
 # What is topology?
 
@@ -94,8 +125,6 @@ TOP VS GEO
     A figure is a surface enclosed on all sides by a line or lines.
 
 {{% /columns %}}
-
-# The necessity of spaces
 
 spaces encode info and restrictions (eg periodic functions are to S^1)
 
@@ -201,7 +230,7 @@ For that, just take any $r$ smaller than $d(x,y)-\max\{d(x,z), d(y,z)\}$ (this i
 
 IMG!!! FAT BALLS
 
-This "fat" property is very important: it tells you that no point in the intersection is a boundary point, since they always have a ball around them inside the intersection. This "fatness"  is more formally called **openness**, and we say a subset $S\subseteq X$ is open if for all $x\in S,$ there's some $r$ such that $B(x,r)\subseteq X.$ Visually, these are fat set with no boundary/frontier points.
+This "fat" property is very important: it tells you that no point in the intersection of open balls is a boundary point, since they always have a ball around them inside the intersection itself. This "fatness"  is more formally called **openness**, and we say a subset $S\subseteq X$ is open if for all $x\in S,$ there's some $r$ such that $B(x,r)\subseteq X.$ Visually, these are fat set with no boundary/frontier points.
 
 Set-theoretically, open sets are somewhat well-behaved in respect to unions and intersections. Indeed, any union (including infinite ones) of open sets will still be open, since the open balls containing elements will still be inside the union. With respect to intersection, finite intersections of open sets are open as well: for if $U$ and $V$ are open and $x\in U\cap V,$ then, by the definition of openess, there are $r_1,r_2$ such that $B(x,r_1)\subseteq U$ and $B(x,r_2)\subseteq V,$ so that $B(x,\min \{r_1,r_2\})\subseteq U\cap V$ and the intersection is open. 
 
@@ -335,7 +364,7 @@ Homeomorphisms allow us to make use of expressions like "the circle", "the torus
 
 We'll say some property of a space $X$ is a **topological invariant** of $X$, or a topological *property* of it, if any space $Y$ homeomorphic to $X$ has the same property. The main goal of topology is finding invariants appliable to the largest classes of spaces possible.
 
-Note that, from set theory, the [cardinality](https://en.wikipedia.org/wiki/Cardinality) of a space as a set is an invariant. This usually doesn't help us, since most interesting shapes have the same uncountable cardinality. 
+Note that, from set theory, the cardinality of a space as a set is an invariant. This usually doesn't help us, since most interesting shapes have the same uncountable cardinality. 
 
 One main topological invariant we'll keep studying in this series are **holes**: they refrain transforming one space into another continously (i.e., without cutting or gluing): a disk and a disk with a hole in it, for example, aren't homeomorphic. To prove this will still take some time, though, but I hope it is visually intuitive.
 
@@ -344,6 +373,8 @@ IMG!!! OU GIF SLA, BURACO
 Generally, mathematicians describe homeomorphisms explicitly, but rely on the visual intuition of the reader, which should be based on these simpler cases. Here are some of these simpler homeomorphisms which can be explicitly described (take $\ro^n$ and other real spaces with the metric topology from the Euclidean distance):
 
 - The obvious case: the identity $\text{id}_X:X\rightarrow X$ sending $x$ to $x$ itself;
+
+- Embeddings: an embedding $f:X\rightarrow Y$ is a homeomorphism from $X$ to a subset of $Y$-- i.e., putting, viewing $X$ inside a larger space $Y;$
 
 - All one-point spaces are homeomorphic: for if $X=\{p\}$ and $Y=\{q\}$ (both with the only possible topology, composes solely of the point and the empty set), then $f:X\rightarrow Y$ sending $p$ to $q$ is a homeomorphism. It is common to then to speak of **the point space**, often denoted as $0$ to denote its triviality (it's a space though, not a number!);
 
@@ -591,18 +622,7 @@ Generally speaking, we have the following generalization:
 
 We just proved above that (using the basis $(a, b)$ for $a,b\in\mathbb{Q}$) the reals are second-countable. It is a good exercise on topological bases to prove that all second-countable spaces are separable-- the opposite, however, isn't true.
 
-Before we construct our second bizarre line, we need to define a new kind of topology. See, intervals in $\ro$ are defined using the strict order $ < $ on the line. Instead of using the Euclidean metric, we could equivalently just use this order to define the topology of $\ro$-- and this we can do for general sets as well.
-
-Generally, a **total strict order** on a set $X$ is a (binary) relation between points of $X$ such that 
-
-- Not $a< a$;
-- If $a< b$ then not $b> a$;
-- If $a< b$ and $b< c,$ then $a< c$;
-- If $a\neq b,$ then $a< b$ or $b < a$ (this is the "totality" of the order).
-
-The set $X$ together with some total strict order is said to be a totally ordered set.
-
-With this, we can make the following definition:
+Before we construct our second bizarre line, we need to define a new kind of topology. See, intervals in $\ro$ are defined using the strict order $ < $ on the line. Instead of using the Euclidean metric, we could equivalently just use this order to define the topology of $\ro$-- and this we can do for general sets as well. With this, we can make the following definition:
 
 **Definition**: the **order topology** on a totally ordered set $X$ is the topology with basis all the intervals 
 
@@ -692,7 +712,7 @@ IMG!!!
 
 Branching intersecting points are examples of **singularities**: points impeding a space of becoming a manifold. [Singularity theory](https://en.wikipedia.org/wiki/Singularity_theory) is a pretty important topic in areas like chaos theory and algebraic geometry.
 
-How do the extrinsic and intrinsic views work together? This is actually quite non-trivial. Formally, if we have a manifold $M$ and another manifold $N$, an **embedding** from $M$ to $N$ is a homeomorphism from $M$ to a subspace of $N.$ We're generally interested if we can embed $M$ on some $\ro^n,$ in such a way that it can be seen extrinsically as inside some $\ro^n.$ For the cases we've been studying so far, this seems possible-- if not obvious. But, as we'll later see, **there are some surfaces that can't be embedded in** $\ro^3$! Generally, it's not clear if every manifold can be embedded inside some $\ro^n.$
+How do the extrinsic and intrinsic views work together? This is actually quite non-trivial. We're generally interested if we can embed $M$ on some $\ro^n,$ in such a way that it can be seen extrinsically as inside some $\ro^n.$ For the cases we've been studying so far, this seems possible-- if not obvious. But, as we'll later see, **there are some surfaces that can't be embedded in** $\ro^3$! Generally, it's not clear if every manifold can be embedded inside some $\ro^n.$
 
 Thankfully, we have the following theorem:
 

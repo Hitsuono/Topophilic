@@ -534,7 +534,7 @@ In particular, since $\partial_{n+1} a = \partial_{n+1} a - 0 \in B_n(X)$, $\par
 
 This is actually surprisingly similar to how we get modular numbers. If $\angled{n}\leq \zo$ is the subgroup of multiples of an integer $n$, then, for integers $a,b$, $a\mod n=b\mod n$ exactly when $a-b$ is a multiple of $n$-- i.e., it is contained in $\angled{n}.$ We also have that, if $a$ is a multiple of $n,$ $a \mod n = 0$-- i.e., elements of $\angled{n}$ are "killed" by the mod operator. This prompts us to a generalization!
 
-Generally, if we have a group $G$ and a subgroup $H$, we can define the relation $\sim$ in $G$ having $a\sim b$ whenever there's some $h\in H$ and $h=a\inv{b}$-- i.e., whenever $a\inv{b}\in H$. This is an [equivalence relation](https://en.wikipedia.org/wiki/Equivalence_relation): i.e., we always have a relation similar to equality $=$, satisfying
+Generally, if we have a group $G$ and a subgroup $H$, we can define the relation $\sim$ in $G$ having $a\sim b$ whenever there's some $h\in H$ and $h=a\inv{b}$-- i.e., whenever $a\inv{b}\in H$. This is an equivalence relation. Explicitly, we have a relation satisfying
 
 * Reflexivity: $g\sim g$ ($e=g\inv{g}$ and $e\in H$); 
 

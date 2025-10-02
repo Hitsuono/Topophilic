@@ -89,7 +89,7 @@ TL;DR Basic linear algebra Groups, permutations and their games Definitions and 
 TL;DR Basic linear algebra Groups, permutations and their games Definitions and basic examples (H) Describing groups Tables Presentations (H) Cayley graphs Generating groups Direct products (H) Semidirect products Group extensions and exact sequences Example: rings and modules (H) Example: fields, finite projective spaces and “Spot It!” * Example: non-abelian groups and permutation games Dihedral groups Symmetric groups Permutation games Example: topological groups, quaternions and the Hopf fibration * Group quotients (H) The isomorphism theorem and the classification of finite groups (optional) Going further ALGEBRA DOS QUOCIENTES">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="8961">
+  <meta itemprop="wordCount" content="8956">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -674,7 +674,7 @@ $$S_n=\angled{\tau_1,...,\tau_{n-1}\mid \tau_i^2=e,\;\;\; \tau_i\tau_j=\tau_j\ta
 <p>We&rsquo;re finally ready to study quotients. Remember that we found out that two n-cycles $c_1,c_2$ should be seen as representing the same hole in $X$ if they &ldquo;differ by a boundary&rdquo;: $c_1-c_2=\partial_{n+1} a$ for some $a\in C_{n+1}(X)$. Translating to group theory, the situation is that we have a group $Z_n(X)$ of cycles and a subgroup $B_n(X)$ of boundaries. We want to take two elements $c_1, c_2\in Z_n(X)$ to be <strong>equivalent</strong> whenever there&rsquo;s some $b\in B_n(X)$ with $\partial b = c_1-c_2$&ndash; or, equivalently, if $c_1-c_2\in B_n(X).$ We&rsquo;ll then write $c_1\sim c_2.$</p>
 <p>In particular, since $\partial_{n+1} a = \partial_{n+1} a - 0 \in B_n(X)$, $\partial_{n+1}a\sim 0$ and every element of $B_n(X)$ (i.e., bounded chains) should be seen as not representing a hole&ndash; or, rather, as a &ldquo;null hole&rdquo;.</p>
 <p>This is actually surprisingly similar to how we get modular numbers. If $\angled{n}\leq \zo$ is the subgroup of multiples of an integer $n$, then, for integers $a,b$, $a\mod n=b\mod n$ exactly when $a-b$ is a multiple of $n$&ndash; i.e., it is contained in $\angled{n}.$ We also have that, if $a$ is a multiple of $n,$ $a \mod n = 0$&ndash; i.e., elements of $\angled{n}$ are &ldquo;killed&rdquo; by the mod operator. This prompts us to a generalization!</p>
-<p>Generally, if we have a group $G$ and a subgroup $H$, we can define the relation $\sim$ in $G$ having $a\sim b$ whenever there&rsquo;s some $h\in H$ and $h=a\inv{b}$&ndash; i.e., whenever $a\inv{b}\in H$. This is an <a href="https://en.wikipedia.org/wiki/Equivalence_relation">equivalence relation</a>: i.e., we always have a relation similar to equality $=$, satisfying</p>
+<p>Generally, if we have a group $G$ and a subgroup $H$, we can define the relation $\sim$ in $G$ having $a\sim b$ whenever there&rsquo;s some $h\in H$ and $h=a\inv{b}$&ndash; i.e., whenever $a\inv{b}\in H$. This is an equivalence relation. Explicitly, we have a relation satisfying</p>
 <ul>
 <li>
 <p>Reflexivity: $g\sim g$ ($e=g\inv{g}$ and $e\in H$);</p>
