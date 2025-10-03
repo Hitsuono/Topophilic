@@ -1240,7 +1240,29 @@ SIMULACS
 
 ## A topological space for cell worlds
 
-### Definition
+### Definition and basis
+
+DEF: prod, basis, continuity
+
+### Intuition: fractals and their arithmetic
+
+Cantor via 2^N. Equiv com a topologia de prod. Equiv da métrica dsubespaço com a de níveis; generalizac para A^Z. Cantor via aritmética. 
+
+Fractais. L-systems, Logo language
+
+P-ádicos: pega todos os números de tal forma, usa métrica dníveis. No infinito, obtem até n-inteiros. Convergências interessantes
+
+### Further properties and symmetries
+
+Connect, compact. 
+
+Shift. Equivariant.
+
+## The topological definition of cellular automata
+
+CAs são contínuas, equivariantes.
+
+Teorema CHL.
 
 CA
 Let $S$ be our set of cell states. We'll consider the bi-infinite (that is, infinite on both sides) sequences
@@ -1255,12 +1277,6 @@ $$d(x,y)=\sum_{m\geq 0}\frac{D(x_{[-m,m]},y_{[-m,m]})}{2^m}$$
 
 Note that this space is "bounded" and does not allow for arbitrarily large distances: for if $x$ and $y$ are different in all positions, then $d(x,y)=\sum_{m\geq 0}\frac{2m}{2^m},$ and this infinite series can be somewhat unproblematically calculated: it is equal to $4.$ Thus, the greatest distance two points in $S^\zo$ may take is $4$-- and we may as well say that the **diameter** of $S^\zo$ is equal to $4.$
 
-### Metric
-
-In general, distances in this space are hard to find exactly. However, if $x,y\in S^\zo$ differ only inside an interval $[-L,L]$ and have exactly $k$ different values, then $d(x,y)=\sum_{m\geq 0} \frac{D(x,y)}{2^m}\leq k\sum_{m\geq 0} \frac{1}{2^m}=2k.$
-
-### Symmetries: the shift
-
 The space $S^\zo$ is quite interesting because it comes along a continuous symmetry, the **shift** $s:S^\zo\rightarrow S^\zo,$ which shifts sequences one step to the right: $s(x)_i=x_{i-1}.$ Note also that $s$ is invertible, with $\inv{s}$ being a shift one step to the left: $\inv{s}(x)_i=x_{i+1}.$ We'll denote this left shift $l.$
 
 IMG!!!
@@ -1271,14 +1287,8 @@ Using basically the same argument as for $s,$ we can see $\inv{s}$ is continuous
 
 EQUIVARIANT
 
-### Continuity
-
 ... Again, please note how this is absurdly simplier than the description of continuity using the metric explicitly.
 
-### Compactness
-
 By Tychonoff's theorem, $S^\zo$-- as an infinite product of compact spaces-- is compact.
-
-## The topological definition of cellular automata
 
 
