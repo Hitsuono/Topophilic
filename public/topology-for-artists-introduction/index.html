@@ -70,9 +70,8 @@ Bla
         
         A topological space for cell worlds
           
-            Definition and basis
+            Definition, basis and properties
             Intuition: fractals and their arithmetic
-            Further properties and symmetries
           
         
         The topological definition of cellular automata
@@ -90,7 +89,7 @@ TGT AUDIENCE" />
   <meta property="og:site_name" content="Topophilic">
   <meta property="og:title" content="Topology for Artists: introduction">
   <meta property="og:description" content="TL;DR Bla
-TL;DR This series What you’ll need What is topology? Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: the topological notion of equality Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Connectivity Homotopy Paths and holes General homotopy A stronger view: isotopy and knots Compactness The topology of cellular automata Cellular automata Conway’s Game of Life Machines and termites Entropy and reversibility Evolution and chaos: the space of CA rules A topological space for cell worlds Definition and basis Intuition: fractals and their arithmetic Further properties and symmetries The topological definition of cellular automata TGT AUDIENCE">
+TL;DR This series What you’ll need What is topology? Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: the topological notion of equality Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Connectivity Homotopy Paths and holes General homotopy A stronger view: isotopy and knots Compactness The topology of cellular automata Cellular automata Conway’s Game of Life Machines and termites Entropy and reversibility Evolution and chaos: the space of CA rules A topological space for cell worlds Definition, basis and properties Intuition: fractals and their arithmetic The topological definition of cellular automata TGT AUDIENCE">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -106,17 +105,17 @@ TL;DR This series What you’ll need What is topology? Metric spaces Abstract di
   <meta name="twitter:image" content="http://localhost:1313/images/share.png">
   <meta name="twitter:title" content="Topology for Artists: introduction">
   <meta name="twitter:description" content="TL;DR Bla
-TL;DR This series What you’ll need What is topology? Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: the topological notion of equality Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Connectivity Homotopy Paths and holes General homotopy A stronger view: isotopy and knots Compactness The topology of cellular automata Cellular automata Conway’s Game of Life Machines and termites Entropy and reversibility Evolution and chaos: the space of CA rules A topological space for cell worlds Definition and basis Intuition: fractals and their arithmetic Further properties and symmetries The topological definition of cellular automata TGT AUDIENCE">
+TL;DR This series What you’ll need What is topology? Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: the topological notion of equality Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Connectivity Homotopy Paths and holes General homotopy A stronger view: isotopy and knots Compactness The topology of cellular automata Cellular automata Conway’s Game of Life Machines and termites Entropy and reversibility Evolution and chaos: the space of CA rules A topological space for cell worlds Definition, basis and properties Intuition: fractals and their arithmetic The topological definition of cellular automata TGT AUDIENCE">
 
 
 
 
   <meta itemprop="name" content="Topology for Artists: introduction">
   <meta itemprop="description" content="TL;DR Bla
-TL;DR This series What you’ll need What is topology? Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: the topological notion of equality Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Connectivity Homotopy Paths and holes General homotopy A stronger view: isotopy and knots Compactness The topology of cellular automata Cellular automata Conway’s Game of Life Machines and termites Entropy and reversibility Evolution and chaos: the space of CA rules A topological space for cell worlds Definition and basis Intuition: fractals and their arithmetic Further properties and symmetries The topological definition of cellular automata TGT AUDIENCE">
+TL;DR This series What you’ll need What is topology? Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: the topological notion of equality Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Connectivity Homotopy Paths and holes General homotopy A stronger view: isotopy and knots Compactness The topology of cellular automata Cellular automata Conway’s Game of Life Machines and termites Entropy and reversibility Evolution and chaos: the space of CA rules A topological space for cell worlds Definition, basis and properties Intuition: fractals and their arithmetic The topological definition of cellular automata TGT AUDIENCE">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="19879">
+  <meta itemprop="wordCount" content="20767">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -307,7 +306,8 @@ TL;DR This series What you’ll need What is topology? Metric spaces Abstract di
         csn : ["C^s_#1", 1],
         rank : ["\\text{rank}\\,\\,\\,"],
         pard : ["\\frac{\\partial #1}{\\partial #2}", 2], 
-        quot : ["#1 /{\\sim}", 1] 
+        quot : ["#1 /{\\sim}", 1], 
+        az : "\\mathcal{A}^\\mathbb{Z}" 
       }
     }
   };
@@ -403,9 +403,8 @@ TL;DR This series What you’ll need What is topology? Metric spaces Abstract di
         </li>
         <li><a href="#a-topological-space-for-cell-worlds">A topological space for cell worlds</a>
           <ol>
-            <li><a href="#definition-and-basis">Definition and basis</a></li>
+            <li><a href="#definition-basis-and-properties">Definition, basis and properties</a></li>
             <li><a href="#intuition-fractals-and-their-arithmetic">Intuition: fractals and their arithmetic</a></li>
-            <li><a href="#further-properties-and-symmetries">Further properties and symmetries</a></li>
           </ol>
         </li>
         <li><a href="#the-topological-definition-of-cellular-automata">The topological definition of cellular automata</a></li>
@@ -571,8 +570,11 @@ $$\lim_{x\rightarrow a}f(x)=f(a).$$<p>IMG!!! func contínua e descontínua</p>
 <p>Simple, right?! Sure, and it is a very helpful and common way to think of convergence, no matter in which area application. But it also has its disadvantages. Conceptually, it relies too much on the notion of sequences: but sequences really should be seen as tests for continuity&ndash; as a way of exemplifying and verifying it&ndash;, but not inherent to continuity as a phenomena itself. Formally, it requires proving two convergences: thus two $\epsilon$&rsquo;s and two $N$&rsquo;s, giving four variables to work with. Can&rsquo;t we get something simpler, conceptually and formally?</p>
 <p>The following definition gets us rid of both problems: there are no sequences in it anymore, just general points in space, and only two variables ($\epsilon$ and $\delta$) for proving continuity. Proving it is equivalent to the previous one is a good exercise on metric spaces.</p>
 <p><strong>Definition</strong>: a continuous function between metric spaces $(X,d_X)$ and $(Y, d_Y)$ is a function $f:X\rightarrow Y$ such that, for every real number $\epsilon>0,$ there exists some $\delta>0$ such that $y\in B(x, \delta)$ implies $f(y)\in B(f(x), \epsilon).$</p>
-<p>The proposition above can actually be further simplified in a cleaner and deeper way, although seemingly distant from the notion of convergence. This is where topology will come in.</p>
+<p>The definition above can actually be further simplified in a cleaner and deeper way, although seemingly distant from the notion of convergence. This is where topology will come in.</p>
 <p>Indeed, a careful reading will tell you that it is equivalent to saying that $f(B(x, \delta))\subseteq B(f(x), \epsilon),$ which is the same as $B(x, \delta) \subseteq \inv{f}(B(f(x), \epsilon)).$ But since this is valid for any $x,$ by definition the set $\inv{f}(B(f(x), \epsilon))$ is open in $X.$ It isn&rsquo;t a difficult exercise to prove that this is again equivalent to having $\inv{f}(V)$ open for any $V$ open in $Y.$</p>
+<p>For example, take the function $$f:\ro\rightarrow \ro$ which is $0$ in $(-\infty, 0]$ and $1$ in $(0,\infty).$ Choosing the point $x=0$ of discontinuity, we have that, for every $\delta&gt; 0$ $f(B(0, \delta))$ is the set ${0,1},$ thus picking $\epsilon &lt; 1$ implies $B(f(0), \epsilon)$ doesn't contain $f(B(0, \delta))$-- and thus $f$ is not continuous.</p>
+<p>What this fundamentally says is that, for a continuous function $f,$ a small perturbation of $x$ leads to a small (possibly even null) perturbation of $f(x)$ as well&ndash; open sets are just the tool to describe this idea.</p>
+<p>IMG!!!!</p>
 <p>But now this last equivalent definition is free of any notion of metric or convergence! It depends only on open sets, nothing more. This more concise version of continuity ensues:</p>
 <p><strong>Definition</strong>: a <strong>continuous function</strong> between metric spaces $(X,d_X)$ and $(Y,d_Y)$ is a function $f:X\rightarrow Y$ such that, for all $V\subseteq Y$ open in $Y$, $\inv{f}(V)$ is open in $X.$</p>
 <p>Note how clean this definition is: in a certain way, it deeply and truly captures the general nature of continuity as a visual phenomena. Ask yourself this: is continuity as a notion that should depend on a metric&ndash; on a definition of distance? Imagine you have a map and a continuous path inscribed in it. <strong>Does the scale of the map matter as to the path being continuous</strong>? Not at all. You can use kilometers, miles or roman feet, it&rsquo;ll remain a continuous path no matter what. Thus being continuous isn&rsquo;t properly a metric property, but something deeper and more subtle&ndash; i.e., &ldquo;topological&rdquo;. The definition of topology is getting very close to us.</p>
@@ -932,7 +934,8 @@ $$\tau=\{U\times V\mid U\in \tau_X, V\in \tau_Y\},$$<p>i.e., open sets should be
 <p><strong>Definition</strong>: given a product $\prod_{i\in I} X_i$ of topological spaces $(X,\tau_i)_{i\in I},$ the <strong>product topology</strong> on $\prod_{i\in I} X_i$ is the topology whose open sets are of the form</p>
 $$\{\prod_{i\in I}U_i\mid U_i \text{ is open in } X_i \text{, and only for finitely many } i \text{ we have }U_i\neq X_i\}$$<p>Quick reminder: the $I$ in $\prod_{i\in I} X_i$ is an <em>index set</em>, and can be any set you want. For finite products, it&rsquo;s just $\{1,...,n\}$ for some $n$; for infinite ones, it can be the whole natural numbers $\mathbb{N},$ the integers $\zo$ or anything you want!</p>
 <p>If the spaces $X_i$ are homeomorphic to $Y_i,$ then the product $\prod X_i$ is homeomorphic to $\prod Y_i,$ by applying homeomorphisms on each coordinate.</p>
-<p>If you leave the condition that only finitely many $U_i$ are not the whole $X_i$ themselves and take only the topology $\{\prod_{i\in I}U_i\mid U_i \text{ is open in } X_i\},$ you&rsquo;ll get the so-called <strong>box topology</strong>, which is of interest for pure point-set topology, but not really for us in this series.</p>
+<p>When writing $U=\prod_{i\in I}U_i$ for an open set as above, the $U_i$ different from $X$ itself are for convenience called the <strong>non-trivial factors</strong> of $U.$</p>
+<p>If you leave the condition $U$ must have finitely many non-trivial factors and instead take only the topology $\{\prod_{i\in I}U_i\mid U_i \text{ is open in } X_i\},$ you&rsquo;ll get the so-called <strong>box topology</strong>, which is of interest for pure point-set topology, but not really for us in this series.</p>
 <p>Now, if you topologize all the products we considered so far with this product topology, <strong>will it be the same space</strong>? I.e., is, for example, $\ro^n$ with the Euclidean topology the same as with the product one? <strong>Thankfully, the answer is yes, and so it is for every other product we&rsquo;ve met so far</strong>. Still, it is good to know how to define a topology for any product you want.</p>
 <p>PROD MANIFOLDS</p>
 <h3 id="gluing-spaces-quotients">Gluing spaces: quotients</h3>
@@ -989,7 +992,7 @@ $$\inv{f}(U)=\inv{f}(-\infty, c)\cup \inv{f}(c, \infty)$$<p>Thus, $\inv{f}(U)=X$
 <p>IMG!!!</p>
 <p>Suppose by contradiction, that $f$ has no fixed point, thus its graph not intersecting the diagonal. If there are $x,y$ such that $f(x)>x$ and $f(y)< y,$ the intermediate value theorem would imply some $z$ with $f(z)=z,$ so suppose, say, that $f(x)>x$ for all $x\in[0,1].$ Then $1\geq f(x)>x$ for all $x,$ which can&rsquo;t be true for $x=1.$ Similarly, assuming $f(x)< x$ would also lead to a contradiction. Thus $f$ must have a fixed point.</p>
 <div style="text-align: right;">\(\blacksquare\)</div>
-<p>Furthermore, the product of connected spaces is connected as well. Every quotient of a connected space is also connected. Both proofs are quite simple and work by assuming disconnectedness and then finding a contradiction with the connectivity of the original spaces.</p>
+<p>Furthermore, any product of connected spaces is connected as well. Every quotient of a connected space is also connected. Both proofs are quite simple and work by assuming disconnectedness and then finding a contradiction with the connectivity of the original spaces.</p>
 <p>Connectivity can be used to prove some spaces aren&rsquo;t homeomorphic. The classical example is that of $\ro$ and $\ro^n,$ for $n>1.$ For, if you take the origin away from the line, you get a disconnected space with two components: $(-\infty,0)$ and $(0,\infty).$ But if you do the same for any other $\ro^n,$ $n>1,$ you still get a connected space. Thus these two can&rsquo;t be homeomorphic. You can use a similar trick to prove that branched spaces aren&rsquo;t manifolds.</p>
 <p>Beyond this notion of connectivity purely based on sets, there&rsquo;s another intuitive one: visually, we think of connected figures as those in which every two points can be connected by a line. Thus we get the following definition:</p>
 <p><strong>Definition</strong>: a topological space $X$ is called <strong>path-connected</strong> if, for every two points $x,y\in X,$ there&rsquo;s a path $p:I\rightarrow X$ starting in $x$ and ending in $y$ (i.e., $p(0)=x$ and $p(1)=y$).</p>
@@ -1226,15 +1229,27 @@ $$[0,1]=[0,a) \cup (\frac{1}{N},1)\cup (b,1]$$<p>The &ldquo;infinitude&rdquo; of
 <p>SIMULACS</p>
 <h3 id="evolution-and-chaos-the-space-of-ca-rules">Evolution and chaos: the space of CA rules</h3>
 <h2 id="a-topological-space-for-cell-worlds">A topological space for cell worlds</h2>
-<h3 id="definition-and-basis">Definition and basis</h3>
-<p>DEF: prod, basis, continuity</p>
+<h3 id="definition-basis-and-properties">Definition, basis and properties</h3>
+<p>DESCREVER NA VDD PRIMEIRO COMO Q OPENS PODEM SER DESCRITOS POR PATTERNS USANDO PRODUCT. DAÍ DIZER Q ISSO QUER DIZER Q TEM A BASE LÁ</p>
+<p>Let&rsquo;s now define a topological space whose points represent configurations of a cellular automata. For simplicity, we&rsquo;ll use only 1D CAs, but doing so for any dimension is a simple extension and basically everything we say will remain valid. The only real restriction we impose is that we work with CAs of finite states (i.e., &ldquo;colors&rdquo;) over a lattice&ndash; thus no CAs on continuous space. Generalizations can be made, but we&rsquo;ll stick to this case here.</p>
+<p>The formal definition of our space isn&rsquo;t actually hard from what we&rsquo;ve already seen, but proper intuition will be given in the next section. If we have a (finite) set of cell states $\mathcal{A}$ (our <strong>alphabet</strong>), then $\az$ represents the set of configurations of cells, as seen above. All we do topologically is give $\mathcal{A}$ the discrete topology and $\az$ the product topology.</p>
+<p>From the definition of product topology, we get that a subset $U$ of $az$ is open if and only if $U$ is a product different from $\mathcal{A}$ only in finitely many coordinates. It doesn&rsquo;t matter what it has in these other coordinates, since every subset of $\mathcal{A}$ is open in the discrete topology given to it. Thus, if $U$ is open and $U_1,...,U_n$ are its non-trivial factors and if $x\in U,$ then any other $y\in U$ can differ from $x$ as much as they want in the trivial factors, but in the non-trivial ones their coordinates must remain inside the $U_i.$</p>
+<p>For example, let $\mathcall{A}=\{0,1,2\}$ (i.e., we have a trinary CA) and $U$ has only non-trivial factor in the $0$-th coordinate equal to $\{1,2\}.$ This $U$ contains exactly those configurations with $1$ or $2$ in the $0$-th position, changing arbitrarily in the other positions.</p>
+<p>It isn&rsquo;t then too hard to find a convenient basis for $\az.$ Define a <strong>pattern</strong> as a <em>finite</em> set of positions and a specified assignment of states to each position&ndash; something like &ldquo;value $a_1$ in position $p_1$, &hellip;, value $a_n$ in position $p_n$&rdquo;. A configuration $x$ <strong>matches</strong> the pattern if in the specified positions it has the appropriate pattern values.</p>
+<p>A basis can thus be given by the sets</p>
+$$B_p=\{x\in \az\mid x \text{ matches pattern } p\}$$<p>The $B_p$ are open because they are products with only non-trivial factors being the value sets $\{a_i\}$ in the positions $\{p_i\}$ of the pattern $p.$ The intersection $B_p_1\cap B_p_2$ is open by itself, containing configurations matching both $p_1$ and $p_2$ (when the coordinates the pattern disagree in some position, the intersection is $\emptyset,$ which is still open). The $B_p$ also cover $\az,$ thus being indeed a basis.</p>
+<p>Thus, in particular, every open set $U$ of $\az$ can be described as the set of configurations matching at least one of patterns $p_1,...,p_n.$</p>
+<p>Continuity is also simple to describe in our space. Here, a function $f:\az\rightarrow \az$ being continuous means that, for each $U$ open, $\inv{f}(U)$ is open. This fundamentally says that, if $U$ can be described by finitely many patterns $p_1,...,p_n$, then all the $y$ mapping to $f(y)$ in $U$ must also be described by patterns $p'_1,...,p'_m.$ This is the notion of &ldquo;continuity&rdquo; in our space, in the sense we gave above of a function $f$ being continuous whenever a small perturbation of $x$ leads to a small perturbation of $f(x)$.</p>
+<p>With respect to topological properties, $\az$ is a Hausdorff spaces. For if $x$ and $y$ are distinct configurations, they must have different values $x_i$ and $y_i$ in some position $i.$ If $p_x$ is the pattern of having value $x_i$ in position $i$ and similarly for $p_y,$ then $p_x$ describes an open set $U_x$ and $p_y$ a $U_y.$ Then the set $U_x$ contains $x$ and $U_y$ contains $y,$ with $U_x\cap U_y=\emptyset$ since these are described by contradictory pattern. Thus $\az$ is Hausdorff.</p>
+<p>CONNECT</p>
+<p>Finally, since $\mathcal{A}$ with the discrete topology is finite and thus compact, $\az$ is compact by Tychonoff&rsquo;s theorem&ndash; a property that will later show as critical for cellular automata.</p>
 <h3 id="intuition-fractals-and-their-arithmetic">Intuition: fractals and their arithmetic</h3>
 <p>Cantor via 2^N. Equiv com a topologia de prod. Equiv da métrica dsubespaço com a de níveis; generalizac para A^Z. Cantor via aritmética.</p>
 <p>Fractais. L-systems, Logo language</p>
 <p>P-ádicos: pega todos os números de tal forma, usa métrica dníveis. No infinito, obtem até n-inteiros. Convergências interessantes</p>
-<h3 id="further-properties-and-symmetries">Further properties and symmetries</h3>
-<p>Connect, compact.</p>
-<p>Shift. Equivariant.</p>
+<p>An interesting and important application of the ideas above to the area of number theory can be given. In arithmetic, we constantly make use of the factorization of a number by primes. In that sense, there&rsquo;s something that unites numbers like $2,$ $4,$ $64,$ $256$ etc., as they&rsquo;re all powers of $2.$ For arithmetical purposes, they&rsquo;re actually quite close, despite the Euclidean distance. In some sense, the distance from $2^1=2$ to $2^4=16$ is just $3,$ since this is how many multiplications by a prime (here, $2$ itself) are needed to go from the first to the second.</p>
+<p>This paves the way for the so-called <strong>p-adic numbers</strong>.</p>
+<p>P-ÁDICOS COMO UM A^N. GROUP THEORY</p>
 <h2 id="the-topological-definition-of-cellular-automata">The topological definition of cellular automata</h2>
 <p>CAs são contínuas, equivariantes.</p>
 <p>Teorema CHL.</p>

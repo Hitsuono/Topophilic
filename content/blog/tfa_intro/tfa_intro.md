@@ -280,9 +280,15 @@ The following definition gets us rid of both problems: there are no sequences in
 
 **Definition**: a continuous function between metric spaces $(X,d_X)$ and $(Y, d_Y)$ is a function $f:X\rightarrow Y$ such that, for every real number $\epsilon>0,$ there exists some $\delta>0$ such that $y\in B(x, \delta)$ implies $f(y)\in B(f(x), \epsilon).$
 
-The proposition above can actually be further simplified in a cleaner and deeper way, although seemingly distant from the notion of convergence. This is where topology will come in. 
+The definition above can actually be further simplified in a cleaner and deeper way, although seemingly distant from the notion of convergence. This is where topology will come in. 
 
 Indeed, a careful reading will tell you that it is equivalent to saying that $f(B(x, \delta))\subseteq B(f(x), \epsilon),$ which is the same as $B(x, \delta) \subseteq \inv{f}(B(f(x), \epsilon)).$ But since this is valid for any $x,$ by definition the set $\inv{f}(B(f(x), \epsilon))$ is open in $X.$ It isn't a difficult exercise to prove that this is again equivalent to having $\inv{f}(V)$ open for any $V$ open in $Y.$
+
+For example, take the function $$f:\ro\rightarrow \ro$ which is $0$ in $(-\infty, 0]$ and $1$ in $(0,\infty).$ Choosing the point $x=0$ of discontinuity, we have that, for every $\delta> 0$ $f(B(0, \delta))$ is the set $\{0,1\},$ thus picking $\epsilon < 1$ implies $B(f(0), \epsilon)$ doesn't contain $f(B(0, \delta))$-- and thus $f$ is not continuous.
+
+What this fundamentally says is that, for a continuous function $f,$ a small perturbation of $x$ leads to a small (possibly even null) perturbation of $f(x)$ as well-- open sets are just the tool to describe this idea.
+
+IMG!!!!
 
 But now this last equivalent definition is free of any notion of metric or convergence! It depends only on open sets, nothing more. This more concise version of continuity ensues:
 
@@ -792,7 +798,9 @@ Quick reminder: the $I$ in $\prod_{i\in I} X_i$ is an *index set*, and can be an
 
 If the spaces $X_i$ are homeomorphic to $Y_i,$ then the product $\prod X_i$ is homeomorphic to $\prod Y_i,$ by applying homeomorphisms on each coordinate.
 
-If you leave the condition that only finitely many $U_i$ are not the whole $X_i$ themselves and take only the topology $\{\prod_{i\in I}U_i\mid U_i \text{ is open in } X_i\},$ you'll get the so-called **box topology**, which is of interest for pure point-set topology, but not really for us in this series.
+When writing $U=\prod_{i\in I}U_i$ for an open set as above, the $U_i$ different from $X$ itself are for convenience called the **non-trivial factors** of $U.$
+
+If you leave the condition $U$ must have finitely many non-trivial factors and instead take only the topology $\{\prod_{i\in I}U_i\mid U_i \text{ is open in } X_i\},$ you'll get the so-called **box topology**, which is of interest for pure point-set topology, but not really for us in this series.
 
 Now, if you topologize all the products we considered so far with this product topology, **will it be the same space**? I.e., is, for example, $\ro^n$ with the Euclidean topology the same as with the product one? **Thankfully, the answer is yes, and so it is for every other product we've met so far**. Still, it is good to know how to define a topology for any product you want.
 
@@ -884,7 +892,7 @@ Suppose by contradiction, that $f$ has no fixed point, thus its graph not inters
 
 {{< qed >}}
 
-Furthermore, the product of connected spaces is connected as well. Every quotient of a connected space is also connected. Both proofs are quite simple and work by assuming disconnectedness and then finding a contradiction with the connectivity of the original spaces.
+Furthermore, any product of connected spaces is connected as well. Every quotient of a connected space is also connected. Both proofs are quite simple and work by assuming disconnectedness and then finding a contradiction with the connectivity of the original spaces.
 
 Connectivity can be used to prove some spaces aren't homeomorphic. The classical example is that of $\ro$ and $\ro^n,$ for $n>1.$ For, if you take the origin away from the line, you get a disconnected space with two components: $(-\infty,0)$ and $(0,\infty).$ But if you do the same for any other $\ro^n,$ $n>1,$ you still get a connected space. Thus these two can't be homeomorphic. You can use a similar trick to prove that branched spaces aren't manifolds.
 
@@ -1240,9 +1248,35 @@ SIMULACS
 
 ## A topological space for cell worlds
 
-### Definition and basis
+### Definition, basis and properties
 
-DEF: prod, basis, continuity
+DESCREVER NA VDD PRIMEIRO COMO Q OPENS PODEM SER DESCRITOS POR PATTERNS USANDO PRODUCT. DAÍ DIZER Q ISSO QUER DIZER Q TEM A BASE LÁ
+
+Let's now define a topological space whose points represent configurations of a cellular automata. For simplicity, we'll use only 1D CAs, but doing so for any dimension is a simple extension and basically everything we say will remain valid. The only real restriction we impose is that we work with CAs of finite states (i.e., "colors") over a lattice-- thus no CAs on continuous space. Generalizations can be made, but we'll stick to this case here.
+
+The formal definition of our space isn't actually hard from what we've already seen, but proper intuition will be given in the next section. If we have a (finite) set of cell states $\mathcal{A}$ (our **alphabet**), then $\az$ represents the set of configurations of cells, as seen above. All we do topologically is give $\mathcal{A}$ the discrete topology and $\az$ the product topology.
+
+From the definition of product topology, we get that a subset $U$ of $az$ is open if and only if $U$ is a product different from $\mathcal{A}$ only in finitely many coordinates. It doesn't matter what it has in these other coordinates, since every subset of $\mathcal{A}$ is open in the discrete topology given to it. Thus, if $U$ is open and $U_1,...,U_n$ are its non-trivial factors and if $x\in U,$ then any other $y\in U$ can differ from $x$ as much as they want in the trivial factors, but in the non-trivial ones their coordinates must remain inside the $U_i.$ 
+
+For example, let $\mathcall{A}=\{0,1,2\}$ (i.e., we have a trinary CA) and $U$ has only non-trivial factor in the $0$-th coordinate equal to $\{1,2\}.$ This $U$ contains exactly those configurations with $1$ or $2$ in the $0$-th position, changing arbitrarily in the other positions.
+
+It isn't then too hard to find a convenient basis for $\az.$ Define a **pattern** as a *finite* set of positions and a specified assignment of states to each position-- something like "value $a_1$ in position $p_1$, ..., value $a_n$ in position $p_n$". A configuration $x$ **matches** the pattern if in the specified positions it has the appropriate pattern values.
+
+A basis can thus be given by the sets
+
+$$B_p=\{x\in \az\mid x \text{ matches pattern } p\}$$
+
+The $B_p$ are open because they are products with only non-trivial factors being the value sets $\{a_i\}$ in the positions $\{p_i\}$ of the pattern $p.$ The intersection $B_p_1\cap B_p_2$ is open by itself, containing configurations matching both $p_1$ and $p_2$ (when the coordinates the pattern disagree in some position, the intersection is $\emptyset,$ which is still open). The $B_p$ also cover $\az,$ thus being indeed a basis.
+
+Thus, in particular, every open set $U$ of $\az$ can be described as the set of configurations matching at least one of patterns $p_1,...,p_n.$
+
+Continuity is also simple to describe in our space. Here, a function $f:\az\rightarrow \az$ being continuous means that, for each $U$ open, $\inv{f}(U)$ is open. This fundamentally says that, if $U$ can be described by finitely many patterns $p_1,...,p_n$, then all the $y$ mapping to $f(y)$ in $U$ must also be described by patterns $p'_1,...,p'_m.$ This is the notion of "continuity" in our space, in the sense we gave above of a function $f$ being continuous whenever a small perturbation of $x$ leads to a small perturbation of $f(x)$.
+
+With respect to topological properties, $\az$ is a Hausdorff spaces. For if $x$ and $y$ are distinct configurations, they must have different values $x_i$ and $y_i$ in some position $i.$ If $p_x$ is the pattern of having value $x_i$ in position $i$ and similarly for $p_y,$ then $p_x$ describes an open set $U_x$ and $p_y$ a $U_y.$ Then the set $U_x$ contains $x$ and $U_y$ contains $y,$ with $U_x\cap U_y=\emptyset$ since these are described by contradictory pattern. Thus $\az$ is Hausdorff.
+
+CONNECT
+
+Finally, since $\mathcal{A}$ with the discrete topology is finite and thus compact, $\az$ is compact by Tychonoff's theorem-- a property that will later show as critical for cellular automata.
 
 ### Intuition: fractals and their arithmetic
 
@@ -1252,11 +1286,11 @@ Fractais. L-systems, Logo language
 
 P-ádicos: pega todos os números de tal forma, usa métrica dníveis. No infinito, obtem até n-inteiros. Convergências interessantes
 
-### Further properties and symmetries
+An interesting and important application of the ideas above to the area of number theory can be given. In arithmetic, we constantly make use of the factorization of a number by primes. In that sense, there's something that unites numbers like $2,$ $4,$ $64,$ $256$ etc., as they're all powers of $2.$ For arithmetical purposes, they're actually quite close, despite the Euclidean distance. In some sense, the distance from $2^1=2$ to $2^4=16$ is just $3,$ since this is how many multiplications by a prime (here, $2$ itself) are needed to go from the first to the second. 
 
-Connect, compact. 
+This paves the way for the so-called **p-adic numbers**. 
 
-Shift. Equivariant.
+P-ÁDICOS COMO UM A^N. GROUP THEORY
 
 ## The topological definition of cellular automata
 
