@@ -70,11 +70,9 @@ Bla
         
         A topological space for cell worlds
           
-            Definition
-            Metric
-            Symmetries: the shift
-            Continuity
-            Compactness
+            Definition and basis
+            Intuition: fractals and their arithmetic
+            Further properties and symmetries
           
         
         The topological definition of cellular automata
@@ -92,7 +90,7 @@ TGT AUDIENCE" />
   <meta property="og:site_name" content="Topophilic">
   <meta property="og:title" content="Topology for Artists: introduction">
   <meta property="og:description" content="TL;DR Bla
-TL;DR This series What you’ll need What is topology? Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: the topological notion of equality Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Connectivity Homotopy Paths and holes General homotopy A stronger view: isotopy and knots Compactness The topology of cellular automata Cellular automata Conway’s Game of Life Machines and termites Entropy and reversibility Evolution and chaos: the space of CA rules A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
+TL;DR This series What you’ll need What is topology? Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: the topological notion of equality Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Connectivity Homotopy Paths and holes General homotopy A stronger view: isotopy and knots Compactness The topology of cellular automata Cellular automata Conway’s Game of Life Machines and termites Entropy and reversibility Evolution and chaos: the space of CA rules A topological space for cell worlds Definition and basis Intuition: fractals and their arithmetic Further properties and symmetries The topological definition of cellular automata TGT AUDIENCE">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -108,17 +106,17 @@ TL;DR This series What you’ll need What is topology? Metric spaces Abstract di
   <meta name="twitter:image" content="http://localhost:1313/images/share.png">
   <meta name="twitter:title" content="Topology for Artists: introduction">
   <meta name="twitter:description" content="TL;DR Bla
-TL;DR This series What you’ll need What is topology? Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: the topological notion of equality Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Connectivity Homotopy Paths and holes General homotopy A stronger view: isotopy and knots Compactness The topology of cellular automata Cellular automata Conway’s Game of Life Machines and termites Entropy and reversibility Evolution and chaos: the space of CA rules A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
+TL;DR This series What you’ll need What is topology? Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: the topological notion of equality Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Connectivity Homotopy Paths and holes General homotopy A stronger view: isotopy and knots Compactness The topology of cellular automata Cellular automata Conway’s Game of Life Machines and termites Entropy and reversibility Evolution and chaos: the space of CA rules A topological space for cell worlds Definition and basis Intuition: fractals and their arithmetic Further properties and symmetries The topological definition of cellular automata TGT AUDIENCE">
 
 
 
 
   <meta itemprop="name" content="Topology for Artists: introduction">
   <meta itemprop="description" content="TL;DR Bla
-TL;DR This series What you’ll need What is topology? Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: the topological notion of equality Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Connectivity Homotopy Paths and holes General homotopy A stronger view: isotopy and knots Compactness The topology of cellular automata Cellular automata Conway’s Game of Life Machines and termites Entropy and reversibility Evolution and chaos: the space of CA rules A topological space for cell worlds Definition Metric Symmetries: the shift Continuity Compactness The topological definition of cellular automata TGT AUDIENCE">
+TL;DR This series What you’ll need What is topology? Metric spaces Abstract distances Metric spaces Metric sets Continuity Topological spaces Purpose and definition Defining a topology by a basis Homeomorphisms: the topological notion of equality Boundaries and closed sets Some common topologies Basic examples Spheres and donuts: dimension, intrinsic and extrinsic views Two bizarre lines: separation and countability axioms Manifolds Topological manifolds Smooth manifolds Topologies on cartesian products Gluing spaces: quotients Connectivity Homotopy Paths and holes General homotopy A stronger view: isotopy and knots Compactness The topology of cellular automata Cellular automata Conway’s Game of Life Machines and termites Entropy and reversibility Evolution and chaos: the space of CA rules A topological space for cell worlds Definition and basis Intuition: fractals and their arithmetic Further properties and symmetries The topological definition of cellular automata TGT AUDIENCE">
   <meta itemprop="datePublished" content="2025-01-14T12:33:23-03:00">
   <meta itemprop="dateModified" content="2025-01-14T12:33:23-03:00">
-  <meta itemprop="wordCount" content="19844">
+  <meta itemprop="wordCount" content="19879">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
   <meta itemprop="keywords" content="Topology for Artists">
 <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -275,7 +273,7 @@ TL;DR This series What you’ll need What is topology? Metric spaces Abstract di
 <meta charset="UTF-8">
 
 
-<link rel="stylesheet" href="/css/custom.min.d722f069524078bdaa033670484ac56947f507d02d61c73f23d04791f72a6f73.css">
+<link rel="stylesheet" href="/css/custom.min.a0db9cb75070ad887542cb9f8b83e5d2b301c694a1eeceb0551018faaf5dd4b9.css">
 
 
 <link rel="stylesheet" href="/css/custom.min.4c26bae0e5810c523ec4888e597c3fdd68040b639e552b010d8ce4caad227fb8.css">
@@ -405,11 +403,9 @@ TL;DR This series What you’ll need What is topology? Metric spaces Abstract di
         </li>
         <li><a href="#a-topological-space-for-cell-worlds">A topological space for cell worlds</a>
           <ol>
-            <li><a href="#definition">Definition</a></li>
-            <li><a href="#metric">Metric</a></li>
-            <li><a href="#symmetries-the-shift">Symmetries: the shift</a></li>
-            <li><a href="#continuity-1">Continuity</a></li>
-            <li><a href="#compactness-1">Compactness</a></li>
+            <li><a href="#definition-and-basis">Definition and basis</a></li>
+            <li><a href="#intuition-fractals-and-their-arithmetic">Intuition: fractals and their arithmetic</a></li>
+            <li><a href="#further-properties-and-symmetries">Further properties and symmetries</a></li>
           </ol>
         </li>
         <li><a href="#the-topological-definition-of-cellular-automata">The topological definition of cellular automata</a></li>
@@ -1230,26 +1226,31 @@ $$[0,1]=[0,a) \cup (\frac{1}{N},1)\cup (b,1]$$<p>The &ldquo;infinitude&rdquo; of
 <p>SIMULACS</p>
 <h3 id="evolution-and-chaos-the-space-of-ca-rules">Evolution and chaos: the space of CA rules</h3>
 <h2 id="a-topological-space-for-cell-worlds">A topological space for cell worlds</h2>
-<h3 id="definition">Definition</h3>
+<h3 id="definition-and-basis">Definition and basis</h3>
+<p>DEF: prod, basis, continuity</p>
+<h3 id="intuition-fractals-and-their-arithmetic">Intuition: fractals and their arithmetic</h3>
+<p>Cantor via 2^N. Equiv com a topologia de prod. Equiv da métrica dsubespaço com a de níveis; generalizac para A^Z. Cantor via aritmética.</p>
+<p>Fractais. L-systems, Logo language</p>
+<p>P-ádicos: pega todos os números de tal forma, usa métrica dníveis. No infinito, obtem até n-inteiros. Convergências interessantes</p>
+<h3 id="further-properties-and-symmetries">Further properties and symmetries</h3>
+<p>Connect, compact.</p>
+<p>Shift. Equivariant.</p>
+<h2 id="the-topological-definition-of-cellular-automata">The topological definition of cellular automata</h2>
+<p>CAs são contínuas, equivariantes.</p>
+<p>Teorema CHL.</p>
 <p>CA
 Let $S$ be our set of cell states. We&rsquo;ll consider the bi-infinite (that is, infinite on both sides) sequences</p>
 <p>$x=... x_{-2}x_{-1}x_{0}x_{1}x_2...$</p>
 <p>That is, $x$ is a sequence of cell-values that extends infinitely on both sides, with the value on position $m$ being denoted $x_m.$ The subsequence of $x$ with positions in an integer interval $[a,b]$ from $a$ to $b$ is denoted $x_{[a,b]}$&ndash; i.e., $x_{[a,b]}=x_ax_{a+1}...x_{b-1}x_b.$</p>
 <p>The set of these sequences, denoted $S^\zo,$ can be given the product topology. Thus, by definition, it has as basis the subsets $B\subseteq S^\zo$ such that only finite components $B_i$ of $B$ are not $S^\zo$. Since $S$ is finite, this topology is equivalent to the one generated by the $B_i$ which</p>
 $$d(x,y)=\sum_{m\geq 0}\frac{D(x_{[-m,m]},y_{[-m,m]})}{2^m}$$<p>Note that this space is &ldquo;bounded&rdquo; and does not allow for arbitrarily large distances: for if $x$ and $y$ are different in all positions, then $d(x,y)=\sum_{m\geq 0}\frac{2m}{2^m},$ and this infinite series can be somewhat unproblematically calculated: it is equal to $4.$ Thus, the greatest distance two points in $S^\zo$ may take is $4$&ndash; and we may as well say that the <strong>diameter</strong> of $S^\zo$ is equal to $4.$</p>
-<h3 id="metric">Metric</h3>
-<p>In general, distances in this space are hard to find exactly. However, if $x,y\in S^\zo$ differ only inside an interval $[-L,L]$ and have exactly $k$ different values, then $d(x,y)=\sum_{m\geq 0} \frac{D(x,y)}{2^m}\leq k\sum_{m\geq 0} \frac{1}{2^m}=2k.$</p>
-<h3 id="symmetries-the-shift">Symmetries: the shift</h3>
 <p>The space $S^\zo$ is quite interesting because it comes along a continuous symmetry, the <strong>shift</strong> $s:S^\zo\rightarrow S^\zo,$ which shifts sequences one step to the right: $s(x)_i=x_{i-1}.$ Note also that $s$ is invertible, with $\inv{s}$ being a shift one step to the left: $\inv{s}(x)_i=x_{i+1}.$ We&rsquo;ll denote this left shift $l.$</p>
 <p>IMG!!!</p>
 <p>To verify the continuity of $s,$ let $B_p$ be the basis neighborghood of a pattern $p.$ Then $\inv{s}(B_p)$ is exactly $B_{l(p)}$ BLA. Similarly, $\inv{l}(B_p)=B_{s(p)}.$</p>
 <p>Using basically the same argument as for $s,$ we can see $\inv{s}$ is continuous. That is, <strong>the shift</strong> $s$ <strong>is a homeomorphism from</strong> $S^\zo$ <strong>to itself!</strong> In that sense, the term &ldquo;symmetry&rdquo; is quite appropriate for it. More than that, it is also an isometry: $d(s(x), s(y))=d(x,y)$ for all $x,y\in S^\zo.$</p>
 <p>EQUIVARIANT</p>
-<h3 id="continuity-1">Continuity</h3>
 <p>&hellip; Again, please note how this is absurdly simplier than the description of continuity using the metric explicitly.</p>
-<h3 id="compactness-1">Compactness</h3>
 <p>By Tychonoff&rsquo;s theorem, $S^\zo$&ndash; as an infinite product of compact spaces&ndash; is compact.</p>
-<h2 id="the-topological-definition-of-cellular-automata">The topological definition of cellular automata</h2>
 
 
 <p>

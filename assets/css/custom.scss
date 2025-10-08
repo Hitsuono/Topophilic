@@ -31,7 +31,7 @@ $body-min-width: 20rem;
 }
 
 .md-hint {
-  border-left: 5px solid #0077cc;   // thick colored line
+  border-left: 5px solid rgb(0, 119, 204);   // thick colored line
   padding: 0.5em 1em;               // spacing inside block
   margin: 1em 0;                     // spacing outside
   background-color: #e6f2ff;        // light blue background
@@ -57,5 +57,25 @@ $body-min-width: 20rem;
   &.normal {
     border-left-color: rgba(var(--md-hint-normal), 1);
     background-color: rgba(var(--md-hint-normal), 0.05);
+  }
+
+  &.zh {
+    border-left-color: rgb(255, 0, 0);
+    background-color: rgba(255, 255, 0, 0.325);
+  }
+
+  &.fr {
+    border-left-color: rgba(255, 0, 0, 0.8);
+    background-color: rgba(0, 119, 204, 0.09);
+  }
+
+  &.de {
+    border-left-color: rgba(128, 128, 128, 1);
+    background-color: rgba(128, 128, 128, 0.05);
+  }
+
+  &.pt {
+    border-left-color: rgb(255, 187, 0);
+    background-color: rgba(0, 255, 0, 0.15);
   }
 }

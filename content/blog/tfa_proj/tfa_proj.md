@@ -19,6 +19,10 @@ PONTO: proj matemática NÃO É a totalidade da concepção de projec. Mas há a
 
 ## The classical European notion of perspective
 
+{{< figure src="fraangelico.jpg" caption="Fan Kuan's 'Travelers Among Mountains and Streams' (谿山行旅图), Song Dynasty, now in the National Palace Museum, Taipei." width="100%" height="100%" >}}
+
+{{< figure src="fraangelico2.jpg" caption="Fan Kuan's 'Travelers Among Mountains and Streams' (谿山行旅图), Song Dynasty, now in the National Palace Museum, Taipei." width="100%" height="100%" >}}
+
 ## A geographical comparison: Chinese art
 
 ## PERSPECTIVA NO MODERNO E CONTEMPORANEO
@@ -33,6 +37,19 @@ NARTE CHINESA, PERSPECTIVA N É SOMENTE UMA QUESTÃO GEOMÉTRICA, MAS É DEFINID
 
 POEMA DO LIBAI DA PUBU TBM.
 
+The same could be said PRA QLQ LUGAR ENTENDE. DAÍ in the words of Guimarães Rosa,
+
+{{% hint pt %}}
+{{% columns ratio="1:1" %}}
+- **Portuguese**
+
+    Sertão. Sabe o senhor: sertão é onde o pensamento da gente se forma mais forte do que o poder do lugar. Viver é muito perigoso...
+    
+- **English**
+
+    Sertão. You sir know: sertão is where one's thoughts form stronger than the power of the place. Living is very dangerous...
+{{% /columns %}}
+{{% /hint %}}
 https://baike.baidu.com/item/%E4%B8%89%E8%BF%9C%E6%B3%95/7226759 **散点透视**
 
 {{< figure src="FanKuan.jpg" caption="Fan Kuan's 'Travelers Among Mountains and Streams' (谿山行旅图), Song Dynasty, now in the National Palace Museum, Taipei." width="40%" height="40%" >}}
@@ -64,6 +81,7 @@ Graphic programmers should immediately remember Z-buffers:
 
 望岳 (Wàng Yuè, "Gazing lofty peak"). "Great Dai" (岱宗) is a name for the Mount Tai and Qi and Lu (齐、鲁) are regions of ancient China.
 
+{{% hint zh %}}
 {{% columns ratio="1:1" %}}
 
 - **Chinese**
@@ -95,6 +113,7 @@ Graphic programmers should immediately remember Z-buffers:
     *At a glance, all mountains small.*<br>
 
 {{% /columns %}}
+{{% /hint %}}
 
 {{< youtube aa3uK0_RqJs >}}
 
@@ -104,6 +123,7 @@ An interpretation using traditional Chinese instruments:
 
 PENSEES: W.F. TROTTER. Ref é de Félix Ravaisson, "Filosofia de Pascal", em Revue des deux mondes.
 
+{{% hint fr %}}
 {{% columns ration="1:1" %}}
 
 - **French**
@@ -127,9 +147,11 @@ PENSEES: W.F. TROTTER. Ref é de Félix Ravaisson, "Filosofia de Pascal", em Rev
     "I see those frightful spaces of the universe which surround me, and **I find myself tied to one corner of this vast expanse, without knowing why I am put in this place rather than in another, nor why the short time which is given me to live is assigned to me at this point rather than at another of the whole eternity which was before me or which shall come after me. I see nothing but infinites on all sides, which surround me as an atom, and as a shadow which endures only for an instant and returns no more.** All I know is that I must soon die, but what I know least is this very death which I cannot escape."
 
 {{% /columns %}}
+{{% /hint %}}
 
 INSTRUMENTOS DE MEDIDA ÓTICA
 
+{{% hint de %}}
 {{% columns ratio="1:1" %}}
 
 - **German**
@@ -141,6 +163,7 @@ INSTRUMENTOS DE MEDIDA ÓTICA
     GALILEO: Your Highness. On nights such as these, all over Italy telescopes are being turned towards the Heavens. Jupiter’s moons will not make milk any cheaper. But they have never been seen before, and they are there. From that the man in the street draws the conclusion that there may be many more things to see if only he opens his eyes. You owe him that confirmation. It is not the movements of a few distant stars that make all Italy prick up its ears, but the news that opinions hitherto held inviolable have now begun to totter - and everyone knows there are too many of those. Gentlemen, let us not defend dying teachings. 
 
 {{% /columns %}}
+{{% /hint %}}
 
 {{< figure src="elgreco.jpg" caption="A visible infinite?" width="55%" height="55%" >}}
 
@@ -150,6 +173,7 @@ TRACTATUS: C. K. Ogden. SOLIPSISMO NA MEDIDA EM Q O INDIVÍDUO PROJETA (KANT), M
 
 HEGEL?
 
+{{% hint de %}}
 {{% columns ratio="1:1" %}}
 
 - **German**
@@ -203,6 +227,7 @@ HEGEL?
     4.0141 In the fact that there is a general rule by which the musician is able to read the symphony out of the score, and that there is a rule by which one could reconstruct the symphony from the line on a gramophone record and from this again-- by means of the first rule-- construct the score, herein lies the internal similarity between these things which at first sight seem to be entirely different. **And the rule is the law of projection which projects the symphony into the language of the musical score.** It is the rule of translation of this language into the language of the gramophone record.
 
 {{% /columns %}}
+{{% /hint %}}
 
 {{< youtube "C9oNTAkzZjY" >}}
 
@@ -214,6 +239,7 @@ QUANTICO E RELATIV. CONSCIENCIA E MODELO (EG WOLFRAM)
 
 (translation by Richard Wigmore)
 
+{{% hint de %}}
 {{% columns ratio="1:1" %}}
 - **German**
     <div class="stanza">
@@ -278,5 +304,6 @@ QUANTICO E RELATIV. CONSCIENCIA E MODELO (EG WOLFRAM)
     </div>
 
 {{% /columns %}}
+{{% /hint %}}
 
 {{< youtube NxyedmPRFt4 >}}
