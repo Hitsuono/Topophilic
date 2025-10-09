@@ -278,17 +278,20 @@ Simple, right?! Sure, and it is a very helpful and common way to think of conver
 
 The following definition gets us rid of both problems: there are no sequences in it anymore, just general points in space, and only two variables ($\epsilon$ and $\delta$) for proving continuity. Proving it is equivalent to the previous one is a good exercise on metric spaces.
 
-**Definition**: a continuous function between metric spaces $(X,d_X)$ and $(Y, d_Y)$ is a function $f:X\rightarrow Y$ such that, for every real number $\epsilon>0,$ there exists some $\delta>0$ such that $y\in B(x, \delta)$ implies $f(y)\in B(f(x), \epsilon).$
+**Definition**: a continuous function between metric spaces $(X,d_X)$ and $(Y, d_Y)$ is a function $f:X\rightarrow Y$ such that, for every real number $\epsilon>0,$ there exists some $\delta>0$ such that $y\in B(x, \delta)$ implies $f(y)\in B(f(x), \epsilon)$-- that is, such that
 
-The definition above can actually be further simplified in a cleaner and deeper way, although seemingly distant from the notion of convergence. This is where topology will come in. 
+$$f(B(x, \delta))\subseteq B(f(x), \epsilon)$$
 
-Indeed, a careful reading will tell you that it is equivalent to saying that $f(B(x, \delta))\subseteq B(f(x), \epsilon),$ which is the same as $B(x, \delta) \subseteq \inv{f}(B(f(x), \epsilon)).$ But since this is valid for any $x,$ by definition the set $\inv{f}(B(f(x), \epsilon))$ is open in $X.$ It isn't a difficult exercise to prove that this is again equivalent to having $\inv{f}(V)$ open for any $V$ open in $Y.$
-
-For example, take the function $$f:\ro\rightarrow \ro$ which is $0$ in $(-\infty, 0]$ and $1$ in $(0,\infty).$ Choosing the point $x=0$ of discontinuity, we have that, for every $\delta> 0$ $f(B(0, \delta))$ is the set $\{0,1\},$ thus picking $\epsilon < 1$ implies $B(f(0), \epsilon)$ doesn't contain $f(B(0, \delta))$-- and thus $f$ is not continuous.
 
 What this fundamentally says is that, for a continuous function $f,$ a small perturbation of $x$ leads to a small (possibly even null) perturbation of $f(x)$ as well-- open sets are just the tool to describe this idea.
 
+For example, take the function $f:\ro\rightarrow \ro$ which is $0$ in $(-\infty, 0]$ and $1$ in $(0,\infty).$ Choosing the point $x=0$ of discontinuity, we have that, for every $\delta> 0$ $f(B(0, \delta))$ is the set $\{0,1\},$ thus picking $\epsilon < 1$ implies $B(f(0), \epsilon)$ doesn't contain $f(B(0, \delta))$-- and thus $f$ is not continuous.
+
 IMG!!!!
+
+The definition above can actually be further simplified in a cleaner and deeper way, although seemingly distant from the notion of convergence. This is where topology will come in. 
+
+Indeed, $f(B(x, \delta))\subseteq B(f(x), \epsilon)$ is the same as $B(x, \delta) \subseteq \inv{f}(B(f(x), \epsilon)).$ But since this is valid for any $x,$ by definition the set $\inv{f}(B(f(x), \epsilon))$ is open in $X.$ It isn't a difficult exercise to prove that this is again equivalent to having $\inv{f}(V)$ open for any $V$ open in $Y.$
 
 But now this last equivalent definition is free of any notion of metric or convergence! It depends only on open sets, nothing more. This more concise version of continuity ensues:
 
@@ -1250,37 +1253,72 @@ SIMULACS
 
 ### Definition, basis and properties
 
-DESCREVER NA VDD PRIMEIRO COMO Q OPENS PODEM SER DESCRITOS POR PATTERNS USANDO PRODUCT. DAÍ DIZER Q ISSO QUER DIZER Q TEM A BASE LÁ
-
 Let's now define a topological space whose points represent configurations of a cellular automata. For simplicity, we'll use only 1D CAs, but doing so for any dimension is a simple extension and basically everything we say will remain valid. The only real restriction we impose is that we work with CAs of finite states (i.e., "colors") over a lattice-- thus no CAs on continuous space. Generalizations can be made, but we'll stick to this case here.
 
-The formal definition of our space isn't actually hard from what we've already seen, but proper intuition will be given in the next section. If we have a (finite) set of cell states $\mathcal{A}$ (our **alphabet**), then $\az$ represents the set of configurations of cells, as seen above. All we do topologically is give $\mathcal{A}$ the discrete topology and $\az$ the product topology.
+The formal definition of our space isn't actually hard from what we've already seen, and further intuition will be given in the next section. If we have a (finite) set of cell states $\mathcal{A}$ (our **alphabet**), then $\az$ represents the set of configurations of cells, as seen above. All we do topologically is give $\mathcal{A}$ the discrete topology and $\az$ the product topology.
 
-From the definition of product topology, we get that a subset $U$ of $az$ is open if and only if $U$ is a product different from $\mathcal{A}$ only in finitely many coordinates. It doesn't matter what it has in these other coordinates, since every subset of $\mathcal{A}$ is open in the discrete topology given to it. Thus, if $U$ is open and $U_1,...,U_n$ are its non-trivial factors and if $x\in U,$ then any other $y\in U$ can differ from $x$ as much as they want in the trivial factors, but in the non-trivial ones their coordinates must remain inside the $U_i.$ 
+Open sets in $\az$ give us a notion of proximity, or of "small perturbation", for cellular configurations. They can be easily and intuitively described. First, define a **pattern** as a *finite* set of positions and a specified assignment of states to each position-- something like "value $a_1$ in position $p_1$, ..., value $a_n$ in position $p_n$". A configuration $x$ **matches** the pattern if in the specified positions it has the appropriate pattern values.
 
-For example, let $\mathcall{A}=\{0,1,2\}$ (i.e., we have a trinary CA) and $U$ has only non-trivial factor in the $0$-th coordinate equal to $\{1,2\}.$ This $U$ contains exactly those configurations with $1$ or $2$ in the $0$-th position, changing arbitrarily in the other positions.
-
-It isn't then too hard to find a convenient basis for $\az.$ Define a **pattern** as a *finite* set of positions and a specified assignment of states to each position-- something like "value $a_1$ in position $p_1$, ..., value $a_n$ in position $p_n$". A configuration $x$ **matches** the pattern if in the specified positions it has the appropriate pattern values.
+Then, by the definition of product topology, a set $U$ is open in $\az$ precisely when all its points satisfy at least one of some fixed patterns $p_1,...,p_n,$ in which case we say these patterns **describe** $U.$ Indeed, $U$ being open in the product topology means that it is a product of open sets in $\mathcal{A},$ with only finitely many non-trivial factors. Then $U$ is described by all the (still finitely many) possible patterns defined by all combinations of points coming from the non-trivial factors. Conversely, if $U$ is described by a pattern $p$ with specified values $p_i$ in the positions $i,$ $U$ is the product with only non-trivial factors being the one-point sets $\{p_i\}$ in the $i$-th coordinates-- which, given the discrete topology on $\mathcal{A},$ are open, and thus $U$ itself is open.
 
 A basis can thus be given by the sets
 
 $$B_p=\{x\in \az\mid x \text{ matches pattern } p\}$$
 
-The $B_p$ are open because they are products with only non-trivial factors being the value sets $\{a_i\}$ in the positions $\{p_i\}$ of the pattern $p.$ The intersection $B_p_1\cap B_p_2$ is open by itself, containing configurations matching both $p_1$ and $p_2$ (when the coordinates the pattern disagree in some position, the intersection is $\emptyset,$ which is still open). The $B_p$ also cover $\az,$ thus being indeed a basis.
+It isn't hard to see that the $B_p$ generate all open sets of $\az.$ To properly prove they're a basis, first note that the $B_p$ are open by the previous paragraphs. Then, the intersection $B_{p_1}\cap B_{p_2}$ is open by itself, containing configurations matching both $p_1$ and $p_2$ (when patterns disagree in some position, the intersection is $\emptyset,$ which is still open). The $B_p$ also cover $\az,$ thus being indeed a basis.
 
-Thus, in particular, every open set $U$ of $\az$ can be described as the set of configurations matching at least one of patterns $p_1,...,p_n.$
+You can simplify even further and take as basis the $B_p,$ with $p$ a pattern on a single position.
 
-Continuity is also simple to describe in our space. Here, a function $f:\az\rightarrow \az$ being continuous means that, for each $U$ open, $\inv{f}(U)$ is open. This fundamentally says that, if $U$ can be described by finitely many patterns $p_1,...,p_n$, then all the $y$ mapping to $f(y)$ in $U$ must also be described by patterns $p'_1,...,p'_m.$ This is the notion of "continuity" in our space, in the sense we gave above of a function $f$ being continuous whenever a small perturbation of $x$ leads to a small perturbation of $f(x)$.
+Continuity is also simple to describe in our space. A function $f:\az\rightarrow \az$ being continuous means that, for each $U$ open, $\inv{f}(U)$ is open. Here, this fundamentally says that, if $U$ can be described by finitely many patterns $p_1,...,p_n$, then all the $y$ mapping to $f(y)$ in $U$ must also be described by patterns $p'_1,...,p'_m.$ This is the notion of "continuity" in our space, in the sense we gave above of a function $f$ being continuous whenever a small perturbation of $x$ leads to a small perturbation of $f(x)$.
 
 With respect to topological properties, $\az$ is a Hausdorff spaces. For if $x$ and $y$ are distinct configurations, they must have different values $x_i$ and $y_i$ in some position $i.$ If $p_x$ is the pattern of having value $x_i$ in position $i$ and similarly for $p_y,$ then $p_x$ describes an open set $U_x$ and $p_y$ a $U_y.$ Then the set $U_x$ contains $x$ and $U_y$ contains $y,$ with $U_x\cap U_y=\emptyset$ since these are described by contradictory pattern. Thus $\az$ is Hausdorff.
 
-CONNECT
+Every point of $\az$ is its own connected component: for if distinct $x$ and $y,$ were in the same component $C$, we could define $U_x$ and $U_y$ as above, so that $U_x\cap C$ and $U_y\cap C$ would divide the connected component. Spaces with this property are called **totally disconnected**, the discrete topology being always totally disconnected as well. The only paths in these spaces are constant paths $p(t)=x,$ for fixed $x.$ In particular, there's not much interesting to say about their homotopical properties.
 
-Finally, since $\mathcal{A}$ with the discrete topology is finite and thus compact, $\az$ is compact by Tychonoff's theorem-- a property that will later show as critical for cellular automata.
+Finally, since $\mathcal{A}$ with the discrete topology is finite and thus compact, $\az$ is compact by Tychonoff's theorem-- a property that will later show itself as critical for the topological definition of CAs.
 
-### Intuition: fractals and their arithmetic
+### Intuition: fractals, arithmetic and limits of spaces
 
-Cantor via 2^N. Equiv com a topologia de prod. Equiv da métrica dsubespaço com a de níveis; generalizac para A^Z. Cantor via aritmética. 
+I hope that the previous section was enough to give an intuition of proximity and continuity in our space $\az.$ But is there a way to properly visualize it, as we have been doing for most topological spaces-- or is it too abstract for that? Turns out that you can, due to a classical construction by [Cantor](https://en.wikipedia.org/wiki/Georg_Cantor).
+
+For simplicity, let's consider only binary cellular automata with only positive positions (if you wish, as a lattice in the left ray $[0,\infty)$). Our alphabet is just $\{0,1\},$ which is the set-theoretical definition of the number $2=\{0,1\}.$ Since we take only positive positions, instead of $2^\zo$ we use $\cantor$ and topologize it as defined in the previous section. Everything we said remains valid for $\cantor,$ and we'll use it just because it is a little more convenient to visualize.
+
+Here's how to see $\cantor$ inside the real line $\ro.$ Begin with the open interval $[0,1],$ and let $C_0=[0,1].$ Then divide it into three equal parts, and throw off the middle one, getting $C_1=[0,\frac{1}{3}]\cup [\frac{2}{3},1].$ Do this too on $C_1$ to get 
+
+$$C_2=[0, \frac{1}{3^2}]\cup [\frac{2}{3^2}, \frac{1}{3}]\cup [\frac{1}{3}, \frac{1}{3}+\frac{1}{3^2}]\cup[\frac{1}{3}+\frac{2}{3^2}, 1],$$
+
+and then keep doing this, defining a $C_n$ for each step. You'll be able to see that each $C_n$ has the formula
+
+$$C_n=\bigcup^{3^{n-1}-1}_{k=0}\left([\frac{3k}{3^n}, \frac{3k+1}{3^n}]\cup [\frac{3k+2}{3^n}, \frac{3k+3}{3^n}]\right)$$
+
+IMG!!!
+
+Each $C_n$ should be seen as a representing a finite string of choices between going left or right. Elements of the first interval of $C_1$ have made the choiche "left", and the others "right"; then, for $C_2,$ we have a further choice, and so on for all the $C_n.$ It seems like this has something to do with the CA configurations inside $\cantor.$ Formally, what we have is a map $f_n:C_n\rightarrow 2^n$ sending elements of each component of $C_n$ to the string of decisions made until now-- $0$ being "left" and $1$ being "right". $f_2:C_2\rightarrow 2^2$ sends, for example, $0$ to $00$ and $\frac{2}{3^2}$ is sent to $01,$ since it went left the first step and right the second. The $f_n$'s are continuous when $2^n$ is given the discrete topology. Most importantly, they satisfy that, for $n>m,$ the first $m$ digits of $f_n(x)$ are exactly $f_m(x),$ for every $x.$
+
+If we keep doing this forever, we get the infamous **Cantor set**:
+
+$$\mathcal{C}=\bigcap_{n=0}^\infty C_n$$
+
+By the analogy above, elements of $\mathcal{C}$ should represent the infinite one-sided configurations inside $\cantor.$ 
+
+This can relation can be formally estabilished using a relation to arithmetic. Indeed, instead of using base ten to write real numbers, we could just as well use base three, in which we expand not by powers of $10$ but by those of $3.$ That is, we write every real $x$ as
+
+$$x=\sum_{-\infty}^n a_i\cdot 3^i,$$
+
+in which case we write $x=a_na_{n-1}...a_0.a_{-1}a_{-2}..._3$. For example, $5=1\cdot 3 + 2\cdot 3^0,$ so that $5$ is written as $12_3$ in base three; a more intricate case is $\frac{1}{2},$ which is written as $0.111..._3.$
+
+With trinary numbers, the Cantor set finds an easy description. Inside $[0,1],$ numbers in the first third of the interval have first fractional digit $0,$ those in the second $1$ and in the third $2$-- just like, in decimal notation, numbers in the first tenth have first fractional digit $0$ and so on. What $C_1$ does is exclude those with $1$ as first digit after the comma. The $C_n$ do similarly for the $n$-th fractional digit, so that **the Cantor set is the set of numbers in** $[0,1]$ **without any** $1$**'s in their base three expansion.**
+
+With this, can see points in $\mathcal{C}$ as finite one-sided strings of $0$'s and $2$'s (their fractional parts written in trinary form), and can define $f:\mathcal{C}\rightarrow \cantor$ by substituing $2$'s with $1$'s-- e.g., the number $0.02202..._3$ is sent to the string $01101...$ inside $\cantor.$ Set-theoretically, $f$ is a bijection.
+
+Let's introduce topology into the discussion by giving $\mathcal{C}$ the subspace topology. Is the $f$ above continuous? If so, is it a homeomorphism? The answers are both positive! Indeed, if we have a basis set $B_p$ for $\cantor,$ with $p$ a pattern on a single position $i,$ $\inv{f}(B_p)$ . This proves the continuity of $f.$ As for its inverse, 
+
+Indeed, consider the intersection $U=\mathcal{C}\cap (a,b).$ If every $C_n$ is inside $(a,b),$ $U$ is the whole Cantor set and is sent to $\cantor$ by $f$-- not very interesting. Else, $(a,b)$ excludes
+
+DEMONSTRAC USANDO PROPERIEDADES
+
+MOSTRAR Q A TOPOLOGIA É IGUAL VIA INTERSEC COM (A,B), PRA DAÍ OPENS SÃO OS Q SATISFAZEM PATTERNS?
+Equiv com a topologia de prod. Equiv da métrica dsubespaço com a de níveis; generalizac para A^Z. 
 
 Fractais. L-systems, Logo language
 
@@ -1288,11 +1326,24 @@ P-ádicos: pega todos os números de tal forma, usa métrica dníveis. No infini
 
 An interesting and important application of the ideas above to the area of number theory can be given. In arithmetic, we constantly make use of the factorization of a number by primes. In that sense, there's something that unites numbers like $2,$ $4,$ $64,$ $256$ etc., as they're all powers of $2.$ For arithmetical purposes, they're actually quite close, despite the Euclidean distance. In some sense, the distance from $2^1=2$ to $2^4=16$ is just $3,$ since this is how many multiplications by a prime (here, $2$ itself) are needed to go from the first to the second. 
 
-This paves the way for the so-called **p-adic numbers**. 
+This paves the way for the so-called **p-adic integers**. Writing integers $x\in\zo$ in basis $p,$
+
+$$x=\sum_{i=0}^n a_i\cdot p^i,$$
+
+we define the **p-adic distance** $d(x,y)$ between $x$ and $y$ as $\frac{1}{k},$ where $k$ is the first digit such that the $p$-basis expansions of $x$ and $y$ differ. You can check that this indeed is a metric in $\zo.$ In it, for example, the sequence $x_n=p^n$ converges to $0,$ since $d(p^n,0)=\frac{1}{n}.$ For $p$-adic integers, what matters is the base $p$ expansion of a number (and thus its mod $p$ properties), not Euclidean distance.
+
+FALAR DE COMPLETUDE NA SEÇÃO DE CONTINUIDADE, ENCONTRAR SEQ DE CAUCHY N CONVERGENTE EM (Z,d)
+The metric space $(\zo, d)$ isn't, however, complete. For example, the sequence $x_n=p^n$
 
 P-ÁDICOS COMO UM A^N. GROUP THEORY
 
+LIMITE INVERSO
+
+$$\varprojlim{X_n}$$
+
 ## The topological definition of cellular automata
+
+FALAR PRIMEIRO DCONTINUIDADE DAS CAS. DAÍ A PROP DE SEREM EQUIVARAINTES. SHIFT COMO SIMETRIA (NO CASO DE CANTOR, É PUXAR PRA UM SUB-ESPAÇO IDENTICO)
 
 CAs são contínuas, equivariantes.
 
