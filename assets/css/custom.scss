@@ -78,4 +78,9 @@ $body-min-width: 20rem;
     border-left-color: rgb(255, 187, 0);
     background-color: rgba(0, 255, 0, 0.15);
   }
+  
+  &.grc {
+    border-left-color: rgb(13, 94, 175);
+    background-color: rgba(13, 94, 175, 0.1);
+  }
 }

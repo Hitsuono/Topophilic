@@ -50,6 +50,57 @@ The same could be said PRA QLQ LUGAR ENTENDE. DAÍ in the words of Guimarães Ro
     Sertão. You sir know: sertão is where one's thoughts form stronger than the power of the place. Living is very dangerous...
 {{% /columns %}}
 {{% /hint %}}
+
+{{% hint de %}}
+{{% columns ratio="1:1" %}}
+
+- **German**
+
+    **FAUST.** <br>
+    Gebirgesmasse bleibt mir edel-stumm,<br>
+    Ich frage nicht woher und nicht warum?<br>
+    Als die Natur sich in sich selbst gegründet,<br>
+    Da hat sie rein den Erdball abgeründet.<br>
+    Der Gipfel sich, der Schluchten sich erfreut,<br>
+    Und Fels an Fels und Berg an Berg gereiht;<br>
+    Die Hügel dann bequem hinabgebildet,<br>
+    Mit sanftem Zug sie in das Tal gemildet.<br>
+    Da grünt’s und wächst’s, und um sich zu erfreuen<br>
+    Bedarf sie nicht der tollen Strudeleien.<br>
+
+    **MEPHISTOPHELES.**<br>
+    Das sprecht Ihr so! Das scheint Euch sonnenklar.<br>
+    Doch weiß es anders der zugegen war.<br>
+    Ich war dabei, als noch da drunten, siedend,<br>
+    Der Abgrund schwoll und strömend Flammen trug,<br>
+    Als Molochs Hammer, Fels an Felsen schmiedend,<br>
+    Gebirgestrümmer in die Ferne schlug.<br>
+    Noch starrt das Land von fremden Zentnermassen;<br>
+    Wer gibt Erklärung solcher Schleudermacht?<br>
+    Der Philosoph er weiß es nicht zu fassen,<br>
+    Da liegt der Fels, man muss ihn liegen lassen,<br>
+    Zuschanden haben wir uns schon gedacht.<br>
+    Das treu-gemeine Volk allein begreift<br>
+    Und lässt sich im Begriff nicht stören;<br>
+    Ihm ist die Weisheit längst gereift:<br>
+    Ein Wunder ist’s, der Satan kommt zu Ehren.<br>
+    Mein Wandrer hinkt, an seiner Glaubenskrücke,<br>
+    Zum Teufelsstein, zur Teufelsbrücke.<br>
+
+    **FAUST.** <br>
+    Es ist doch auch bemerkenswert zu achten,<br>
+    Zu sehn wie Teufel die Natur betrachten.<br>
+
+    **MEPHISTOPHELES.** <br>
+    Was geht mich’s an! Natur sei wie sie sei!<br>
+    ’s ist Ehrenpunkt! – Der Teufel war dabei.
+    
+- **English**
+    BLA
+
+{{% /columns %}}
+{{% /hint %}}
+
 https://baike.baidu.com/item/%E4%B8%89%E8%BF%9C%E6%B3%95/7226759 **散点透视**
 
 {{< figure src="FanKuan.jpg" caption="Fan Kuan's 'Travelers Among Mountains and Streams' (谿山行旅图), Song Dynasty, now in the National Palace Museum, Taipei." width="40%" height="40%" >}}

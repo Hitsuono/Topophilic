@@ -24,50 +24,11 @@ FALAR DEUCLIDES
 ORDER 
 this(n mt) -> homologia -> grupos/proj/games -> 
 
-# What you'll need
-
-Short answer: **basic set theory** (cartesian product, injective, surjective and bijective functions, cardinality) and **introductory linear algebra** (you can find a quick reminder on the post concerning algebra).
-
-I tried to write these posts as accessible as possible, but without losing much of the mathematical rigour. Mathematics is a human endeavour of unlimited aesthetic capacity, but this comes with a cost-- namely, rigour and precision. It is beautiful because so much formality can't be in vain. Without this limitation, there can ultimately be no beauty; the first is simultaneously the latter's restriction and its progenitor. Or, rather, rigour and aesthetical creativity are *consubstantial* in mathematics. The other member of this trinity is the insatiable human desire to further mathematicize the world and recognize itself in this construction-- to spread the Word and be in a Body, so to speak. But let's leave the formal-hegelian-christian analogies for another place for now. 
-
-Fact is, leaving out the more difficult and rigorous parts **is** necessary when writing to a larger audience, but I tried to keep some balance-- particularly without insulting the intelligence and interest of the reader. You can always skip the more technical sections, and I hope they can spark out your curiosity and be more accessible when you come back to them.
-
-Here are some extra I remind the reader of some other basic concepts of set theory.
-
-A basic understanding of [cardinality](https://en.wikipedia.org/wiki/Cardinality) is (all you'll need to know is the difference between countable and uncountable sets and that $\ro$ is uncountable).
-
-A **total strict order** on a set $X$ is a (binary) relation between elements of $X$ such that 
-
-- Not $a< a$;
-- If $a< b$ then not $b> a$;
-- If $a< b$ and $b< c,$ then $a< c$;
-- If $a\neq b,$ then $a< b$ or $b < a$ (this is the "totality" of the order).
-
-The set $X$ together with some total strict order is said to be a totally ordered set.
-
-An **equivalence relation** on a set $X$ is a (binary) relation between elements of $X$ such that 
-
-* Reflexivity: $a\sim a;$
-
-* Symmetry: $a\sim b$ implies $b\sim a;$ 
-
-* Transitivity: $a\sim b$ and $b\sim c$ imply $a \sim c.$
-
-With an equivalence relation, you can define its **equivalence classes**, which are the sets 
-
-$$[x]=\{y\in X\mid x\sim y\},$$
-
-or, equivalently, the maximal subsets of $X$ containing only equivalent elements. The set of equivalence classes based on the relation $\sim$ in $X$ is denoted $X/\sim.$ That is,
-
-$$X/\sim = \{[x]\mid x\in X\}$$
-
-A function $f:X\rightarrow Y$ can be extended to a $f':X/\sim \rightarrow Y$ if $f(x)=f(y)$ for all $x\sim y,$ simply defining $f'([x])=f(x),$ in which case we use the jargon that $f'$ is **well-defined**. A function $f:X\rightarrow Y$ can always be extended to a $f':X\rightarrow Y/\sim$ by setting $f'(x)=[x].$
-
 # What is topology?
 
 TOP VS GEO
 
-
+{{% hint grc %}}
 {{% columns ration="1:1" %}}
 - **Ancient Greek**
 
@@ -125,6 +86,7 @@ TOP VS GEO
     A figure is a surface enclosed on all sides by a line or lines.
 
 {{% /columns %}}
+{{% /hint %}}
 
 spaces encode info and restrictions (eg periodic functions are to S^1)
 
@@ -135,6 +97,46 @@ Sols restritas a subespaços
 Manifold hypothesis
 
 State spaces
+
+# What you'll need
+
+Short answer: **basic set theory** (cartesian product, injective, surjective and bijective functions, cardinality) and **introductory linear algebra** (you can find a quick reminder on the post concerning algebra).
+
+I tried to write these posts as accessible as possible, but without losing much of the mathematical rigour. Mathematics is a human endeavour of unlimited aesthetic capacity, but this comes with a cost-- namely, rigour and precision. It is beautiful because so much formality can't be in vain. Without this limitation, there can ultimately be no beauty; the first is simultaneously the latter's restriction and its progenitor. Or, rather, rigour and aesthetical creativity are *consubstantial* in mathematics. The other member of this trinity is the insatiable human desire to further mathematicize the world and recognize itself in this construction-- to spread the Word and be in a Body, so to speak. But let's leave the formal-hegelian-christian analogies for another place for now. 
+
+Fact is, leaving out the more difficult and rigorous parts **is** necessary when writing to a larger audience, but I tried to keep some balance-- particularly without insulting the intelligence and interest of the reader. You can always skip the more technical sections, and I hope they can spark out your curiosity and be more accessible when you come back to them.
+
+Here are some extra I remind the reader of some other basic concepts of set theory.
+
+A basic understanding of [cardinality](https://en.wikipedia.org/wiki/Cardinality) is (all you'll need to know is the difference between countable and uncountable sets and that $\ro$ is uncountable).
+
+A **total strict order** on a set $X$ is a (binary) relation between elements of $X$ such that 
+
+- Not $a< a$;
+- If $a< b$ then not $b> a$;
+- If $a< b$ and $b< c,$ then $a< c$;
+- If $a\neq b,$ then $a< b$ or $b < a$ (this is the "totality" of the order).
+
+The set $X$ together with some total strict order is said to be a totally ordered set.
+
+An **equivalence relation** on a set $X$ is a (binary) relation between elements of $X$ such that 
+
+* Reflexivity: $a\sim a;$
+
+* Symmetry: $a\sim b$ implies $b\sim a;$ 
+
+* Transitivity: $a\sim b$ and $b\sim c$ imply $a \sim c.$
+
+With an equivalence relation, you can define its **equivalence classes**, which are the sets 
+
+$$[x]=\{y\in X\mid x\sim y\},$$
+
+or, equivalently, the maximal subsets of $X$ containing only equivalent elements. The set of equivalence classes based on the relation $\sim$ in $X$ is denoted $X/\sim.$ That is,
+
+$$X/\sim = \{[x]\mid x\in X\}$$
+
+A function $f:X\rightarrow Y$ can be extended to a $f':X/\sim \rightarrow Y$ if $f(x)=f(y)$ for all $x\sim y,$ simply defining $f'([x])=f(x),$ in which case we use the jargon that $f'$ is **well-defined**. A function $f:X\rightarrow Y$ can always be extended to a $f':X\rightarrow Y/\sim$ by setting $f'(x)=[x].$
+
 
 # Metric spaces
 
@@ -270,7 +272,13 @@ In Calculus I this is thought only inside $\ro,$ but notice that the only thing 
 
 IMG!!! converging seq
 
-We can then formalize the informal definition of continuity we gave before, and even generalize it to all metric spaces:
+Convergence of sequences is a property which strongly depends on and is relative to our base set $X.$ Consider, for example, $\ro$ and $\mathbb{Q}$ both with the Euclidean distance, and take some rational sequence $\{x_n\}$ that gets closer and closer to $\sqrt{2}$-- i.e., approximating the square root of two. In the real line $\ro,$ we can say the $x_n$ converge to $\sqrt{2},$ but, since $\sqrt \notin \mathbb{Q},$ the $x_n$ *do not converge* in $\mathbb{Q}.$ Intuitively, the rationals are full of holes-- representing irrational holes--, and there are many sequences that get closer and closer to these holes, but of course not converging inside the rationals per se.
+
+Sequences getting "closer and closer" to something are called **Cauchy sequences**: $\{x_n\}$ is Cauchy if, for every $\epsilon>0,$ there's some $N$ such that, for all $n,m> N,$ $d(x_n, x_m)<\epsilon$-- i.e., distance between sequence points get arbitrarily small. Metric spaces where all Cauchy sequences converge are called **complete**. The reals, for example, are complete, but the rationals aren't.
+
+In some sense, actually, one way to define the real numbers is as the **completion** of the rationals, by properly filling the wholes from non-convergent Cauchy sequences. You can check more on this on your own.
+
+Using convergence, we can now properly define continuity:
 
 **Definition**: a function $f:X\rightarrow Y$ between metric spaces $(X,d_X)$ and $(Y, d_Y)$ is continuous if, for all sequences $x_n\rightarrow a,$ we have $f(x_n)\rightarrow f(a).$ 
 
@@ -789,9 +797,11 @@ Consider first the case of a product$X\times Y$ between two spaces $(X,\tau_X)$ 
 
 $$\tau=\{U\times V\mid U\in \tau_X, V\in \tau_Y\},$$
 
-i.e., open sets should be product of open sets in each coordinate. If $\pi_1:X\times Y\rightarrow X$ and $\pi_2:X\times Y\rightarrow Y$ are the corresponding projections onto the $n$-th coordinate (i.e., $\pi_1(x,y)=x$ and $\pi_2(x,y)=2$), then this topology is the minimal topology with $\pi_1$ and $\pi_2$ continuous.
+i.e., open sets should be product of open sets in each coordinate. If $\pi_1:X\times Y\rightarrow X$ and $\pi_2:X\times Y\rightarrow Y$ are the corresponding projections onto the $n$-th coordinate (i.e., $\pi_1(x,y)=x$ and $\pi_2(x,y)=2$), then this topology is the minimal topology with $\pi_1$ and $\pi_2$ continuous. That is, the topology adds nothing beyond letting the projections be continuous, as intuitively they should be, as they represent collapsing a space to a specific coordinate. 
 
-This idea works fine for products of finitely many spaces, but for technical reasons it gets tricky with infinite products. The following definition works for both cases:
+When writing $U=\prod_{i\in I}U_i$ for an open set as above, the $U_i$ different from $X$ itself are for convenience called the **non-trivial factors** of $U.$
+
+For general products $\prod X_i,$ we also want the minimal topology for which the projections $\pi_i$ are continuous. Thus, what we want is a basis made of sets $\inv{\pi_i}(U),$ for every $U$ open in $X_i.$ These sets are products with only non-trivial factor being $U$ in the $i$-th coordinate. Remembering then that a basis generates a topology by arbitrary unions and *finite* intersections, this basis produces the following topology:
 
 **Definition**: given a product $\prod_{i\in I} X_i$ of topological spaces $(X,\tau_i)_{i\in I},$ the **product topology** on $\prod_{i\in I} X_i$ is the topology whose open sets are of the form
 
@@ -800,8 +810,6 @@ $$\{\prod_{i\in I}U_i\mid U_i \text{ is open in } X_i \text{, and only for finit
 Quick reminder: the $I$ in $\prod_{i\in I} X_i$ is an *index set*, and can be any set you want. For finite products, it's just $\{1,...,n\}$ for some $n$; for infinite ones, it can be the whole natural numbers $\mathbb{N},$ the integers $\zo$ or anything you want!
 
 If the spaces $X_i$ are homeomorphic to $Y_i,$ then the product $\prod X_i$ is homeomorphic to $\prod Y_i,$ by applying homeomorphisms on each coordinate.
-
-When writing $U=\prod_{i\in I}U_i$ for an open set as above, the $U_i$ different from $X$ itself are for convenience called the **non-trivial factors** of $U.$
 
 If you leave the condition $U$ must have finitely many non-trivial factors and instead take only the topology $\{\prod_{i\in I}U_i\mid U_i \text{ is open in } X_i\},$ you'll get the so-called **box topology**, which is of interest for pure point-set topology, but not really for us in this series.
 
@@ -1257,9 +1265,11 @@ Let's now define a topological space whose points represent configurations of a 
 
 The formal definition of our space isn't actually hard from what we've already seen, and further intuition will be given in the next section. If we have a (finite) set of cell states $\mathcal{A}$ (our **alphabet**), then $\az$ represents the set of configurations of cells, as seen above. All we do topologically is give $\mathcal{A}$ the discrete topology and $\az$ the product topology.
 
-Open sets in $\az$ give us a notion of proximity, or of "small perturbation", for cellular configurations. They can be easily and intuitively described. First, define a **pattern** as a *finite* set of positions and a specified assignment of states to each position-- something like "value $a_1$ in position $p_1$, ..., value $a_n$ in position $p_n$". A configuration $x$ **matches** the pattern if in the specified positions it has the appropriate pattern values.
+Open sets in $\az$ give us a notion of proximity, or of "small perturbation", for cellular configurations. They can be easily and intuitively described. First, define a **pattern** as a *finite* set of positions and a specified assignment of states to each position-- something like "value $a_1$ in position $p_1$, ..., value $a_n$ in position $p_n$". A configuration $x$ **matches** the pattern if in the specified positions it has the appropriate pattern values. 
 
 Then, by the definition of product topology, a set $U$ is open in $\az$ precisely when all its points satisfy at least one of some fixed patterns $p_1,...,p_n,$ in which case we say these patterns **describe** $U.$ Indeed, $U$ being open in the product topology means that it is a product of open sets in $\mathcal{A},$ with only finitely many non-trivial factors. Then $U$ is described by all the (still finitely many) possible patterns defined by all combinations of points coming from the non-trivial factors. Conversely, if $U$ is described by a pattern $p$ with specified values $p_i$ in the positions $i,$ $U$ is the product with only non-trivial factors being the one-point sets $\{p_i\}$ in the $i$-th coordinates-- which, given the discrete topology on $\mathcal{A},$ are open, and thus $U$ itself is open.
+
+The union of sets described by patterns represent configurations satisfying at least one of the patterns; the intersection forces matching both patterns.
 
 A basis can thus be given by the sets
 
@@ -1293,7 +1303,7 @@ $$C_n=\bigcup^{3^{n-1}-1}_{k=0}\left([\frac{3k}{3^n}, \frac{3k+1}{3^n}]\cup [\fr
 
 IMG!!!
 
-Each $C_n$ should be seen as a representing a finite string of choices between going left or right. Elements of the first interval of $C_1$ have made the choiche "left", and the others "right"; then, for $C_2,$ we have a further choice, and so on for all the $C_n.$ It seems like this has something to do with the CA configurations inside $\cantor.$ Formally, what we have is a map $f_n:C_n\rightarrow 2^n$ sending elements of each component of $C_n$ to the string of decisions made until now-- $0$ being "left" and $1$ being "right". $f_2:C_2\rightarrow 2^2$ sends, for example, $0$ to $00$ and $\frac{2}{3^2}$ is sent to $01,$ since it went left the first step and right the second. The $f_n$'s are continuous when $2^n$ is given the discrete topology. Most importantly, they satisfy that, for $n>m,$ the first $m$ digits of $f_n(x)$ are exactly $f_m(x),$ for every $x.$
+Each $C_n$ should be seen as a representing a finite string of choices between going left or right. Elements of the first interval of $C_1$ have made the choiche "left", and the others "right"; then, for $C_2,$ we have a further choice, and so on for all the $C_n.$ It seems like this has something to do with the CA configurations inside $\cantor.$ Formally, what we have is a map $f_n:C_n\rightarrow 2^n$ sending elements of each component of $C_n$ to the string of decisions made until now-- $0$ being "left" and $1$ being "right". $f_2:C_2\rightarrow 2^2$ sends, for example, $0$ to $00$ and $\frac{2}{3^2}$ is sent to $01,$ since it went left the first step and right the second. The $f_n$'s are continuous when $2^n$ is given the discrete topology. Most importantly, they satisfy that, for $n>m,$ the first $m$ digits of $f_n(x)$ are exactly $f_m(x),$ for every $x.$ 
 
 If we keep doing this forever, we get the infamous **Cantor set**:
 
@@ -1311,35 +1321,60 @@ With trinary numbers, the Cantor set finds an easy description. Inside $[0,1],$ 
 
 With this, can see points in $\mathcal{C}$ as finite one-sided strings of $0$'s and $2$'s (their fractional parts written in trinary form), and can define $f:\mathcal{C}\rightarrow \cantor$ by substituing $2$'s with $1$'s-- e.g., the number $0.02202..._3$ is sent to the string $01101...$ inside $\cantor.$ Set-theoretically, $f$ is a bijection.
 
-Let's introduce topology into the discussion by giving $\mathcal{C}$ the subspace topology. Is the $f$ above continuous? If so, is it a homeomorphism? The answers are both positive! Indeed, if we have a basis set $B_p$ for $\cantor,$ with $p$ a pattern on a single position $i,$ $\inv{f}(B_p)$ . This proves the continuity of $f.$ As for its inverse, 
+Let's introduce topology into the discussion by giving $\mathcal{C}$ the subspace topology. Is the $f$ above continuous? If so, is it a homeomorphism? The answers are both positive! 
 
-Indeed, consider the intersection $U=\mathcal{C}\cap (a,b).$ If every $C_n$ is inside $(a,b),$ $U$ is the whole Cantor set and is sent to $\cantor$ by $f$-- not very interesting. Else, $(a,b)$ excludes
+Indeed, consider some $C_n$ and an open interval $(a,b)$ containing only one of its connected components. Elements of $C_n\cap (a,b)$ are those which, in trinary form, until the $n$-th fractional digit correspond to the decisions representing $C_n.$ E.g., we can , and those will be all the elements of $[\frac{2}{3^2}, \frac{1}{3}]$ which in trinary begin as $0.01.$ These open intervals, intersected with the full Cantor set, form a basis of $\mathcal{C}.$ The function $f$ maps these bijectively to the the subsets of $\cantor$ that match some finite string of length $n$ at the left, which you can check form a basis for $\cantor.$ This leads to the conclusion that $f$ is a homeomorphism.
 
-DEMONSTRAC USANDO PROPERIEDADES
+This could also be proven using general topological properties. In particular, it's easy to prove directly that $\mathcal{C}$ is Hausdorff; then the inverse $\inv{f}$ of $f$ is a continuous function from a compact to a Hausdorff space, which we saw previously is always a homeomorphism. 
 
-MOSTRAR Q A TOPOLOGIA É IGUAL VIA INTERSEC COM (A,B), PRA DAÍ OPENS SÃO OS Q SATISFAZEM PATTERNS?
-Equiv com a topologia de prod. Equiv da métrica dsubespaço com a de níveis; generalizac para A^Z. 
+In particular, we have that $\cantor$ is a metric space, since it is homeomorphic to $\mathcal{C}$ and the latter can be given the standard Euclidean distance. A more intuitive metric can be given though. You can prove that in $\mathcal{C},$ the metric $d(x,y)=\frac{1}{k},$ where $k$ is the first fractional digit in which $x$ and $y$ differ, is a metric equivalent to the Euclidean one (inside of $\mathcal{C},$ of course). Thus they generate the same topology, and we can transport this to define a metric $d$ in $\cantor,$ inducing the same topology we've been using, defined simply as
+
+$$d(x,y)=\frac{1}{k}\text{, with } k \text{ the first number such that } x_k\neq y_k$$
+
+We then define $d(x,x)=0$ in case the strings are equal. In the metric space $(\cantor, d),$ string which only start to be distinct in very advanced positions are seen as closer than those that right at the beginning diverge.
+
+This can be generalized to $\az$ by using the metric
+
+$$d(x,y) =\frac{1}{k}\text{, with } k \text{ the first number such that } x_{[-k,k]}\neq y_{[-k,k]}$$
+
+
 
 Fractais. L-systems, Logo language
 
 P-ádicos: pega todos os números de tal forma, usa métrica dníveis. No infinito, obtem até n-inteiros. Convergências interessantes
 
-An interesting and important application of the ideas above to the area of number theory can be given. In arithmetic, we constantly make use of the factorization of a number by primes. In that sense, there's something that unites numbers like $2,$ $4,$ $64,$ $256$ etc., as they're all powers of $2.$ For arithmetical purposes, they're actually quite close, despite the Euclidean distance. In some sense, the distance from $2^1=2$ to $2^4=16$ is just $3,$ since this is how many multiplications by a prime (here, $2$ itself) are needed to go from the first to the second. 
+An interesting and important application of the ideas above can be given to the area of number theory. In arithmetic, we constantly make use of the factorization of a number by primes. In that sense, there's something that unites numbers like $2,$ $4,$ $64,$ $256$ etc., as they're all powers of $2.$ For arithmetical purposes, they're actually quite close, despite the Euclidean distance. In some sense, the distance from $2^1=2$ to $2^4=16$ is just $3,$ since this is how many multiplications by a prime (here, $2$ itself) are needed to go from the first to the second. 
 
-This paves the way for the so-called **p-adic integers**. Writing integers $x\in\zo$ in basis $p,$
+This paves the way for the so-called "p-adic integers". Writing integers $x\in\zo$ in basis $p,$
 
 $$x=\sum_{i=0}^n a_i\cdot p^i,$$
 
-we define the **p-adic distance** $d(x,y)$ between $x$ and $y$ as $\frac{1}{k},$ where $k$ is the first digit such that the $p$-basis expansions of $x$ and $y$ differ. You can check that this indeed is a metric in $\zo.$ In it, for example, the sequence $x_n=p^n$ converges to $0,$ since $d(p^n,0)=\frac{1}{n}.$ For $p$-adic integers, what matters is the base $p$ expansion of a number (and thus its mod $p$ properties), not Euclidean distance.
+we define the **p-adic distance** $d(x,y)$ between $x$ and $y$ as $\frac{1}{k},$ where $k$ is the first digit such that the $p$-basis expansions of $x$ and $y$ differ. You can check that this indeed is a metric in $\zo.$ In it, for example, the sequence $x_n=p^n$ converges to $0,$ since $d(p^n,0)=\frac{1}{n}.$ For $p$-adic integers, what matters is the base $p$ expansion of a number (and thus its mod $p$ properties), not Euclidean distance. 
 
-FALAR DE COMPLETUDE NA SEÇÃO DE CONTINUIDADE, ENCONTRAR SEQ DE CAUCHY N CONVERGENTE EM (Z,d)
-The metric space $(\zo, d)$ isn't, however, complete. For example, the sequence $x_n=p^n$
+You can see how this resembles what we did with the Cantor set, with the exception that numbers in $\zo$ have only a finite expansion in basis $p.$ But the p-adic distance allows us to actually overcome this. 
 
-P-ÁDICOS COMO UM A^N. GROUP THEORY
+Indeed, the sequence $x_n=1...1_p$ with $n$ many $1$'s corresponds to the number $1 + p +...+p^n,$ so of course it diverges with the usual integer distance; but with $d$ as above, the distances get smaller and smaller: for $n>m,$ $d(x_n, x_m)=\frac{1}{m}.$ Still, in the set $\zo$ this $x_n$ doesn't converge-- i.e., we have non-convergent Cauchy sequences, so that the metric space $(\zo, d)$ isn't complete.
 
-LIMITE INVERSO
+We can formally complete $(\zo, d)$ by allowing for infinite strings in base $p,$ thus getting **formal** series
+
+$$x=\sum_{i=0}^\infty a_i\cdot p^i,$$
+
+By "formal" we mean that these aren't integers, but formal expressions using integers and sums. Each of these series can be written as one-sided infinite strings $...a_2a_1a_0.$ They form a set called the **p-adic integers**, written as $\zo_p.$ You can make it a metric space using the p-adic distance as before, and it can be proven that $(\zo_p, d)$ is indeed complete. 
+
+In particular, we see directly from the set and metric definitions that the $2$-adic integers are homeomorphic to the Cantor set $\cantor$-- and, of course, to its real version $\mathcal{C}.$ A direct homeomorphism $f:\zo_2\rightarrow \mathcal{C}$ can also be given by
+
+$$f(...a_2a_1a_0)=... + \frac{2a_2}{3^3}+\frac{2a_1}{3^2}+\frac{2a_0}{3}$$
+
+IMG!!! P-ADIC DIST
+
+Algebraically, $\zo_p$ can be given both sum and multiplication operations, but just formally summing and multiplying p-adic integers seen as infinite series. This makes $\zo_p$ a **ring**-- for more, see the post on algebra. What's particularly interesting is that $Z_p$ is algebraically richer than $\zo,$ allowing for some fractions and inverses. For example, you can check that, for $3$-adic integers, $...102102_3$ multiplied by $12_3$ (that is, $5$ in trinary) is equal to $1,$ and thus one might formally write something like $\frac{1}{5}=...102102_3$-- thus one often hears that p-adic integers are numbers that can extend infinitely to the left. Not every normal integer has an inverse in $\zo_p,$ though-- that is, the p-adic integers aren't a **field**.
+
+Another equivalent way to define $\zo_p$ is by 
+
 
 $$\varprojlim{X_n}$$
+
+We'll possibly meet limits and p-adic numbers later on when we study tilings.
 
 ## The topological definition of cellular automata
 
