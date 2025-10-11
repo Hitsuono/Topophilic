@@ -130,7 +130,7 @@ Graphic programmers should immediately remember Z-buffers:
 
 赵孟頫所评：“山势逼人。” (SOBRE O FANKUAN)
 
-望岳 (Wàng Yuè, "Gazing lofty peak"). "Great Dai" (岱宗) is a name for the Mount Tai and Qi and Lu (齐、鲁) are regions of ancient China.
+杜甫 望岳 (Wàng Yuè, "Gazing lofty peak"). "Great Dai" (岱宗) is a name for the Mount Tai and Qi and Lu (齐、鲁) are regions of ancient China. "sight" OR "see"
 
 {{% hint zh %}}
 {{% columns ratio="1:1" %}}
@@ -171,6 +171,42 @@ Graphic programmers should immediately remember Z-buffers:
 An interpretation using traditional Chinese instruments:
 
 {{< youtube mOxy5a17l68 >}}
+
+望庐山瀑布 ("Gazing at Mount Lu's waterfall") 李白. "Perhaps" OR "As if"
+
+{{% hint zh %}}
+{{% columns ratio="1:10" %}}
+
+- **Chinese**
+
+    日照香炉生紫烟。<br>
+    Rì zhào xiāng lú shēng zǐ yān.
+
+    遥看瀑布挂前川。<br>
+    Yáo kàn pù bù guà qián chuān.
+    
+    飞流直下三千尺。<br>
+    Fēi liú zhí xià sān qiān chǐ.
+
+    疑是银河落九天。<br>
+    Yí shì yín hé luò jiǔ tiān.
+
+- **English**
+
+    *Sunlit, Censer peak purple smoke leavens*<br><br>
+    
+    *Gaze far, waterfall ahead river veils*<br><br>
+
+    *Flying, streaming straight down three thousand scales*<br>
+
+    *Perhaps, Milky Way fell from ninth Heavens*<br><br> 
+
+{{% /columns %}}
+{{% /hint %}}
+
+{{< youtube M-VKN1r_eAE >}}
+
+## Perspective and projection as modern anxieties
 
 PENSEES: W.F. TROTTER. Ref é de Félix Ravaisson, "Filosofia de Pascal", em Revue des deux mondes.
 
