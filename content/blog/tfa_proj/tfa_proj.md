@@ -193,7 +193,7 @@ An interpretation using traditional Chinese instruments:
 
 - **English**
 
-    *Sunlit, Censer peak purple smoke leavens*<br><br>
+    *Sunlit, Censer Peak purple smoke leavens*<br><br>
     
     *Gaze far, waterfall ahead river veils*<br><br>
 

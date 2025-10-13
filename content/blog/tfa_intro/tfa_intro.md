@@ -1341,8 +1341,6 @@ $$d(x,y) =\frac{1}{k}\text{, with } k \text{ the first number such that } x_{[-k
 
 Fractais. L-systems, Logo language
 
-P-ádicos: pega todos os números de tal forma, usa métrica dníveis. No infinito, obtem até n-inteiros. Convergências interessantes
-
 An interesting and important application of the ideas above can be given to the area of number theory. In arithmetic, we constantly make use of the factorization of a number by primes. In that sense, there's something that unites numbers like $2,$ $4,$ $64,$ $256$ etc., as they're all powers of $2.$ For arithmetical purposes, they're actually quite close, despite the Euclidean distance. In some sense, the distance from $2^1=2$ to $2^4=16$ is just $3,$ since this is how many multiplications by a prime (here, $2$ itself) are needed to go from the first to the second. 
 
 This paves the way for the so-called "p-adic integers". Writing integers $x\in\zo$ in basis $p,$
@@ -1369,46 +1367,45 @@ IMG!!! P-ADIC DIST
 
 Algebraically, $\zo_p$ can be given both sum and multiplication operations, but just formally summing and multiplying p-adic integers seen as infinite series. This makes $\zo_p$ a **ring**-- for more, see the post on algebra. What's particularly interesting is that $Z_p$ is algebraically richer than $\zo,$ allowing for some fractions and inverses. For example, you can check that, for $3$-adic integers, $...102102_3$ multiplied by $12_3$ (that is, $5$ in trinary) is equal to $1,$ and thus one might formally write something like $\frac{1}{5}=...102102_3$-- thus one often hears that p-adic integers are numbers that can extend infinitely to the left. Not every normal integer has an inverse in $\zo_p,$ though-- that is, the p-adic integers aren't a **field**.
 
-Another equivalent way to define $\zo_p$ is by 
+Good to note that writing something like $\frac{1}{5}=...102102_3$ just indicates that there's an element of $\zo_3$ that, multiplied by $5=12_3,$ gives $1.$ Beyond that, this has nothing to do with the *rational* number $\frac{1}{5},$ and the p-adic numbers are to be seen as a number system for its own part, distinct from $\mathbb{Q}$ or $\ro.$ For example, the number $x=...111_2$ in $\zo_2$ is such that $x+x=10_2\cdot x=...110_2$ (two times $x$), $x+x+x=11_2\cdot x=...1100_2$ (three times $x$) and so on, so that $n$ times $x$ is a sequence converging to $0$ as $n\rightarrow \infty.$ No such thing can exist in the real numbers, for example.
 
+Another equivalent way to define $\zo_p$ is by "scanning" the value of the series $\sum_{i=0}^\infty a_i\cdot p^i$ up to the power $p^n$, for each $n.$ Let $\zmod{n}$ be the set of non-negative integers up to $n$, the integers mod $n$-- for more structure on this set, see the post on algebra. Then every point of $\zo_p$ can be uniquely and exactly described by the infinite sequence of values
 
-$$\varprojlim{X_n}$$
+$$(a_0p^0 \mmod p, a_0p^0 + a_1p^1 \mmod p^2, a_0p^0 + a_1p^1 + a_2p^2 \mmod p^3, ...),$$
 
-We'll possibly meet limits and p-adic numbers later on when we study tilings.
+i.e., by the partial values of the series up to powers $p^n.$ This is an element $(x_1\mmod p, x_2, \mmod p^2)$ of the product of sets $\zmod{p}\times \zmod {p^2}\times...$. If $X_n=\zmod{p}\times...\times\zmod{p^n},$ with the special property that $x_i = x_j \mmod p^j$ for every $i< j.$
+
+This is similar to how, in $\cantor,$ as explained above, elements $x\in \cantor$ can be described by their slices $x_{[0,n]}$ until the $n$-th positions. Thus, $\cantor$ can be seen as those elements of the infinte product $2^1\times 2^2\times...,$ wich each $n$-th component being the slice up to position $n.$ That is, each factor represents scanning the infinite string up to $n$ positions. 
+
+This "scanning" idea can be generalized as follows. Suppose you have a sequence of topological spaces $\{X_n\}_{n\in \mathbb{N}}$ and continuous functions $f_{ij}: X_i\rightarrow X_j$ between them, for all natural pairs $i\geq j.$ Suppose further that $f_{ii}=\text{id}_{X_i}$ and that these functions compose in a transitive way: that is, $f_{ik}=f_{jk}\circ f_{ij}.$ Intuitively, each $X_n$ can be seen as a partial scan of some information up to size $n,$ and the $f_{ij}$'s tell you how to get a smaller slice of this information. This is called an *inverse system*. Then the **inverse limit** of the system, written $\varprojlim{X_n},$ is the space
+
+$$\varprojlim{X_n} = \left\{x\in \prod X_n\mid x_j=f_{ij}(x_i)\text{ for all }j\leq i\right\}$$
+
+The topology given should be immediate-- the subspace one inside the product topology of $\prod X_n.$
+
+The space $\cantor$ can be given as an inverse limit by using the system $X_n=2^1\times...\times 2^n$ with $f_{ij}(x)=x_{[0,j]}.$ The space $\zo_p$ can be see as an inverse limit by using the system $X_n=\zmod{p}\times...\times \zmod{p^n}$ with $f_{ij}(x_1,...,x_i)=(x_1,...,x_j).$
+
+Inverse limits appear often as spaces representing infinite chains of choices-- just like the Cantor set or the p-adic numbers. We'll possibly meet them and $\zo_p$ later on when we study tilings and repeating patterns.
 
 ## The topological definition of cellular automata
 
 FALAR PRIMEIRO DCONTINUIDADE DAS CAS. DAÍ A PROP DE SEREM EQUIVARAINTES. SHIFT COMO SIMETRIA (NO CASO DE CANTOR, É PUXAR PRA UM SUB-ESPAÇO IDENTICO)
 
-CAs são contínuas, equivariantes.
+Now that we hopefully have a solid understanding and intuition of $\az$ as topological spaces of cell configurations, let's see how CAs fit in this language. The end result of this sections isn't difficult to show with all we've learned in this article, and, giving a topological characterization of cellular automata, represents the "accumulation point" of all we've studied so far-- but don't worry, much more will come, equally fascinating!
 
-Teorema CHL.
+A cellular automata can be represented by a function $f:\az\rightarrow \az,$ sending every configuration to the updated configuration after one step of applying the CA's rule. Naturally, we have to ask: is this function continuous? Well, if an open set $U$ is described by patterns $p_1,...,p_n,$ then $\inv{f}(U)$ is described by all the configurations $x$ such that $f(x)$ matches some $p_1,...,p_n.$ 
 
-CA
-Let $S$ be our set of cell states. We'll consider the bi-infinite (that is, infinite on both sides) sequences
+BUÉEÉÉÉÉÉÉ
 
-$x=... x_{-2}x_{-1}x_{0}x_{1}x_2...$
+**Curtis-Hedlund-Lyndon Theorem**: a function $f:\az\rightarrow \az$ represents a cellular automata update if, and only if, $f$ is continuous and equivariant.
 
-That is, $x$ is a sequence of cell-values that extends infinitely on both sides, with the value on position $m$ being denoted $x_m.$ The subsequence of $x$ with positions in an integer interval $[a,b]$ from $a$ to $b$ is denoted $x_{[a,b]}$-- i.e., $x_{[a,b]}=x_ax_{a+1}...x_{b-1}x_b.$
+**Proof**: We have already proved that, if $f$ represents a CA, it's continuous and equivariant; let's prove the other half. What we want is to prove that the value of $f(x)$ at each position is defined by a pattern around this  same position.
 
-The set of these sequences, denoted $S^\zo,$ can be given the product topology. Thus, by definition, it has as basis the subsets $B\subseteq S^\zo$ such that only finite components $B_i$ of $B$ are not $S^\zo$. Since $S$ is finite, this topology is equivalent to the one generated by the $B_i$ which 
+Thus, let $f$ be continuous and equivariant. Take some $x\in \az$ and consider the pattern with $f(x)_0$ in the $0$-th position. Write this pattern as $p_{f(x)},$ the pattern defined by value $v$ in the center. Configurations matching this pattern form an open set $V_x,$ and the set $U_x=\inv{f}(V_x)$ is open by hypothesis. Of course, $x\in U_x,$ for any $x,$ and thus these $\{U_x\}_{x\in \az}$ form an open cover of $\az.$ Since $\az$ is compact, there is a finite open subcover $\{U_{i}\}$ of $\az.$ These $U_i$ don't intersect with themselves SINCE BLA MUAHG 
 
-$$d(x,y)=\sum_{m\geq 0}\frac{D(x_{[-m,m]},y_{[-m,m]})}{2^m}$$
+In terms of patterns, these topological conclusions mean the following. Each $U_i$ can be described by patterns $p^i_1,...,p^i_m,$ which, since intersections are null, are all different. Saying the $U_i$ cover $\az$ means that all configurations must match at least one of these $p^i_j.$ Each configuration $x$ matching a $p^i_j$ must have $f(x)$ matching the pattern $p_i=p_{f(x)},$ which depends only on the $U_i$ containing $x.$
 
-Note that this space is "bounded" and does not allow for arbitrarily large distances: for if $x$ and $y$ are different in all positions, then $d(x,y)=\sum_{m\geq 0}\frac{2m}{2^m},$ and this infinite series can be somewhat unproblematically calculated: it is equal to $4.$ Thus, the greatest distance two points in $S^\zo$ may take is $4$-- and we may as well say that the **diameter** of $S^\zo$ is equal to $4.$
+This can be used to define $f$ as a CA transition. Indeed, in position $0,$ the the value of $f(x)$ is determined by the pattern $p^i_j$ that $x$ satisfies around the center. For any other position $i,$ we can consider the shift bringing position $i$ to the center, $s^{-i}(x).$ Since $f$ is equivariant, $f(x)=f(s^{-i}(x)),$ implying we can update at position $i$ as if it was in the center. Thus, the value of $f(x)$ at each position is defined by a pattern around this same position, as desired.
 
-The space $S^\zo$ is quite interesting because it comes along a continuous symmetry, the **shift** $s:S^\zo\rightarrow S^\zo,$ which shifts sequences one step to the right: $s(x)_i=x_{i-1}.$ Note also that $s$ is invertible, with $\inv{s}$ being a shift one step to the left: $\inv{s}(x)_i=x_{i+1}.$ We'll denote this left shift $l.$
-
-IMG!!!
-
-To verify the continuity of $s,$ let $B_p$ be the basis neighborghood of a pattern $p.$ Then $\inv{s}(B_p)$ is exactly $B_{l(p)}$ BLA. Similarly, $\inv{l}(B_p)=B_{s(p)}.$
-
-Using basically the same argument as for $s,$ we can see $\inv{s}$ is continuous. That is, **the shift** $s$ **is a homeomorphism from** $S^\zo$ **to itself!** In that sense, the term "symmetry" is quite appropriate for it. More than that, it is also an isometry: $d(s(x), s(y))=d(x,y)$ for all $x,y\in S^\zo.$
-
-EQUIVARIANT
-
-... Again, please note how this is absurdly simplier than the description of continuity using the metric explicitly.
-
-By Tychonoff's theorem, $S^\zo$-- as an infinite product of compact spaces-- is compact.
-
+{{< qed >}}
 
