@@ -110,14 +110,14 @@ Here are some extra I remind the reader of some other basic concepts of set theo
 
 A basic understanding of [cardinality](https://en.wikipedia.org/wiki/Cardinality) is (all you'll need to know is the difference between countable and uncountable sets and that $\ro$ is uncountable).
 
-A **total strict order** on a set $X$ is a (binary) relation between elements of $X$ such that 
+A **strict order** on a set $X$ is a (binary) relation between elements of $X$ such that 
 
 - Not $a< a$;
 - If $a< b$ then not $b> a$;
 - If $a< b$ and $b< c,$ then $a< c$;
 - If $a\neq b,$ then $a< b$ or $b < a$ (this is the "totality" of the order).
 
-The set $X$ together with some total strict order is said to be a totally ordered set.
+When every two distinct elements $a,b\in X$ can be compared by an order (i.e., $a< b$ or $a>b$), the order is said to be **total**; else it is a **partial** order. The set $X$ together with some total/partial strict order is said to be a totally/partially ordered set. 
 
 An **equivalence relation** on a set $X$ is a (binary) relation between elements of $X$ such that 
 
@@ -1281,9 +1281,9 @@ You can simplify even further and take as basis the $B_p,$ with $p$ a pattern on
 
 Continuity is also simple to describe in our space. A function $f:\az\rightarrow \az$ being continuous means that, for each $U$ open, $\inv{f}(U)$ is open. Here, this fundamentally says that, if $U$ can be described by finitely many patterns $p_1,...,p_n$, then all the $y$ mapping to $f(y)$ in $U$ must also be described by patterns $p'_1,...,p'_m.$ This is the notion of "continuity" in our space, in the sense we gave above of a function $f$ being continuous whenever a small perturbation of $x$ leads to a small perturbation of $f(x)$.
 
-With respect to topological properties, $\az$ is a Hausdorff spaces. For if $x$ and $y$ are distinct configurations, they must have different values $x_i$ and $y_i$ in some position $i.$ If $p_x$ is the pattern of having value $x_i$ in position $i$ and similarly for $p_y,$ then $p_x$ describes an open set $U_x$ and $p_y$ a $U_y.$ Then the set $U_x$ contains $x$ and $U_y$ contains $y,$ with $U_x\cap U_y=\emptyset$ since these are described by contradictory pattern. Thus $\az$ is Hausdorff.
+With respect to topological properties, $\az$ is a Hausdorff spaces. For if $x$ and $y$ are distinct configurations, they must have different values $x_i$ and $y_i$ in some position $i.$ If $p_x$ is the pattern of having value $x_i$ in position $i$ and similarly for $p_y,$ then $p_x$ describes an open set $U_x$ and $p_y$ a $U_y.$ Then the set $U_x$ contains $x$ and $U_y$ contains $y,$ with $U_x\cap U_y=\emptyset$ since these are described by contradictory patterns. Thus $\az$ is Hausdorff.
 
-Every point of $\az$ is its own connected component: for if distinct $x$ and $y,$ were in the same component $C$, we could define $U_x$ and $U_y$ as above, so that $U_x\cap C$ and $U_y\cap C$ would divide the connected component. Spaces with this property are called **totally disconnected**, the discrete topology being always totally disconnected as well. The only paths in these spaces are constant paths $p(t)=x,$ for fixed $x.$ In particular, there's not much interesting to say about their homotopical properties.
+Every point of $\az$ is its own connected component: for if distinct $x$ and $y$ were in the same component $C$, we could define $U_x$ and $U_y$ as above, so that $U_x\cap C$ and $U_y\cap C$ would divide the connected component. Spaces with this property are called **totally disconnected**, the discrete topology being always totally disconnected as well. The only paths in these spaces are constant paths $p(t)=x,$ for fixed $x.$ In particular, there's not much interesting to say about their homotopical properties.
 
 Finally, since $\mathcal{A}$ with the discrete topology is finite and thus compact, $\az$ is compact by Tychonoff's theorem-- a property that will later show itself as critical for the topological definition of CAs.
 
@@ -1311,13 +1311,13 @@ $$\mathcal{C}=\bigcap_{n=0}^\infty C_n$$
 
 By the analogy above, elements of $\mathcal{C}$ should represent the infinite one-sided configurations inside $\cantor.$ 
 
-This can relation can be formally estabilished using a relation to arithmetic. Indeed, instead of using base ten to write real numbers, we could just as well use base three, in which we expand not by powers of $10$ but by those of $3.$ That is, we write every real $x$ as
+This can relation can be formally estabilished using a relation to arithmetic. Indeed, instead of using base ten to write real numbers, we could just as well use base three (i.e., trinary form), in which we expand not by powers of $10$ but by those of $3.$ That is, we write every real $x$ as
 
 $$x=\sum_{-\infty}^n a_i\cdot 3^i,$$
 
 in which case we write $x=a_na_{n-1}...a_0.a_{-1}a_{-2}..._3$. For example, $5=1\cdot 3 + 2\cdot 3^0,$ so that $5$ is written as $12_3$ in base three; a more intricate case is $\frac{1}{2},$ which is written as $0.111..._3.$
 
-With trinary numbers, the Cantor set finds an easy description. Inside $[0,1],$ numbers in the first third of the interval have first fractional digit $0,$ those in the second $1$ and in the third $2$-- just like, in decimal notation, numbers in the first tenth have first fractional digit $0$ and so on. What $C_1$ does is exclude those with $1$ as first digit after the comma. The $C_n$ do similarly for the $n$-th fractional digit, so that **the Cantor set is the set of numbers in** $[0,1]$ **without any** $1$**'s in their base three expansion.**
+With trinary numbers, the Cantor set finds an easy description. Inside $[0,1],$ numbers in the first third of the interval have first fractional digit $0,$ those in the second $1$ and in the third $2$-- just like, in decimal notation, numbers in the first tenth have first fractional digit $0$ and so on. What $C_1$ does is exclude those with $1$ as first digit after the comma. The $C_n$ do similarly for the $n$-th fractional digit, so that **the Cantor set is the set of numbers in** $[0,1]$ **without any** $1$**'s written in trinary.**
 
 With this, can see points in $\mathcal{C}$ as finite one-sided strings of $0$'s and $2$'s (their fractional parts written in trinary form), and can define $f:\mathcal{C}\rightarrow \cantor$ by substituing $2$'s with $1$'s-- e.g., the number $0.02202..._3$ is sent to the string $01101...$ inside $\cantor.$ Set-theoretically, $f$ is a bijection.
 
@@ -1327,7 +1327,7 @@ Indeed, consider some $C_n$ and an open interval $(a,b)$ containing only one of 
 
 This could also be proven using general topological properties. In particular, it's easy to prove directly that $\mathcal{C}$ is Hausdorff; then the inverse $\inv{f}$ of $f$ is a continuous function from a compact to a Hausdorff space, which we saw previously is always a homeomorphism. 
 
-In particular, we have that $\cantor$ is a metric space, since it is homeomorphic to $\mathcal{C}$ and the latter can be given the standard Euclidean distance. A more intuitive metric can be given though. You can prove that in $\mathcal{C},$ the metric $d(x,y)=\frac{1}{k},$ where $k$ is the first fractional digit in which $x$ and $y$ differ, is a metric equivalent to the Euclidean one (inside of $\mathcal{C},$ of course). Thus they generate the same topology, and we can transport this to define a metric $d$ in $\cantor,$ inducing the same topology we've been using, defined simply as
+In particular, we have that $\cantor$ is a metric space, since it is homeomorphic to $\mathcal{C}$ and the latter can be given the standard Euclidean distance. A more intuitive metric can be given though. You can prove that in $\mathcal{C},$ the metric $d(x,y)=\frac{1}{k},$ where $k$ is the first fractional digit in which $x$ and $y$ differ, is a metric equivalent to the Euclidean one (inside of $\mathcal{C},$ of course). This metric tells you at which level $C_n$ the points start to diverge. Thus this $d$ and the Euclidean metric generate the same topology, and we can transport this to define a metric $d$ in $\cantor$-- inducing the same topology we've been using-- defined simply as
 
 $$d(x,y)=\frac{1}{k}\text{, with } k \text{ the first number such that } x_k\neq y_k$$
 
@@ -1335,11 +1335,15 @@ We then define $d(x,x)=0$ in case the strings are equal. In the metric space $(\
 
 This can be generalized to $\az$ by using the metric
 
-$$d(x,y) =\frac{1}{k}\text{, with } k \text{ the first number such that } x_{[-k,k]}\neq y_{[-k,k]}$$
+$$d(x,y) =\frac{1}{k}\text{, with } k \text{ the first number such that } x_{[-k,k]}\neq y_{[-k,k]},$$
 
+thus making $(\az, d)$ a metric space with the exact same topology given in the last section.
 
+NOTICED
 
-Fractais. L-systems, Logo language
+1D, OUTROS 2D
+
+L-SYSTEM
 
 An interesting and important application of the ideas above can be given to the area of number theory. In arithmetic, we constantly make use of the factorization of a number by primes. In that sense, there's something that unites numbers like $2,$ $4,$ $64,$ $256$ etc., as they're all powers of $2.$ For arithmetical purposes, they're actually quite close, despite the Euclidean distance. In some sense, the distance from $2^1=2$ to $2^4=16$ is just $3,$ since this is how many multiplications by a prime (here, $2$ itself) are needed to go from the first to the second. 
 
@@ -1353,7 +1357,7 @@ You can see how this resembles what we did with the Cantor set, with the excepti
 
 Indeed, the sequence $x_n=1...1_p$ with $n$ many $1$'s corresponds to the number $1 + p +...+p^n,$ so of course it diverges with the usual integer distance; but with $d$ as above, the distances get smaller and smaller: for $n>m,$ $d(x_n, x_m)=\frac{1}{m}.$ Still, in the set $\zo$ this $x_n$ doesn't converge-- i.e., we have non-convergent Cauchy sequences, so that the metric space $(\zo, d)$ isn't complete.
 
-We can formally complete $(\zo, d)$ by allowing for infinite strings in base $p,$ thus getting **formal** series
+We can formally complete $(\zo, d)$ by allowing for infinite strings in base $p,$ thus getting **formal** infinite series
 
 $$x=\sum_{i=0}^\infty a_i\cdot p^i,$$
 
@@ -1365,47 +1369,47 @@ $$f(...a_2a_1a_0)=... + \frac{2a_2}{3^3}+\frac{2a_1}{3^2}+\frac{2a_0}{3}$$
 
 IMG!!! P-ADIC DIST
 
-Algebraically, $\zo_p$ can be given both sum and multiplication operations, but just formally summing and multiplying p-adic integers seen as infinite series. This makes $\zo_p$ a **ring**-- for more, see the post on algebra. What's particularly interesting is that $Z_p$ is algebraically richer than $\zo,$ allowing for some fractions and inverses. For example, you can check that, for $3$-adic integers, $...102102_3$ multiplied by $12_3$ (that is, $5$ in trinary) is equal to $1,$ and thus one might formally write something like $\frac{1}{5}=...102102_3$-- thus one often hears that p-adic integers are numbers that can extend infinitely to the left. Not every normal integer has an inverse in $\zo_p,$ though-- that is, the p-adic integers aren't a **field**.
+Algebraically, $\zo_p$ can be given both sum and multiplication operations, but just formally summing and multiplying p-adic integers seen as infinite series. This makes $\zo_p$ a **ring**-- for more, see the post on algebra. What's particularly interesting is that $\zo_p$ is algebraically richer than $\zo,$ allowing for some fractions and inverses. For example, you can check that, for $3$-adic integers, $...102102_3$ multiplied by $12_3$ (that is, $5$ in trinary) is equal to $1,$ and thus one might formally write something like $\frac{1}{5}=...102102_3$-- thus one often hears that p-adic integers are numbers that can extend infinitely to the left. Not every normal integer has an inverse in $\zo_p,$ though-- that is, the p-adic integers aren't a **field**.
 
-Good to note that writing something like $\frac{1}{5}=...102102_3$ just indicates that there's an element of $\zo_3$ that, multiplied by $5=12_3,$ gives $1.$ Beyond that, this has nothing to do with the *rational* number $\frac{1}{5},$ and the p-adic numbers are to be seen as a number system for its own part, distinct from $\mathbb{Q}$ or $\ro.$ For example, the number $x=...111_2$ in $\zo_2$ is such that $x+x=10_2\cdot x=...110_2$ (two times $x$), $x+x+x=11_2\cdot x=...1100_2$ (three times $x$) and so on, so that $n$ times $x$ is a sequence converging to $0$ as $n\rightarrow \infty.$ No such thing can exist in the real numbers, for example.
+Good to note that formally writing something like $\frac{1}{5}=...102102_3$ just indicates that there's an element of $\zo_3$ that, multiplied by $5=12_3,$ gives $1.$ Beyond that, this has nothing to do with the *rational* number $\frac{1}{5},$ and the p-adic numbers are to be seen as a number system on its own, distinct from $\mathbb{Q}$ or $\ro.$ For example, the number $x=...111_2$ in $\zo_2$ is such that $x+x=10_2\cdot x=...110_2$ (two times $x$), $x+x+x=11_2\cdot x=...1100_2$ (three times $x$) and so on, so that $n$ times $x$ is a sequence converging to $0$ as $n\rightarrow \infty.$ No such thing can exist in the real numbers.
 
 Another equivalent way to define $\zo_p$ is by "scanning" the value of the series $\sum_{i=0}^\infty a_i\cdot p^i$ up to the power $p^n$, for each $n.$ Let $\zmod{n}$ be the set of non-negative integers up to $n$, the integers mod $n$-- for more structure on this set, see the post on algebra. Then every point of $\zo_p$ can be uniquely and exactly described by the infinite sequence of values
 
 $$(a_0p^0 \mmod p, a_0p^0 + a_1p^1 \mmod p^2, a_0p^0 + a_1p^1 + a_2p^2 \mmod p^3, ...),$$
 
-i.e., by the partial values of the series up to powers $p^n.$ This is an element $(x_1\mmod p, x_2, \mmod p^2)$ of the product of sets $\zmod{p}\times \zmod {p^2}\times...$. If $X_n=\zmod{p}\times...\times\zmod{p^n},$ with the special property that $x_i = x_j \mmod p^j$ for every $i< j.$
+i.e., by the partial values of the series up to powers $p^n.$ This is an element $(x_1\mmod p, x_2 \mmod p^2,...)$ of the product of sets $\zmod{p}\times \zmod {p^2}\times...$. If $X_n=\zmod{p}\times...\times\zmod{p^n},$ with the special property that $x_i = x_j \mmod p^j$ for every $i< j.$
 
-This is similar to how, in $\cantor,$ as explained above, elements $x\in \cantor$ can be described by their slices $x_{[0,n]}$ until the $n$-th positions. Thus, $\cantor$ can be seen as those elements of the infinte product $2^1\times 2^2\times...,$ wich each $n$-th component being the slice up to position $n.$ That is, each factor represents scanning the infinite string up to $n$ positions. 
+This is similar to how, in $\cantor,$ as explained above, elements $x\in \cantor$ can be described by their slices $x_{[0,n]}$ until the $n$-th positions. Thus, $\cantor$ can be seen as those elements of the infinte product $2^1\times 2^2\times...$ such that each $n$-component is the string $x_{[0,n]},$ for some infinite binary string $x.$ That is, each factor represents scanning the infinite string up to the $n$-th position. 
 
-This "scanning" idea can be generalized as follows. Suppose you have a sequence of topological spaces $\{X_n\}_{n\in \mathbb{N}}$ and continuous functions $f_{ij}: X_i\rightarrow X_j$ between them, for all natural pairs $i\geq j.$ Suppose further that $f_{ii}=\text{id}_{X_i}$ and that these functions compose in a transitive way: that is, $f_{ik}=f_{jk}\circ f_{ij}.$ Intuitively, each $X_n$ can be seen as a partial scan of some information up to size $n,$ and the $f_{ij}$'s tell you how to get a smaller slice of this information. This is called an *inverse system*. Then the **inverse limit** of the system, written $\varprojlim{X_n},$ is the space
+This "scanning" idea can be generalized as follows. Given a partially ordered indexing set $I$ (usually $\mathbb{N}$ or $\zo$), suppose you have a sequence of topological spaces $\{X_n\}_{n\in I}$ and continuous functions $f_{ij}: X_i\rightarrow X_j$ between them, for all natural pairs $i\geq j.$ Suppose further that $f_{ii}=\text{id}_{X_i}$ and that these functions compose in a transitive way: that is, $f_{ik}=f_{jk}\circ f_{ij}.$ Intuitively, each $X_i$ can be seen as a partial scan of some information up to size $i,$ and $f_{ij}$ tells you how to get a smaller slice of size $j$ of this information. This is called an *inverse system*. Then the **inverse limit** of the system, written $\varprojlim{X_n},$ is the space
 
 $$\varprojlim{X_n} = \left\{x\in \prod X_n\mid x_j=f_{ij}(x_i)\text{ for all }j\leq i\right\}$$
 
 The topology given should be immediate-- the subspace one inside the product topology of $\prod X_n.$
 
-The space $\cantor$ can be given as an inverse limit by using the system $X_n=2^1\times...\times 2^n$ with $f_{ij}(x)=x_{[0,j]}.$ The space $\zo_p$ can be see as an inverse limit by using the system $X_n=\zmod{p}\times...\times \zmod{p^n}$ with $f_{ij}(x_1,...,x_i)=(x_1,...,x_j).$
+The space $\cantor$ can be given as an inverse limit by using the system $I=\mathbb{N},$ $X_n=2^1\times...\times 2^n$ with $f_{ij}(x)=x_{[0,j]}.$ The space $\zo_p$ can be see as an inverse limit by using the system $I=\mathbb{N},$ $X_n=\zmod{p}\times...\times \zmod{p^n}$ with $f_{ij}(x_1,...,x_i)=(x_1,...,x_j).$ Finally, $\az$ can be given as an inverse limit using the system $I=\zo,$ $X_n=\prod_{-\infty}^n\mathcal{A}$ and $f_{ij}(..., x_{i-1}, x_i)=(..., x_{j-1}, x_j).$
 
-Inverse limits appear often as spaces representing infinite chains of choices-- just like the Cantor set or the p-adic numbers. We'll possibly meet them and $\zo_p$ later on when we study tilings and repeating patterns.
+Inverse limits appear often as spaces representing infinite chains of choices-- just like the Cantor set or the p-adic numbers. We'll possibly meet them and $\zo_p$ later on when we study tilings and repeating 2D patterns.
 
 ## The topological definition of cellular automata
 
-FALAR PRIMEIRO DCONTINUIDADE DAS CAS. DAÍ A PROP DE SEREM EQUIVARAINTES. SHIFT COMO SIMETRIA (NO CASO DE CANTOR, É PUXAR PRA UM SUB-ESPAÇO IDENTICO)
-
 Now that we hopefully have a solid understanding and intuition of $\az$ as topological spaces of cell configurations, let's see how CAs fit in this language. The end result of this sections isn't difficult to show with all we've learned in this article, and, giving a topological characterization of cellular automata, represents the "accumulation point" of all we've studied so far-- but don't worry, much more will come, equally fascinating!
 
-A cellular automata can be represented by a function $f:\az\rightarrow \az,$ sending every configuration to the updated configuration after one step of applying the CA's rule. Naturally, we have to ask: is this function continuous? Well, if an open set $U$ is described by patterns $p_1,...,p_n,$ then $\inv{f}(U)$ is described by all the configurations $x$ such that $f(x)$ matches some $p_1,...,p_n.$ 
+A cellular automata can be represented by a function $f:\az\rightarrow \az,$ sending every configuration to the updated configuration after one step of applying the CA's rule-- we call it a **transition function** for some cellular automata. Naturally, we have to ask: is this function continuous? Taking a basis open set $B_p$ matching a pattern $p$ with a value $v$ on single position $i,$ the set $\inv{f}(B_p)$ is composed of all configurations $x$ such that $f(x)_i=v$-- thus, since $f$ represents a CA, describable by pattern matching. Thus $\inv{f}(B_p)$ and, once these $B_p$ form a basis of $\az,$ $f$ is continuous.
 
-BUÉEÉÉÉÉÉÉ
+Importantly, the value of $f(x)$ in some position $i$ depends only on the values around it, thus independing of $i$ itself. This symmetry is a very strong property, and can be more formally described using the **shift symmetry** of $\az.$ The function $s:\az\rightarrow\az$ defined by $s(x)_i=x_{i-1}$ is called the *left* shift and corresponds to pushing configurations one position to the left. It is an isommetry of $\az$ (consequently, a homeomorphism as well), something we can properly call a symmetry on the space of configurations. Its inverse $\inv{s}$ corresponds to a shift by one step to the right; $s^n$ (i.e., $s$ applied $n$ times) corresponds to $n$ steps to the left, and $s^{-n}$ to $n$ steps to the right.
 
-**Curtis-Hedlund-Lyndon Theorem**: a function $f:\az\rightarrow \az$ represents a cellular automata update if, and only if, $f$ is continuous and equivariant.
+The fact that the value of $f(x)$ in each position independs of the position properly can be formalized by the relation $f(s(x))=f(x),$ in which case $f$ is said to be **shift-equivariant** (we'll also use just "equivariant"). Thus, we've proved that a CA transition function is continuous and equivariant. This is an interesting relation between cellular automata and topology, but more can be said: the following theorem stabilishes that having a continuous and equivariant transition function could actually be a **definition for cellular automata.** It is a cornerstone of the relation between [symbolic dynamics](https://en.wikipedia.org/wiki/Symbolic_dynamics) and topology-- and, consequently, between the digital arts and topology. It fits perfectly as a conclusion for this (admitedly, quite long) article; thank you for reading so far!
 
-**Proof**: We have already proved that, if $f$ represents a CA, it's continuous and equivariant; let's prove the other half. What we want is to prove that the value of $f(x)$ at each position is defined by a pattern around this  same position.
+**Curtis-Hedlund-Lyndon Theorem**: a function $f:\az\rightarrow \az$ is a cellular automata transition if and only if $f$ is continuous and equivariant.
 
-Thus, let $f$ be continuous and equivariant. Take some $x\in \az$ and consider the pattern with $f(x)_0$ in the $0$-th position. Write this pattern as $p_{f(x)},$ the pattern defined by value $v$ in the center. Configurations matching this pattern form an open set $V_x,$ and the set $U_x=\inv{f}(V_x)$ is open by hypothesis. Of course, $x\in U_x,$ for any $x,$ and thus these $\{U_x\}_{x\in \az}$ form an open cover of $\az.$ Since $\az$ is compact, there is a finite open subcover $\{U_{i}\}$ of $\az.$ These $U_i$ don't intersect with themselves SINCE BLA MUAHG 
+**Proof**: We have already proved that, if $f$ represents a CA, it's continuous and equivariant; let's prove the other half. What we want is to prove that the value of $f(x)$ at each position is defined by a pattern around this same position, there being finitely many such updating patterns.
 
-In terms of patterns, these topological conclusions mean the following. Each $U_i$ can be described by patterns $p^i_1,...,p^i_m,$ which, since intersections are null, are all different. Saying the $U_i$ cover $\az$ means that all configurations must match at least one of these $p^i_j.$ Each configuration $x$ matching a $p^i_j$ must have $f(x)$ matching the pattern $p_i=p_{f(x)},$ which depends only on the $U_i$ containing $x.$
+Thus, let $f$ be continuous and equivariant. Take some $x\in \az$ and consider the pattern with $f(x)_0$ in the $0$-th position. Configurations matching this pattern form an open set $V_x,$ and the set $U_x=\inv{f}(V_x)$ is open by hypothesis. Of course, $x\in U_x,$ for any $x,$ and thus these $\{U_x\}_{x\in \az}$ form an open cover of $\az.$ Since $\az$ is compact, there is a finite open subcover $\{U_{i}\}$ of $\az.$
 
-This can be used to define $f$ as a CA transition. Indeed, in position $0,$ the the value of $f(x)$ is determined by the pattern $p^i_j$ that $x$ satisfies around the center. For any other position $i,$ we can consider the shift bringing position $i$ to the center, $s^{-i}(x).$ Since $f$ is equivariant, $f(x)=f(s^{-i}(x)),$ implying we can update at position $i$ as if it was in the center. Thus, the value of $f(x)$ at each position is defined by a pattern around this same position, as desired.
+In terms of patterns, these topological conclusions mean the following. Each $U_i$ can be described by patterns $p^i_1,...,p^i_m.$ Saying the $U_i$ cover $\az$ means that all configurations must match at least one of these $p^i_j,$ for some $i,j.$ The value of $f(x)$ in the center is defined by which of these patterns it matches, by definition of the $V_x$ and $U_x$ above.
+
+This can be used to describe $f$ as a CA transition. Indeed, we just said that the value of $f(x)$ in position $0$ depends only on a pattern $p^i_j$ that $x$ matches. For any other position $i,$ we can consider the shift bringing position $i$ to the center, $s^{-i}(x).$ Since $f$ is equivariant, $f(x)=f(s^{-i}(x)),$ implying we can update at position $i$ as if it was in the center. Thus, the value of $f(x)$ at each position is defined by a pattern around this same position; since there are finitely many $p^i_j$'s, we have proved what we wanted.
 
 {{< qed >}}
 
