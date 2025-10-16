@@ -293,7 +293,7 @@ $$f(B(x, \delta))\subseteq B(f(x), \epsilon)$$
 
 What this fundamentally says is that, for a continuous function $f,$ a small perturbation of $x$ leads to a small (possibly even null) perturbation of $f(x)$ as well-- open sets are just the tool to describe this idea.
 
-For example, take the function $f:\ro\rightarrow \ro$ which is $0$ in $(-\infty, 0]$ and $1$ in $(0,\infty).$ Choosing the point $x=0$ of discontinuity, we have that, for every $\delta> 0$ $f(B(0, \delta))$ is the set $\{0,1\},$ thus picking $\epsilon < 1$ implies $B(f(0), \epsilon)$ doesn't contain $f(B(0, \delta))$-- and thus $f$ is not continuous.
+For example, take the function $f:\ro\rightarrow \ro$ which is $0$ in $(-\infty, 0]$ and $1$ in $(0,\infty).$ Choosing the point $x=0$ of discontinuity, we have that, for every $\delta> 0,$ $f(B(0, \delta))$ is the set $\{0,1\},$ thus picking $\epsilon < 1$ implies $B(f(0), \epsilon)$ doesn't contain $f(B(0, \delta))$-- and thus $f$ is not continuous.
 
 IMG!!!!
 
@@ -505,9 +505,13 @@ Here's a good exercise: prove that, if $(X,\tau)$ is a topological space such th
 You can topologize any union of topological spaces $(X, \tau_X)$ and $(Y, \tau_Y)$ by giving $X\cup Y$ the topology $\tau_X\cup \tau_Y.$ Open sets in $X$ and $Y$ remain open, and there are no open sets with elements both in $X$ and in $Y$: the spaces are "disconnected," so to speak-- a notion we'll later on describe properly. This space is called the **disjoint union** of $X$ and $Y$, and it's custom to denote it as $X\amalg Y.$ Since there's no relation here between the topologies of the two spaces, disjoint unions don't bring anything new and are just used as a formality.
 IMG!!!
 
-OTHER TOPOLOGIES FOR SMALL SETS
+It can also educative to consider some topologies on finite sets. For example, in $\{0,1\},$ the topology 
 
-It's also educative to consider some  !!!!!!!!!!!!!!!!!!!!!
+$$\{\emptyset, \{1\}, \{0,1\}\}$$
+
+is called the **Sierpinski topology**. You can try to verify its properties whenever we introduce a new topological concept.
+
+IMG!! SIERPINSKI
 
 ### Spheres and donuts: dimension, intrinsic and extrinsic views
 
@@ -819,10 +823,7 @@ PROD MANIFOLDS
 
 ### Gluing spaces: quotients
 
-EQUIVALENCE CLASSES
-WELL-BEHAVED, SIGNIFICADO
-
-**Topologically, making equivalences can be seen as gluing points together.** For example, imagine I have a segment of line (i.e., an interval) $I=[0,1]$ and I want to glue its endpoints to make a circle $S^1.$ Mathematically, all you need to know is to define an equivalence on $I$ such that $0\sim 1$ and all other points are equivalent only to themselves, getting a quotient $\quot{I}.$ Now the extremities are really one and the same thing.
+Topologically, the intuition of gluing points together of a space can be formalized using set equivalences. For example, imagine I have a segment of line (i.e., an interval) $I=[0,1]$ and I want to glue its endpoints to make a circle $S^1.$ Mathematically, all you need to know is to define an equivalence on $I$ such that $0\sim 1$ and all other points are equivalent only to themselves, getting a quotient $\quot{I}.$ Now the extremities are really one and the same thing.
 
 {{< figure src="intervalS1quotient.png" caption="Illustration of the relation $\quot{I}\cong S^1$ given above. Work by [MaxFischerUCPH](https://commons.wikimedia.org/wiki/User_talk:MaxFischerUCPH)." >}}
 
@@ -981,11 +982,13 @@ One of the main uses of path homotopy is to use paths as probes with each you ca
 
 - Take the space $X,$ which is $D^2$ with a smaller disk taken away from it, and let's consider homotopy of loops in it. Some loops don't go around the empty middle region. These can be slowly shrunk until they're the constant paths $p(x)=x_0,$ for all $x\in I$-- i.e., the paths can be shrunk to the single point $x_0.$ However, some loops do go aroung the "hole" left over, and, intuitively, these can't be homotoped to $x_0.$ These are "detecting" the hole, so to speak, and are a loop homotopy class different from those that don't go around it;
 
-- Take the same $X$ as above. It doesn't matter only if a loop goes around the hole, but **how many times** it goes around. Intuitively, this should homotopically distinguish loops too. Orientation matters too: a loop goin clockwise around the hole can't really be homotoped to one goind counter-clockwise.
+- Take the same $X$ as above. It doesn't matter only if a loop goes around the hole, but **how many times** it goes around. Intuitively, this should homotopically distinguish loops too. Orientation matters too: a loop goin clockwise around the hole can't really be homotoped to one goind counter-clockwise, i.e., with the inverted direction. Thus, it seems like, if $a$ denotes a loop on the counter-clockwise direction going around the hole a single time, then all other loops can be classified as $a^n,$ $n$ indicating how many times it goes around the hole (negative values indicating the opposite direction). We'll prove this properly on another article;
 
 IMG!!!
 
-This all indicates that $[(I,\{0,1\}), (X, x_0)]$ is able to detect holes in a space $X$; further, it distinguishes the amount of times a loop goes around a hole. These are indicatives of an underlying algebraic structure, and, indeed, we can properly define how to "join" two loops together, getting an operation that makes $[(I,\{0,1\}), (X, x_0)]$ an algebraic structure called a **group**. This is called the **fundamental group** of $X,$ written $\pi_1(X).$ In the examples above, $\pi_1(X)$ can be seen as the group of integers $\zo$: a loop going counter-clockwise $n$ times around the hole is associated to the number $n,$ and one doing so $n$ times clockwise to $-n.$ But this will be a topic for a further article on its own.
+- Now, take $Y$ as $D^2$ with *two* holes. Loops around a single one of these holes can't be contracted, so we have two base loop $a$ and $b$-- one going around each hole, a single time and in counter-clockwise direction. If you keep playing with the homotopy classes of holes in $Y,$ you'll find that these seem to be classified by (finite) strings involving $a$ and $b,$ indicating the order of holes the loop goes around. Here are some samples from this loop-zoo:
+
+This all indicates that $[(I,\{0,1\}), (X, x_0)]$ is able to detect holes in a space $X$; further, it distinguishes the amount of times a loop goes around a hole. These are indicatives of an underlying algebraic structure, and, indeed, we can properly define how to "join" two loops together, getting an operation that makes $[(I,\{0,1\}), (X, x_0)]$ an algebraic structure called a **group**. This is called the **fundamental group** of $X,$ written $\pi_1(X),$ and we'll properly study it later on in this series. By the previous remarks, it seems that the fundamental group of $X$ is $\zo$ and that of $Y$ is the free group on two generators, $F_2$-- which is indeed correct, as we'll see in the future.
 
 Homotopy of paths seemed to be a very powerful tool to study spaces. Let's generalize it!
 
@@ -1339,11 +1342,9 @@ $$d(x,y) =\frac{1}{k}\text{, with } k \text{ the first number such that } x_{[-k
 
 thus making $(\az, d)$ a metric space with the exact same topology given in the last section.
 
-NOTICED
+The reader might have noticed above that, since the components of $C_n$ are all partitioned in the same way to get $C_{n+1},$ then $\mathcal{C}$ (and thus $\cantor$) is a self-repeating space, a **fractal**. In terms of strings, this can be seen by noting that, in $\cantor,$ the subspaces $B_s$ of strings beginning with some string $s,$ for every finite $s,$ are all homeomorphic-- so that $\cantor$ is composed of many equal, repeating subspaces. We often think of fractals in 2D, but the Cantor space is an examples of a one-dimensional fractal, and its iterative construction serves as a model to build many other fractals.
 
-1D, OUTROS 2D
-
-L-SYSTEM
+IMG!!! MANDELBROT SLA 
 
 An interesting and important application of the ideas above can be given to the area of number theory. In arithmetic, we constantly make use of the factorization of a number by primes. In that sense, there's something that unites numbers like $2,$ $4,$ $64,$ $256$ etc., as they're all powers of $2.$ For arithmetical purposes, they're actually quite close, despite the Euclidean distance. In some sense, the distance from $2^1=2$ to $2^4=16$ is just $3,$ since this is how many multiplications by a prime (here, $2$ itself) are needed to go from the first to the second. 
 
